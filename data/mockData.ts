@@ -8,6 +8,7 @@ const developersData: DeveloperInfo = [
         title: "Full Stack Developer",
 		country: "USA",
         state: "Texas",
+		memberSince: "3/5/2025",
 		city: "San Francisco",
         avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
         bannerImage:

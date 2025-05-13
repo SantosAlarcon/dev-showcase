@@ -22,20 +22,24 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import LanguageIcon from '@mui/icons-material/Language';
-import CodeIcon from '@mui/icons-material/Code';
-import {
-    MessageCircle,
-    MapPin,
-    Calendar,
-    Briefcase,
-    Share2,
-    Mail,
-    Download,
-    Monitor,
-    HardDrive,
-} from "lucide-react";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import LanguageIcon from "@mui/icons-material/Language";
+import CodeIcon from "@mui/icons-material/Code";
+import TvIcon from "@mui/icons-material/Tv";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import LocationPinIcon from "@mui/icons-material/LocationPin";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import WorkIcon from "@mui/icons-material/Work";
+import DownloadIcon from "@mui/icons-material/Download";
+import ChatIcon from "@mui/icons-material/Chat";
+import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
+import SettingsIcon from "@mui/icons-material/Settings";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LogoDevIcon from "@mui/icons-material/LogoDev";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import GroupsIcon from "@mui/icons-material/Groups";
+
 import { getDeveloperInfo } from "@/utils/getDeveloperInfo";
 
 export async function generateMetadata(props: {
@@ -82,7 +86,7 @@ export default async function DeveloperProfile(props: {
                 </AspectRatio>
             </Box>
 
-            <Container maxWidth="lg">
+            <Container sx={{width: "1800"}}>
                 {/* Profile Header */}
                 <Box
                     sx={{
@@ -119,13 +123,13 @@ export default async function DeveloperProfile(props: {
                                             borderColor: "background.surface",
                                         }}
                                     />
-                                    <Box>
+                                    <Box sx={{ display: "flex", gap: 1, flexDirection: "column" }}>
                                         <Box
                                             sx={{
                                                 display: "flex",
                                                 alignItems: "center",
                                                 flexWrap: "wrap",
-                                                gap: 1,
+                                                gap: 2,
                                             }}
                                         >
                                             <Typography
@@ -147,7 +151,7 @@ export default async function DeveloperProfile(props: {
                                                     size="sm"
                                                     color="success"
                                                     sx={{
-                                                        borderRadius: "pill",
+                                                        borderRadius: "10rem",
                                                     }}
                                                 >
                                                     Available for hire
@@ -178,7 +182,7 @@ export default async function DeveloperProfile(props: {
                                                     gap: 1,
                                                 }}
                                             >
-                                                <MapPin size={16} />
+                                                <LocationPinIcon />
                                                 <Typography level="body-sm">
                                                     {developer.city},{" "}
                                                     {developer.state},{" "}
@@ -192,9 +196,8 @@ export default async function DeveloperProfile(props: {
                                                     gap: 1,
                                                 }}
                                             >
-                                                <Briefcase size={16} />
+                                                <WorkIcon />
                                                 <Typography level="body-sm">
-                                                    {developer.experience}{" "}
                                                     experience
                                                 </Typography>
                                             </Box>
@@ -205,11 +208,22 @@ export default async function DeveloperProfile(props: {
                                                     gap: 1,
                                                 }}
                                             >
-                                                <Calendar size={16} />
+                                                <CalendarMonthIcon />
                                                 <Typography level="body-sm">
-                                                    {developer.availability}
+													Joined on{" "}
+                                                    {new Date(developer.memberSince).toLocaleDateString("en-US", {
+                                                        year: "numeric",
+                                                        month: "long",
+                                                        day: "numeric",
+                                                    })}
                                                 </Typography>
                                             </Box>
+											<Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+												<GroupsIcon />
+												<Typography level="body-sm">
+													{developer.followers}
+												</Typography>
+											</Box>
                                         </Box>
                                         <Box
                                             sx={{
@@ -217,55 +231,150 @@ export default async function DeveloperProfile(props: {
                                                 gap: 1.5,
                                             }}
                                         >
-                                            <IconButton
-                                                component="a"
-                                                href={developer.social.github}
-                                                aria-label="GitHub"
-                                                target="_blank"
-                                                variant="plain"
-                                                color="neutral"
-                                                size="sm"
-                                            >
-                                                <Tooltip
-                                                    title="GitHub"
-                                                    variant="solid"
+                                            {developer.social.github && (
+                                                <IconButton
+                                                    component="a"
+                                                    href={
+                                                        developer.social.github
+                                                    }
+                                                    aria-label="GitHub"
+                                                    target="_blank"
+                                                    variant="plain"
+                                                    color="neutral"
+                                                    size="sm"
                                                 >
-                                                    <GitHubIcon />
-                                                </Tooltip>
-                                            </IconButton>
-                                            <IconButton
-                                                component="a"
-                                                href={developer.social.linkedin}
-                                                aria-label="LinkedIn"
-                                                target="_blank"
-                                                variant="plain"
-                                                color="neutral"
-                                                size="sm"
-                                            >
-                                                <Tooltip
-                                                    title="LinkedIn"
-                                                    variant="solid"
+                                                    <Tooltip
+                                                        title="GitHub"
+                                                        variant="solid"
+                                                    >
+                                                        <GitHubIcon />
+                                                    </Tooltip>
+                                                </IconButton>
+                                            )}
+                                            {developer.social.linkedin && (
+                                                <IconButton
+                                                    component="a"
+                                                    href={
+                                                        developer.social
+                                                            .linkedin
+                                                    }
+                                                    aria-label="LinkedIn"
+                                                    target="_blank"
+                                                    variant="plain"
+                                                    color="neutral"
+                                                    size="sm"
                                                 >
-                                                    <LinkedInIcon />
-                                                </Tooltip>
-                                            </IconButton>
-                                            <IconButton
-                                                component="a"
-                                                aria-label="Twitter"
-                                                href={developer.social.twitter}
-                                                target="_blank"
-                                                variant="plain"
-                                                color="neutral"
-                                                size="sm"
-                                            >
-                                                <Tooltip
-                                                    title="Twitter"
-                                                    variant="solid"
+                                                    <Tooltip
+                                                        title="LinkedIn"
+                                                        variant="solid"
+                                                    >
+                                                        <LinkedInIcon />
+                                                    </Tooltip>
+                                                </IconButton>
+                                            )}
+                                            {developer.social.facebook && (
+                                                <IconButton
+                                                    component="a"
+                                                    aria-label="Facebook"
+                                                    href={
+                                                        developer.social
+                                                            .facebook
+                                                    }
+                                                    target="_blank"
+                                                    variant="plain"
+                                                    color="neutral"
+                                                    size="sm"
                                                 >
-													<TwitterIcon />
-                                                </Tooltip>
+                                                    <Tooltip
+                                                        title="Facebook"
+                                                        variant="solid"
+                                                    >
+                                                        <FacebookIcon />
+                                                    </Tooltip>
+                                                </IconButton>
+                                            )}
+                                            {developer.social.twitter && (
+                                                <IconButton
+                                                    component="a"
+                                                    aria-label="Twitter"
+                                                    href={
+                                                        developer.social.twitter
+                                                    }
+                                                    target="_blank"
+                                                    variant="plain"
+                                                    color="neutral"
+                                                    size="sm"
+                                                >
+                                                    <Tooltip
+                                                        title="Twitter"
+                                                        variant="solid"
+                                                    >
+                                                        <TwitterIcon />
+                                                    </Tooltip>
+                                                </IconButton>
+                                            )}
+                                            {developer.social.instagram && (
+                                                <IconButton
+                                                    component="a"
+                                                    aria-label="Instagram"
+                                                    href={
+                                                        developer.social
+                                                            .instagram
+                                                    }
+                                                    target="_blank"
+                                                    variant="plain"
+                                                    color="neutral"
+                                                    size="sm"
+                                                >
+                                                    <Tooltip
+                                                        title="Instagram"
+                                                        variant="solid"
+                                                    >
+                                                        <InstagramIcon />
+                                                    </Tooltip>
+                                                </IconButton>
+                                            )}
+                                            {developer.social.devto && (
+                                                <IconButton
+                                                    component="a"
+                                                    aria-label="Instagram"
+                                                    href={
+                                                        developer.social.devto
+                                                    }
+                                                    target="_blank"
+                                                    variant="plain"
+                                                    color="neutral"
+                                                    size="sm"
+                                                >
+                                                    <Tooltip
+                                                        title="Dev.to"
+                                                        variant="solid"
+                                                    >
+                                                        <LogoDevIcon />
+                                                    </Tooltip>
+                                                </IconButton>
+                                            )}
+                                            {developer.social.youtube && (
+                                                <IconButton
+                                                    component="a"
+                                                    aria-label="YouTube"
+                                                    href={
+                                                        developer.social.devto
+                                                    }
+                                                    target="_blank"
+                                                    variant="plain"
+                                                    color="neutral"
+                                                    size="sm"
+                                                >
+                                                    <Tooltip
+                                                        title="YouTube"
+                                                        variant="solid"
+                                                    >
+                                                        <YouTubeIcon />
+                                                    </Tooltip>
+                                                </IconButton>
+                                            )}
 
-                                            </IconButton>
                                             <IconButton
                                                 component="a"
                                                 href={
@@ -277,9 +386,12 @@ export default async function DeveloperProfile(props: {
                                                 color="neutral"
                                                 size="sm"
                                             >
-												<Tooltip title="Portfolio" variant="solid">
-													<OpenInNewIcon />
-												</Tooltip>
+                                                <Tooltip
+                                                    title="Portfolio"
+                                                    variant="solid"
+                                                >
+                                                    <OpenInNewIcon />
+                                                </Tooltip>
                                             </IconButton>
                                         </Box>
                                     </Box>
@@ -321,9 +433,7 @@ export default async function DeveloperProfile(props: {
                                             href={`/message/${developer.id}`}
                                             variant="solid"
                                             color="primary"
-                                            startDecorator={
-                                                <MessageCircle size={16} />
-                                            }
+                                            startDecorator={<ChatIcon />}
                                             size="lg"
                                         >
                                             Contact Me
@@ -333,7 +443,7 @@ export default async function DeveloperProfile(props: {
                                             color="neutral"
                                             size="lg"
                                         >
-                                            <Share2 size={18} />
+                                            <ShareOutlinedIcon />
                                         </IconButton>
                                     </Stack>
                                 </Box>
@@ -362,7 +472,7 @@ export default async function DeveloperProfile(props: {
                     </TabList>
 
                     <TabPanel value={0}>
-                        <Card variant="outlined">
+                        <Card variant="outlined" sx={{ p: 4 }}>
                             <Typography level="title-lg" sx={{ mb: 2 }}>
                                 About Me
                             </Typography>
@@ -389,7 +499,7 @@ export default async function DeveloperProfile(props: {
                                                         gap: 1,
                                                     }}
                                                 >
-													<LanguageIcon />
+                                                    <LanguageIcon />
                                                     <Typography level="body-md">
                                                         {language}
                                                     </Typography>
@@ -406,18 +516,15 @@ export default async function DeveloperProfile(props: {
                                     <Stack spacing={1} sx={{ mb: 4 }}>
                                         <Button
                                             component="a"
-                                            href={`mailto:${developer.name.toLowerCase().replace(" ", ".")}@example.com`}
+                                            href={`mailto:${developer.email}`}
                                             variant="plain"
                                             color="neutral"
-                                            startDecorator={<Mail size={16} />}
+                                            startDecorator={<MailOutlineIcon />}
                                             sx={{
                                                 justifyContent: "flex-start",
                                             }}
                                         >
-                                            {developer.name
-                                                .toLowerCase()
-                                                .replace(" ", ".")}
-                                            @example.com
+                                            {developer.email}
                                         </Button>
                                         <Button
                                             component="a"
@@ -425,9 +532,7 @@ export default async function DeveloperProfile(props: {
                                             target="_blank"
                                             variant="plain"
                                             color="neutral"
-                                            startDecorator={
-                                                <OpenInNewIcon />
-                                            }
+                                            startDecorator={<OpenInNewIcon />}
                                             sx={{
                                                 justifyContent: "flex-start",
                                             }}
@@ -439,7 +544,7 @@ export default async function DeveloperProfile(props: {
                                     <Button
                                         variant="soft"
                                         color="primary"
-                                        startDecorator={<Download size={16} />}
+                                        startDecorator={<DownloadIcon />}
                                         sx={{ mb: 2 }}
                                     >
                                         Download Resume
@@ -547,7 +652,7 @@ export default async function DeveloperProfile(props: {
                     </TabPanel>
 
                     <TabPanel value={2}>
-                        <Card variant="outlined">
+                        <Card variant="outlined" sx={{ p: 4 }}>
                             <Typography level="title-lg" sx={{ mb: 3 }}>
                                 Work Experience
                             </Typography>
@@ -572,7 +677,7 @@ export default async function DeveloperProfile(props: {
                                                 level="body-sm"
                                                 sx={{ color: "text.tertiary" }}
                                             >
-                                                {work.duration}
+                                                {work.startDate} - {work.endDate}
                                             </Typography>
                                         </Box>
                                         <Typography
@@ -594,7 +699,7 @@ export default async function DeveloperProfile(props: {
                     </TabPanel>
 
                     <TabPanel value={3}>
-                        <Card variant="outlined">
+                        <Card variant="outlined" sx={{ p: 4 }}>
                             <Typography level="title-lg" sx={{ mb: 3 }}>
                                 Skills & Technologies
                             </Typography>
@@ -674,7 +779,7 @@ export default async function DeveloperProfile(props: {
                                 <Grid xs={12} md={4}>
                                     <Typography
                                         level="title-md"
-                                        startDecorator={<HardDrive size={18} />}
+                                        startDecorator={<SettingsIcon />}
                                         sx={{ mb: 2 }}
                                     >
                                         Backend
@@ -746,7 +851,7 @@ export default async function DeveloperProfile(props: {
                                 <Grid xs={12} md={4}>
                                     <Typography
                                         level="title-md"
-                                        startDecorator={<Monitor size={18} />}
+                                        startDecorator={<TvIcon />}
                                         sx={{ mb: 2 }}
                                     >
                                         Other Technologies

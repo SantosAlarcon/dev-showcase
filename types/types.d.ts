@@ -19,6 +19,7 @@ type DeveloperInfo = {
 	languages: string[];
 	projects: Project[];
 	social: Social;
+	memberSince: string;
 }
 
 type FreelanceInfo = {
@@ -44,11 +45,16 @@ type Project = {
 
 type Social = {
 	github: string;
-	linkedin: string;
+	linkedin?: string;
+	facebook?: string;
 	twitter?: string;
 	portfolio: string;
 	threads?: string;
 	bluesky?: string;
+	instagram?: string;
+	youtube?: string;
+	medium?: string;
+	devto?: string;
 }
 
 export { DeveloperInfo, FreelanceInfo, Experience, Project, Social };

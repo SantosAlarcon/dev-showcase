@@ -86,11 +86,10 @@ export default async function DeveloperProfile(props: {
                 </AspectRatio>
             </Box>
 
-            <Container sx={{width: "1800"}}>
+            <Container maxWidth="xl" sx={{display: "flex", gap: 4, mt: -8}}>
                 {/* Profile Header */}
                 <Box
                     sx={{
-                        mt: { xs: -8, md: -12 },
                         position: "relative",
                         zIndex: 1,
                     }}
@@ -109,6 +108,7 @@ export default async function DeveloperProfile(props: {
                                     sx={{
                                         display: "flex",
                                         alignItems: "center",
+										flexDirection: "column",
                                         gap: 2,
                                         mb: 2,
                                     }}

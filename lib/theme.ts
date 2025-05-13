@@ -135,6 +135,15 @@ const theme = extendTheme({
             },
         },
     },
+	breakpoints: {
+		values: {
+			xs: 0,
+			sm: 600,
+			md: 900,
+			lg: 1200,
+			xl: 1800
+		},
+	},
     fontFamily: {
         body: '"Inter", var(--joy-fontFamily-fallback)',
         display: '"Inter", var(--joy-fontFamily-fallback)',

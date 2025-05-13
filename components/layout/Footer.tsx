@@ -11,7 +11,9 @@ import {
     ListItem,
     IconButton,
 } from "@mui/joy";
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedinIcon from "@mui/icons-material/LinkedIn";
 
 export default function Footer() {
     return (
@@ -24,7 +26,7 @@ export default function Footer() {
                 borderColor: "divider",
             }}
         >
-            <Container>
+            <Container maxWidth="xl">
                 <Grid container spacing={4}>
                     <Grid xs={12} sm={6} md={3}>
                         <Typography
@@ -66,7 +68,7 @@ export default function Footer() {
                                 component="a"
                                 href="https://github.com"
                             >
-                                <Github size={18} />
+                                <GitHubIcon />
                             </IconButton>
                             <IconButton
                                 variant="plain"
@@ -75,7 +77,7 @@ export default function Footer() {
                                 component="a"
                                 href="https://twitter.com"
                             >
-                                <Twitter size={18} />
+                                <TwitterIcon />
                             </IconButton>
                             <IconButton
                                 variant="plain"
@@ -84,16 +86,7 @@ export default function Footer() {
                                 component="a"
                                 href="https://linkedin.com"
                             >
-                                <Linkedin size={18} />
-                            </IconButton>
-                            <IconButton
-                                variant="plain"
-                                color="neutral"
-                                size="sm"
-                                component="a"
-                                href="https://instagram.com"
-                            >
-                                <Instagram size={18} />
+                                <LinkedinIcon />
                             </IconButton>
                         </Box>
                     </Grid>

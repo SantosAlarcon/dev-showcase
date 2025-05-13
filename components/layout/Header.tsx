@@ -63,7 +63,7 @@ export default function Header() {
                 borderColor: "divider",
             }}
         >
-            <Container>
+            <Container maxWidth="xl">
                 <Box
                     sx={{
                         display: "flex",

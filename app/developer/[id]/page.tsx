@@ -86,7 +86,7 @@ export default async function DeveloperProfile(props: {
 				</AspectRatio>
 			</Box>
 
-			<Container maxWidth="xl" sx={{ display: "flex", gap: 4, mt: -8 }}>
+			<Container maxWidth="xl" sx={{ display: "flex", gap: 4, mt: -8, flexDirection: {xs: "column", md: "row"} }}>
 				{/* Profile Header */}
 				<Box
 					sx={{
@@ -98,7 +98,7 @@ export default async function DeveloperProfile(props: {
 						variant="outlined"
 						sx={{
 							p: { xs: 2, md: 4 },
-							width: "400px",
+							width: { xs: "100%", md: "400px" },
 							borderRadius: "lg",
 							mb: 4,
 						}}
@@ -442,7 +442,7 @@ export default async function DeveloperProfile(props: {
 											color="primary"
 											startDecorator={<ChatIcon />}
 											size="lg"
-											sx={{ padding: ".75rem 0" }}
+											sx={{ padding: ".75rem 0", borderRadius: "10rem" }}
 										>
 											Contact Me
 										</Button>
@@ -450,7 +450,7 @@ export default async function DeveloperProfile(props: {
 											variant="soft"
 											color="neutral"
 											size="lg"
-											sx={{ padding: ".75rem 0" }}
+											sx={{ padding: ".75rem 0", borderRadius: "10rem" }}
 										>
 											<ShareOutlinedIcon />
 										</IconButton>
@@ -742,44 +742,8 @@ export default async function DeveloperProfile(props: {
 													}}
 												>
 													<Typography level="body-md">
-														{skill}
+														· {skill}
 													</Typography>
-													<Box
-														sx={{
-															display: "flex",
-														}}
-													>
-														{Array(5)
-															.fill(0)
-															.map((_, i) => (
-																<Box
-																	key={i}
-																	component="span"
-																	sx={{
-																		display:
-																			"inline-block",
-																		width: 12,
-																		height: 12,
-																		borderRadius:
-																			"50%",
-																		ml: 0.5,
-																		bgcolor:
-																			skill ===
-																				"React" ||
-																				skill ===
-																				"TypeScript"
-																				? i <
-																					5
-																					? "primary.400"
-																					: "neutral.200"
-																				: i <
-																					4
-																					? "primary.400"
-																					: "neutral.200",
-																	}}
-																/>
-															))}
-													</Box>
 												</Box>
 											))}
 									</Stack>
@@ -814,44 +778,8 @@ export default async function DeveloperProfile(props: {
 													}}
 												>
 													<Typography level="body-md">
-														{skill}
+														· {skill}
 													</Typography>
-													<Box
-														sx={{
-															display: "flex",
-														}}
-													>
-														{Array(5)
-															.fill(0)
-															.map((_, i) => (
-																<Box
-																	key={i}
-																	component="span"
-																	sx={{
-																		display:
-																			"inline-block",
-																		width: 12,
-																		height: 12,
-																		borderRadius:
-																			"50%",
-																		ml: 0.5,
-																		bgcolor:
-																			skill ===
-																				"Node.js" ||
-																				skill ===
-																				"MongoDB"
-																				? i <
-																					5
-																					? "primary.400"
-																					: "neutral.200"
-																				: i <
-																					4
-																					? "primary.400"
-																					: "neutral.200",
-																	}}
-																/>
-															))}
-													</Box>
 												</Box>
 											))}
 									</Stack>
@@ -883,42 +811,8 @@ export default async function DeveloperProfile(props: {
 													}}
 												>
 													<Typography level="body-md">
-														{skill}
+														· {skill}
 													</Typography>
-													<Box
-														sx={{
-															display: "flex",
-														}}
-													>
-														{Array(5)
-															.fill(0)
-															.map((_, i) => (
-																<Box
-																	key={i}
-																	component="span"
-																	sx={{
-																		display:
-																			"inline-block",
-																		width: 12,
-																		height: 12,
-																		borderRadius:
-																			"50%",
-																		ml: 0.5,
-																		bgcolor:
-																			skill ===
-																				"AWS"
-																				? i <
-																					4
-																					? "primary.400"
-																					: "neutral.200"
-																				: i <
-																					3
-																					? "primary.400"
-																					: "neutral.200",
-																	}}
-																/>
-															))}
-													</Box>
 												</Box>
 											))}
 									</Stack>
@@ -936,7 +830,7 @@ export default async function DeveloperProfile(props: {
 								}}
 							>
 								{developer.skills.map((skill) => (
-									<Chip key={skill} variant="soft" size="md">
+									<Chip key={skill} variant="soft" size="md" sx={{ px: 2}}>
 										{skill}
 									</Chip>
 								))}

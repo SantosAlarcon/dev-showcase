@@ -8,7 +8,7 @@ type DeveloperInfo = {
 	city: string;
 	avatar: string;
 	bannerImage?: string;
-	skills: string[];
+	skills: SkillsInfo;
 	reviews: number;
 	followers: number;
 	isAvailable: boolean;
@@ -23,8 +23,13 @@ type DeveloperInfo = {
 }
 
 type FreelanceInfo = {
-	isFreelancer: true;
 	hourlyRate: string;
+}
+
+type SkillsInfo = {
+	frontend: string[];
+	backend: string[];
+	other: string[];
 }
 
 type Experience = {

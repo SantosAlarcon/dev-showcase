@@ -39,8 +39,11 @@ import LogoDevIcon from "@mui/icons-material/LogoDev";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import GroupsIcon from "@mui/icons-material/Groups";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 import { getDeveloperInfo } from "@/utils/getDeveloperInfo";
+import { getCurrency } from "@/utils/getCurrency";
+import NotFound from "@/components/layout/NotFound";
 
 export async function generateMetadata(props: {
 	params: Promise<{ params: { id: string } }>;
@@ -48,6 +51,9 @@ export async function generateMetadata(props: {
 	// @ts-ignore
 	const { id } = await props.params;
 	const developer = getDeveloperInfo(id);
+
+	if (!developer) return { title: "User not found - DevShowcase" };
+
 	return {
 		title: `${developer.name} ${developer.surname} - DevShowcase`,
 	};
@@ -60,6 +66,8 @@ export default async function DeveloperProfile(props: {
 	// @ts-ignore
 	const { id } = params;
 	const developer = getDeveloperInfo(id);
+
+	if (!developer) return <NotFound />;
 
 	return (
 		<Box
@@ -230,6 +238,13 @@ export default async function DeveloperProfile(props: {
 												<GroupsIcon />
 												<Typography level="body-sm">
 													{developer.followers}
+												</Typography>
+											</Box>
+											<Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+												<AttachMoneyIcon />
+												<Typography level="body-sm">
+													{developer.freelancer && developer.freelancer.hourlyRate} 
+													{`${getCurrency(new Date().toLocaleString().slice(0, 2))}`} / hour
 												</Typography>
 											</Box>
 										</Box>
@@ -425,15 +440,6 @@ export default async function DeveloperProfile(props: {
 										},
 									}}
 								>
-									<Typography
-										level="title-lg"
-										sx={{
-											fontWeight: "bold",
-										}}
-									>
-										{developer.hourlyRate}
-									</Typography>
-
 									<Stack direction="column" spacing={2} width="100%">
 										<Button
 											component={Link}
@@ -722,16 +728,8 @@ export default async function DeveloperProfile(props: {
 										Frontend
 									</Typography>
 									<Stack spacing={2} sx={{ mb: 4 }}>
-										{developer.skills
-											.filter((skill) =>
-												[
-													"React",
-													"TypeScript",
-													"Next.js",
-													"Redux",
-												].includes(skill),
-											)
-											.map((skill) => (
+										{developer.skills.frontend
+											.map((skill: string) => (
 												<Box
 													key={skill}
 													sx={{
@@ -758,16 +756,7 @@ export default async function DeveloperProfile(props: {
 										Backend
 									</Typography>
 									<Stack spacing={2} sx={{ mb: 4 }}>
-										{developer.skills
-											.filter((skill) =>
-												[
-													"Node.js",
-													"Express.js",
-													"MongoDB",
-													"GraphQL",
-												].includes(skill),
-											)
-											.map((skill) => (
+										{developer.skills.backend.map((skill) => (
 												<Box
 													key={skill}
 													sx={{
@@ -794,13 +783,8 @@ export default async function DeveloperProfile(props: {
 										Other Technologies
 									</Typography>
 									<Stack spacing={2} sx={{ mb: 4 }}>
-										{developer.skills
-											.filter((skill) =>
-												["AWS", "Jest", "Git"].includes(
-													skill,
-												),
-											)
-											.map((skill) => (
+										{developer.skills.other
+											.map((skill: string) => (
 												<Box
 													key={skill}
 													sx={{
@@ -818,23 +802,6 @@ export default async function DeveloperProfile(props: {
 									</Stack>
 								</Grid>
 							</Grid>
-
-							<Typography level="title-md" sx={{ mb: 2, mt: 2 }}>
-								All Technologies
-							</Typography>
-							<Box
-								sx={{
-									display: "flex",
-									flexWrap: "wrap",
-									gap: 1,
-								}}
-							>
-								{developer.skills.map((skill) => (
-									<Chip key={skill} variant="soft" size="md" sx={{ px: 2}}>
-										{skill}
-									</Chip>
-								))}
-							</Box>
 						</Card>
 					</TabPanel>
 				</Tabs>

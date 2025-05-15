@@ -13,18 +13,11 @@ const developersData: DeveloperInfo = [
         avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
         bannerImage:
             "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        skills: [
-            "React",
-            "Node.js",
-            "TypeScript",
-            "MongoDB",
-            "AWS",
-            "Redux",
-            "Express.js",
-            "GraphQL",
-            "Next.js",
-            "Jest",
-        ],
+		skills: {
+			frontend: ["React", "Next.js", "Redux", "TypeScript"],
+			backend: ["Node.js", "Express.js", "MongoDB", "GraphQL"],
+			other: ["AWS", "Jest"],
+		},
         reviews: 28,
 		followers: 100,
         isAvailable: true,

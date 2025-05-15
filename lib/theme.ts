@@ -145,8 +145,8 @@ const theme = extendTheme({
 		},
 	},
     fontFamily: {
-        body: '"Inter", var(--joy-fontFamily-fallback)',
-        display: '"Inter", var(--joy-fontFamily-fallback)',
+        body: '"Figtree", var(--joy-fontFamily-fallback)',
+        display: '"Figtree", var(--joy-fontFamily-fallback)',
     },
     components: {
         JoyButton: {

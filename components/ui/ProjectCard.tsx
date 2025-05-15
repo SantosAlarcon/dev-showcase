@@ -73,6 +73,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         href={project.link}
                         variant="solid"
                         color="primary"
+						aria-label="View Project"
                         endDecorator={<OpenInNewIcon />}
                         sx={{ mt: "auto" }}
                     >

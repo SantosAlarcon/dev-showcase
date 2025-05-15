@@ -499,6 +499,7 @@ export default async function DeveloperProfile(props: {
                                             variant="soft"
                                             color="neutral"
                                             size="lg"
+											aria-label="Share button"
                                             sx={{
                                                 padding: ".75rem 0",
                                                 borderRadius: "10rem",

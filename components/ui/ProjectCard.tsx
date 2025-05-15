@@ -6,7 +6,7 @@ import Chip from "@mui/joy/Chip";
 import Grid from "@mui/joy/Grid";
 import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
-import { motion } from "motion/react";
+import * as motion from "motion/react-client";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const ProjectCard = ({ project }: { project: Project }) => {

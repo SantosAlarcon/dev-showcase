@@ -624,7 +624,6 @@ export default async function DeveloperProfile(props: {
                                 {developer.projects?.map((project: Project) => (
                                     <ProjectCard
                                         key={project.title}
-										// @ts-ignore
                                         project={project}
                                     />
                                 ))}

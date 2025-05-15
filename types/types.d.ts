@@ -42,12 +42,15 @@ type Experience = {
 
 type Project = {
 	id: string;
+	userId: string;
 	title: string;
 	description: string;
 	image: string;
 	technologies: string[];
 	githubRepo?: string;
 	liveSite?: string;
+	story: string;
+	publishedDate: string;
 }
 
 type Social = {

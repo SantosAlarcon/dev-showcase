@@ -9,6 +9,7 @@ import Typography from "@mui/joy/Typography";
 import * as motion from "motion/react-client";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import Link from "@mui/joy/Link";
 
 const ProjectCard = ({ project }: { project: Project }) => {
 
@@ -41,8 +42,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
                             }}
                         />
                     </AspectRatio>
-                    <Typography level="title-md" sx={{ mb: 1 }}>
-                        {project.title}
+                    <Typography level="title-md" sx={{ mb: 1 }} fontWeight={700}>
+                        <Link href={`/project/${project.id}`} underline="none" sx={{color: "inherit"}}>
+							{project.title}
+						</Link>
                     </Typography>
                     <Typography
                         level="body-sm"
@@ -59,12 +62,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         useFlexGap
                         sx={{
                             flexWrap: "wrap",
-                            gap: 0.5,
+                            gap: 1,
                             mb: 2,
                         }}
                     >
                         {project.technologies.map((tech) => (
-                            <Chip key={tech} size="sm" variant="soft" sx={{ px: 2 }}>
+                            <Chip key={tech} size="sm" variant="soft" sx={{ px: 1.5 }}>
                                 {tech}
                             </Chip>
                         ))}
@@ -75,10 +78,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
 								component="a"
 								href={project.githubRepo}
 								variant="solid"
-								color="primary"
 								aria-label="View on GitHub"
 								startDecorator={<GitHubIcon />}
-								sx={{ mt: "auto" }}
+								sx={{ mt: "auto", backgroundColor: "black" }}
 							>
 								View on GitHub
 							</Button>

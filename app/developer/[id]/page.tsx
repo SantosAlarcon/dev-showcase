@@ -47,6 +47,7 @@ import NotFound from "@/components/layout/NotFound";
 import ProjectCard from "@/components/ui/ProjectCard";
 import { Project } from "@/types/types";
 import { Suspense } from "react";
+import UserNotFound from "@/components/layout/UserNotFound";
 
 export async function generateMetadata(props: {
 	params: Promise<{ params: { id: string } }>;
@@ -70,7 +71,7 @@ export default async function DeveloperProfile(props: {
 	const { id } = params;
 	const developer = getDeveloperInfo(id);
 
-	if (!developer) return <NotFound />;
+	if (!developer) return <UserNotFound />;
 
 	return (
 		<Box

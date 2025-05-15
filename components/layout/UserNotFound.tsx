@@ -3,7 +3,7 @@ import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 
-const NotFound = () => {
+const UserNotFound = () => {
     return (
         <Box
             component="main"
@@ -27,4 +27,4 @@ const NotFound = () => {
     );
 };
 
-export default NotFound;
+export default UserNotFound;

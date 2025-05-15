@@ -7,20 +7,21 @@ const NotFound = () => {
     return (
         <Box
             component="main"
-            p={4}
+            px={4}			
+			py={{ xs: 4, sm: 24 }}
             sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-            }}
-        >
+		}}
+	>
             <h1>This user cannot be found</h1>
-            <Typography level="body-md" display="flex" flexDirection={"column"} gap={2} sx={{textDecoration: "none"}}>
+            <Typography level="body-md" display="flex" alignItems={"center"} flexDirection={"column"} gap={2} sx={{textDecoration: "none"}}>
                 This user may have been deleted or the link may be broken.
                 But don't worry, you can discover new developers by clicking
                 this button below
-                <Button component={Link} href="/discover" aria-label="Discover new developers">Discover new developers</Button>
+                <Button component={Link} href="/discover" sx={{width: "fit-content"}} aria-label="Discover new developers">Discover new developers</Button>
             </Typography>
         </Box>
     );

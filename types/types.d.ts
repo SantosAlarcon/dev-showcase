@@ -41,11 +41,13 @@ type Experience = {
 }
 
 type Project = {
+	id: string;
 	title: string;
 	description: string;
 	image: string;
 	technologies: string[];
-	link: string;
+	githubRepo?: string;
+	liveSite?: string;
 }
 
 type Social = {

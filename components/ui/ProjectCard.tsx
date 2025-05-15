@@ -8,6 +8,7 @@ import Stack from "@mui/joy/Stack";
 import Typography from "@mui/joy/Typography";
 import * as motion from "motion/react-client";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const ProjectCard = ({ project }: { project: Project }) => {
 
@@ -68,17 +69,32 @@ const ProjectCard = ({ project }: { project: Project }) => {
                             </Chip>
                         ))}
                     </Stack>
-                    <Button
-                        component="a"
-                        href={project.link}
-                        variant="solid"
-                        color="primary"
-						aria-label="View Project"
-                        endDecorator={<OpenInNewIcon />}
-                        sx={{ mt: "auto" }}
-                    >
-                        View Project
-                    </Button>
+                    <Stack spacing={2} sx={{ mt: "auto" }}>
+						{project.githubRepo && (
+							<Button
+								component="a"
+								href={project.githubRepo}
+								variant="solid"
+								color="primary"
+								aria-label="View on GitHub"
+								startDecorator={<GitHubIcon />}
+								sx={{ mt: "auto" }}
+							>
+								View on GitHub
+							</Button>
+						)}
+						{project.liveSite && (<Button
+							component="a"
+							href={project.liveSite}
+							variant="solid"
+							color="primary"
+							aria-label="View live site"
+							endDecorator={<OpenInNewIcon />}
+							sx={{ mt: "auto" }}
+						>
+							View Live Site
+						</Button>)}
+					</Stack>
                 </Card>
             </motion.div>
         </Grid>

@@ -17,28 +17,28 @@ type DeveloperInfo = {
 	freelancer: FreelanceInfo | false;
 	workExperience: Experience[];
 	languages: string[];
-	projects: Project[];
 	social: Social;
 	memberSince: string;
-}
+};
 
 type FreelanceInfo = {
 	hourlyRate: string;
-}
+};
 
 type SkillsInfo = {
 	frontend: string[];
 	backend: string[];
 	other: string[];
-}
+};
 
 type Experience = {
 	title: string;
 	company: string;
+	location: string | "Remote";
 	startDate: string;
 	endDate: string | "Present";
 	description: string;
-}
+};
 
 type Project = {
 	id: string;
@@ -51,7 +51,7 @@ type Project = {
 	liveSite?: string;
 	story: string;
 	publishedDate: string;
-}
+};
 
 type Social = {
 	github: string;
@@ -65,6 +65,6 @@ type Social = {
 	youtube?: string;
 	medium?: string;
 	devto?: string;
-}
+};
 
 export { DeveloperInfo, FreelanceInfo, Experience, Project, Social };

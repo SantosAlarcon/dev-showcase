@@ -43,11 +43,11 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 import { getDeveloperInfo } from "@/utils/getDeveloperInfo";
 import { getCurrency } from "@/utils/getCurrency";
-import NotFound from "@/components/layout/NotFound";
 import ProjectCard from "@/components/ui/ProjectCard";
 import { Project } from "@/types/types";
 import { Suspense } from "react";
 import UserNotFound from "@/components/layout/UserNotFound";
+import { getProjectsByUser } from "@/utils/getProjectsByUser";
 
 export async function generateMetadata(props: {
 	params: Promise<{ params: { id: string } }>;
@@ -70,6 +70,7 @@ export default async function DeveloperProfile(props: {
 	// @ts-ignore
 	const { id } = params;
 	const developer = getDeveloperInfo(id);
+	const projects = getProjectsByUser(id);
 
 	if (!developer) return <UserNotFound />;
 
@@ -185,7 +186,7 @@ export default async function DeveloperProfile(props: {
 										{developer.isAvailable && (
 											<Chip
 												variant="soft"
-												size="sm"
+												size="md"
 												color="success"
 												sx={{
 													alignSelf: "center",
@@ -194,6 +195,7 @@ export default async function DeveloperProfile(props: {
 													px: 2,
 													mb: 1,
 												}}
+												startDecorator={"●"}
 											>
 												Available for hire
 											</Chip>
@@ -207,6 +209,7 @@ export default async function DeveloperProfile(props: {
 												flexDirection: "column",
 												gap: 1,
 												my: 2,
+												fontSize: "1.3rem",
 											}}
 										>
 											<Box
@@ -216,8 +219,8 @@ export default async function DeveloperProfile(props: {
 													gap: 1,
 												}}
 											>
-												<LocationPinIcon />
-												<Typography level="body-sm">
+												<LocationPinIcon htmlColor="inherit" />
+												<Typography level="body-sm" textColor="inherit">
 													{developer.city}, {developer.state},{" "}
 													{developer.country}
 												</Typography>
@@ -229,8 +232,8 @@ export default async function DeveloperProfile(props: {
 													gap: 1,
 												}}
 											>
-												<WorkIcon />
-												<Typography level="body-sm">experience</Typography>
+												<WorkIcon htmlColor="inherit" />
+												<Typography level="body-sm" textColor="inherit">experience</Typography>
 											</Box>
 											<Box
 												sx={{
@@ -239,8 +242,8 @@ export default async function DeveloperProfile(props: {
 													gap: 1,
 												}}
 											>
-												<CalendarMonthIcon />
-												<Typography level="body-sm">
+												<CalendarMonthIcon htmlColor="inherit" />
+												<Typography level="body-sm" textColor="inherit">
 													Joined on{" "}
 													{new Date(developer.memberSince).toLocaleDateString(
 														"en-US",
@@ -259,31 +262,31 @@ export default async function DeveloperProfile(props: {
 													alignItems: "center",
 												}}
 											>
-												<GroupsIcon />
-												<Typography level="body-sm">
+												<GroupsIcon htmlColor="inherit" />
+												<Typography level="body-sm" textColor={"inherit"}>
 													{developer.followers}
 												</Typography>
 											</Box>
-											<Box
+											{developer.freelancer &&  (<Box
 												sx={{
 													display: "flex",
 													gap: 1,
 													alignItems: "center",
 												}}
 											>
-												<AttachMoneyIcon />
-												<Typography level="body-sm">
-													{developer.freelancer &&
-														developer.freelancer.hourlyRate}
+												<AttachMoneyIcon htmlColor="inherit" />
+												<Typography level="body-sm" textColor="inherit">
+													{developer.freelancer.hourlyRate}
 													{`${getCurrency(new Date().toLocaleString().slice(0, 2))}`}{" "}
 													/ hour
 												</Typography>
-											</Box>
+											</Box> )}
 										</Box>
 										<Box
 											sx={{
 												display: "flex",
-												gap: 1.5,
+												alignItems: "center",
+												gap: .5,
 											}}
 										>
 											{developer.social.github && (
@@ -293,11 +296,10 @@ export default async function DeveloperProfile(props: {
 													aria-label="GitHub"
 													target="_blank"
 													variant="plain"
-													color="neutral"
-													size="sm"
+													size="md"
 												>
 													<Tooltip title="GitHub" variant="solid">
-														<GitHubIcon />
+														<GitHubIcon htmlColor="inherit" />
 													</Tooltip>
 												</IconButton>
 											)}
@@ -308,11 +310,10 @@ export default async function DeveloperProfile(props: {
 													aria-label="LinkedIn"
 													target="_blank"
 													variant="plain"
-													color="neutral"
-													size="sm"
+													size="md"
 												>
 													<Tooltip title="LinkedIn" variant="solid">
-														<LinkedInIcon />
+														<LinkedInIcon htmlColor="inherit" />
 													</Tooltip>
 												</IconButton>
 											)}
@@ -323,11 +324,10 @@ export default async function DeveloperProfile(props: {
 													href={developer.social.facebook}
 													target="_blank"
 													variant="plain"
-													color="neutral"
-													size="sm"
+													size="md"
 												>
 													<Tooltip title="Facebook" variant="solid">
-														<FacebookIcon />
+														<FacebookIcon htmlColor="inherit" />
 													</Tooltip>
 												</IconButton>
 											)}
@@ -338,11 +338,10 @@ export default async function DeveloperProfile(props: {
 													href={developer.social.twitter}
 													target="_blank"
 													variant="plain"
-													color="neutral"
-													size="sm"
+													size="md"
 												>
 													<Tooltip title="Twitter" variant="solid">
-														<TwitterIcon />
+														<TwitterIcon htmlColor="inherit" />
 													</Tooltip>
 												</IconButton>
 											)}
@@ -353,11 +352,10 @@ export default async function DeveloperProfile(props: {
 													href={developer.social.instagram}
 													target="_blank"
 													variant="plain"
-													color="neutral"
-													size="sm"
+													size="md"
 												>
 													<Tooltip title="Instagram" variant="solid">
-														<InstagramIcon />
+														<InstagramIcon htmlColor="inherit" />
 													</Tooltip>
 												</IconButton>
 											)}
@@ -368,11 +366,10 @@ export default async function DeveloperProfile(props: {
 													href={developer.social.devto}
 													target="_blank"
 													variant="plain"
-													color="neutral"
-													size="sm"
+													size="md"
 												>
 													<Tooltip title="Dev.to" variant="solid">
-														<LogoDevIcon />
+														<LogoDevIcon htmlColor="inherit" />
 													</Tooltip>
 												</IconButton>
 											)}
@@ -383,11 +380,10 @@ export default async function DeveloperProfile(props: {
 													href={developer.social.devto}
 													target="_blank"
 													variant="plain"
-													color="neutral"
-													size="sm"
+													size="md"
 												>
 													<Tooltip title="YouTube" variant="solid">
-														<YouTubeIcon />
+														<YouTubeIcon htmlColor="inherit" />
 													</Tooltip>
 												</IconButton>
 											)}
@@ -398,11 +394,10 @@ export default async function DeveloperProfile(props: {
 												aria-label="Portfolio"
 												target="_blank"
 												variant="plain"
-												color="neutral"
-												size="sm"
+												size="md"
 											>
 												<Tooltip title="Portfolio" variant="solid">
-													<OpenInNewIcon />
+													<OpenInNewIcon htmlColor="inherit" />
 												</Tooltip>
 											</IconButton>
 										</Box>
@@ -475,15 +470,15 @@ export default async function DeveloperProfile(props: {
 							"--Tab-indicatorColor": "var(--joy-palette-primary-500)",
 						}}
 					>
-						<Tab>About</Tab>
-						<Tab>Projects</Tab>
-						<Tab>Experience</Tab>
-						<Tab>Skills</Tab>
+						<Tab sx={{color: "inherit"}}>About</Tab>
+						<Tab sx={{color: "inherit"}}>Projects</Tab>
+						<Tab sx={{color: "inherit"}}>Experience</Tab>
+						<Tab sx={{color: "inherit"}}>Skills</Tab>
 					</TabList>
 
 					<TabPanel value={0}>
 						<Card variant="outlined" sx={{ p: 4 }}>
-							<Typography level="title-lg" sx={{ mb: 2 }}>
+							<Typography level="title-lg" sx={{ mb: 2 }} fontWeight={700} fontSize={"1.5rem"}>
 								About Me
 							</Typography>
 							<Typography
@@ -495,7 +490,7 @@ export default async function DeveloperProfile(props: {
 
 							<Grid container spacing={4}>
 								<Grid xs={12} md={6}>
-									<Typography level="title-md" sx={{ mb: 2 }}>
+									<Typography level="title-md" sx={{ mb: 2 }} fontWeight={700} fontSize={"1.25rem"}>
 										Languages
 									</Typography>
 									<Stack spacing={1} sx={{ mb: 4 }}>
@@ -516,7 +511,7 @@ export default async function DeveloperProfile(props: {
 								</Grid>
 
 								<Grid xs={12} md={6}>
-									<Typography level="title-md" sx={{ mb: 2 }}>
+									<Typography level="title-md" sx={{ mb: 2 }} fontWeight={700} fontSize={"1.25rem"}>
 										Contact Information
 									</Typography>
 									<Stack spacing={1} sx={{ mb: 4 }}>
@@ -561,12 +556,12 @@ export default async function DeveloperProfile(props: {
 					</TabPanel>
 
 					<TabPanel value={1}>
-						<Card variant="outlined">
-							<Typography level="title-lg" sx={{ mb: 3 }}>
+						<Card variant="outlined" sx={{ p: 4 }}>
+							<Typography level="title-lg" sx={{ mb: 3 }} fontWeight={700} fontSize={"1.5rem"}>
 								Projects
 							</Typography>
 							<Grid container spacing={3}>
-								{developer.projects?.map((project: Project) => (
+								{projects?.map((project: Project) => (
 									<Suspense
 										key={project.title}
 										fallback={
@@ -586,7 +581,7 @@ export default async function DeveloperProfile(props: {
 
 					<TabPanel value={2}>
 						<Card variant="outlined" sx={{ p: 4 }}>
-							<Typography level="title-lg" sx={{ mb: 3 }}>
+							<Typography level="title-lg" sx={{ mb: 3 }} fontWeight={700} fontSize={"1.5rem"}>
 								Work Experience
 							</Typography>
 							<Stack spacing={3} divider={<Divider />}>
@@ -603,24 +598,24 @@ export default async function DeveloperProfile(props: {
 												mb: 1,
 											}}
 										>
-											<Typography level="title-md">{work.title}</Typography>
+											<Typography level="title-lg">{work.title}</Typography>
 											<Typography
-												level="body-sm"
+												level="body-md"
 												sx={{ color: "text.tertiary" }}
 											>
 												{work.startDate} - {work.endDate}
 											</Typography>
 										</Box>
 										<Typography
-											level="title-sm"
+											level="title-md"
 											sx={{
 												mb: 1,
 												color: "text.secondary",
 											}}
 										>
-											{work.company}
+											{work.company} - ({work.location})
 										</Typography>
-										<Typography level="body-md">{work.description}</Typography>
+										<Typography level="body-md" pt={2}>{work.description}</Typography>
 									</Box>
 								))}
 							</Stack>
@@ -629,13 +624,13 @@ export default async function DeveloperProfile(props: {
 
 					<TabPanel value={3}>
 						<Card variant="outlined" sx={{ p: 4 }}>
-							<Typography level="title-lg" sx={{ mb: 3 }}>
+							<Typography level="title-lg" sx={{ mb: 3 }} fontWeight={700} fontSize={"1.5rem"}>
 								Skills & Technologies
 							</Typography>
 							<Grid container spacing={4}>
 								<Grid xs={12} md={4}>
 									<Typography
-										level="title-md"
+										level="title-lg"
 										startDecorator={<CodeIcon />}
 										sx={{ mb: 2 }}
 									>
@@ -651,7 +646,7 @@ export default async function DeveloperProfile(props: {
 													justifyContent: "space-between",
 												}}
 											>
-												<Typography level="body-md">· {skill}</Typography>
+												<Typography level="body-md">- {skill}</Typography>
 											</Box>
 										))}
 									</Stack>
@@ -659,7 +654,7 @@ export default async function DeveloperProfile(props: {
 
 								<Grid xs={12} md={4}>
 									<Typography
-										level="title-md"
+										level="title-lg"
 										startDecorator={<SettingsIcon />}
 										sx={{ mb: 2 }}
 									>
@@ -675,7 +670,7 @@ export default async function DeveloperProfile(props: {
 													justifyContent: "space-between",
 												}}
 											>
-												<Typography level="body-md">· {skill}</Typography>
+												<Typography level="body-md">- {skill}</Typography>
 											</Box>
 										))}
 									</Stack>
@@ -683,7 +678,7 @@ export default async function DeveloperProfile(props: {
 
 								<Grid xs={12} md={4}>
 									<Typography
-										level="title-md"
+										level="title-lg"
 										startDecorator={<TvIcon />}
 										sx={{ mb: 2 }}
 									>
@@ -699,7 +694,7 @@ export default async function DeveloperProfile(props: {
 													justifyContent: "space-between",
 												}}
 											>
-												<Typography level="body-md">· {skill}</Typography>
+												<Typography level="body-md">- {skill}</Typography>
 											</Box>
 										))}
 									</Stack>

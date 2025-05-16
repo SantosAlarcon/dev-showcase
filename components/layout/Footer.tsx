@@ -56,6 +56,7 @@ export default function Footer() {
                         <Typography
                             level="body-sm"
                             sx={{ mb: 2, maxWidth: "25ch" }}
+							textColor="inherit"
                         >
                             Connecting exceptional developers with opportunities
                             that matter.
@@ -63,30 +64,27 @@ export default function Footer() {
                         <Box sx={{ display: "flex", gap: 1 }}>
                             <IconButton
                                 variant="plain"
-                                color="neutral"
-                                size="sm"
+                                size="md"
                                 component="a"
                                 href="https://github.com"
                             >
-                                <GitHubIcon />
+                                <GitHubIcon htmlColor="inherit" />
                             </IconButton>
                             <IconButton
                                 variant="plain"
-                                color="neutral"
-                                size="sm"
+                                size="md"
                                 component="a"
                                 href="https://twitter.com"
                             >
-                                <TwitterIcon />
+                                <TwitterIcon htmlColor="inherit" />
                             </IconButton>
                             <IconButton
                                 variant="plain"
-                                color="neutral"
-                                size="sm"
+                                size="md"
                                 component="a"
                                 href="https://linkedin.com"
                             >
-                                <LinkedinIcon />
+                                <LinkedinIcon htmlColor="inherit" />
                             </IconButton>
                         </Box>
                     </Grid>
@@ -180,7 +178,7 @@ export default function Footer() {
                         gap: 2,
                     }}
                 >
-                    <Typography level="body-xs">
+                    <Typography level="body-xs" textColor="inherit">
                         © {new Date().getFullYear()} DevShowcase. All rights
                         reserved.
                     </Typography>

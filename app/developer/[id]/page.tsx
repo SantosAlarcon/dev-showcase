@@ -432,6 +432,7 @@ export default async function DeveloperProfile(props: {
 											color="primary"
 											startDecorator={<ChatIcon />}
 											size="lg"
+											aria-label="Contact Me"
 											sx={{
 												padding: ".75rem 0",
 												borderRadius: "10rem",

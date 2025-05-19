@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Box, Typography, Container, Card, Avatar, Grid } from "@mui/joy";
 
 const testimonials = [

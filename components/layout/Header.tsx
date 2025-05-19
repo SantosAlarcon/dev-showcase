@@ -17,7 +17,7 @@ import {
     MenuItem,
 } from "@mui/joy";
 import { Menu as MenuIcon, X, Sun, Moon, Computer, Search } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 const navItems = [
     { name: "Discover", href: "/discover" },

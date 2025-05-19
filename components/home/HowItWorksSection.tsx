@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Box, Typography, Container, Grid, Card, AspectRatio } from "@mui/joy";
 import { Search, UserCheck, MessagesSquare, CheckCircle2 } from "lucide-react";
 

@@ -2,8 +2,8 @@ import ProjectNotFound from "@/components/layout/ProjectNotFound";
 import { DeveloperInfo, Project } from "@/types/types";
 import { getDeveloperInfo } from "@/utils/getDeveloperInfo";
 import { getProjectInfo } from "@/utils/getProjectInfo";
-import { Avatar, Box, Chip, Link } from "@mui/joy";
-import { MarkdownAsync } from "react-markdown";
+import { Avatar, Box, Chip, Link, Typography } from "@mui/joy";
+import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 export async function generateMetadata(props: {
@@ -35,15 +35,18 @@ export default async function ProjectProfile(props: {
 	if (!project) return <ProjectNotFound />;
 	return (
 		<Box
-			p={8}
+			py={8}
+			width={{ md: "100%", lg: "1600px" }}
 			sx={{
+				margin: "auto",
 				display: "flex",
 				flexDirection: "column",
 				gap: 2,
+				justifyContent: "center",
 				alignItems: "center",
 			}}
 		>
-			<h1>{project.title}</h1>
+			<Typography level="h1">{project.title}</Typography>
 			<Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
 				<Avatar
 					src={developer.avatar}
@@ -59,22 +62,32 @@ export default async function ProjectProfile(props: {
 					day: "numeric",
 				})}
 			</Box>
-			<Box sx={{ alignSelf: "start" }}>
-				<MarkdownAsync remarkPlugins={[remarkGfm]}>
+			<Box sx={{ width: { xs: "85%", sm: "85%", md: "85%", lg: "1600px" } }} className="markdown-body">
+				<Markdown remarkPlugins={[remarkGfm]}>
 					{project.story}
-				</MarkdownAsync>
+				</Markdown>
 			</Box>
-			<Box sx={{alignSelf: "start"}}>
-				<h2>Technologies Used</h2>
-				{project.technologies.map((tech, index) => (
-					<Chip
-						key={index}
-						size="md"
-						sx={{ borderRadius: "10rem", mx: 0.5 }}
-					>
-						<b>{tech}</b>
-					</Chip>
-				))}
+			<Box
+				sx={{
+					display: "flex",
+					flexDirection: "column",
+					gap: 2,
+					alignItems: { lg: "start", md: "center" },
+				}}
+				width={{ md: "100%", lg: "1600px" }}
+			>
+				<Typography level="h2">Technologies used</Typography>
+				<Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>
+					{project.technologies.map((tech, index) => (
+						<Chip
+							key={index}
+							size="md"
+							sx={{ borderRadius: "10rem", mx: 0.5 }}
+						>
+							<b>{tech}</b>
+						</Chip>
+					))}
+				</Box>
 			</Box>
 		</Box>
 	);

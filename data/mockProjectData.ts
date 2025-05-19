@@ -14,22 +14,22 @@ export const projectsData: Project[] = [
 		liveSite: "#",
 		publishedDate: "2025-03-05",
 		story: `
-				# E-commerce Platform
+# E-commerce Platform
 
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. 
 
-				## Features
+## Features
 
-				- Product management
-				- Cart functionality
-				- Payment processing
+- Product management
+- Cart functionality
+- Payment processing
 
-				## Technologies
+## Technologies
 
-				- React
-				- Node.js
-				- MongoDB
-				- Stripe
+- React
+- Node.js
+- MongoDB
+- Stripe
 `,
 	},
 	{
@@ -45,22 +45,22 @@ export const projectsData: Project[] = [
 		liveSite: "#",
 		publishedDate: "2025-04-14",
 		story: `
-				# Content Management System
+# Content Management System
 
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. 
 
-				## Features
+## Features
 
-				- Rich text editing
-				- Media management
-				- Role-based access control
+- Rich text editing
+- Media management
+- Role-based access control
 
-				## Technologies
+## Technologies
 
-				- TypeScript
-				- Next.js
-				- PostgreSQL
-				- AWS S3
+- TypeScript
+- Next.js
+- PostgreSQL
+- AWS S3
 `,
 	},
 	{
@@ -76,23 +76,23 @@ export const projectsData: Project[] = [
 		liveSite: "#",
 		publishedDate: "2025-05-23",
 		story: `
-				# Fleet Management Dashboard
+# Fleet Management Dashboard
 
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. Nullam euismod, nisl eget ultrices ultricies, nunc nisi aliquet nisi, eu tincidunt nisl nisi eu nisl. 
 
-				## Features
+## Features
 
-				- Real-time dashboard
-				- Location tracking
-				- Maintenance schedules
-				- Analytics
+- Real-time dashboard
+- Location tracking
+- Maintenance schedules
+- Analytics
 
-				## Technologies
+## Technologies
 
-				- React
-				- Redux
-				- Socket.io
-				- Google Maps API
+- React
+- Redux
+- Socket.io
+- Google Maps API
 `,
 	},
 ];

@@ -19,9 +19,9 @@ const UserNotFound = () => {
             <h1>This project cannot be found</h1>
             <Typography level="body-md" display="flex" alignItems={"center"} flexDirection={"column"} gap={2} sx={{textDecoration: "none"}}>
                 This project may have been deleted or the link may be broken.
-                But don't worry, you can discover new developers by clicking
+                But don't worry, you can discover new projects by clicking
                 this button below
-                <Button component={Link} href="/discover" sx={{width: "fit-content"}} aria-label="Discover new developers">Discover new developers</Button>
+                <Button component={Link} href="/projects" sx={{width: "fit-content"}} aria-label="Discover new projects">Discover new projects</Button>
             </Typography>
         </Box>
     );

@@ -10,6 +10,7 @@ import * as motion from "motion/react-client";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import Link from "@mui/joy/Link";
+import Image from "next/image";
 
 const ProjectCard = ({ project }: { project: Project }) => {
 
@@ -34,9 +35,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     }}
                 >
                     <AspectRatio ratio="16/9" sx={{ mb: 2 }}>
-                        <img
+                        <Image
                             src={project.image}
                             alt={project.title}
+							width={ 600 }
+							height={ 400 }
+							loading="lazy"
                             style={{
                                 objectFit: "cover",
                             }}

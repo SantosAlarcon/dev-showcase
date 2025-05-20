@@ -8,7 +8,7 @@ export const projectsData: Project[] = [
 		description:
 			"A full-featured online store with product management, cart functionality, and payment processing.",
 		image:
-			"https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+			"https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress",
 		technologies: ["React", "Node.js", "MongoDB", "Stripe"],
 		githubRepo: "https://github.com",
 		liveSite: "#",
@@ -39,7 +39,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 		description:
 			"Custom CMS for a publishing company with rich text editing, media management, and role-based access control.",
 		image:
-			"https://images.pexels.com/photos/196646/pexels-photo-196646.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+			"https://images.pexels.com/photos/196646/pexels-photo-196646.jpeg?auto=compress",
 		technologies: ["TypeScript", "Next.js", "PostgreSQL", "AWS S3"],
 		githubRepo: "https://github.com",
 		liveSite: "#",
@@ -70,7 +70,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 		description:
 			"Real-time dashboard for monitoring vehicle fleets with location tracking, maintenance schedules, and analytics.",
 		image:
-			"https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+			"https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg",
 		technologies: ["React", "Redux", "Socket.io", "Google Maps API"],
 		githubRepo: "https://github.com",
 		liveSite: "#",

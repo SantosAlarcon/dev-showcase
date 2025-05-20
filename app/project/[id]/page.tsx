@@ -1,10 +1,12 @@
 import ProjectNotFound from "@/components/layout/ProjectNotFound";
 import { DeveloperInfo, Project } from "@/types/types";
-import { getDeveloperInfo } from "@/utils/getDeveloperInfo";
-import { getProjectInfo } from "@/utils/getProjectInfo";
+import { getDeveloperInfo } from "@/utils/developers/getDeveloperInfo";
+import { getProjectInfo } from "@/utils/projects/getProjectInfo";
 import { Avatar, Box, Chip, Link, Typography } from "@mui/joy";
+import Image from "next/image";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import "@/styles/project.css";
 
 export async function generateMetadata(props: {
 	params: Promise<{ params: { id: string } }>;
@@ -35,8 +37,8 @@ export default async function ProjectProfile(props: {
 	if (!project) return <ProjectNotFound />;
 	return (
 		<Box
-			py={8}
-			width={{ md: "100%", lg: "1600px" }}
+			py={{ xs: 4, md: 12 }}
+			width={{xs: "90%"}}
 			sx={{
 				margin: "auto",
 				display: "flex",
@@ -47,7 +49,8 @@ export default async function ProjectProfile(props: {
 			}}
 		>
 			<Typography level="h1">{project.title}</Typography>
-			<Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+			<Typography level="title-sm">{project.description}</Typography>
+			<Box sx={{ display: "flex", gap: 1, alignItems: "center", py: 2 }}>
 				<Avatar
 					src={developer.avatar}
 					alt={developer.name + developer.surname}
@@ -62,7 +65,8 @@ export default async function ProjectProfile(props: {
 					day: "numeric",
 				})}
 			</Box>
-			<Box sx={{ width: { xs: "85%", sm: "85%", md: "85%", lg: "1600px" } }} className="markdown-body">
+			<Image className="project__markdown__cover" src={project.image} alt={project.title} width={600} height={400} loading="lazy" />
+			<Box width={"100%"} className="markdown-body">
 				<Markdown remarkPlugins={[remarkGfm]}>
 					{project.story}
 				</Markdown>
@@ -72,9 +76,9 @@ export default async function ProjectProfile(props: {
 					display: "flex",
 					flexDirection: "column",
 					gap: 2,
-					alignItems: { lg: "start", md: "center" },
 				}}
-				width={{ md: "100%", lg: "1600px" }}
+				alignItems={{ lg: "start", sm: "center", xs: "center" }}
+				width="100%"
 			>
 				<Typography level="h2">Technologies used</Typography>
 				<Box sx={{ display: "flex", gap: 0.5, alignItems: "center" }}>

@@ -41,13 +41,13 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import GroupsIcon from "@mui/icons-material/Groups";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
-import { getDeveloperInfo } from "@/utils/getDeveloperInfo";
+import { getDeveloperInfo } from "@/utils/developers/getDeveloperInfo";
 import { getCurrency } from "@/utils/getCurrency";
 import ProjectCard from "@/components/ui/ProjectCard";
 import { Project } from "@/types/types";
 import { Suspense } from "react";
 import UserNotFound from "@/components/layout/UserNotFound";
-import { getProjectsByUser } from "@/utils/getProjectsByUser";
+import { getProjectsByUser } from "@/utils/projects/getProjectsByUser";
 
 export async function generateMetadata(props: {
 	params: Promise<{ params: { id: string } }>;

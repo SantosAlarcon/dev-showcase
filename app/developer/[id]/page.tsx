@@ -98,7 +98,7 @@ export default async function DeveloperProfile(props: {
 							alt="Cover"
 							width={1920}
 							height={1080}
-							loading="lazy"
+							priority
 							style={{ objectFit: "cover", width: "100%" }}
 						/>
 					)}
@@ -111,7 +111,7 @@ export default async function DeveloperProfile(props: {
 					display: "flex",
 					gap: 4,
 					mt: -8,
-					flexDirection: { xs: "column", md: "row" },
+					flexDirection: { xs: "column", sm: "column", md: "column", lg: "row" },
 				}}
 			>
 				{/* Profile Header */}
@@ -125,13 +125,13 @@ export default async function DeveloperProfile(props: {
 						variant="outlined"
 						sx={{
 							p: { xs: 2, md: 4 },
-							width: { xs: "100%", md: "400px" },
+							width: { xs: "100%", sm: "100%", md: "100%", lg: "400px" },
 							borderRadius: "lg",
 							mb: 4,
 						}}
 					>
 						<Grid container spacing={3} alignItems="flex-end">
-							<Grid xs={12} md={8} lg={12}>
+							<Grid xs={12} md={12} lg={12}>
 								<Box
 									sx={{
 										display: "flex",
@@ -411,7 +411,7 @@ export default async function DeveloperProfile(props: {
 								</Box>
 							</Grid>
 
-							<Grid xs={12} md={4} lg={12}>
+							<Grid xs={12} md={12} lg={12}>
 								<Box
 									sx={{
 										display: "flex",

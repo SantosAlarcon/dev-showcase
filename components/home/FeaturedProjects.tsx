@@ -165,7 +165,7 @@ export default function FeaturedProjects() {
                                         }}
                                     >
                                         <AspectRatio
-                                            ratio={{ xs: "16/9", sm: "1" }}
+											ratio="16/9"
                                             sx={{ height: "100%" }}
                                         >
                                             <img

@@ -6,6 +6,7 @@ type DeveloperInfo = {
 	country: string;
 	state: string;
 	city: string;
+	memberSince: string;
 	avatar: string;
 	bannerImage?: string;
 	skills: SkillsInfo;
@@ -18,7 +19,6 @@ type DeveloperInfo = {
 	workExperience: Experience[];
 	languages: string[];
 	social: Social;
-	memberSince: string;
 };
 
 type FreelanceInfo = {
@@ -58,7 +58,7 @@ type Social = {
 	linkedin?: string;
 	facebook?: string;
 	twitter?: string;
-	portfolio: string;
+	portfolio?: string;
 	threads?: string;
 	bluesky?: string;
 	instagram?: string;

@@ -250,7 +250,7 @@ export default function Header() {
                                 animate="show"
                             >
                                 {navItems.map((item) => (
-                                    <motion.div key={item.name} variants={item}>
+                                    <motion.div key={item.name}>
                                         <Link href={item.href} passHref>
                                             <Typography
                                                 component="div"

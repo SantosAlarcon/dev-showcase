@@ -48,6 +48,7 @@ import { Project } from "@/types/types";
 import { Suspense } from "react";
 import UserNotFound from "@/components/layout/UserNotFound";
 import { getProjectsByUser } from "@/utils/projects/getProjectsByUser";
+import Image from "next/image";
 
 export async function generateMetadata(props: {
 	params: Promise<{ params: { id: string } }>;
@@ -91,11 +92,16 @@ export default async function DeveloperProfile(props: {
 				}}
 			>
 				<AspectRatio ratio="21/9" sx={{ minHeight: "100%" }}>
-					<img
-						src={developer.bannerImage}
-						alt="Cover"
-						style={{ objectFit: "cover", width: "100%" }}
-					/>
+					{developer.bannerImage && (
+						<Image
+							src={developer.bannerImage}
+							alt="Cover"
+							width={1920}
+							height={1080}
+							loading="lazy"
+							style={{ objectFit: "cover", width: "100%" }}
+						/>
+					)}
 				</AspectRatio>
 			</Box>
 

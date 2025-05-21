@@ -1,5 +1,6 @@
 "use client";
 
+import { skillsList } from "@/data/skills";
 import { useState } from "react";
 import { motion } from "motion/react";
 import {
@@ -38,6 +39,7 @@ import {
 	LayoutPanelLeft,
 	LayoutGrid,
 } from "lucide-react";
+import Image from "next/image";
 
 // Sample developer data
 const allDevelopers = [
@@ -188,32 +190,6 @@ const allDevelopers = [
 // Filters
 const experienceLevels = ["Any", "1-2 years", "3-5 years", "5+ years"];
 const availabilityTypes = ["Any", "Full-time", "Contract", "Freelance"];
-const skillsList = [
-	"React",
-	"JavaScript",
-	"TypeScript",
-	"Node.js",
-	"Python",
-	"Django",
-	"Java",
-	"AWS",
-	"Docker",
-	"Kubernetes",
-	"Vue.js",
-	"Angular",
-	"Flutter",
-	"Swift",
-	"Kotlin",
-	"GraphQL",
-	"MongoDB",
-	"PostgreSQL",
-	"Firebase",
-	"SQL",
-	"NoSQL",
-	"Go",
-	"Ruby",
-	"Rails",
-];
 
 export default function DiscoverPage() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -400,7 +376,7 @@ export default function DiscoverPage() {
 										mt: 1,
 									}}
 								>
-									{skillsList.slice(0, 15).map((skill) => (
+									{skillsList.map((skill) => (
 										<Chip
 											key={skill}
 											variant={
@@ -662,9 +638,11 @@ export default function DiscoverPage() {
 											>
 												<CardOverflow>
 													<AspectRatio ratio="21/9">
-														<img
+														<Image
 															src={developer.coverImage}
 															alt={`${developer.name}'s cover`}
+															width={ 1920 }
+															height={ 1080 }
 															style={{
 																objectFit: "cover",
 															}}
@@ -685,7 +663,7 @@ export default function DiscoverPage() {
 																size="sm"
 																color="success"
 																sx={{
-																	borderRadius: "pill",
+																	borderRadius: "10rem",
 																	px: 1,
 																}}
 															>
@@ -752,10 +730,10 @@ export default function DiscoverPage() {
 													</Box>
 
 													<Typography
-														level="title-md"
+														level="title-lg"
 														sx={{
 															mt: 2,
-															fontWeight: 600,
+															fontWeight: 700,
 														}}
 													>
 														{developer.name}
@@ -880,31 +858,22 @@ export default function DiscoverPage() {
 												},
 											}}
 										>
-											<AspectRatio
-												ratio="1"
+											<Avatar
+												src={ developer.avatar }
+												alt={ developer.name }
 												sx={{
-													minWidth: {
-														xs: "100%",
-														sm: 120,
-													},
 													width: {
-														xs: "100%",
-														sm: 120,
+														xs: 96,
+														md: 120,
 													},
 													height: {
-														xs: 120,
-														sm: 120,
+														xs: 96,
+														md: 120,
 													},
+													border: "4px solid",
+													borderColor: "background.surface",
 												}}
-											>
-												<img
-													src={developer.avatar}
-													alt={developer.name}
-													style={{
-														objectFit: "cover",
-													}}
-												/>
-											</AspectRatio>
+											/>
 											<CardContent>
 												<Box
 													sx={{
@@ -933,6 +902,7 @@ export default function DiscoverPage() {
 																	sx={{
 																		ml: 1,
 																		fontSize: "0.65rem",
+																		borderRadius: "10rem",
 																	}}
 																>
 																	Available

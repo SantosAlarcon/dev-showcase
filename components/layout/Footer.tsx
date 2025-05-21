@@ -64,24 +64,30 @@ export default function Footer() {
                         <Box sx={{ display: "flex", gap: 1 }}>
                             <IconButton
                                 variant="plain"
+								aria-label="GitHub"
                                 size="md"
                                 component="a"
+								target="_blank"
                                 href="https://github.com"
                             >
                                 <GitHubIcon htmlColor="inherit" />
                             </IconButton>
                             <IconButton
                                 variant="plain"
+								aria-label="Twitter"
                                 size="md"
                                 component="a"
+								target="_blank"
                                 href="https://twitter.com"
                             >
                                 <TwitterIcon htmlColor="inherit" />
                             </IconButton>
                             <IconButton
                                 variant="plain"
+								aria-label="LinkedIn"
                                 size="md"
                                 component="a"
+								target="_blank"
                                 href="https://linkedin.com"
                             >
                                 <LinkedinIcon htmlColor="inherit" />

@@ -643,7 +643,7 @@ export default async function DeveloperProfile(props: {
 									>
 										Frontend
 									</Typography>
-									<Stack spacing={2} sx={{ mb: 4 }}>
+									<Stack spacing={1}>
 										{developer.skills.frontend.map((skill: string) => (
 											<Box
 												key={skill}
@@ -667,7 +667,7 @@ export default async function DeveloperProfile(props: {
 									>
 										Backend
 									</Typography>
-									<Stack spacing={2} sx={{ mb: 4 }}>
+									<Stack spacing={1}>
 										{developer.skills.backend.map((skill) => (
 											<Box
 												key={skill}
@@ -691,7 +691,7 @@ export default async function DeveloperProfile(props: {
 									>
 										Other Technologies
 									</Typography>
-									<Stack spacing={2} sx={{ mb: 4 }}>
+									<Stack spacing={1}>
 										{developer.skills.other.map((skill: string) => (
 											<Box
 												key={skill}

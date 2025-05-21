@@ -82,6 +82,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 								component="a"
 								href={project.githubRepo}
 								variant="solid"
+								target="_blank"
 								aria-label="View on GitHub"
 								startDecorator={<GitHubIcon />}
 								sx={{ mt: "auto", backgroundColor: "black" }}
@@ -95,7 +96,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
 							variant="solid"
 							color="primary"
 							aria-label="View live site"
-							endDecorator={<OpenInNewIcon />}
+							target="_blank"
+							startDecorator={<OpenInNewIcon />}
 							sx={{ mt: "auto" }}
 						>
 							View Live Site

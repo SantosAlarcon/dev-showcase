@@ -15,6 +15,7 @@ const theme = extendTheme({
                     700: "#1976d2",
                     800: "#1565c0",
                     900: "#0d47a1",
+					solidBg: "#085b9c"
                 },
                 neutral: {
                     50: "#fafafa",
@@ -39,6 +40,8 @@ const theme = extendTheme({
                     700: "#388e3c",
                     800: "#2e7d32",
                     900: "#1b5e20",
+					solidBg: "#256328",
+					softColor: "#fff"
                 },
                 warning: {
                     50: "#fff8e1",
@@ -79,6 +82,7 @@ const theme = extendTheme({
                     700: "#1976d2",
                     800: "#1565c0",
                     900: "#0d47a1",
+					solidBg: "#085b9c"
                 },
                 neutral: {
                     50: "#fafafa",
@@ -103,6 +107,8 @@ const theme = extendTheme({
                     700: "#388e3c",
                     800: "#2e7d32",
                     900: "#1b5e20",
+					solidBg: "#256328",
+					softColor: "#fff"
                 },
                 warning: {
                     50: "#fff8e1",

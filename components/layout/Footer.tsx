@@ -103,22 +103,22 @@ export default function Footer() {
                             For Developers
                         </Typography>
                         <List sx={{ "--ListItem-paddingY": "0.5rem" }}>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/create-profile">
                                     Create a Profile
                                 </Link>
                             </ListItem>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/showcase-projects">
                                     Showcase Projects
                                 </Link>
                             </ListItem>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/developer-resources">
                                     Developer Resources
                                 </Link>
                             </ListItem>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/pricing">Pricing</Link>
                             </ListItem>
                         </List>
@@ -132,16 +132,16 @@ export default function Footer() {
                             For Recruiters
                         </Typography>
                         <List sx={{ "--ListItem-paddingY": "0.5rem" }}>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/find-talent">Find Talent</Link>
                             </ListItem>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/post-job">Post a Job</Link>
                             </ListItem>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/for-companies">For Companies</Link>
                             </ListItem>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/business-pricing">
                                     Business Pricing
                                 </Link>
@@ -157,16 +157,16 @@ export default function Footer() {
                             Company
                         </Typography>
                         <List sx={{ "--ListItem-paddingY": "0.5rem" }}>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/about">About Us</Link>
                             </ListItem>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/blog">Blog</Link>
                             </ListItem>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/careers">Careers</Link>
                             </ListItem>
-                            <ListItem>
+                            <ListItem sx={{padding: 0}}>
                                 <Link href="/contact">Contact</Link>
                             </ListItem>
                         </List>
@@ -184,7 +184,7 @@ export default function Footer() {
                         gap: 2,
                     }}
                 >
-                    <Typography level="body-xs" textColor="inherit">
+                    <Typography level="body-sm" textColor="inherit">
                         © {new Date().getFullYear()} DevShowcase. All rights
                         reserved.
                     </Typography>
@@ -197,17 +197,17 @@ export default function Footer() {
                         }}
                     >
                         <Link href="/privacy">
-                            <Typography level="body-xs">
+                            <Typography level="body-sm">
                                 Privacy Policy
                             </Typography>
                         </Link>
                         <Link href="/terms">
-                            <Typography level="body-xs">
+                            <Typography level="body-sm">
                                 Terms of Service
                             </Typography>
                         </Link>
                         <Link href="/cookies">
-                            <Typography level="body-xs">
+                            <Typography level="body-sm">
                                 Cookie Policy
                             </Typography>
                         </Link>

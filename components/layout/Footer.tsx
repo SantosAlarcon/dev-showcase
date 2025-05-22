@@ -30,9 +30,9 @@ export default function Footer() {
                 <Grid container spacing={4}>
                     <Grid xs={12} sm={6} md={3}>
                         <Typography
-                            level="h4"
                             sx={{
                                 fontWeight: "bold",
+								fontSize: "2rem",
                                 color: "primary.500",
                                 display: "flex",
                                 alignItems: "center",
@@ -40,17 +40,6 @@ export default function Footer() {
                                 mb: 2,
                             }}
                         >
-                            <Box
-                                component="span"
-                                sx={{
-                                    display: "inline-block",
-                                    width: "8px",
-                                    height: "8px",
-                                    borderRadius: "50%",
-                                    bgcolor: "primary.500",
-                                    mr: 1,
-                                }}
-                            />
                             DevShowcase
                         </Typography>
                         <Typography

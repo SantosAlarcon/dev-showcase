@@ -73,9 +73,9 @@ export default function Header() {
                 >
                     <Link href="/" passHref>
                         <Typography
-                            level="h4"
                             component="div"
                             sx={{
+								fontSize: "2rem",
                                 fontWeight: "bold",
                                 color: "primary.500",
                                 display: "flex",
@@ -84,17 +84,6 @@ export default function Header() {
                                 cursor: "pointer",
                             }}
                         >
-                            <Box
-                                component="span"
-                                sx={{
-                                    display: "inline-block",
-                                    width: "8px",
-                                    height: "8px",
-                                    borderRadius: "50%",
-                                    bgcolor: "primary.500",
-                                    mr: 1,
-                                }}
-                            />
                             DevShowcase
                         </Typography>
                     </Link>

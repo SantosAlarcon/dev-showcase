@@ -104,7 +104,7 @@ const GridDeveloperCard = ({
                     >
                         <Avatar
                             src={developer.avatar}
-                            alt={developer.name}
+                            alt={`${developer.name} ${developer.surname}`}
                             size="sm"
                             sx={{
                                 border: "3px solid",
@@ -137,10 +137,10 @@ const GridDeveloperCard = ({
                     </Box>
 
                     <Typography
-                        level="title-md"
+                        level="title-lg"
                         sx={{ mt: 2, fontWeight: 600 }}
                     >
-                        {developer.name}
+                        {developer.name} {developer.surname}
                     </Typography>
 
                     <Typography
@@ -172,7 +172,7 @@ const GridDeveloperCard = ({
                         flexWrap="wrap"
                         spacing={1}
                         useFlexGap
-                        sx={{ mb: 2, gap: 0.5 }}
+                        sx={{ mb: 2, horizontalGap: 0.5, verticalGap: 1 }}
                     >
                         {getAllSkills(developer.skills)
                             .slice(0, 4)

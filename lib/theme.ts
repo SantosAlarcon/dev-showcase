@@ -163,6 +163,7 @@ const theme = extendTheme({
                     "&:hover": {
                         transform: "translateY(-2px)",
                         boxShadow: "0 5px 15px rgba(0, 0, 0, 0.1)",
+						textDecoration: "none"
                     },
                 },
             },

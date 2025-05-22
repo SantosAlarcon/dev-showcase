@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Box, Typography, Container, Grid, Card, AspectRatio } from "@mui/joy";
 import { Search, UserCheck, MessagesSquare, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 const steps = [
     {
@@ -121,10 +122,13 @@ export default function HowItWorksSection() {
                                             maxHeight: "140px",
                                         }}
                                     >
-                                        <img
+                                        <Image
                                             src={step.image}
                                             alt={step.title}
                                             style={{ objectFit: "cover" }}
+											width={512}
+											height={512}
+											loading="lazy"
                                         />
                                     </AspectRatio>
 

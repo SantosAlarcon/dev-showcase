@@ -29,6 +29,8 @@ import TestimonialSection from "@/components/home/TestimonialSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import TechnologyTags from "@/components/home/TechnologyTags";
 
+import Image from "next/image"
+
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -216,10 +218,13 @@ export default function Home() {
                                         boxShadow: "lg",
                                     }}
                                 >
-                                    <img
+                                    <Image
                                         src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
                                         alt="Developers collaborating on code"
                                         style={{ objectFit: "cover" }}
+										width={1024}
+										height={1024}
+										priority
                                     />
                                 </AspectRatio>
                             </motion.div>
@@ -229,7 +234,7 @@ export default function Home() {
             </Box>
 
             {/* Stats Section */}
-            <Box sx={{ py: 6, bgcolor: "primary.800" }}>
+            <Box sx={{ py: 6, bgcolor: "primary.900" }}>
                 <Container>
                     <Grid container spacing={4} justifyContent="center">
                         {[
@@ -258,7 +263,7 @@ export default function Home() {
                                     <Typography
                                         level="body-md"
                                         sx={{
-                                            color: "primary.200",
+                                            color: "primary.100",
                                         }}
                                     >
                                         {stat.label}

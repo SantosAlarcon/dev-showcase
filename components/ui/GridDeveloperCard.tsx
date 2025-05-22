@@ -65,7 +65,7 @@ const GridDeveloperCard = ({
                             style={{ objectFit: "cover" }}
                             width={512}
                             height={512}
-                            loading="lazy"
+							priority
                         />
                     </AspectRatio>
                     <Box

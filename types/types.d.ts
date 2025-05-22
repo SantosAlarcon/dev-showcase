@@ -67,4 +67,4 @@ type Social = {
 	devto?: string;
 };
 
-export { DeveloperInfo, FreelanceInfo, Experience, Project, Social };
+export { DeveloperInfo, FreelanceInfo, Experience, Project, Social, SkillsInfo };

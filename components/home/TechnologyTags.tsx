@@ -3,39 +3,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Box, Typography, Container, Chip, Stack } from "@mui/joy";
-
-const technologies = [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Next.js",
-    "Vue.js",
-    "Angular",
-    "Node.js",
-    "Express",
-    "Python",
-    "Django",
-    "FastAPI",
-    "Ruby",
-    "Rails",
-    "PHP",
-    "Laravel",
-    "Java",
-    "Spring Boot",
-    "Kotlin",
-    "Swift",
-    "Flutter",
-    "React Native",
-    "C#",
-    ".NET",
-    "Go",
-    "Rust",
-    "AWS",
-    "Azure",
-    "Google Cloud",
-    "Docker",
-    "Kubernetes",
-];
+import { skillsList } from "@/data/skills";
 
 export default function TechnologyTags() {
     const [selectedTech, setSelectedTech] = useState<string | null>(null);
@@ -108,7 +76,7 @@ export default function TechnologyTags() {
                             justifyContent: "center",
                         }}
                     >
-                        {technologies.map((tech, index) => (
+                        {skillsList.map((tech, index) => (
                             <motion.div
                                 key={tech}
                                 initial={{ opacity: 0, y: 10 }}

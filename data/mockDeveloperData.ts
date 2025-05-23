@@ -33,7 +33,7 @@ const developersData: DeveloperInfo[] = [
                 startDate: "Jan 2020",
                 endDate: "Present",
                 description:
-                    "Led development of customer-facing applications with React and Node.js. Implemented CI/CD pipelines and microservices architecture.",
+                    "+ Led development of customer-facing applications with React and Node.js.\n+ Implemented CI/CD pipelines and microservices architecture.",
             },
             {
                 title: "Full Stack Developer",
@@ -42,7 +42,7 @@ const developersData: DeveloperInfo[] = [
                 startDate: "Mar 2018",
                 endDate: "Dec 2019",
                 description:
-                    "Developed and maintained web applications for enterprise clients. Collaborated with design team to implement responsive UIs.",
+                    "+ Developed and maintained web applications for enterprise clients.\n+ Collaborated with design team to implement responsive UIs.",
             },
         ],
         social: {
@@ -71,7 +71,26 @@ const developersData: DeveloperInfo[] = [
             other: [],
         },
         freelancer: false,
-        workExperience: [],
+        workExperience: [
+            {
+                title: "Senior Frontend Developer",
+                company: "InnovateTech Solutions",
+                location: "San Francisco, CA",
+                startDate: "2022-03-01",
+                endDate: "Present",
+                description:
+                    "+ Led the development of scalable and responsive user interfaces for key web applications using React.js, Next.js, and TypeScript.\n+ Implemented component-based architectures and optimized rendering performance, resulting in a 20% improvement in page load times.\n+ Mentored junior developers and conducted code reviews to ensure high code quality and adherence to best practices.",
+            },
+            {
+                title: "Frontend Developer",
+                company: "WebSpark Digital",
+                location: "Austin, TX",
+                startDate: "2019-06-15",
+                endDate: "2022-02-28",
+                description:
+                    "+ Developed and maintained interactive web applications using Angular and Vue.js.\n+ Collaborated closely with UX/UI designers to translate wireframes and mockups into functional user interfaces.\n+ Contributed to the design system and ensured cross-browser compatibility and accessibility standards.",
+            },
+        ],
         followers: 620,
         reviews: 16,
         isAvailable: true,
@@ -106,7 +125,27 @@ const developersData: DeveloperInfo[] = [
         followers: 540,
         reviews: 20,
         isAvailable: false,
-        workExperience: [],
+        workExperience: [
+            {
+                title: "Lead Mobile Developer",
+                company: "AppGenius Labs",
+                location: "New York, NY",
+                startDate: "2023-01-01",
+                endDate: "Present",
+                description:
+                    "+ Spearheaded the development and deployment of native iOS and Android applications using Swift, Kotlin, and React Native. \n+ Managed a team of 4 mobile developers, overseeing project timelines and ensuring high-quality code delivery.\n+ Implemented advanced features such as real-time data synchronization, offline capabilities, and push notifications.",
+            },
+            {
+                title: "Mobile Developer",
+
+                company: "MobileFirst Innovations",
+                location: "Seattle, WA",
+                startDate: "2020-09-01",
+                endDate: "2022-12-31",
+                description:
+                    "+ Developed and maintained mobile applications for both iOS and Android platforms.\n+ Utilized Objective-C and Java for native development and gained experience with Flutter for cross-platform solutions.\n+ Integrated third-party APIs and ensured optimal performance and user experience.",
+            },
+        ],
         freelancer: false,
         email: "davidmartinez@gmail.com",
         social: {
@@ -131,7 +170,26 @@ const developersData: DeveloperInfo[] = [
         avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600",
         bannerImage:
             "https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-        workExperience: [],
+        workExperience: [
+            {
+                title: "Staff Backend Engineer",
+                company: "GlobalData Solutions",
+                location: "London, UK",
+                startDate: "2022-07-01",
+                endDate: "Present",
+                description:
+                    "+ Designed and implemented robust and scalable backend services using Python (Django, Flask) and Go.\n+ Developed RESTful APIs and microservices architectures to support high-traffic web applications.\n+ Optimized database queries and managed PostgreSQL and MongoDB databases, resulting in significant performance improvements.\n+ Led the migration of legacy systems to modern cloud-based solutions (AWS).",
+            },
+            {
+                title: "Backend Developer",
+                company: "CodeCraft Technologies",
+                location: "Bengaluru, India",
+                startDate: "2019-01-10",
+                endDate: "2022-06-30",
+                description:
+                    "+ Built and maintained backend services for various web applications using Node.js and Java (Spring Boot).\n+ Developed and consumed APIs, handled data persistence with MySQL, and implemented authentication and authorization mechanisms.\n+ Collaborated with frontend teams to define API specifications and troubleshoot integration issues.",
+            },
+        ],
         freelancer: false,
         skills: {
             frontend: [],

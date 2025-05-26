@@ -475,7 +475,7 @@ export default function DiscoverPage() {
 						{viewMode === "grid" && (
 							<Grid container spacing={3}>
 								{filteredDevelopers.map((developer: DeveloperInfo, index: number) => (
-									<GridDeveloperCard developer={developer} index={index} toggleLike={toggleLike} isLiked={likedDevelopers.includes(developer.id)} />
+									<GridDeveloperCard key={developer.id} developer={developer} index={index} toggleLike={toggleLike} isLiked={likedDevelopers.includes(developer.id)} />
 								))}
 							</Grid>
 						)}

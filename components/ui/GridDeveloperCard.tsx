@@ -7,7 +7,7 @@ import {
     Link,
     Stack,
     Typography,
-	Tooltip
+    Tooltip,
 } from "@mui/joy";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
@@ -58,15 +58,24 @@ const GridDeveloperCard = ({
             >
                 <CardOverflow>
                     <AspectRatio ratio="21/9">
-                        <Image
-                            // @ts-ignore
-                            src={developer.bannerImage}
-                            alt={`${developer.name}'s cover`}
-                            style={{ objectFit: "cover" }}
-                            width={512}
-                            height={512}
-							priority
-                        />
+                        <object
+                            type="image/webp"
+                            data={developer.bannerImage}
+                            width="1920"
+                            height="1080"
+                            aria-label="Background image"
+                        >
+                            <Image
+                                // @ts-ignore
+                                src={"/empty.webp"}
+                                alt={`${developer.name} ${developer.surname}'s background image`}
+                                style={{ objectFit: "cover" }}
+                                width={512}
+                                height={512}
+                                priority
+                                decoding="async"
+                            />
+                        </object>
                     </AspectRatio>
                     <Box
                         sx={{
@@ -118,27 +127,31 @@ const GridDeveloperCard = ({
                                 variant="soft"
                                 size="sm"
                                 onClick={() => toggleLike(developer.id)}
-								aria-label="Like"
+                                aria-label="Like"
                             >
-								{isLiked ? <Heart /> : <HeartOutline />}
+                                {isLiked ? <Heart /> : <HeartOutline />}
                             </IconButton>
                             <IconButton
                                 component={Link}
                                 href={`/message/${developer.id}`}
                                 variant="soft"
-								aria-label="Send message"
+                                aria-label="Send message"
                                 size="sm"
                             >
-								<Tooltip title="Send message" variant="solid" arrow>
-									<ChatBubbleIcon />
-								</Tooltip>
+                                <Tooltip
+                                    title="Send message"
+                                    variant="solid"
+                                    arrow
+                                >
+                                    <ChatBubbleIcon />
+                                </Tooltip>
                             </IconButton>
                         </Box>
                     </Box>
 
                     <Typography
                         level="title-lg"
-                        sx={{ mt: 2, fontWeight: 600 }}
+                        sx={{ mt: 2, fontWeight: 700 }}
                     >
                         {developer.name} {developer.surname}
                     </Typography>
@@ -182,9 +195,11 @@ const GridDeveloperCard = ({
                                 </Chip>
                             ))}
 
-                        {getAllSkills(developer.skills).length > 4 && <Chip size="sm" variant="soft">
-                            +{getAllSkills(developer.skills).length - 4}
-                        </Chip> }
+                        {getAllSkills(developer.skills).length > 4 && (
+                            <Chip size="sm" variant="soft">
+                                +{getAllSkills(developer.skills).length - 4}
+                            </Chip>
+                        )}
                     </Stack>
 
                     <Button

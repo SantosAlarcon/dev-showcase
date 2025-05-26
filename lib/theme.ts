@@ -155,6 +155,14 @@ const theme = extendTheme({
         display: '"Figtree", var(--joy-fontFamily-fallback)',
     },
     components: {
+		JoyLink: {
+			styleOverrides: {
+				root: {
+					color: "inherit",
+					textDecoration: "none",
+				},
+			},
+		},
         JoyButton: {
             styleOverrides: {
                 root: {

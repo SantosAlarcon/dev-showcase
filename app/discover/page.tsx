@@ -43,7 +43,7 @@ import {
 import developersData from "@/data/mockDeveloperData";
 import { getAllSkills } from "@/utils/developers/getAllSkills";
 import GridDeveloperCard from "@/components/ui/GridDeveloperCard";
-import { DeveloperInfo } from "@/types/types";
+import { DeveloperInfo, ViewModeTypes } from "@/types/types";
 
 // Filters
 // const experienceLevels = ["Any", "1-2 years", "3-5 years", "5+ years"];
@@ -54,7 +54,7 @@ export default function DiscoverPage() {
     // const [selectedExperience, setSelectedExperience] = useState("Any");
     const [selectedAvailability, setSelectedAvailability] = useState("Any");
     const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-    const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+    const [viewMode, setViewMode] = useState<ViewModeTypes>("grid");
     const [likedDevelopers, setLikedDevelopers] = useState<string[]>([]);
     const [filteredDevelopers, setFilteredDevelopers] =
         useState(developersData);
@@ -293,7 +293,9 @@ export default function DiscoverPage() {
                             display: { xs: "flex", md: "none" },
                             width: "100%",
                             mb: 2,
+							paddingX: 2,
                             justifyContent: "space-between",
+							alignItems: "center"
                         }}
                     >
                         <Button
@@ -301,7 +303,6 @@ export default function DiscoverPage() {
                             color="neutral"
                             startDecorator={<Filter size={16} />}
                             onClick={() => setMobileFilterOpen(true)}
-                            sx={{ mb: 2 }}
                         >
                             Filters
                         </Button>

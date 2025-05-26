@@ -201,7 +201,7 @@ export default async function DeveloperProfile(props: {
                                         >
                                             {developer.title}
                                         </Typography>
-                                        {developer.isAvailable && (
+                                        {( developer.availability === "Freelance" || developer.availability === "Full-time" ) && (
                                             <Chip
                                                 variant="soft"
                                                 size="md"

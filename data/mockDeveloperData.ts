@@ -20,7 +20,7 @@ const developersData: DeveloperInfo[] = [
         },
         reviews: 28,
         followers: 100,
-        isAvailable: true,
+		availability: "Freelance",
         bio: "Full stack developer with 5+ years of experience building scalable web applications. I specialize in React, Node.js, and cloud architecture. I'm passionate about creating clean, maintainable code and delivering exceptional user experiences.",
         email: "alexjohnson@gmail.com",
         freelancer: { hourlyRate: "85" },
@@ -93,7 +93,7 @@ const developersData: DeveloperInfo[] = [
         ],
         followers: 620,
         reviews: 16,
-        isAvailable: true,
+		availability: "Full-time",
         email: "samanthachen@gmail.com",
         languages: ["English (Native)"],
         social: {
@@ -124,7 +124,7 @@ const developersData: DeveloperInfo[] = [
         },
         followers: 540,
         reviews: 20,
-        isAvailable: false,
+		availability: "Full-time",
         workExperience: [
             {
                 title: "Lead Mobile Developer",
@@ -198,7 +198,7 @@ const developersData: DeveloperInfo[] = [
         },
         followers: 250,
         reviews: 31,
-        isAvailable: true,
+		availability: "Full-time",
         social: {
             github: "https://github.com",
             linkedin: "https://linkedin.com",
@@ -242,7 +242,7 @@ const developersData: DeveloperInfo[] = [
         },
         reviews: 45,
         followers: 120,
-        isAvailable: true,
+		availability: "Freelance",
         bio: "Experienced DevOps Engineer with a passion for building scalable, reliable, and secure infrastructure. Proven ability to implement CI/CD pipelines, automate deployments, and optimize cloud resources across various platforms. Always looking for new challenges and opportunities to leverage cutting-edge technologies to drive efficiency and innovation.",
         email: "james.wilson.devops@example.com",
         freelancer: {
@@ -321,7 +321,7 @@ const developersData: DeveloperInfo[] = [
         },
         reviews: 125,
         followers: 789,
-        isAvailable: true,
+		availability: "Freelance",
         bio: "Passionate and detail-oriented Senior UX/UI Designer with 7+ years of experience crafting intuitive and engaging digital experiences. I thrive on solving complex user problems through thoughtful design, from initial research to final implementation. My focus is on creating user-centered solutions that align with business goals and delight users.",
         email: "elena.rodriguez.design@example.com",
         freelancer: {
@@ -407,7 +407,7 @@ const developersData: DeveloperInfo[] = [
         },
         reviews: 87,
         followers: 1200,
-        isAvailable: true,
+		availability: "Freelance",
         bio: "Experienced and results-driven Staff Data Engineer with a passion for building scalable, robust, and efficient data pipelines and platforms. Proven track record of designing, developing, and deploying end-to-end data solutions in various cloud environments (AWS, GCP). Adept at transforming complex business requirements into high-performance data architectures that enable advanced analytics and machine learning initiatives.",
         email: "terry.kim@example.com",
         freelancer: {
@@ -484,7 +484,7 @@ const developersData: DeveloperInfo[] = [
         },
         reviews: 48,
         followers: 756,
-        isAvailable: true,
+		availability: "Freelance",
         bio: "Experienced and results-driven Senior Security Engineer with a passion for building robust and secure systems. Specializing in cloud security, application security, and incident response, I thrive on identifying and mitigating complex threats. Committed to staying ahead of emerging security trends and fostering a security-first culture.",
         email: "olivia.thomas@example.com",
         freelancer: {

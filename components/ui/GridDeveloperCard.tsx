@@ -86,7 +86,7 @@ const GridDeveloperCard = ({
                             gap: 1,
                         }}
                     >
-                        {developer.isAvailable && (
+                        {( developer.availability === "Freelance" || developer.availability === "Full-time" ) && (
                             <Chip
                                 variant="soft"
                                 size="sm"

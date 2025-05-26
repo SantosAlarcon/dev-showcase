@@ -12,7 +12,7 @@ type DeveloperInfo = {
 	skills: SkillsInfo;
 	reviews: number;
 	followers: number;
-	isAvailable: boolean;
+	availability: AvailabilityTypes;
 	bio: string;
 	email: string;
 	freelancer: FreelanceInfo | false;
@@ -24,6 +24,8 @@ type DeveloperInfo = {
 type FreelanceInfo = {
 	hourlyRate: string;
 };
+
+type AvailabilityTypes = "Full-time" | "Contract" | "Freelance";
 
 type SkillsInfo = {
 	frontend: string[];
@@ -67,4 +69,6 @@ type Social = {
 	devto?: string;
 };
 
-export { DeveloperInfo, FreelanceInfo, Experience, Project, Social, SkillsInfo };
+type ViewModeTypes = "grid" | "list";
+
+export { DeveloperInfo, FreelanceInfo, Experience, Project, Social, SkillsInfo, AvailabilityTypes, ViewModeTypes };

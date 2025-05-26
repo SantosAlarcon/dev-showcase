@@ -39,157 +39,17 @@ import {
 	LayoutPanelLeft,
 	LayoutGrid,
 } from "lucide-react";
+
 import Image from "next/image";
 
-// Sample developer data
-const allDevelopers = [
-	{
-		id: 1,
-		name: "Alex Johnson",
-		title: "Full Stack Developer",
-		location: "San Francisco, CA",
-		experience: "5 years",
-		availability: "Full-time",
-		avatar:
-			"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600",
-		coverImage:
-			"https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-		skills: ["React", "Node.js", "TypeScript", "MongoDB", "AWS"],
-		rating: 4.9,
-		reviews: 28,
-		isAvailable: true,
-		bio: "Full stack developer with expertise in React and Node.js. I specialize in building scalable web applications with clean, maintainable code.",
-	},
-	{
-		id: 2,
-		name: "Samantha Chen",
-		title: "Frontend Developer",
-		location: "New York, NY",
-		experience: "3 years",
-		availability: "Contract",
-		avatar:
-			"https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=600",
-		coverImage:
-			"https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-		skills: ["React", "Vue.js", "JavaScript", "CSS/SASS", "Figma"],
-		rating: 4.8,
-		reviews: 16,
-		isAvailable: true,
-		bio: "Frontend developer focused on creating beautiful, responsive user interfaces. I love turning designs into pixel-perfect implementations.",
-	},
-	{
-		id: 3,
-		name: "David Martinez",
-		title: "Mobile Developer",
-		location: "Austin, TX",
-		experience: "4 years",
-		availability: "Freelance",
-		avatar:
-			"https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600",
-		coverImage:
-			"https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-		skills: ["React Native", "Flutter", "Kotlin", "Swift", "Firebase"],
-		rating: 4.7,
-		reviews: 20,
-		isAvailable: false,
-		bio: "Experienced mobile developer specialized in cross-platform development. I build native-feeling apps for iOS and Android.",
-	},
-	{
-		id: 4,
-		name: "Mira Patel",
-		title: "Backend Developer",
-		location: "Seattle, WA",
-		experience: "6 years",
-		availability: "Full-time",
-		avatar:
-			"https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=600",
-		coverImage:
-			"https://images.pexels.com/photos/326501/pexels-photo-326501.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-		skills: ["Python", "Django", "PostgreSQL", "AWS", "Docker"],
-		rating: 5.0,
-		reviews: 31,
-		isAvailable: true,
-		bio: "Backend developer with extensive experience in Python and cloud architecture. I build robust, scalable systems that handle millions of requests.",
-	},
-	{
-		id: 5,
-		name: "James Wilson",
-		title: "DevOps Engineer",
-		location: "Chicago, IL",
-		experience: "7 years",
-		availability: "Full-time",
-		avatar:
-			"https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=600",
-		coverImage:
-			"https://images.pexels.com/photos/1181676/pexels-photo-1181676.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-		skills: ["AWS", "Kubernetes", "Docker", "Terraform", "CI/CD"],
-		rating: 4.8,
-		reviews: 24,
-		isAvailable: true,
-		bio: "DevOps engineer focused on automating infrastructure and streamlining deployment pipelines. I help teams ship code faster and more reliably.",
-	},
-	{
-		id: 6,
-		name: "Elena Rodriguez",
-		title: "UI/UX Developer",
-		location: "Miami, FL",
-		experience: "4 years",
-		availability: "Contract",
-		avatar:
-			"https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600",
-		coverImage:
-			"https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-		skills: ["React", "Figma", "UI Design", "CSS", "User Research"],
-		rating: 4.9,
-		reviews: 18,
-		isAvailable: true,
-		bio: "Frontend developer with a strong focus on UI/UX design. I create intuitive interfaces that users love to interact with.",
-	},
-	{
-		id: 7,
-		name: "Terrence Kim",
-		title: "Data Engineer",
-		location: "Boston, MA",
-		experience: "5 years",
-		availability: "Full-time",
-		avatar:
-			"https://images.pexels.com/photos/3778603/pexels-photo-3778603.jpeg?auto=compress&cs=tinysrgb&w=600",
-		coverImage:
-			"https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-		skills: ["Python", "Spark", "SQL", "Airflow", "Snowflake"],
-		rating: 4.7,
-		reviews: 15,
-		isAvailable: false,
-		bio: "Data engineer specializing in building data pipelines and ETL processes. I help companies make sense of their data.",
-	},
-	{
-		id: 8,
-		name: "Olivia Thomas",
-		title: "Security Engineer",
-		location: "Denver, CO",
-		experience: "8 years",
-		availability: "Contract",
-		avatar:
-			"https://images.pexels.com/photos/1102341/pexels-photo-1102341.jpeg?auto=compress&cs=tinysrgb&w=600",
-		coverImage:
-			"https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-		skills: [
-			"Security",
-			"Penetration Testing",
-			"Python",
-			"Network Security",
-			"Compliance",
-		],
-		rating: 4.9,
-		reviews: 22,
-		isAvailable: true,
-		bio: "Cybersecurity expert with a focus on application security. I help companies protect their systems and customer data from threats.",
-	},
-];
+import developersData from "@/data/mockDeveloperData";
+import { getAllSkills } from "@/utils/developers/getAllSkills";
+import GridDeveloperCard from "@/components/ui/GridDeveloperCard";
+import { DeveloperInfo } from "@/types/types";
 
 // Filters
 const experienceLevels = ["Any", "1-2 years", "3-5 years", "5+ years"];
-const availabilityTypes = ["Any", "Full-time", "Contract", "Freelance"];
+const isAvailableTypes = ["Any", "Full-time", "Contract", "Freelance"];
 
 export default function DiscoverPage() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -197,11 +57,11 @@ export default function DiscoverPage() {
 	const [selectedAvailability, setSelectedAvailability] = useState("Any");
 	const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 	const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-	const [likedDevelopers, setLikedDevelopers] = useState<number[]>([]);
-	const [filteredDevelopers, setFilteredDevelopers] = useState(allDevelopers);
+	const [likedDevelopers, setLikedDevelopers] = useState<string[]>([]);
+	const [filteredDevelopers, setFilteredDevelopers] = useState(developersData);
 	const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
 
-	const toggleLike = (id: number) => {
+	const toggleLike = (id: string) => {
 		if (likedDevelopers.includes(id)) {
 			setLikedDevelopers(likedDevelopers.filter((devId) => devId !== id));
 		} else {
@@ -218,7 +78,7 @@ export default function DiscoverPage() {
 	};
 
 	const applyFilters = () => {
-		let results = allDevelopers;
+		let results = developersData;
 
 		// Search filter
 		if (searchQuery) {
@@ -228,7 +88,7 @@ export default function DiscoverPage() {
 					dev.name.toLowerCase().includes(query) ||
 					dev.title.toLowerCase().includes(query) ||
 					dev.bio.toLowerCase().includes(query) ||
-					dev.skills.some((skill) => skill.toLowerCase().includes(query)),
+					getAllSkills(dev.skills).some((skill) => skill.toLowerCase().includes(query)),
 			);
 		}
 
@@ -249,14 +109,14 @@ export default function DiscoverPage() {
 		// Availability filter
 		if (selectedAvailability !== "Any") {
 			results = results.filter(
-				(dev) => dev.availability === selectedAvailability,
+				(dev) => dev.isAvailable === selectedAvailability,
 			);
 		}
 
 		// Skills filter
 		if (selectedSkills.length > 0) {
 			results = results.filter((dev) =>
-				selectedSkills.some((skill) => dev.skills.includes(skill)),
+				selectedSkills.some((skill) => getAllSkills(dev.skills).includes(skill)),
 			);
 		}
 
@@ -269,7 +129,7 @@ export default function DiscoverPage() {
 		setSelectedExperience("Any");
 		setSelectedAvailability("Any");
 		setSelectedSkills([]);
-		setFilteredDevelopers(allDevelopers);
+		setFilteredDevelopers(developersData);
 	};
 
 	return (
@@ -358,7 +218,7 @@ export default function DiscoverPage() {
 										setSelectedAvailability(value as string)
 									}
 								>
-									{availabilityTypes.map((type) => (
+									{isAvailableTypes.map((type) => (
 										<Option key={type} value={type}>
 											{type}
 										</Option>
@@ -520,7 +380,7 @@ export default function DiscoverPage() {
 										setSelectedAvailability(value as string)
 									}
 								>
-									{availabilityTypes.map((type) => (
+									{isAvailableTypes.map((type) => (
 										<Option key={type} value={type}>
 											{type}
 										</Option>
@@ -614,218 +474,8 @@ export default function DiscoverPage() {
 						{/* Grid View */}
 						{viewMode === "grid" && (
 							<Grid container spacing={3}>
-								{filteredDevelopers.map((developer, index) => (
-									<Grid key={developer.id} xs={12} sm={6} md={4}>
-										<motion.div
-											initial={{ opacity: 0, y: 20 }}
-											animate={{ opacity: 1, y: 0 }}
-											transition={{
-												duration: 0.3,
-												delay: index * 0.05,
-											}}
-										>
-											<Card
-												variant="outlined"
-												sx={{
-													height: "100%",
-													overflow: "hidden",
-													transition: "all 0.3s ease",
-													"&:hover": {
-														boxShadow: "md",
-														transform: "translateY(-5px)",
-													},
-												}}
-											>
-												<CardOverflow>
-													<AspectRatio ratio="21/9">
-														<Image
-															src={developer.coverImage}
-															alt={`${developer.name}'s cover`}
-															width={ 1920 }
-															height={ 1080 }
-															loading="lazy"
-															style={{
-																objectFit: "cover",
-															}}
-														/>
-													</AspectRatio>
-													<Box
-														sx={{
-															position: "absolute",
-															top: 12,
-															right: 12,
-															display: "flex",
-															gap: 1,
-														}}
-													>
-														{developer.isAvailable && (
-															<Chip
-																variant="soft"
-																size="sm"
-																color="success"
-																sx={{
-																	borderRadius: "10rem",
-																	px: 1,
-																}}
-															>
-																Available
-															</Chip>
-														)}
-													</Box>
-												</CardOverflow>
-
-												<CardContent>
-													<Box
-														sx={{
-															mt: -5,
-															display: "flex",
-															alignItems: "flex-end",
-															justifyContent: "space-between",
-														}}
-													>
-														<Avatar
-															src={developer.avatar}
-															alt={developer.name}
-															size="lg"
-															sx={{
-																border: "3px solid",
-																borderColor: "background.surface",
-																width: 64,
-																height: 64,
-															}}
-														/>
-														<Box
-															sx={{
-																display: "flex",
-																gap: 1,
-															}}
-														>
-															<IconButton
-																variant="soft"
-																size="sm"
-																color={
-																	likedDevelopers.includes(developer.id)
-																		? "danger"
-																		: "neutral"
-																}
-																onClick={() => toggleLike(developer.id)}
-															>
-																<Heart
-																	size={16}
-																	fill={
-																		likedDevelopers.includes(developer.id)
-																			? "currentColor"
-																			: "none"
-																	}
-																/>
-															</IconButton>
-															<IconButton
-																component="a"
-																href={`/message/${developer.id}`}
-																variant="soft"
-																size="sm"
-															>
-																<MessageCircle size={16} />
-															</IconButton>
-														</Box>
-													</Box>
-
-													<Typography
-														level="title-lg"
-														sx={{
-															mt: 2,
-															fontWeight: 700,
-														}}
-													>
-														{developer.name}
-													</Typography>
-
-													<Typography
-														level="body-sm"
-														sx={{
-															color: "text.secondary",
-															mb: 1,
-														}}
-													>
-														{developer.title}
-													</Typography>
-
-													<Stack
-														direction="row"
-														spacing={1}
-														sx={{
-															mb: 1,
-															alignItems: "center",
-														}}
-													>
-														<MapPin size={14} />
-														<Typography level="body-xs">
-															{developer.location}
-														</Typography>
-													</Stack>
-
-													<Stack
-														direction="row"
-														spacing={1}
-														sx={{
-															mb: 1,
-															alignItems: "center",
-														}}
-													>
-														<Briefcase size={14} />
-														<Typography level="body-xs">
-															{developer.experience} experience
-														</Typography>
-													</Stack>
-
-													<Stack
-														direction="row"
-														spacing={1}
-														sx={{
-															mb: 2,
-															alignItems: "center",
-														}}
-													>
-														<Calendar size={14} />
-														<Typography level="body-xs">
-															{developer.availability}
-														</Typography>
-													</Stack>
-
-													<Stack
-														direction="row"
-														flexWrap="wrap"
-														spacing={1}
-														useFlexGap
-														sx={{ mb: 2, gap: 0.5 }}
-													>
-														{developer.skills.slice(0, 3).map((skill) => (
-															<Chip key={skill} size="sm" variant="soft">
-																{skill}
-															</Chip>
-														))}
-														{developer.skills.length > 3 && (
-															<Chip size="sm" variant="soft">
-																+{developer.skills.length - 3}
-															</Chip>
-														)}
-													</Stack>
-
-													<Button
-														component="a"
-														href={`/developer/${developer.id}`}
-														fullWidth
-														variant="solid"
-														color="primary"
-														endDecorator={<ExternalLink size={14} />}
-														sx={{ mt: "auto" }}
-													>
-														View Profile
-													</Button>
-												</CardContent>
-											</Card>
-										</motion.div>
-									</Grid>
+								{filteredDevelopers.map((developer: DeveloperInfo, index: number) => (
+									<GridDeveloperCard developer={developer} index={index} toggleLike={toggleLike} isLiked={likedDevelopers.includes(developer.id)} />
 								))}
 							</Grid>
 						)}
@@ -988,7 +638,7 @@ export default function DiscoverPage() {
 													>
 														<MapPin size={14} />
 														<Typography level="body-xs">
-															{developer.location}
+															{developer.city}
 														</Typography>
 													</Box>
 													<Box
@@ -1012,7 +662,7 @@ export default function DiscoverPage() {
 													>
 														<Calendar size={14} />
 														<Typography level="body-xs">
-															{developer.availability}
+															{developer.isAvailable}
 														</Typography>
 													</Box>
 												</Box>
@@ -1024,14 +674,14 @@ export default function DiscoverPage() {
 													useFlexGap
 													sx={{ gap: 0.5 }}
 												>
-													{developer.skills.slice(0, 5).map((skill) => (
+													{getAllSkills(developer.skills).slice(0, 5).map((skill) => (
 														<Chip key={skill} size="sm" variant="soft">
 															{skill}
 														</Chip>
 													))}
-													{developer.skills.length > 5 && (
+													{getAllSkills(developer.skills).length > 5 && (
 														<Chip size="sm" variant="soft">
-															+{developer.skills.length - 5}
+															+{getAllSkills(developer.skills).length - 5}
 														</Chip>
 													)}
 												</Stack>

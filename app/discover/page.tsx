@@ -9,14 +9,10 @@ import {
 	Container,
 	Grid,
 	Card,
-	Avatar,
 	Chip,
 	Stack,
 	IconButton,
-	AspectRatio,
 	Button,
-	CardOverflow,
-	CardContent,
 	Input,
 	FormControl,
 	FormLabel,
@@ -27,15 +23,8 @@ import {
 	Tooltip,
 } from "@mui/joy";
 import {
-	ChevronRight,
 	Search,
 	Filter,
-	Heart,
-	MessageCircle,
-	ExternalLink,
-	MapPin,
-	Briefcase,
-	Calendar,
 	LayoutPanelLeft,
 	LayoutGrid,
 } from "lucide-react";
@@ -142,28 +131,26 @@ export default function DiscoverPage() {
 				bgcolor: "background.body",
 			}}
 		>
-			<Container maxWidth="lg">
+			<Container maxWidth="lg" sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
 				<motion.div
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.5 }}
+					style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
 				>
 					<Typography
 						level="h1"
 						sx={{
-							mb: 1,
 							fontWeight: 800,
 							fontSize: { xs: "2rem", md: "2.5rem" },
 						}}
 					>
-						Discover Developers
+						Discover developers
 					</Typography>
 					<Typography
 						level="body-lg"
 						sx={{
-							mb: 4,
 							color: "text.secondary",
-							maxWidth: "800px",
 						}}
 					>
 						Find the perfect developer for your project. Browse profiles, filter

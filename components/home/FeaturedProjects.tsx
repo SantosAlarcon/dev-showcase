@@ -73,6 +73,7 @@ export default function FeaturedProjects() {
         <Box
             sx={{
                 py: { xs: 8, md: 12 },
+				px: 2,
                 bgcolor: "background.surface",
             }}
         >

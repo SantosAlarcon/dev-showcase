@@ -81,6 +81,7 @@ export default async function DeveloperProfile(props: {
             sx={{
                 bgcolor: "background.body",
                 pb: 8,
+				px: 2,
             }}
         >
             {/* Cover Image */}

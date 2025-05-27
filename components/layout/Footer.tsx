@@ -21,6 +21,7 @@ export default function Footer() {
             component="footer"
             sx={{
                 py: 6,
+				px: 2,
                 backgroundColor: "background.surface",
                 borderTop: "1px solid",
                 borderColor: "divider",
@@ -162,7 +163,7 @@ export default function Footer() {
                     </Grid>
                 </Grid>
 
-                <Divider sx={{ my: 4 }} />
+                <Divider sx={{ my: 2 }} />
 
                 <Box
                     sx={{
@@ -185,17 +186,17 @@ export default function Footer() {
                             justifyContent: "center",
                         }}
                     >
-                        <Link href="/privacy">
+                        <Link href="/privacy" aria-label="Privacy Policy" style={{ textDecoration: "none" }}>
                             <Typography level="body-sm">
                                 Privacy Policy
                             </Typography>
                         </Link>
-                        <Link href="/terms">
+                        <Link href="/terms" aria-label="Terms of Service" style={{ textDecoration: "none" }}>
                             <Typography level="body-sm">
                                 Terms of Service
                             </Typography>
                         </Link>
-                        <Link href="/cookies">
+                        <Link href="/cookies" aria-label="Cookie Policy" style={{ textDecoration: "none" }}>
                             <Typography level="body-sm">
                                 Cookie Policy
                             </Typography>

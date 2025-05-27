@@ -8,20 +8,13 @@ import {
     Button,
     Container,
     Grid,
-    Card,
     Stack,
     Chip,
     AspectRatio,
-    Divider,
 } from "@mui/joy";
 import {
     Search,
-    Code,
-    Briefcase,
-    Award,
     ChevronRight,
-    Star,
-    Filter,
 } from "lucide-react";
 import FeaturedDevelopers from "@/components/home/FeaturedDevelopers";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
@@ -43,6 +36,7 @@ export default function Home() {
                     bgcolor: "background.surface",
                     pt: { xs: 10, md: 16 },
                     pb: { xs: 8, md: 12 },
+					px: 2,
                 }}
             >
                 <Container maxWidth="lg">

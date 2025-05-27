@@ -57,6 +57,7 @@ export default function Header() {
                 top: 0,
                 zIndex: 50,
                 py: 2,
+				px: { xs: 1, md: 2 },
                 backdropFilter: "blur(10px)",
                 backgroundColor: "rgba(var(--background-start-rgb), 0.8)",
                 borderBottom: "1px solid",
@@ -71,7 +72,7 @@ export default function Header() {
                         alignItems: "center",
                     }}
                 >
-                    <Link href="/" passHref>
+                    <Link href="/" passHref aria-label="Home" style={{ textDecoration: "none" }}>
                         <Typography
                             component="div"
                             sx={{

@@ -128,6 +128,7 @@ export default function DiscoverPage() {
 		<Box
 			sx={{
 				py: { xs: 4, md: 8 },
+				px: 2,
 				bgcolor: "background.body",
 			}}
 		>

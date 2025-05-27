@@ -3,13 +3,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
-import {
-    Box,
-    Typography,
-    Container,
-    Grid,
-    Button,
-} from "@mui/joy";
+import { Box, Typography, Container, Grid, Button } from "@mui/joy";
 import { ChevronRight } from "lucide-react";
 
 import GridDeveloperCard from "../ui/GridDeveloperCard";
@@ -30,6 +24,7 @@ export default function FeaturedDevelopers() {
         <Box
             sx={{
                 py: { xs: 8, md: 12 },
+				px: 2,
                 bgcolor: "background.body",
             }}
         >
@@ -85,9 +80,13 @@ export default function FeaturedDevelopers() {
 
                 <Grid container spacing={3}>
                     {developersData.map((developer, index) => (
-                        <Grid key={developer.id} xs={12} md={6} lg={3}>
-							<GridDeveloperCard developer={developer} index={index} toggleLike={() => toggleLike(developer.id)} isLiked={likedDevelopers.includes(developer.id)} />
-                        </Grid>
+                        <GridDeveloperCard
+                            developer={developer}
+							key={developer.id}
+                            index={index}
+                            toggleLike={() => toggleLike(developer.id)}
+                            isLiked={likedDevelopers.includes(developer.id)}
+                        />
                     ))}
                 </Grid>
             </Container>

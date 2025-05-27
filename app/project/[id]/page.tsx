@@ -38,6 +38,7 @@ export default async function ProjectProfile(props: {
 	return (
 		<Box
 			py={{ xs: 4, md: 12 }}
+			px="2"
 			width={{xs: "90%"}}
 			sx={{
 				margin: "auto",

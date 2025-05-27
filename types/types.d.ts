@@ -71,4 +71,14 @@ type Social = {
 
 type ViewModeTypes = "grid" | "list";
 
-export { DeveloperInfo, FreelanceInfo, Experience, Project, Social, SkillsInfo, AvailabilityTypes, ViewModeTypes };
+type Testimonial = {
+	id: number;
+	content: string;
+	author: {
+		name: string;
+		role: string;
+		avatar: string;
+	};
+};
+
+export { DeveloperInfo, FreelanceInfo, Experience, Project, Social, SkillsInfo, AvailabilityTypes, ViewModeTypes, Testimonial };

@@ -98,7 +98,7 @@ export default function Header() {
                         }}
                     >
                         {navItems.map((item) => (
-                            <Link key={item.name} href={item.href} passHref>
+                            <Link key={item.name} href={item.href} passHref style={{ textDecoration: "none" }}>
                                 <Typography
                                     component="span"
                                     sx={{

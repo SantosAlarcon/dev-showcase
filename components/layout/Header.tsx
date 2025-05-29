@@ -15,6 +15,7 @@ import {
     Menu,
     MenuButton,
     MenuItem,
+    useColorScheme,
 } from "@mui/joy";
 import { Menu as MenuIcon, X, Sun, Moon, Computer, Search } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
@@ -28,7 +29,7 @@ const navItems = [
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const { mode, setMode } = useColorMode();
+    const { mode, setMode } = useColorScheme();
 
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);

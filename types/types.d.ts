@@ -81,4 +81,6 @@ type Testimonial = {
 	};
 };
 
-export { DeveloperInfo, FreelanceInfo, Experience, Project, Social, SkillsInfo, AvailabilityTypes, ViewModeTypes, Testimonial };
+type ColorMode = "light" | "dark" | "system";
+
+export { DeveloperInfo, FreelanceInfo, Experience, Project, Social, SkillsInfo, AvailabilityTypes, ViewModeTypes, Testimonial, ColorMode };

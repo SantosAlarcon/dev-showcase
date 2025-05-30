@@ -46,7 +46,7 @@ export default function Footer() {
                         <Typography
                             level="body-sm"
                             sx={{ mb: 2, maxWidth: "25ch" }}
-							textColor="inherit"
+							textColor="text.primary"
                         >
                             Connecting exceptional developers with opportunities
                             that matter.
@@ -60,7 +60,7 @@ export default function Footer() {
 								target="_blank"
                                 href="https://github.com"
                             >
-                                <GitHubIcon htmlColor="inherit" />
+                                <GitHubIcon htmlColor="text.primary" />
                             </IconButton>
                             <IconButton
                                 variant="plain"
@@ -70,7 +70,7 @@ export default function Footer() {
 								target="_blank"
                                 href="https://twitter.com"
                             >
-                                <TwitterIcon htmlColor="inherit" />
+                                <TwitterIcon htmlColor="text.primary" />
                             </IconButton>
                             <IconButton
                                 variant="plain"
@@ -80,7 +80,7 @@ export default function Footer() {
 								target="_blank"
                                 href="https://linkedin.com"
                             >
-                                <LinkedinIcon htmlColor="inherit" />
+                                <LinkedinIcon htmlColor="text.primary" />
                             </IconButton>
                         </Box>
                     </Grid>
@@ -163,7 +163,7 @@ export default function Footer() {
                     </Grid>
                 </Grid>
 
-                <Divider sx={{ my: 2 }} />
+                <Divider sx={{ my: 2, backgroundColor: "var(--joy-palette-neutral-500)" }} />
 
                 <Box
                     sx={{
@@ -174,7 +174,7 @@ export default function Footer() {
                         gap: 2,
                     }}
                 >
-                    <Typography level="body-sm" textColor="inherit">
+                    <Typography level="body-sm" textColor="text.primary">
                         © {new Date().getFullYear()} DevShowcase. All rights
                         reserved.
                     </Typography>
@@ -187,17 +187,17 @@ export default function Footer() {
                         }}
                     >
                         <Link href="/privacy" aria-label="Privacy Policy" style={{ textDecoration: "none" }}>
-                            <Typography level="body-sm">
+                            <Typography level="body-sm" textColor="text.primary">
                                 Privacy Policy
                             </Typography>
                         </Link>
                         <Link href="/terms" aria-label="Terms of Service" style={{ textDecoration: "none" }}>
-                            <Typography level="body-sm">
+                            <Typography level="body-sm" textColor="text.primary">
                                 Terms of Service
                             </Typography>
                         </Link>
                         <Link href="/cookies" aria-label="Cookie Policy" style={{ textDecoration: "none" }}>
-                            <Typography level="body-sm">
+                            <Typography level="body-sm" textColor="text.primary">
                                 Cookie Policy
                             </Typography>
                         </Link>

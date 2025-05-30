@@ -4,6 +4,9 @@ const theme = extendTheme({
     colorSchemes: {
         light: {
             palette: {
+				background: {
+					surface: "255, 255, 255",
+				},
                 primary: {
                     50: "#e3f2fd",
                     100: "#bbdefb",
@@ -26,8 +29,8 @@ const theme = extendTheme({
                     500: "#9e9e9e",
                     600: "#757575",
                     700: "#616161",
-                    800: "#424242",
-                    900: "#212121",
+                    800: "#212121",
+                    900: "#101010",
                 },
                 success: {
                     50: "#e8f5e9",
@@ -136,7 +139,7 @@ const theme = extendTheme({
                 },
                 background: {
                     body: "#121212",
-                    surface: "#1e1e1e",
+                    surface: "10, 10, 10",
                 },
             },
         },

@@ -49,7 +49,7 @@ export default function TechnologyTags() {
                         <Typography
                             level="body-md"
                             sx={{
-                                color: "text.secondary",
+                                color: "text.primary",
                                 maxWidth: "600px",
                                 mx: "auto",
                             }}

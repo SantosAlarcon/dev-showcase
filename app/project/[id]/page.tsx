@@ -51,12 +51,12 @@ export default async function ProjectProfile(props: {
 		>
 			<Typography level="h1">{project.title}</Typography>
 			<Typography level="title-sm">{project.description}</Typography>
-			<Box sx={{ display: "flex", gap: 1, alignItems: "center", py: 2 }}>
+			<Box sx={{ display: "flex", gap: 1, alignItems: "center", py: 2, color: "text.primary" }}>
 				<Avatar
 					src={developer.avatar}
 					alt={developer.name + developer.surname}
 				/>{" "}
-				<Link href={`/developer/${project.userId}`}>
+				<Link href={`/developer/${project.userId}`} aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}>
 					{developer.name} {developer.surname}
 				</Link>{" "}
 				- <b>Published on</b>{" "}
@@ -67,7 +67,7 @@ export default async function ProjectProfile(props: {
 				})}
 			</Box>
 			<Image className="project__markdown__cover" src={project.image} alt={project.title} width={600} height={400} loading="lazy" />
-			<Box width={"100%"} className="markdown-body">
+			<Box width={"100%"} className="markdown-body" sx={{ color: "text.primary" }}>
 				<Markdown remarkPlugins={[remarkGfm]}>
 					{project.story}
 				</Markdown>

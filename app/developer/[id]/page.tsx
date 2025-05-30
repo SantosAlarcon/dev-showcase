@@ -79,7 +79,6 @@ export default async function DeveloperProfile(props: {
     return (
         <Box
             sx={{
-                bgcolor: "background.body",
                 pb: 8,
 				px: 2,
             }}
@@ -132,6 +131,7 @@ export default async function DeveloperProfile(props: {
                         variant="outlined"
                         sx={{
                             p: { xs: 2, md: 4 },
+							backgroundColor: "background.body",
                             width: {
                                 xs: "100%",
                                 sm: "100%",
@@ -145,6 +145,7 @@ export default async function DeveloperProfile(props: {
                         <Grid container spacing={3} alignItems="flex-end">
                             <Grid xs={12} md={12} lg={12}>
                                 <Box
+									color={"neutral"}
                                     sx={{
                                         display: "flex",
                                         alignItems: "center",
@@ -221,6 +222,7 @@ export default async function DeveloperProfile(props: {
                                         )}
 
                                         <Box
+											color={"neutral"}
                                             sx={{
                                                 display: "flex",
                                                 alignItems: "start",
@@ -238,10 +240,10 @@ export default async function DeveloperProfile(props: {
                                                     gap: 1,
                                                 }}
                                             >
-                                                <LocationPinIcon htmlColor="inherit" />
+                                                <LocationPinIcon htmlColor="primary" />
                                                 <Typography
                                                     level="body-sm"
-                                                    textColor="inherit"
+                                                    textColor="text.primary"
                                                 >
                                                     {developer.city},{" "}
                                                     {developer.state},{" "}
@@ -255,10 +257,10 @@ export default async function DeveloperProfile(props: {
                                                     gap: 1,
                                                 }}
                                             >
-                                                <WorkIcon htmlColor="inherit" />
+                                                <WorkIcon htmlColor="primary" />
                                                 <Typography
                                                     level="body-sm"
-                                                    textColor="inherit"
+                                                    textColor="text.primary"
                                                 >
                                                     experience
                                                 </Typography>
@@ -270,10 +272,10 @@ export default async function DeveloperProfile(props: {
                                                     gap: 1,
                                                 }}
                                             >
-                                                <CalendarMonthIcon htmlColor="inherit" />
+                                                <CalendarMonthIcon htmlColor="primary" />
                                                 <Typography
                                                     level="body-sm"
-                                                    textColor="inherit"
+                                                    textColor="text.primary"
                                                 >
                                                     Joined on{" "}
                                                     {new Date(
@@ -295,10 +297,10 @@ export default async function DeveloperProfile(props: {
                                                     alignItems: "center",
                                                 }}
                                             >
-                                                <GroupsIcon htmlColor="inherit" />
+                                                <GroupsIcon htmlColor="primary" />
                                                 <Typography
                                                     level="body-sm"
-                                                    textColor={"inherit"}
+                                                    textColor="text.primary"
                                                 >
                                                     {developer.followers}
                                                 </Typography>
@@ -311,10 +313,10 @@ export default async function DeveloperProfile(props: {
                                                         alignItems: "center",
                                                     }}
                                                 >
-                                                    <AttachMoneyIcon htmlColor="inherit" />
+                                                    <AttachMoneyIcon htmlColor="primary" />
                                                     <Typography
                                                         level="body-sm"
-                                                        textColor="inherit"
+                                                        textColor="text.primary"
                                                     >
                                                         {
                                                             developer.freelancer
@@ -348,7 +350,7 @@ export default async function DeveloperProfile(props: {
                                                         title="GitHub"
                                                         variant="solid"
                                                     >
-                                                        <GitHubIcon htmlColor="inherit" />
+                                                        <GitHubIcon htmlColor="primary" />
                                                     </Tooltip>
                                                 </IconButton>
                                             )}
@@ -368,7 +370,7 @@ export default async function DeveloperProfile(props: {
                                                         title="LinkedIn"
                                                         variant="solid"
                                                     >
-                                                        <LinkedInIcon htmlColor="inherit" />
+                                                        <LinkedInIcon htmlColor="primary" />
                                                     </Tooltip>
                                                 </IconButton>
                                             )}
@@ -388,7 +390,7 @@ export default async function DeveloperProfile(props: {
                                                         title="Facebook"
                                                         variant="solid"
                                                     >
-                                                        <FacebookIcon htmlColor="inherit" />
+                                                        <FacebookIcon htmlColor="primary" />
                                                     </Tooltip>
                                                 </IconButton>
                                             )}
@@ -407,7 +409,7 @@ export default async function DeveloperProfile(props: {
                                                         title="Twitter"
                                                         variant="solid"
                                                     >
-                                                        <TwitterIcon htmlColor="inherit" />
+                                                        <TwitterIcon htmlColor="primary" />
                                                     </Tooltip>
                                                 </IconButton>
                                             )}
@@ -427,7 +429,7 @@ export default async function DeveloperProfile(props: {
                                                         title="Instagram"
                                                         variant="solid"
                                                     >
-                                                        <InstagramIcon htmlColor="inherit" />
+                                                        <InstagramIcon htmlColor="primary" />
                                                     </Tooltip>
                                                 </IconButton>
                                             )}
@@ -446,7 +448,7 @@ export default async function DeveloperProfile(props: {
                                                         title="Dev.to"
                                                         variant="solid"
                                                     >
-                                                        <LogoDevIcon htmlColor="inherit" />
+                                                        <LogoDevIcon htmlColor="primary" />
                                                     </Tooltip>
                                                 </IconButton>
                                             )}
@@ -465,7 +467,7 @@ export default async function DeveloperProfile(props: {
                                                         title="YouTube"
                                                         variant="solid"
                                                     >
-                                                        <YouTubeIcon htmlColor="inherit" />
+                                                        <YouTubeIcon htmlColor="primary" />
                                                     </Tooltip>
                                                 </IconButton>
                                             )}
@@ -484,7 +486,7 @@ export default async function DeveloperProfile(props: {
                                                     title="Portfolio"
                                                     variant="solid"
                                                 >
-                                                    <OpenInNewIcon htmlColor="inherit" />
+                                                    <OpenInNewIcon htmlColor="primary" />
                                                 </Tooltip>
                                             </IconButton>
                                         </Box>
@@ -551,7 +553,7 @@ export default async function DeveloperProfile(props: {
                 </Box>
 
                 {/* Content Tabs */}
-                <Tabs sx={{ mb: 4, width: "100%" }} selectionFollowsFocus>
+                <Tabs sx={{ mb: 4, width: "100%", backgroundColor: "background.body" }} selectionFollowsFocus>
                     <TabList
                         variant="plain"
                         sx={{
@@ -563,10 +565,10 @@ export default async function DeveloperProfile(props: {
                                 "var(--joy-palette-primary-500)",
                         }}
                     >
-                        <Tab sx={{ color: "inherit" }}>About</Tab>
-                        <Tab sx={{ color: "inherit" }}>Projects</Tab>
-                        <Tab sx={{ color: "inherit" }}>Experience</Tab>
-                        <Tab sx={{ color: "inherit" }}>Skills</Tab>
+                        <Tab sx={{ color: "primary" }}>About</Tab>
+                        <Tab sx={{ color: "primary" }}>Projects</Tab>
+                        <Tab sx={{ color: "primary" }}>Experience</Tab>
+                        <Tab sx={{ color: "primary" }}>Skills</Tab>
                     </TabList>
 
                     <TabPanel value={0}>
@@ -581,6 +583,7 @@ export default async function DeveloperProfile(props: {
                             </Typography>
                             <Typography
                                 level="body-md"
+								textColor="text.primary"
                                 sx={{ mb: 4, whiteSpace: "pre-line" }}
                             >
                                 {developer.bio}
@@ -607,8 +610,8 @@ export default async function DeveloperProfile(props: {
                                                         gap: 1,
                                                     }}
                                                 >
-                                                    <LanguageIcon />
-                                                    <Typography level="body-md">
+                                                    <LanguageIcon htmlColor="primary" />
+                                                    <Typography level="body-md" textColor="text.primary">
                                                         {language}
                                                     </Typography>
                                                 </Box>
@@ -631,10 +634,10 @@ export default async function DeveloperProfile(props: {
                                             component="a"
                                             href={`mailto:${developer.email}`}
                                             variant="plain"
-                                            color="neutral"
                                             startDecorator={<MailOutlineIcon />}
                                             sx={{
                                                 justifyContent: "flex-start",
+												color: "text.primary",
                                             }}
                                         >
                                             {developer.email}
@@ -644,10 +647,10 @@ export default async function DeveloperProfile(props: {
                                             href={developer.social.portfolio}
                                             target="_blank"
                                             variant="plain"
-                                            color="neutral"
                                             startDecorator={<OpenInNewIcon />}
                                             sx={{
                                                 justifyContent: "flex-start",
+												color: "text.primary",
                                             }}
                                         >
                                             {developer.social.portfolio}
@@ -729,7 +732,7 @@ export default async function DeveloperProfile(props: {
                                                 mb: 1,
                                             }}
                                         >
-                                            <Typography level="title-lg">
+                                            <Typography level="title-lg" fontWeight={700}>
                                                 {work.title}
                                             </Typography>
                                             <Typography

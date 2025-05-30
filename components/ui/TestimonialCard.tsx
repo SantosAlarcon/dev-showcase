@@ -27,6 +27,8 @@ const TestimonialCard = ({
                         position: "relative",
                         overflow: "visible",
                         transition: "all 0.3s ease",
+						border: "1px solid",
+						borderColor: "neutral.500",
                         "&:hover": {
                             transform: "translateY(-8px)",
                         },
@@ -58,8 +60,8 @@ const TestimonialCard = ({
                         />
                         <Box>
                             <Typography
-                                level="title-sm"
-                                sx={{ fontWeight: 600 }}
+                                level="title-md"
+                                sx={{ fontWeight: 700 }}
                             >
                                 {testimonial.author.name}
                             </Typography>

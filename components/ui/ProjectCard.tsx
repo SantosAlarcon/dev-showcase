@@ -46,7 +46,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                             }}
                         />
                     </AspectRatio>
-                    <Typography level="title-md" sx={{ mb: 1 }} fontWeight={700}>
+                    <Typography level="title-lg" sx={{ mb: 1 }} fontWeight={700}>
                         <Link href={`/project/${project.id}`} underline="none" sx={{color: "inherit"}}>
 							{project.title}
 						</Link>

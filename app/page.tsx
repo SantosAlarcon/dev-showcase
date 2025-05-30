@@ -84,7 +84,7 @@ export default function Home() {
                                 <Typography
                                     level="body-lg"
                                     sx={{
-                                        color: "text.secondary",
+                                        color: "text.primary",
                                         mb: 4,
                                         maxWidth: "500px",
                                     }}
@@ -156,7 +156,7 @@ export default function Home() {
                                 >
                                     <Typography
                                         level="body-sm"
-                                        sx={{ color: "text.secondary" }}
+                                        sx={{ color: "text.primary" }}
                                     >
                                         Popular:
                                     </Typography>
@@ -333,7 +333,7 @@ export default function Home() {
                                     mb: 4,
                                     maxWidth: "650px",
                                     mx: "auto",
-                                    color: "text.secondary",
+                                    color: "text.primary",
                                 }}
                             >
                                 Start browsing our curated collection of top

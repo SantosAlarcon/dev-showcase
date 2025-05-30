@@ -130,7 +130,7 @@ const GridDeveloperCard = ({
                                     onClick={() => toggleLike(developer.id)}
                                     aria-label="Like"
                                 >
-                                    {isLiked ? <Heart /> : <HeartOutline />}
+                                    {isLiked ? <Heart htmlColor="text.primary" /> : <HeartOutline htmlColor="text.primary" />}
                                 </IconButton>
                                 <IconButton
                                     component={Link}
@@ -144,7 +144,7 @@ const GridDeveloperCard = ({
                                         variant="solid"
                                         arrow
                                     >
-                                        <ChatBubbleIcon />
+                                        <ChatBubbleIcon htmlColor="text.primary" />
                                     </Tooltip>
                                 </IconButton>
                             </Box>
@@ -156,13 +156,14 @@ const GridDeveloperCard = ({
                                 aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}
                                 level="title-lg"
                                 fontWeight={700}
+								textColor={"text.primary"}
                             >
                                 {developer.name} {developer.surname}
                             </Link>
                             <Typography
                                 level="body-sm"
                                 sx={{
-                                    color: "text.secondary",
+                                    color: "text.primary",
                                 }}
                             >
                                 {developer.title}
@@ -173,25 +174,25 @@ const GridDeveloperCard = ({
                             <Typography
                                 level="body-sm"
                                 sx={{
-                                    color: "text.secondary",
+                                    color: "text.primary",
                                     display: "flex",
                                     alignItems: "center",
                                     gap: 0.5,
                                 }}
                             >
-                                <LocationIcon />
+                                <LocationIcon htmlColor="text.primary" />
                                 {developer.city}
                             </Typography>
                             <Typography
                                 level="body-sm"
                                 sx={{
-                                    color: "text.secondary",
+                                    color: "text.primary",
                                     display: "flex",
                                     alignItems: "center",
                                     gap: 0.5,
                                 }}
                             >
-								<WorkOutlineOutlinedIcon />
+								<WorkOutlineOutlinedIcon htmlColor="text.primary" />
                                 {developer.availability}
                             </Typography>
                         </Box>

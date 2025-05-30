@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useColorMode } from "@/app/providers";
 import {
     Box,
     IconButton,
@@ -60,7 +59,7 @@ export default function Header() {
                 py: 2,
 				px: { xs: 1, md: 2 },
                 backdropFilter: "blur(10px)",
-                backgroundColor: "rgba(var(--background-start-rgb), 0.8)",
+                backgroundColor: "rgba(var(--joy-palette-background-surface), 0.8)",
                 borderBottom: "1px solid",
                 borderColor: "divider",
             }}
@@ -102,6 +101,7 @@ export default function Header() {
                             <Link key={item.name} href={item.href} passHref style={{ textDecoration: "none" }}>
                                 <Typography
                                     component="span"
+									textColor={"text.primary"}
                                     sx={{
                                         fontWeight: 500,
                                         position: "relative",
@@ -130,9 +130,8 @@ export default function Header() {
                     <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
                         <IconButton
                             variant="plain"
-                            color="neutral"
                             aria-label="search"
-                            sx={{ display: { xs: "none", sm: "flex" } }}
+                            sx={{ display: { xs: "none", sm: "flex" }, color: "text.primary" }}
                         >
                             <Search size={20} />
                         </IconButton>
@@ -140,6 +139,7 @@ export default function Header() {
                         <Dropdown>
                             <MenuButton
                                 slots={{ root: IconButton }}
+								sx={{ color: "text.primary" }}
                                 slotProps={{
                                     root: {
                                         variant: "plain",
@@ -158,20 +158,20 @@ export default function Header() {
                             </MenuButton>
                             <Menu placement="bottom-end">
                                 <MenuItem onClick={() => setMode("light")}>
-                                    <Sun size={18} />
-                                    <Typography level="body-sm" sx={{ ml: 1 }}>
+                                    <Sun size={18} style={{ color: "text.primary" }} />
+                                    <Typography level="body-sm" textColor="text.primary" sx={{ ml: 1 }}>
                                         Light
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem onClick={() => setMode("dark")}>
-                                    <Moon size={18} />
-                                    <Typography level="body-sm" sx={{ ml: 1 }}>
+                                    <Moon size={18} style={{ color: "text.primary" }} />
+                                    <Typography level="body-sm" textColor="text.primary" sx={{ ml: 1 }}>
                                         Dark
                                     </Typography>
                                 </MenuItem>
                                 <MenuItem onClick={() => setMode("system")}>
-                                    <Computer size={18} />
-                                    <Typography level="body-sm" sx={{ ml: 1 }}>
+                                    <Computer size={18} style={{ color: "text.primary" }} />
+                                    <Typography level="body-sm" textColor="text.primary" sx={{ ml: 1 }}>
                                         System
                                     </Typography>
                                 </MenuItem>
@@ -184,7 +184,7 @@ export default function Header() {
                                     component={Link}
                                     href="/login"
                                     variant="plain"
-                                    color="neutral"
+									sx={{ color: "text.primary" }}
                                     size="sm"
                                 >
                                     Login
@@ -242,7 +242,7 @@ export default function Header() {
                             >
                                 {navItems.map((item) => (
                                     <motion.div key={item.name}>
-                                        <Link href={item.href} passHref>
+                                        <Link href={item.href} passHref style={{ textDecoration: "none" }}>
                                             <Typography
                                                 component="div"
                                                 sx={{
@@ -251,6 +251,7 @@ export default function Header() {
                                                     fontWeight: 500,
                                                     borderBottom: "1px solid",
                                                     borderColor: "divider",
+													color: "text.primary",
                                                 }}
                                             >
                                                 {item.name}

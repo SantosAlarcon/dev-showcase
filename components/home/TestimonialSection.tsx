@@ -91,7 +91,7 @@ export default function TestimonialSection() {
                         <Typography
                             level="body-lg"
                             sx={{
-                                color: "text.secondary",
+                                color: "text.primary",
                                 maxWidth: "650px",
                                 mx: "auto",
                             }}

@@ -318,12 +318,7 @@ export default async function DeveloperProfile(props: {
                                                         level="body-sm"
                                                         textColor="text.primary"
                                                     >
-                                                        {
-                                                            developer.freelancer
-                                                                .hourlyRate
-                                                        }
-                                                        {`${getCurrency(new Date().toLocaleString().slice(0, 2))}`}{" "}
-                                                        / hour
+                                                        {`${new Intl.NumberFormat("es-ES", {style: "currency", currency: "EUR", currencyDisplay: "symbol"}).format(parseInt(developer.freelancer.hourlyRate))} / hour`}
                                                     </Typography>
                                                 </Box>
                                             )}

@@ -16,9 +16,8 @@ import {
 } from "@mui/joy";
 import { motion } from "motion/react";
 import Image from "next/image";
-import ChatBubbleIcon from "@mui/icons-material/ChatBubbleOutline";
 import { getAllSkills } from "@/utils/developers/getAllSkills";
-import { Heart, MapPin, Briefcase } from "lucide-react";
+import { Heart, MapPin, Briefcase, MessageCircle } from "lucide-react";
 
 const GridDeveloperCard = ({
     developer,
@@ -144,7 +143,7 @@ const GridDeveloperCard = ({
                                         variant="solid"
                                         arrow
                                     >
-                                        <ChatBubbleIcon htmlColor="text.primary" />
+                                        <MessageCircle size={19} />
                                     </Tooltip>
                                 </IconButton>
                             </Box>

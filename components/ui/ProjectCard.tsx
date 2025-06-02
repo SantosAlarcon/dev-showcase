@@ -1,19 +1,20 @@
 import { Project } from "@/types/types";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Button from "@mui/joy/Button";
-import Card from "@mui/joy/Card";
-import Chip from "@mui/joy/Chip";
-import Grid from "@mui/joy/Grid";
-import Stack from "@mui/joy/Stack";
-import Typography from "@mui/joy/Typography";
 import * as motion from "motion/react-client";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import Link from "@mui/joy/Link";
 import Image from "next/image";
+import {
+    AspectRatio,
+    Button,
+    Card,
+    Chip,
+    Grid,
+    Link,
+    Stack,
+    Typography,
+} from "@mui/joy";
 
 const ProjectCard = ({ project }: { project: Project }) => {
-
     return (
         <Grid xs={12} md={4}>
             <motion.div
@@ -38,18 +39,26 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         <Image
                             src={project.image}
                             alt={project.title}
-							width={ 600 }
-							height={ 400 }
-							loading="lazy"
+                            width={600}
+                            height={400}
+                            loading="lazy"
                             style={{
                                 objectFit: "cover",
                             }}
                         />
                     </AspectRatio>
-                    <Typography level="title-lg" sx={{ mb: 1 }} fontWeight={700}>
-                        <Link href={`/project/${project.id}`} underline="none" sx={{color: "inherit"}}>
-							{project.title}
-						</Link>
+                    <Typography
+                        level="title-lg"
+                        sx={{ mb: 1 }}
+                        fontWeight={700}
+                    >
+                        <Link
+                            href={`/project/${project.id}`}
+                            underline="none"
+                            sx={{ color: "inherit" }}
+                        >
+                            {project.title}
+                        </Link>
                     </Typography>
                     <Typography
                         level="body-sm"
@@ -71,38 +80,45 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         }}
                     >
                         {project.technologies.map((tech) => (
-                            <Chip key={tech} size="sm" variant="soft" sx={{ px: 1.5 }}>
+                            <Chip
+                                key={tech}
+                                size="sm"
+                                variant="soft"
+                                sx={{ px: 1.5 }}
+                            >
                                 {tech}
                             </Chip>
                         ))}
                     </Stack>
                     <Stack spacing={2} sx={{ mt: "auto" }}>
-						{project.githubRepo && (
-							<Button
-								component="a"
-								href={project.githubRepo}
-								variant="solid"
-								target="_blank"
-								aria-label="View on GitHub"
-								startDecorator={<GitHubIcon />}
-								sx={{ mt: "auto", backgroundColor: "black" }}
-							>
-								View on GitHub
-							</Button>
-						)}
-						{project.liveSite && (<Button
-							component="a"
-							href={project.liveSite}
-							variant="solid"
-							color="primary"
-							aria-label="View live site"
-							target="_blank"
-							startDecorator={<OpenInNewIcon />}
-							sx={{ mt: "auto" }}
-						>
-							View Live Site
-						</Button>)}
-					</Stack>
+                        {project.githubRepo && (
+                            <Button
+                                component="a"
+                                href={project.githubRepo}
+                                variant="solid"
+                                target="_blank"
+                                aria-label="View on GitHub"
+                                startDecorator={<GitHubIcon />}
+                                sx={{ mt: "auto", backgroundColor: "black" }}
+                            >
+                                View on GitHub
+                            </Button>
+                        )}
+                        {project.liveSite && (
+                            <Button
+                                component="a"
+                                href={project.liveSite}
+                                variant="solid"
+                                color="primary"
+                                aria-label="View live site"
+                                target="_blank"
+                                startDecorator={<OpenInNewIcon />}
+                                sx={{ mt: "auto" }}
+                            >
+                                View Live Site
+                            </Button>
+                        )}
+                    </Stack>
                 </Card>
             </motion.div>
         </Grid>

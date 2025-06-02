@@ -3,7 +3,6 @@ import { getAllSkills } from "@/utils/developers/getAllSkills";
 import {
 	Avatar,
 	Box,
-	Button,
 	Card,
 	CardContent,
 	Chip,
@@ -15,7 +14,6 @@ import {
 } from "@mui/joy";
 import {
 	Briefcase,
-	ExternalLink,
 	Heart,
 	MapPin,
 	MessageCircle,

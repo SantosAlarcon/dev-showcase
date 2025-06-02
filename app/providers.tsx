@@ -5,7 +5,6 @@ import CssBaseline from "@mui/joy/CssBaseline";
 import { useEffect, useState, createContext, useContext } from "react";
 import theme from "@/lib/theme";
 import { ColorMode } from "@/types/types";
-import { InitColorSchemeScript } from "@mui/material";
 
 interface ColorModeContextProps {
 	mode: ColorMode;
@@ -44,7 +43,6 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
 	return (
 		<ColorModeContext value={{ mode, setMode }}>
-			<InitColorSchemeScript />
 			<CssVarsProvider
 				defaultMode={mode === "system" ? "system" : mode}
 				theme={theme}

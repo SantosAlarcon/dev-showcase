@@ -8,12 +8,12 @@ import {
     Typography,
     Tooltip,
     Grid,
+	Box,
+	AspectRatio,
+	Card,
+	CardOverflow,
+	Chip
 } from "@mui/joy";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Box from "@mui/joy/Box";
-import Card from "@mui/joy/Card";
-import CardOverflow from "@mui/joy/CardOverflow";
-import Chip from "@mui/joy/Chip";
 import { motion } from "motion/react";
 import Image from "next/image";
 import LocationIcon from "@mui/icons-material/LocationPin";

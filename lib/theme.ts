@@ -44,7 +44,7 @@ const theme = extendTheme({
                     800: "#2e7d32",
                     900: "#1b5e20",
 					solidBg: "#256328",
-					softColor: "#fff"
+					softColor: "#000"
                 },
                 warning: {
                     50: "#fff8e1",

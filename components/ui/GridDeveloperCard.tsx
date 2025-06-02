@@ -8,20 +8,17 @@ import {
     Typography,
     Tooltip,
     Grid,
-	Box,
-	AspectRatio,
-	Card,
-	CardOverflow,
-	Chip
+    Box,
+    AspectRatio,
+    Card,
+    CardOverflow,
+    Chip,
 } from "@mui/joy";
 import { motion } from "motion/react";
 import Image from "next/image";
-import LocationIcon from "@mui/icons-material/LocationPin";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubbleOutline";
-import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
-import Heart from "@mui/icons-material/Favorite";
-import HeartOutline from "@mui/icons-material/FavoriteOutlined";
 import { getAllSkills } from "@/utils/developers/getAllSkills";
+import { Heart, MapPin, Briefcase } from "lucide-react";
 
 const GridDeveloperCard = ({
     developer,
@@ -115,10 +112,11 @@ const GridDeveloperCard = ({
                             <Avatar
                                 src={developer.avatar}
                                 alt={`${developer.name} ${developer.surname}'s photo`}
+                                href={`/developer/${developer.id}`}
+                                component={Link}
+                                aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}
                                 size="sm"
                                 sx={{
-                                    border: "3px solid",
-                                    borderColor: "background.surface",
                                     width: 64,
                                     height: 64,
                                 }}
@@ -130,7 +128,9 @@ const GridDeveloperCard = ({
                                     onClick={() => toggleLike(developer.id)}
                                     aria-label="Like"
                                 >
-                                    {isLiked ? <Heart htmlColor="text.primary" /> : <HeartOutline htmlColor="text.primary" />}
+                                    <Tooltip title={isLiked ? "Unlike" : "Like"} variant="solid" arrow>
+                                        <Heart size={20} fill={isLiked ? "red" : "none"} stroke={isLiked ? "red" : "currentColor"} />
+                                    </Tooltip>
                                 </IconButton>
                                 <IconButton
                                     component={Link}
@@ -156,7 +156,8 @@ const GridDeveloperCard = ({
                                 aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}
                                 level="title-lg"
                                 fontWeight={700}
-								textColor={"text.primary"}
+								fontSize={"1.25rem"}
+                                textColor={"text.primary"}
                             >
                                 {developer.name} {developer.surname}
                             </Link>
@@ -170,17 +171,24 @@ const GridDeveloperCard = ({
                             </Typography>
                         </Box>
 
-                        <Box sx={{ display: "flex", flexDirection: "column", gap: 1, justifyContent: "center" }}>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                gap: 1,
+                                justifyContent: "center",
+                            }}
+                        >
                             <Typography
                                 level="body-sm"
                                 sx={{
                                     color: "text.primary",
                                     display: "flex",
                                     alignItems: "center",
-                                    gap: 0.5,
+                                    gap: 0.75,
                                 }}
                             >
-                                <LocationIcon htmlColor="text.primary" />
+                                <MapPin stroke="currentColor" strokeWidth={1} size={19} />
                                 {developer.city}
                             </Typography>
                             <Typography
@@ -189,10 +197,10 @@ const GridDeveloperCard = ({
                                     color: "text.primary",
                                     display: "flex",
                                     alignItems: "center",
-                                    gap: 0.5,
+                                    gap: 0.75,
                                 }}
                             >
-								<WorkOutlineOutlinedIcon htmlColor="text.primary" />
+                                <Briefcase stroke="currentColor" strokeWidth={1} size={19} />
                                 {developer.availability}
                             </Typography>
                         </Box>

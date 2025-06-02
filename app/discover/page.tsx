@@ -436,7 +436,7 @@ export default function DiscoverPage() {
 								mb: 3,
 							}}
 						>
-							<Typography level="body-sm">
+							<Typography level="body-sm" textColor={"text.primary"}>
 								Showing {filteredDevelopers.length} developers
 							</Typography>
 							<Box sx={{ display: "flex", gap: 1 }}>

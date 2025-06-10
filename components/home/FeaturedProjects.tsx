@@ -20,6 +20,7 @@ import { projectsData } from "@/data/mockProjectData";
 import { Project } from "@/types/types";
 import { getDeveloperInfo } from "@/utils/developers/getDeveloperInfo";
 import getFullNameById from "@/utils/developers/getFullNameById";
+import Image from "next/image";
 
 const projectList = projectsData.slice(0, 9);
 
@@ -98,7 +99,6 @@ export default function Featuredrojects() {
 									variant="outlined"
 									orientation="horizontal"
 									sx={{
-										paddingY: "1.5rem",
 										flexDirection: {
 											xs: "column",
 											sm: "row",
@@ -114,6 +114,7 @@ export default function Featuredrojects() {
 								>
 									<CardOverflow
 										sx={{
+											alignSelf: "end",
 											width: { xs: "100%", sm: "45%" },
 											minHeight: {
 												xs: "200px",
@@ -121,22 +122,21 @@ export default function Featuredrojects() {
 											},
 										}}
 									>
-										<AspectRatio ratio="16/9" sx={{ height: "100%" }}>
-											<img
+											<Image
+												width={"200"}
+												height={"200"}
 												src={project.image}
 												alt={project.title}
-												style={{ objectFit: "cover" }}
+												style={{ objectFit: "cover", borderRadius: "1rem", width: "100%" }}
 											/>
-										</AspectRatio>
 									</CardOverflow>
 
-									<CardContent>
+									<CardContent sx={{gap: 3, justifyContent: "center"}}>
 										<Typography
 											component={Link}
 											href={`/project/${project.id}`}
 											level="title-md"
 											sx={{
-												mb: 1,
 												fontWeight: 700,
 												textDecoration: "none",
 												"&:hover": { textDecoration: "underline" },
@@ -150,7 +150,6 @@ export default function Featuredrojects() {
 											level="body-sm"
 											sx={{
 												color: "text.secondary",
-												mb: 2,
 											}}
 										>
 											{project.description}
@@ -161,7 +160,6 @@ export default function Featuredrojects() {
 											spacing={1}
 											useFlexGap
 											sx={{
-												mb: 2,
 												flexWrap: "wrap",
 												gap: 0.5,
 											}}

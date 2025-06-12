@@ -10,7 +10,6 @@ import {
 	Card,
 	Stack,
 	Chip,
-	AspectRatio,
 	Button,
 	CardContent,
 	CardOverflow,
@@ -21,8 +20,9 @@ import { Project } from "@/types/types";
 import { getDeveloperInfo } from "@/utils/developers/getDeveloperInfo";
 import getFullNameById from "@/utils/developers/getFullNameById";
 import Image from "next/image";
+import { getAllProjects } from "@/utils/projects/getAllProjects";
 
-const projectList = projectsData.slice(0, 9);
+const projectList = getAllProjects().slice(0, 9);
 
 export default function Featuredrojects() {
 	return (
@@ -99,6 +99,7 @@ export default function Featuredrojects() {
 									variant="outlined"
 									orientation="horizontal"
 									sx={{
+										gap: 3,
 										flexDirection: {
 											xs: "column",
 											sm: "row",
@@ -115,6 +116,7 @@ export default function Featuredrojects() {
 									<CardOverflow
 										sx={{
 											alignSelf: "end",
+											margin: 0,
 											width: { xs: "100%", sm: "45%" },
 											minHeight: {
 												xs: "200px",

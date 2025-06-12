@@ -42,7 +42,6 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 import { getDeveloperInfo } from "@/utils/developers/getDeveloperInfo";
-import { getCurrency } from "@/utils/getCurrency";
 import ProjectCard from "@/components/ui/ProjectCard";
 import { Project } from "@/types/types";
 import { Suspense } from "react";
@@ -50,6 +49,7 @@ import UserNotFound from "@/components/layout/UserNotFound";
 import { getProjectsByUser } from "@/utils/projects/getProjectsByUser";
 import Image from "next/image";
 import Markdown from "react-markdown";
+import { getLocaleCurrency } from "@/utils/getLocaleCurrency";
 
 export async function generateMetadata(props: {
     params: Promise<{ params: { id: string } }>;
@@ -318,7 +318,7 @@ export default async function DeveloperProfile(props: {
                                                         level="body-sm"
                                                         textColor="text.primary"
                                                     >
-                                                        {`${new Intl.NumberFormat("es-ES", {style: "currency", currency: "EUR", currencyDisplay: "symbol"}).format(parseInt(developer.freelancer.hourlyRate))} / hour`}
+                                                        {`${getLocaleCurrency("es-ES", developer.freelancer.hourlyRate)} / hour`}
                                                     </Typography>
                                                 </Box>
                                             )}

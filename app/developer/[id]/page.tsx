@@ -43,13 +43,14 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 import { getDeveloperInfo } from "@/utils/developers/getDeveloperInfo";
 import ProjectCard from "@/components/ui/ProjectCard";
-import { Project } from "@/types/types";
+import { Period, Project } from "@/types/types";
 import { Suspense } from "react";
 import UserNotFound from "@/components/layout/UserNotFound";
 import { getProjectsByUser } from "@/utils/projects/getProjectsByUser";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import { getLocaleCurrency } from "@/utils/getLocaleCurrency";
+import { calculateTotalExperience } from "@/utils/projects/calculateTotalExperience";
 
 export async function generateMetadata(props: {
     params: Promise<{ params: { id: string } }>;
@@ -73,7 +74,7 @@ export default async function DeveloperProfile(props: {
     const { id } = params;
     const developer = getDeveloperInfo(id);
     const projects = getProjectsByUser(id);
-
+	const totalExperience: Period = calculateTotalExperience(developer.workExperience);
     if (!developer) return <UserNotFound />;
 
     return (
@@ -262,7 +263,7 @@ export default async function DeveloperProfile(props: {
                                                     level="body-sm"
                                                     textColor="text.primary"
                                                 >
-                                                    experience
+                                                    Experience - {totalExperience.years} years
                                                 </Typography>
                                             </Box>
                                             <Box

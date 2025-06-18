@@ -50,7 +50,7 @@ import { getProjectsByUser } from "@/utils/projects/getProjectsByUser";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import { getLocaleCurrency } from "@/utils/getLocaleCurrency";
-import { calculateTotalExperience } from "@/utils/projects/calculateTotalExperience";
+import { calculateTotalExperience } from "@/utils/calculateTotalExperience";
 
 export async function generateMetadata(props: {
     params: Promise<{ params: { id: string } }>;
@@ -74,14 +74,16 @@ export default async function DeveloperProfile(props: {
     const { id } = params;
     const developer = getDeveloperInfo(id);
     const projects = getProjectsByUser(id);
-	const totalExperience: Period = calculateTotalExperience(developer.workExperience);
+    const totalExperience: Period = calculateTotalExperience(
+        developer.workExperience,
+    );
     if (!developer) return <UserNotFound />;
 
     return (
         <Box
             sx={{
                 pb: 8,
-				px: 2,
+                px: 2,
             }}
         >
             {/* Cover Image */}
@@ -94,16 +96,24 @@ export default async function DeveloperProfile(props: {
                 }}
             >
                 <AspectRatio ratio="21/9" sx={{ minHeight: "100%" }}>
-                    {developer.bannerImage && (
+                    <object
+                        type="image/webp"
+                        data={developer.bannerImage}
+                        width="1920"
+                        height="1080"
+                        aria-label="Background image"
+                    >
                         <Image
-                            src={developer.bannerImage}
-                            alt="Cover"
-                            width={1920}
-                            height={1080}
+                            // @ts-ignore
+                            src={"/empty.webp"}
+                            alt={`${developer.name} ${developer.surname}'s background image`}
+                            style={{ objectFit: "cover" }}
+                            width={512}
+                            height={512}
                             priority
-                            style={{ objectFit: "cover", width: "100%" }}
+                            decoding="async"
                         />
-                    )}
+                    </object>
                 </AspectRatio>
             </Box>
 
@@ -132,7 +142,7 @@ export default async function DeveloperProfile(props: {
                         variant="outlined"
                         sx={{
                             p: { xs: 2, md: 4 },
-							backgroundColor: "background.body",
+                            backgroundColor: "background.body",
                             width: {
                                 xs: "100%",
                                 sm: "100%",
@@ -146,7 +156,7 @@ export default async function DeveloperProfile(props: {
                         <Grid container spacing={3} alignItems="flex-end">
                             <Grid xs={12} md={12} lg={12}>
                                 <Box
-									color={"neutral"}
+                                    color={"neutral"}
                                     sx={{
                                         display: "flex",
                                         alignItems: "center",
@@ -204,7 +214,10 @@ export default async function DeveloperProfile(props: {
                                         >
                                             {developer.title}
                                         </Typography>
-                                        {( developer.availability === "Freelance" || developer.availability === "Full-time" ) && (
+                                        {(developer.availability ===
+                                            "Freelance" ||
+                                            developer.availability ===
+                                                "Full-time") && (
                                             <Chip
                                                 variant="soft"
                                                 size="md"
@@ -223,7 +236,7 @@ export default async function DeveloperProfile(props: {
                                         )}
 
                                         <Box
-											color={"neutral"}
+                                            color={"neutral"}
                                             sx={{
                                                 display: "flex",
                                                 alignItems: "start",
@@ -263,7 +276,11 @@ export default async function DeveloperProfile(props: {
                                                     level="body-sm"
                                                     textColor="text.primary"
                                                 >
-                                                    Experience - {totalExperience.years} years
+                                                    Experience -{" "}
+                                                    {totalExperience.years}{" "}
+                                                    years and{" "}
+                                                    {totalExperience.months}{" "}
+                                                    months
                                                 </Typography>
                                             </Box>
                                             <Box
@@ -549,7 +566,14 @@ export default async function DeveloperProfile(props: {
                 </Box>
 
                 {/* Content Tabs */}
-                <Tabs sx={{ mb: 4, width: "100%", backgroundColor: "background.body" }} selectionFollowsFocus>
+                <Tabs
+                    sx={{
+                        mb: 4,
+                        width: "100%",
+                        backgroundColor: "background.body",
+                    }}
+                    selectionFollowsFocus
+                >
                     <TabList
                         variant="plain"
                         sx={{
@@ -579,7 +603,7 @@ export default async function DeveloperProfile(props: {
                             </Typography>
                             <Typography
                                 level="body-md"
-								textColor="text.primary"
+                                textColor="text.primary"
                                 sx={{ mb: 4, whiteSpace: "pre-line" }}
                             >
                                 {developer.bio}
@@ -607,7 +631,10 @@ export default async function DeveloperProfile(props: {
                                                     }}
                                                 >
                                                     <LanguageIcon htmlColor="primary" />
-                                                    <Typography level="body-md" textColor="text.primary">
+                                                    <Typography
+                                                        level="body-md"
+                                                        textColor="text.primary"
+                                                    >
                                                         {language}
                                                     </Typography>
                                                 </Box>
@@ -633,7 +660,7 @@ export default async function DeveloperProfile(props: {
                                             startDecorator={<MailOutlineIcon />}
                                             sx={{
                                                 justifyContent: "flex-start",
-												color: "text.primary",
+                                                color: "text.primary",
                                             }}
                                         >
                                             {developer.email}
@@ -646,7 +673,7 @@ export default async function DeveloperProfile(props: {
                                             startDecorator={<OpenInNewIcon />}
                                             sx={{
                                                 justifyContent: "flex-start",
-												color: "text.primary",
+                                                color: "text.primary",
                                             }}
                                         >
                                             {developer.social.portfolio}
@@ -728,7 +755,10 @@ export default async function DeveloperProfile(props: {
                                                 mb: 1,
                                             }}
                                         >
-                                            <Typography level="title-lg" fontWeight={700}>
+                                            <Typography
+                                                level="title-lg"
+                                                fontWeight={700}
+                                            >
                                                 {work.title}
                                             </Typography>
                                             <Typography

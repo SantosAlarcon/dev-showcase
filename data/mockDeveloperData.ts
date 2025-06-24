@@ -296,7 +296,7 @@ const developersData: DeveloperInfo[] = [
 		state: "Florida",
 		city: "Miami",
 		memberSince: "2020-03-15",
-		avatar: "https://i.pravatar.cc/150?img=3",
+		avatar: "https://i.pravatar.cc/150?img=20",
 		bannerImage: "https://source.unsplash.com/random/1200x400/?design,ui,ux",
 		skills: {
 			frontend: ["HTML", "CSS", "JavaScript (Basic)", "React (Familiarity)"],

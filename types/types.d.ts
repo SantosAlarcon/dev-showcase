@@ -89,4 +89,10 @@ type Period = {
 	days: number;
 };
 
-export { DeveloperInfo, FreelanceInfo, Experience, Project, Social, SkillsInfo, AvailabilityTypes, ViewModeTypes, Testimonial, ColorMode, Period };
+type Province = {
+	name: string;
+	short: string;
+	alias?: string[];
+}
+
+export { DeveloperInfo, FreelanceInfo, Experience, Project, Social, SkillsInfo, AvailabilityTypes, ViewModeTypes, Testimonial, ColorMode, Period, Province };

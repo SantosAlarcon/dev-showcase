@@ -1,7 +1,7 @@
 "use client";
 
 import { skillsList } from "@/data/skills";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import {
     Box,
@@ -38,6 +38,9 @@ import { getCountryByName } from "node-countries";
 const isAvailableTypes = ["Any", "Full-time", "Contract", "Freelance"];
 
 export default function DiscoverPage() {
+    const countryList = countries.sort((a, b) =>
+        a.name.common.localeCompare(b.name.common),
+    );
     const [searchQuery, setSearchQuery] = useState("");
     // const [selectedExperience, setSelectedExperience] = useState("Any");
     const [selectedAvailability, setSelectedAvailability] = useState("Any");
@@ -47,11 +50,10 @@ export default function DiscoverPage() {
     const [filteredDevelopers, setFilteredDevelopers] =
         useState(developersData);
     const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
-    const [selectedCountry, setSelectedCountry] = useState<Country>(
-        () => countries[0],
-    );
-    const [selectedProvince, setSelectedProvince] = useState<string>("");
+    const [selectedCountry, setSelectedCountry] = useState<string>("Any");
+    const [selectedProvince, setSelectedProvince] = useState<string>("Any");
     const [provinces, setProvinces] = useState<Province[]>([]);
+	const provinceRef = useRef<HTMLDivElement>(null);
 
     const toggleLike = (id: string) => {
         if (likedDevelopers.includes(id)) {
@@ -70,17 +72,21 @@ export default function DiscoverPage() {
     };
 
     const changeCountry = (country: string) => {
-		// @ts-ignore
-		const countryObj: Country = getCountryByName(country);
-        setSelectedCountry(countryObj);
+        // @ts-ignore
+        const countryObj: Country = getCountryByName(country);
+        setSelectedCountry(country);
         const provinceList = getCountryByName(country)?.provinces?.sort(
             // @ts-ignore
             (a: Province, b: Province) => a.name.localeCompare(b.name),
         );
-		console.log(provinceList);
         // @ts-ignore
         setProvinces(provinceList || []);
-        setSelectedProvince("");
+
+        setSelectedProvince("Any");
+    };
+
+    const changeProvince = (province: string) => {
+        setSelectedProvince(province);
     };
 
     const applyFilters = () => {
@@ -131,10 +137,9 @@ export default function DiscoverPage() {
         }
 
         // Country filter
-        if (selectedCountry.name.common !== "") {
+        if (selectedCountry !== "Any") {
             results = results.filter(
-                (dev: DeveloperInfo) =>
-                    dev.country === selectedCountry.name.common,
+                (dev: DeveloperInfo) => dev.country === selectedCountry,
             );
         }
 
@@ -148,6 +153,9 @@ export default function DiscoverPage() {
         setSelectedAvailability("Any");
         setSelectedSkills([]);
         setFilteredDevelopers(developersData);
+        setSelectedCountry("Any");
+        setSelectedProvince("Any");
+        setProvinces([]);
     };
 
     return (
@@ -226,46 +234,44 @@ export default function DiscoverPage() {
                             <FormControl sx={{ mb: 2 }}>
                                 <FormLabel>Country</FormLabel>
                                 <Select
-                                    value={selectedCountry?.name.common}
+                                    defaultValue={"Any"}
+									value={selectedCountry}
                                     onChange={(_, value) =>
                                         // @ts-ignore
                                         changeCountry(value as string)
                                     }
                                 >
-                                    {countries
-                                        .sort((a, b) =>
-                                            a.name.common.localeCompare(
-                                                b.name.common,
-                                            ),
-                                        )
-                                        .map((country: Country) => (
-                                            <Option
-                                                key={country.cca2}
-                                                value={country.name.common}
-                                            >
-                                                {country.name.common}
-                                            </Option>
-                                        ))}
+                                    <Option value="Any">Any</Option>
+                                    {countryList.map((country: Country) => (
+                                        <Option
+                                            key={country.cca2}
+                                            value={country.name.common}
+                                        >
+                                            {country.name.common}
+                                        </Option>
+                                    ))}
                                 </Select>
                             </FormControl>
 
                             <FormControl sx={{ mb: 2 }}>
                                 <FormLabel>Province</FormLabel>
                                 <Select
-                                    value={selectedProvince}
+                                    defaultValue={"Any"}
+									value={selectedProvince}
                                     onChange={(_, value) =>
-                                        changeCountry(value as string)
+                                        changeProvince(value as string)
                                     }
                                 >
+                                    <Option value="Any">Any</Option>
                                     {provinces.length > 0 &&
                                         provinces.map((province) => (
-                                        <Option
-                                            key={province.short}
-                                            value={province.name}
-                                        >
-                                            {province.name}
-                                        </Option>
-                                    ))}
+                                            <Option
+                                                key={province.name}
+                                                value={province.name}
+                                            >
+                                                {province.name}
+                                            </Option>
+                                        ))}
                                 </Select>
                             </FormControl>
 

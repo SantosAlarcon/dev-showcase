@@ -13,14 +13,14 @@
         "@emotion/styled": "^11.14.0",
         "@mui/icons-material": "^7.1.2",
         "@mui/joy": "^5.0.0-beta.52",
-        "@types/node": "24.0.3",
+        "@types/node": "24.0.4",
         "@types/react": "19.1.8",
         "@types/react-dom": "19.1.6",
         "date-fns": "^4.1.0",
         "embla-carousel-react": "^8.6.0",
         "eslint": "9.29.0",
         "eslint-config-next": "15.3.4",
-        "lucide-react": "^0.522.0",
+        "lucide-react": "^0.523.0",
         "motion": "^12.19.1",
         "next": "15.3.4",
         "next-themes": "^0.4.6",
@@ -38,5 +38,5 @@
         "zod": "^3.25.67",
         "zustand": "^5.0.5"
     },
-    "packageManager": "pnpm@10.12.2"
+    "packageManager": "pnpm@10.12.3"
 }

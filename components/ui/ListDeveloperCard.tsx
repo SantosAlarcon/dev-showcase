@@ -1,5 +1,5 @@
 import { DeveloperInfo } from "@/types/types";
-import { getAllSkills } from "@/utils/developers/getAllSkills";
+import { getAllSkills } from "@/services/developers/getAllSkills";
 import {
     Avatar,
     Box,

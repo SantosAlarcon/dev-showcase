@@ -16,7 +16,7 @@ import {
 } from "@mui/joy";
 import { motion } from "motion/react";
 import Image from "next/image";
-import { getAllSkills } from "@/utils/developers/getAllSkills";
+import { getAllSkills } from "@/services/developers/getAllSkills";
 import { Heart, MapPin, Briefcase, MessageCircle } from "lucide-react";
 
 const GridDeveloperCard = ({

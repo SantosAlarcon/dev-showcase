@@ -25,7 +25,7 @@ import {
 import { Search, Filter, LayoutPanelLeft, LayoutGrid } from "lucide-react";
 
 import developersData from "@/data/mockDeveloperData";
-import { getAllSkills } from "@/utils/developers/getAllSkills";
+import { getAllSkills } from "@/services/developers/getAllSkills";
 import GridDeveloperCard from "@/components/ui/GridDeveloperCard";
 import { DeveloperInfo, Province, ViewModeTypes } from "@/types/types";
 import ListDeveloperCard from "@/components/ui/ListDeveloperCard";

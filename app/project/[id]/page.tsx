@@ -1,7 +1,7 @@
 import ProjectNotFound from "@/components/layout/ProjectNotFound";
 import { DeveloperInfo, Project } from "@/types/types";
-import { getDeveloperInfo } from "@/utils/developers/getDeveloperInfo";
-import { getProjectInfo } from "@/utils/projects/getProjectInfo";
+import { getDeveloperInfo } from "@/services/developers/getDeveloperInfo";
+import { getProjectInfo } from "@/services/projects/getProjectInfo";
 import { Avatar, Box, Chip, Link, Typography } from "@mui/joy";
 import Image from "next/image";
 import Markdown from "react-markdown";

@@ -17,10 +17,10 @@ import {
 import { ChevronRight } from "lucide-react";
 import { projectsData } from "@/data/mockProjectData";
 import { Project } from "@/types/types";
-import { getDeveloperInfo } from "@/utils/developers/getDeveloperInfo";
-import getFullNameById from "@/utils/developers/getFullNameById";
+import { getDeveloperInfo } from "@/services/developers/getDeveloperInfo";
+import getFullNameById from "@/services/developers/getFullNameById";
 import Image from "next/image";
-import { getAllProjects } from "@/utils/projects/getAllProjects";
+import { getAllProjects } from "@/services/projects/getAllProjects";
 
 const projectList = getAllProjects().slice(0, 9);
 

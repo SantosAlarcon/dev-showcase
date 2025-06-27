@@ -32,6 +32,7 @@ import ListDeveloperCard from "@/components/ui/ListDeveloperCard";
 import countries from "world-countries";
 import { type Country } from "world-countries";
 import { getCountryByName } from "node-countries";
+import rolesList from "@/constants/roles";
 
 // Filters
 // const experienceLevels = ["Any", "1-2 years", "3-5 years", "5+ years"];
@@ -53,7 +54,7 @@ export default function DiscoverPage() {
     const [selectedCountry, setSelectedCountry] = useState<string>("Any");
     const [selectedProvince, setSelectedProvince] = useState<string>("Any");
     const [provinces, setProvinces] = useState<Province[]>([]);
-	const provinceRef = useRef<HTMLDivElement>(null);
+    const [selectedRole, setSelectedRole] = useState<string>("Any");
 
     const toggleLike = (id: string) => {
         if (likedDevelopers.includes(id)) {
@@ -83,6 +84,10 @@ export default function DiscoverPage() {
         setProvinces(provinceList || []);
 
         setSelectedProvince("Any");
+    };
+
+    const changeRole = (role: string) => {
+        setSelectedRole(role);
     };
 
     const changeProvince = (province: string) => {
@@ -143,6 +148,13 @@ export default function DiscoverPage() {
             );
         }
 
+		// Role filter
+		if (selectedRole !== "Any") {
+			results = results.filter(
+				(dev: DeveloperInfo) => dev.title === selectedRole,
+			);
+		}
+
         setFilteredDevelopers(results);
         setMobileFilterOpen(false);
     };
@@ -156,6 +168,7 @@ export default function DiscoverPage() {
         setSelectedCountry("Any");
         setSelectedProvince("Any");
         setProvinces([]);
+        setSelectedRole("Any");
     };
 
     return (
@@ -235,7 +248,7 @@ export default function DiscoverPage() {
                                 <FormLabel>Country</FormLabel>
                                 <Select
                                     defaultValue={"Any"}
-									value={selectedCountry}
+                                    value={selectedCountry}
                                     onChange={(_, value) =>
                                         // @ts-ignore
                                         changeCountry(value as string)
@@ -257,7 +270,7 @@ export default function DiscoverPage() {
                                 <FormLabel>Province</FormLabel>
                                 <Select
                                     defaultValue={"Any"}
-									value={selectedProvince}
+                                    value={selectedProvince}
                                     onChange={(_, value) =>
                                         changeProvince(value as string)
                                     }
@@ -272,6 +285,24 @@ export default function DiscoverPage() {
                                                 {province.name}
                                             </Option>
                                         ))}
+                                </Select>
+                            </FormControl>
+
+                            <FormControl sx={{ mb: 2 }}>
+                                <FormLabel>Role</FormLabel>
+                                <Select
+                                    defaultValue={"Any"}
+                                    value={selectedRole}
+                                    onChange={(_, value) =>
+                                        changeRole(value as string)
+                                    }
+                                >
+                                    <Option value="Any">Any</Option>
+                                    {rolesList.map((role: string) => (
+                                        <Option key={role} value={role}>
+                                            {role}
+                                        </Option>
+                                    ))}
                                 </Select>
                             </FormControl>
 

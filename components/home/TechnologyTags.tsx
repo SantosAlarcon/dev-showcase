@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { Box, Typography, Container, Chip, Stack } from "@mui/joy";
-import { skillsList } from "@/data/skills";
+import { skillsList } from "@/constants/skills";
 
 export default function TechnologyTags() {
     const [selectedTech, setSelectedTech] = useState<string | null>(null);

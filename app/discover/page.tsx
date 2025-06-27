@@ -1,6 +1,6 @@
 "use client";
 
-import { skillsList } from "@/data/skills";
+import { skillsList } from "@/constants/skills";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import {

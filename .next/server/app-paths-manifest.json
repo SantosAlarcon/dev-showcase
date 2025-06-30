@@ -1,3 +1,11 @@
 {
-  "/api/developers/route": "app/api/developers/route.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/developers/[id]/projects/route": "app/api/developers/[id]/projects/route.js",
+  "/api/developers/[id]/route": "app/api/developers/[id]/route.js",
+  "/api/developers/route": "app/api/developers/route.js",
+  "/api/projects/[id]/route": "app/api/projects/[id]/route.js",
+  "/developer/[id]/page": "app/developer/[id]/page.js",
+  "/discover/page": "app/discover/page.js",
+  "/page": "app/page.js",
+  "/project/[id]/page": "app/project/[id]/page.js"
 }

@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
-    {"offset": {"line": 52, "column": 0}, "map": {"version":3,"sources":["file:///home/futuzor/Documentos/JavaScript/React/NextJS/dev-talent-showcase/app/api/developers/%5Bid%5D/route.ts"],"sourcesContent":["import { getDeveloperInfo } from \"@/services/developers/getDeveloperInfo\";\nimport { NextRequest } from \"next/server\";\n\nexport async function GET(request: NextRequest, params: Promise<{params: {id: string}}>) {\n\tconst p = await params;\n\tconst developerInfo = getDeveloperInfo(p.params.id);\n\tconsole.log(request.nextUrl);\n\n\treturn Response.json(developerInfo);\n}\n"],"names":[],"mappings":";;;;;;;;;AAGO,eAAe,IAAI,OAAoB,EAAE,MAAuC;IACtF,MAAM,IAAI,MAAM;IAChB,MAAM,gBAAgB,iBAAiB,EAAE,MAAM,CAAC,EAAE;IAClD,QAAQ,GAAG,CAAC,QAAQ,OAAO;IAE3B,OAAO,SAAS,IAAI,CAAC;AACtB","debugId":null}}]
-}

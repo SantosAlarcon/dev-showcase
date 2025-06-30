@@ -15,6 +15,30 @@
   "headers": [],
   "dynamicRoutes": [
     {
+      "page": "/api/developers/[id]",
+      "regex": "^/api/developers/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/developers/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/developers/[id]/projects",
+      "regex": "^/api/developers/([^/]+?)/projects(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/developers/(?<nxtPid>[^/]+?)/projects(?:/)?$"
+    },
+    {
+      "page": "/api/projects/[id]",
+      "regex": "^/api/projects/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/projects/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/developer/[id]",
       "regex": "^/developer/([^/]+?)(?:/)?$",
       "routeKeys": {

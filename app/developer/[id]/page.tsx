@@ -46,11 +46,11 @@ import ProjectCard from "@/components/ui/ProjectCard";
 import { Period, Project } from "@/types/types";
 import { Suspense } from "react";
 import UserNotFound from "@/components/layout/UserNotFound";
-import { getProjectsByUser } from "@/services/projects/getProjectsByUser";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import { getLocaleCurrency } from "@/lib/utils";
 import { calculateTotalExperience } from "@/lib/utils";
+import { getProjectsByDeveloper } from "@/services/projects/getProjectsByDeveloper";
 
 export async function generateMetadata(props: {
     params: Promise<{ params: { id: string } }>;
@@ -73,7 +73,7 @@ export default async function DeveloperProfile(props: {
     // @ts-ignore
     const { id } = params;
     const developer = getDeveloperInfo(id);
-    const projects = getProjectsByUser(id);
+    const projects = getProjectsByDeveloper(id);
     const totalExperience: Period = calculateTotalExperience(
         developer.workExperience,
     );
@@ -260,7 +260,7 @@ export default async function DeveloperProfile(props: {
                                                     textColor="text.primary"
                                                 >
                                                     {developer.city},{" "}
-                                                    {developer.province},{" "}
+                                                    {developer.state},{" "}
                                                     {developer.country}
                                                 </Typography>
                                             </Box>

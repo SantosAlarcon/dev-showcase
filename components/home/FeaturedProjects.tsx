@@ -182,8 +182,8 @@ export default function Featuredrojects() {
 										>
 											<Box
 												component="img"
-												src={getDeveloperInfo(project.userId).avatar}
-												alt={getFullNameById(project.userId)}
+												src={getDeveloperInfo(project.developerId).avatar}
+												alt={getFullNameById(project.developerId)}
 												sx={{
 													width: 24,
 													height: 24,
@@ -198,10 +198,10 @@ export default function Featuredrojects() {
 												by{" "}
 												<Link
 													style={{ color: "inherit", textDecoration: "none", fontWeight: 600 }}
-													aria-label={`Go to ${getFullNameById(project.userId)}'s profile'`}
-													href={`/developer/${project.userId}`}
+													aria-label={`Go to ${getFullNameById(project.developerId)}'s profile'`}
+													href={`/developer/${project.developerId}`}
 												>
-													{getFullNameById(project.userId)}
+													{getFullNameById(project.developerId)}
 												</Link>
 											</Typography>
 										</Box>

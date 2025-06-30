@@ -3,7 +3,7 @@ import { Project } from "@/types/types";
 export const projectsData: Project[] = [
 	{
 		id: "654321",
-		userId: "1",
+		developerId: "1",
 		title: "E-commerce Platform",
 		description:
 			"A full-featured online store with product management, cart functionality, and payment processing.",
@@ -34,7 +34,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 	},
 	{
 		id: "123456",
-		userId: "1",
+		developerId: "1",
 		title: "Content Management System",
 		description:
 			"Custom CMS for a publishing company with rich text editing, media management, and role-based access control.",
@@ -65,7 +65,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 	},
 	{
 		id: "789123",
-		userId: "1",
+		developerId: "1",
 		title: "Fleet Management Dashboard",
 		description:
 			"Real-time dashboard for monitoring vehicle fleets with location tracking, maintenance schedules, and analytics.",
@@ -96,7 +96,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 	},
 	{
 		id: "5444545",
-		userId: "2",
+		developerId: "2",
 		title: "Finance Dashboard",
 		description:
 			"An analytics dashboard for tracking investments, expenses, and financial goals with data visualization.",
@@ -129,7 +129,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 	},
 	{
 		id: "7454555",
-		userId: "3",
+		developerId: "3",
 		title: "Fitness Mobile App",
 		description:
 			"A cross-platform mobile application for workout tracking, nutrition planning, and progress monitoring.",
@@ -160,7 +160,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 	},
 	{
 		id: "4564573",
-		userId: "4",
+		developerId: "4",
 		title: "Project Management Tool",
 		description:
 			"A collaborative platform for teams to manage tasks, track progress, and coordinate workflows.",

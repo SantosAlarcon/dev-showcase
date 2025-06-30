@@ -1,0 +1,33 @@
+{
+  "pages": {
+    "/discover/page": [
+      "static/chunks/[root-of-the-server]__16aa95b5._.css",
+      "static/chunks/_68be6cc5._.js",
+      "static/chunks/node_modules_next_dist_5b8f5816._.js",
+      "static/chunks/node_modules_@mui_197fb410._.js",
+      "static/chunks/node_modules_@mui_joy_4f9eea00._.js",
+      "static/chunks/node_modules_@mui_base_8becdf7e._.js",
+      "static/chunks/node_modules_@popperjs_core_lib_229f7621._.js",
+      "static/chunks/node_modules_framer-motion_dist_es_1315c24f._.js",
+      "static/chunks/node_modules_motion-dom_dist_es_fa3ea29e._.js",
+      "static/chunks/node_modules_@mui_material_esm_daec36ec._.js",
+      "static/chunks/node_modules_f3f2de54._.js",
+      "static/chunks/app_layout_tsx_c0237562._.js",
+      "static/chunks/_c490f5ff._.js",
+      "static/chunks/node_modules_@mui_joy_f0dc3786._.js",
+      "static/chunks/node_modules_next_15251bc2._.js",
+      "static/chunks/node_modules_world-countries_5d527fde._.js",
+      "static/chunks/node_modules_lodash_lodash_04d84776.js",
+      "static/chunks/node_modules_node-countries_build_0a7c728f._.js",
+      "static/chunks/node_modules_c5081a4b._.js",
+      "static/chunks/app_discover_page_tsx_6cf38146._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_fd44f5a4._.js",
+      "static/chunks/node_modules_next_dist_compiled_2ce9398a._.js",
+      "static/chunks/node_modules_next_dist_client_8f19e6fb._.js",
+      "static/chunks/node_modules_next_dist_2ecbf5fa._.js",
+      "static/chunks/node_modules_@swc_helpers_cjs_00636ac3._.js",
+      "static/chunks/_e69f0d32._.js",
+      "static/chunks/_93808211._.js"
+    ]
+  }
+}

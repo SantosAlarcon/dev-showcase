@@ -31,7 +31,7 @@ export default async function ProjectProfile(props: {
 	const project: Project | undefined = getProjectInfo(id);
 	const developer: DeveloperInfo | undefined = getDeveloperInfo(
 		// @ts-ignore
-		project?.userId,
+		project?.developerId,
 	);
 
 	if (!project) return <ProjectNotFound />;
@@ -56,7 +56,7 @@ export default async function ProjectProfile(props: {
 					src={developer.avatar}
 					alt={developer.name + developer.surname}
 				/>{" "}
-				<Link href={`/developer/${project.userId}`} aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}>
+				<Link href={`/developer/${project.developerId}`} aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}>
 					{developer.name} {developer.surname}
 				</Link>{" "}
 				- <b>Published on</b>{" "}

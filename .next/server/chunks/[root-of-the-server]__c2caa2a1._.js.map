@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 6, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 52, "column": 0}, "map": {"version":3,"sources":["file:///home/futuzor/Documentos/JavaScript/React/NextJS/dev-talent-showcase/app/api/developers/route.ts"],"sourcesContent":["import { NextApiRequest } from \"next\";\n\nexport async function GET(request: NextApiRequest) {\n\tcos\n}\n"],"names":[],"mappings":";;;AAEO,eAAe,IAAI,OAAuB;IAChD;AACD","debugId":null}}]
+}

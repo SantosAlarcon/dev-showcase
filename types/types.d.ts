@@ -44,7 +44,7 @@ type Experience = {
 
 type Project = {
 	id: string;
-	userId: string;
+	developerId: string;
 	title: string;
 	description: string;
 	image: string;

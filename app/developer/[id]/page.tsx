@@ -260,7 +260,7 @@ export default async function DeveloperProfile(props: {
                                                     textColor="text.primary"
                                                 >
                                                     {developer.city},{" "}
-                                                    {developer.state},{" "}
+                                                    {developer.province},{" "}
                                                     {developer.country}
                                                 </Typography>
                                             </Box>

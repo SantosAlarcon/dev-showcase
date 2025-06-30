@@ -1,1 +1,0 @@
-{"version":3,"sources":["turbopack:///[project]/styles/project.css"],"sourcesContent":[".project__markdown__cover {\n    border-radius: 10px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);\n\twidth: 100%;\n\theight: auto;\n}\n"],"names":[],"mappings":"AAAA"}

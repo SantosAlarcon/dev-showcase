@@ -23,11 +23,13 @@ import HowItWorksSection from "@/components/home/HowItWorksSection";
 import TechnologyTags from "@/components/home/TechnologyTags";
 
 import Image from "next/image"
+import BaseLayout from "@/components/layout/BaseLayout";
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
 
     return (
+		<BaseLayout>
         <Box sx={{ overflow: "hidden" }}>
             {/* Hero Section */}
             <Box
@@ -371,5 +373,6 @@ export default function Home() {
                 </Container>
             </Box>
         </Box>
+		</BaseLayout>
     );
 }

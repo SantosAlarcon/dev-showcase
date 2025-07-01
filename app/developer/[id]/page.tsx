@@ -52,20 +52,6 @@ import { getLocaleCurrency } from "@/lib/utils";
 import { calculateTotalExperience } from "@/lib/utils";
 import { getProjectsByDeveloper } from "@/services/projects/getProjectsByDeveloper";
 
-export async function generateMetadata(props: {
-    params: Promise<{ params: { id: string } }>;
-}) {
-    // @ts-ignore
-    const { id } = await props.params;
-    const developer = getDeveloperInfo(id);
-
-    if (!developer) return { title: "User not found - DevShowcase" };
-
-    return {
-        title: `${developer.name} ${developer.surname} - DevShowcase`,
-    };
-}
-
 export default async function DeveloperProfile(props: {
     params: Promise<{ params: { id: string } }>;
 }) {

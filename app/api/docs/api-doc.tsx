@@ -2,6 +2,7 @@
 
 import "swagger-ui-react/swagger-ui.css";
 import SwaggerUI from "swagger-ui-react";
+import { Suspense } from "react";
 
 type Props = {
     spec: Record<string, any>;
@@ -9,11 +10,15 @@ type Props = {
 };
 
 function ReactSwagger({ spec, url }: Props) {
-    if (process.env.NODE_ENV === "development") {
-        return <SwaggerUI spec={spec} />;
-    } else {
-        return <SwaggerUI url={url} />;
-    }
+    return (
+        <Suspense fallback="Loading...">
+            {process.env.NODE_ENV === "development" ? (
+                <SwaggerUI spec={spec} />
+            ) : (
+                <SwaggerUI url={url} />
+            )}
+        </Suspense>
+    );
 }
 
 export default ReactSwagger;

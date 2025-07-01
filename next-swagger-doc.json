@@ -223,13 +223,13 @@
 						"id": {
 							"type": "string"
 						},
-						"name": {
+						"title": {
 							"type": "string"
 						},
 						"description": {
 							"type": "string"
 						},
-						"content": {
+						"story": {
 							"type": "string"
 						},
 						"developerId": {
@@ -238,26 +238,34 @@
 						"image": {
 							"type": "string"
 						},
-						"url": {
+						"liveSite": {
 							"type": "string"
 						},
-						"createdAt": {
+						"githubRepo": {
 							"type": "string"
 						},
-						"updatedAt": {
+						"publishedDate": {
 							"type": "string"
+						},
+						"technologies": {
+							"type": "array",
+							"items": {
+								"type": "string"
+							}
 						}
 					},
 					"required": [
 						"id",
-						"name",
+						"title",
 						"description",
-						"content",
-						"developerId",
+						"liveSite",
+						"githubRepo",
+						"publishedDate",
+						"technologies",
 						"image",
-						"url",
-						"createdAt",
-						"updatedAt"
+						"developerId",
+						"story",
+						"publishedDate"
 					]
 				}
 			}

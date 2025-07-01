@@ -1,7 +1,39 @@
 import { getProjectInfo } from "@/services/projects/getProjectInfo";
 import { NextRequest } from "next/server";
 
-export async function GET(request: NextRequest, params: Promise<{params: {id: string}}>) {
+/**
+ * @swagger
+ * /api/projects/{id}:
+ *   get:
+ *     summary: Get project by id
+ *     description: Get project information with the id provided
+ *     tags:
+ *       - Projects
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         description: Project id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Project found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Project'
+ *       404:
+ *         description: Project not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ */
+export async function GET(_request: NextRequest, params: Promise<{params: {id: string}}>) {
 	const p = await params;
 	const projectInfo = getProjectInfo(p.params.id);
 

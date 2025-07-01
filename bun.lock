@@ -12,6 +12,7 @@
         "@types/node": "24.0.7",
         "@types/react": "19.1.8",
         "@types/react-dom": "19.1.6",
+        "@types/swagger-ui-react": "^5.18.0",
         "date-fns": "^4.1.0",
         "embla-carousel-react": "^8.6.0",
         "eslint": "9.30.0",
@@ -46,7 +47,6 @@
         "mocha": "^2.2.5",
         "request": "^2.58.0",
         "ts-node": "^10.9.2",
-        "typescript": "^5.8.2",
         "z-schema": "^3.12.0",
       },
     },
@@ -397,6 +397,8 @@
     "@types/react-transition-group": ["@types/react-transition-group@4.4.12", "", { "peerDependencies": { "@types/react": "*" } }, "sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w=="],
 
     "@types/swagger-jsdoc": ["@types/swagger-jsdoc@6.0.4", "", {}, "sha512-W+Xw5epcOZrF/AooUM/PccNMSAFOKWZA5dasNyMujTwsBkU74njSJBpvCCJhHAJ95XRMzQrrW844Btu0uoetwQ=="],
+
+    "@types/swagger-ui-react": ["@types/swagger-ui-react@5.18.0", "", { "dependencies": { "@types/react": "*" } }, "sha512-c2M9adVG7t28t1pq19K9Jt20VLQf0P/fwJwnfcmsVVsdkwCWhRmbKDu+tIs0/NGwJ/7GY8lBx+iKZxuDI5gDbw=="],
 
     "@types/trusted-types": ["@types/trusted-types@2.0.7", "", {}, "sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw=="],
 

@@ -1,4 +1,5 @@
 import BaseLayout from "@/components/layout/BaseLayout";
+import { address } from "@/constants/endpoints";
 import { getProjectInfo } from "@/services/projects/getProjectInfo";
 
 export async function generateMetadata(props: {
@@ -6,7 +7,9 @@ export async function generateMetadata(props: {
 }) {
 	// @ts-ignore
 	const { id } = await props.params;
-	const project = getProjectInfo(id);
+	const project = await fetch(`${address}/api/projects/${id}`).then(
+		(res) => res.json()
+	);
 
 	if (!project) return { title: "Project not found - DevShowcase" };
 

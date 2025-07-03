@@ -1,4 +1,4 @@
-import { getProjectInfo } from "@/services/projects/getProjectInfo";
+import { appwriteDatabaseId, appwriteEndpoint, appwriteProjectId, appwriteProjectsCollectionId} from "@/constants/endpoints";
 import { NextRequest } from "next/server";
 
 /**
@@ -35,7 +35,7 @@ import { NextRequest } from "next/server";
  */
 export async function GET(_request: NextRequest, params: Promise<{params: {id: string}}>) {
 	const p = await params;
-	const projectInfo = getProjectInfo(p.params.id);
+	const projectInfo = await fetch(`${appwriteEndpoint}/databases/${appwriteDatabaseId}/collections/${appwriteProjectsCollectionId}/documents/${p.params.id}`,{headers: {"X-Appwrite-Project": appwriteProjectId}}).then((res) => res.json());
 
 	if (!projectInfo) {
 		return Response.json({ error: "Project not found" }, {status: 404, statusText: "Project Not Found"});

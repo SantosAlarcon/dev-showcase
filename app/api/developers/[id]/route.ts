@@ -33,12 +33,18 @@ import { NextRequest } from "next/server";
  *                 error:
  *                   type: string
  */
-export async function GET(_request: NextRequest, params: Promise<{params: {id: string}}>) {
-	const p = await params;
-	const developerInfo = getDeveloperInfo(p.params.id);
+export async function GET(
+	_request: NextRequest,
+	{ params }: { params: Promise<{ id: string }> },
+) {
+	const { id } = await params;
+	const developerInfo = await getDeveloperInfo(id);
 
 	if (!developerInfo) {
-		return Response.json({ error: "Developer not found" }, {status: 404, statusText: "Developer Not Found"});
+		return Response.json(
+			{ error: "Developer not found" },
+			{ status: 404, statusText: "Developer Not Found" },
+		);
 	}
 
 	return Response.json(developerInfo);

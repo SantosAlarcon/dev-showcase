@@ -35,10 +35,10 @@ import { NextRequest } from "next/server";
  */
 export async function GET(
     _request: NextRequest,
-    params: Promise<{ params: { id: string } }>,
+    { params }: { params: Promise<{ id: string }> }
 ) {
-    const p = await params;
-    const projects = getProjectsByDeveloper(p.params.id);
+	const id = (await params).id;
+    const projects = await getProjectsByDeveloper(id);
 
     return Response.json(projects);
 }

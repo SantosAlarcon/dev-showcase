@@ -1,9 +1,8 @@
 import BaseLayout from "@/components/layout/BaseLayout";
 import { address } from "@/constants/endpoints";
-import { getProjectInfo } from "@/services/projects/getProjectInfo";
 
 export async function generateMetadata(props: {
-	params: Promise<{ params: { id: string } }>;
+	params: Promise<{ id: string }>;
 }) {
 	// @ts-ignore
 	const { id } = await props.params;

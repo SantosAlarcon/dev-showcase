@@ -2,13 +2,16 @@ import BaseLayout from "@/components/layout/BaseLayout";
 import { address } from "@/constants/endpoints";
 
 export async function generateMetadata(props: {
-	params: Promise<{ params: { id: string } }>;
+	params: Promise<{ id: string }>;
 }) {
 	// @ts-ignore
-	const { id } = await props.params;
+	const params = await props.params;
+	const {id} = params;
 	const developer = await fetch(`${address}/api/developers/${id}`).then(
 		(res) => res.json(),
 	);
+
+	console.log(address);
 
 	if (!developer) return { title: "User not found - DevShowcase" };
 

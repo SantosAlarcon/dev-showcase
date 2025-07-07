@@ -12,11 +12,11 @@ export default async function ProjectProfile(props: {
 	const params = await props.params;
 	// @ts-ignore
 	const { id } = params;
-	const project = await fetch(`${address}/api/projects/${id}`).then(
-		(res) => res.json()
+	const project = await fetch(`${address}/api/projects/${id}`).then((res) =>
+		res.json(),
 	);
 	const developer = await fetch(
-		`${address}/api/developers/${project.developerId}`
+		`${address}/api/developers/${project.developerId}`,
 	).then((res) => res.json());
 
 	if (!project) return <ProjectNotFound />;

@@ -1,10 +1,10 @@
-import developersData from "@/data/mockDeveloperData";
-import { DeveloperInfo } from "@/types/types";
+import db from "@/lib/appwrite/db";
 
-export const getDeveloperInfo = (id: string) => {
-	// @ts-ignore
-    const developer: DeveloperInfo = developersData.find(
-        (developer: DeveloperInfo) => developer.id === id,
-    );
+export const getDeveloperInfo = async (id: string) => {
+	const developer = await db.getDocument(
+		process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+		process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+		id
+	);
     return developer;
 };

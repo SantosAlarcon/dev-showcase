@@ -15,7 +15,6 @@ import {
 	CardOverflow,
 } from "@mui/joy";
 import { ChevronRight } from "lucide-react";
-import { projectsData } from "@/data/mockProjectData";
 import { Project } from "@/types/types";
 import { getDeveloperInfo } from "@/services/developers/getDeveloperInfo";
 import getFullNameById from "@/services/developers/getFullNameById";
@@ -182,8 +181,8 @@ export default function Featuredrojects() {
 										>
 											<Box
 												component="img"
-												src={getDeveloperInfo(project.developerId).avatar}
-												alt={getFullNameById(project.developerId)}
+												src={await getDeveloperInfo(project.developerId).avatar}
+												alt={await getFullNameById(project.developerId)}
 												sx={{
 													width: 24,
 													height: 24,

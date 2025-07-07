@@ -1,7 +1,7 @@
 import { getDeveloperInfo } from "./getDeveloperInfo";
 
-const getFullNameById = (id: string) => {
-    const developer = getDeveloperInfo(id);
+const getFullNameById = async (id: string) => {
+    const developer = await getDeveloperInfo(id);
     return `${developer.name} ${developer.surname}`;
 };
 

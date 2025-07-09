@@ -687,6 +687,7 @@ export default async function DeveloperProfile(props: {
                                         >
                                             <ProjectCard
                                                 key={project.title}
+												// @ts-ignore
                                                 project={project}
                                             />
                                         </Suspense>

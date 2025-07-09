@@ -1,4 +1,5 @@
-export const getAllSkills = (skills: string): string[] => {
-	const skillsObject = JSON.parse(skills);
-    return [...skillsObject.frontend, ...skillsObject.backend, ...skillsObject.other];
+import { SkillsInfo } from "@/types/types";
+
+export const getAllSkills = (skills: SkillsInfo): string[] => {
+    return [...skills.frontend, ...skills.backend, ...skills.other];
 };

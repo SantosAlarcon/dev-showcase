@@ -73,8 +73,6 @@ export default function DiscoverPage() {
     };
 
     const changeCountry = (country: string) => {
-        // @ts-ignore
-        const countryObj: Country = getCountryByName(country);
         setSelectedCountry(country);
         const provinceList = getCountryByName(country)?.provinces?.sort(
             // @ts-ignore
@@ -101,7 +99,7 @@ export default function DiscoverPage() {
         if (searchQuery) {
             const query = searchQuery.toLowerCase();
             results = results.filter(
-                (dev) =>
+                (dev: DeveloperInfo) =>
                     dev.name.toLowerCase().includes(query) ||
                     dev.title.toLowerCase().includes(query) ||
                     dev.bio.toLowerCase().includes(query) ||

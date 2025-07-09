@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import * as motion from "motion/react-client";
 import { Box, Typography, Container, Grid } from "@mui/joy";
 import TestimonialCard from "../ui/TestimonialCard";
 

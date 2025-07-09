@@ -21,7 +21,7 @@ export default function Footer() {
             component="footer"
             sx={{
                 py: 6,
-				px: 2,
+                px: 2,
                 backgroundColor: "background.surface",
                 borderTop: "1px solid",
                 borderColor: "divider",
@@ -33,7 +33,7 @@ export default function Footer() {
                         <Typography
                             sx={{
                                 fontWeight: "bold",
-								fontSize: "2rem",
+                                fontSize: "2rem",
                                 color: "primary.500",
                                 display: "flex",
                                 alignItems: "center",
@@ -46,7 +46,7 @@ export default function Footer() {
                         <Typography
                             level="body-sm"
                             sx={{ mb: 2, maxWidth: "25ch" }}
-							textColor="text.primary"
+                            textColor="text.primary"
                         >
                             Connecting exceptional developers with opportunities
                             that matter.
@@ -54,30 +54,30 @@ export default function Footer() {
                         <Box sx={{ display: "flex", gap: 1 }}>
                             <IconButton
                                 variant="plain"
-								aria-label="GitHub"
+                                aria-label="GitHub"
                                 size="md"
                                 component="a"
-								target="_blank"
+                                target="_blank"
                                 href="https://github.com"
                             >
                                 <GitHubIcon htmlColor="text.primary" />
                             </IconButton>
                             <IconButton
                                 variant="plain"
-								aria-label="Twitter"
+                                aria-label="Twitter"
                                 size="md"
                                 component="a"
-								target="_blank"
+                                target="_blank"
                                 href="https://twitter.com"
                             >
                                 <TwitterIcon htmlColor="text.primary" />
                             </IconButton>
                             <IconButton
                                 variant="plain"
-								aria-label="LinkedIn"
+                                aria-label="LinkedIn"
                                 size="md"
                                 component="a"
-								target="_blank"
+                                target="_blank"
                                 href="https://linkedin.com"
                             >
                                 <LinkedinIcon htmlColor="text.primary" />
@@ -93,22 +93,22 @@ export default function Footer() {
                             For Developers
                         </Typography>
                         <List sx={{ "--ListItem-paddingY": "0.5rem" }}>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/create-profile">
                                     Create a Profile
                                 </Link>
                             </ListItem>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/showcase-projects">
                                     Showcase Projects
                                 </Link>
                             </ListItem>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/developer-resources">
                                     Developer Resources
                                 </Link>
                             </ListItem>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/pricing">Pricing</Link>
                             </ListItem>
                         </List>
@@ -122,16 +122,16 @@ export default function Footer() {
                             For Recruiters
                         </Typography>
                         <List sx={{ "--ListItem-paddingY": "0.5rem" }}>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/find-talent">Find Talent</Link>
                             </ListItem>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/post-job">Post a Job</Link>
                             </ListItem>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/for-companies">For Companies</Link>
                             </ListItem>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/business-pricing">
                                     Business Pricing
                                 </Link>
@@ -147,23 +147,28 @@ export default function Footer() {
                             Company
                         </Typography>
                         <List sx={{ "--ListItem-paddingY": "0.5rem" }}>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/about">About Us</Link>
                             </ListItem>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/blog">Blog</Link>
                             </ListItem>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/careers">Careers</Link>
                             </ListItem>
-                            <ListItem sx={{padding: 0}}>
+                            <ListItem sx={{ padding: 0 }}>
                                 <Link href="/contact">Contact</Link>
                             </ListItem>
                         </List>
                     </Grid>
                 </Grid>
 
-                <Divider sx={{ my: 2, backgroundColor: "var(--joy-palette-neutral-500)" }} />
+                <Divider
+                    sx={{
+                        my: 2,
+                        backgroundColor: "var(--joy-palette-neutral-500)",
+                    }}
+                />
 
                 <Box
                     sx={{
@@ -186,18 +191,39 @@ export default function Footer() {
                             justifyContent: "center",
                         }}
                     >
-                        <Link href="/privacy" aria-label="Privacy Policy" style={{ textDecoration: "none" }}>
-                            <Typography level="body-sm" textColor="text.primary">
+                        <Link
+                            href="/privacy"
+                            aria-label="Privacy Policy"
+                            style={{ textDecoration: "none" }}
+                        >
+                            <Typography
+                                level="body-sm"
+                                textColor="text.primary"
+                            >
                                 Privacy Policy
                             </Typography>
                         </Link>
-                        <Link href="/terms" aria-label="Terms of Service" style={{ textDecoration: "none" }}>
-                            <Typography level="body-sm" textColor="text.primary">
+                        <Link
+                            href="/terms"
+                            aria-label="Terms of Service"
+                            style={{ textDecoration: "none" }}
+                        >
+                            <Typography
+                                level="body-sm"
+                                textColor="text.primary"
+                            >
                                 Terms of Service
                             </Typography>
                         </Link>
-                        <Link href="/cookies" aria-label="Cookie Policy" style={{ textDecoration: "none" }}>
-                            <Typography level="body-sm" textColor="text.primary">
+                        <Link
+                            href="/cookies"
+                            aria-label="Cookie Policy"
+                            style={{ textDecoration: "none" }}
+                        >
+                            <Typography
+                                level="body-sm"
+                                textColor="text.primary"
+                            >
                                 Cookie Policy
                             </Typography>
                         </Link>

@@ -2,19 +2,19 @@ import * as motion from "motion/react-client";
 import Link from "next/link";
 import { Box, Typography, Container, Grid, Button } from "@mui/joy";
 import { ChevronRight } from "lucide-react";
+import { Project } from "@/types/types";
+import GridProjectCard from "../ui/GridProjectCard";
+import { getLatestProjects } from "@/services/projects/getLatestProjects";
 
-import { getFeaturedDevelopers } from "@/services/developers/getFeaturedDevelopers";
-import GridFeaturedDeveloperCard from "../ui/GridFeaturedDeveloperCard";
-
-export default async function FeaturedDevelopers() {
-	const featuredDevelopers = await getFeaturedDevelopers();
+export default async function LatestProjects() {
+	const projectList = await getLatestProjects();
 
     return (
         <Box
             sx={{
                 py: { xs: 8, md: 12 },
-				px: 2,
-                bgcolor: "background.body",
+                px: 2,
+                bgcolor: "background.surface",
             }}
         >
             <Container>
@@ -42,7 +42,7 @@ export default async function FeaturedDevelopers() {
                                 mb: 1,
                             }}
                         >
-                            Top Talent
+                            Showcase
                         </Typography>
                         <Typography
                             level="h2"
@@ -52,28 +52,24 @@ export default async function FeaturedDevelopers() {
                                 fontSize: { xs: "1.75rem", md: "2.25rem" },
                             }}
                         >
-                            Featured Developers
+                            Featured Projects
                         </Typography>
                     </motion.div>
 
                     <Button
                         component={Link}
-                        href="/discover"
+                        href="/projects"
                         variant="outlined"
                         color="neutral"
                         endDecorator={<ChevronRight size={16} />}
                     >
-                        View All Developers
+                        View All Projects
                     </Button>
                 </Box>
 
                 <Grid container spacing={3}>
-                    {featuredDevelopers.map((developer: DeveloperInfo, index: number) => (
-                        <GridFeaturedDeveloperCard
-                            developer={developer}
-							key={developer.id}
-                            index={index}
-                        />
+                    {projectList.map((project, index: number) => (
+                        <GridProjectCard key={project.$id} project={project} index={index} />
                     ))}
                 </Grid>
             </Container>

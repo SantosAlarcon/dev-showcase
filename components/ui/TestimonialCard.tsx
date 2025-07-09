@@ -1,7 +1,6 @@
 import { Testimonial } from "@/types/types";
 import { Avatar, Box, Card, Grid, Typography } from "@mui/joy";
-import { motion } from "motion/react";
-
+import * as motion from "motion/react-client";
 const TestimonialCard = ({
     testimonial,
     index,

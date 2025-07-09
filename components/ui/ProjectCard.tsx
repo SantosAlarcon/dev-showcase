@@ -53,7 +53,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         fontWeight={700}
                     >
                         <Link
-                            href={`/project/${project.id}`}
+                            href={`/project/${project.$id}`}
                             underline="none"
                             sx={{ color: "inherit" }}
                         >

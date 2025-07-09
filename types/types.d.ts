@@ -43,7 +43,7 @@ type Experience = {
 };
 
 type Project = {
-    id: string;
+    $id: string;
     developerId: string;
     title: string;
     description: string;

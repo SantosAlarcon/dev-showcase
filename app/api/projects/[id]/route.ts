@@ -1,5 +1,6 @@
-import { appwriteDatabaseId, appwriteEndpoint, appwriteProjectId, appwriteProjectsCollectionId} from "@/constants/endpoints";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { GetProjectByIdUseCase } from "@/src/application/use-cases/projects/GetProjectByIdUseCase";
+import { AppwriteProjectRepository } from "@/src/infrastructure/data/AppwriteProjectRepository";
 
 /**
  * @swagger
@@ -33,13 +34,29 @@ import { NextRequest } from "next/server";
  *                 error:
  *                   type: string
  */
-export async function GET(_request: NextRequest, params: Promise<{params: {id: string}}>) {
-	const p = await params;
-	const projectInfo = await fetch(`${appwriteEndpoint}/databases/${appwriteDatabaseId}/collections/${appwriteProjectsCollectionId}/documents/${p.params.id}`,{headers: {"X-Appwrite-Project": appwriteProjectId}}).then((res) => res.json());
+export async function GET(
+    _request: NextRequest,
+    { params }: { params: Promise<{ id: string }> },
+) {
+    const { id } = await params;
+    const projectRepository = new AppwriteProjectRepository();
+    const getProjectByIdUseCase = new GetProjectByIdUseCase(projectRepository);
 
-	if (!projectInfo) {
-		return Response.json({ error: "Project not found" }, {status: 404, statusText: "Project Not Found"});
-	}
+    try {
+        const project = await getProjectByIdUseCase.execute(id);
 
-	return Response.json(projectInfo);
+        if (!project) {
+            return NextResponse.json(
+                { error: "Project not found" },
+                { status: 404 },
+            );
+        }
+
+        return NextResponse.json(project);
+    } catch (error) {
+        return NextResponse.json(
+            { error: "Failed to fetch project" },
+            { status: 500 },
+        );
+    }
 }

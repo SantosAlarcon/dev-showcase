@@ -1,7 +1,4 @@
-import { Databases } from 'appwrite';
-import client from './client';
-
-const databases = new Databases(client);
+import { databases } from './client';
 
 export const getDevelopers = async () => {
     try {

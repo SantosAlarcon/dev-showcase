@@ -41,25 +41,28 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import GroupsIcon from "@mui/icons-material/Groups";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
-import { getDeveloperInfo } from "@/services/developers/getDeveloperInfo";
 import ProjectCard from "@/components/ui/ProjectCard";
-import { Period, Project } from "@/types/types";
 import { Suspense } from "react";
 import UserNotFound from "@/components/layout/UserNotFound";
 import Image from "next/image";
 import Markdown from "react-markdown";
 import { getLocaleCurrency } from "@/lib/utils";
 import { calculateTotalExperience } from "@/lib/utils";
-import { getProjectsByDeveloper } from "@/services/projects/getProjectsByDeveloper";
+import { Period } from "@/src/domain/entities/ui";
+import { GetDeveloperByIdUseCase } from "@/src/application/use-cases/developers/GetDeveloperByIdUseCase";
+import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
+import { AppwriteProjectRepository } from "@/src/infrastructure/data/AppwriteProjectRepository";
+import { GetProjectsByDeveloperIdUseCase } from "@/src/application/use-cases/projects/GetProjectsByDeveloperIdUseCase";
 
 export default async function DeveloperProfile(props: {
     params: Promise<{ id: string }>;
 }) {
     const { id } = await props.params;
-    // @ts-ignore
-	const [developer, projects] = await Promise.all([getDeveloperInfo(id), getProjectsByDeveloper(id)]);
 
-	console.log(projects);
+	const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(new AppwriteDeveloperRepository());
+	const getProjectsByDeveloperIdUseCase = new GetProjectsByDeveloperIdUseCase(new AppwriteProjectRepository());
+    // @ts-ignore
+	const [developer, projects] = await Promise.all([getDeveloperByIdUseCase.execute(id), getProjectsByDeveloperIdUseCase.execute(id)]);
 
     const totalExperience: Period = calculateTotalExperience(developer.workExperience);
     if (!developer) return <UserNotFound />;

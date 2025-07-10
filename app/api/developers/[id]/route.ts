@@ -1,5 +1,6 @@
-import { getDeveloperInfo } from "@/services/developers/getDeveloperInfo";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { GetDeveloperByIdUseCase } from "@/src/application/use-cases/developers/GetDeveloperByIdUseCase";
+import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 
 /**
  * @swagger
@@ -38,14 +39,18 @@ export async function GET(
 	{ params }: { params: Promise<{ id: string }> },
 ) {
 	const { id } = await params;
-	const developerInfo = await getDeveloperInfo(id);
+	const developerRepository = new AppwriteDeveloperRepository();
+	const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(developerRepository);
 
-	if (!developerInfo) {
-		return Response.json(
-			{ error: "Developer not found" },
-			{ status: 404, statusText: "Developer Not Found" },
-		);
+	try {
+		const developer = await getDeveloperByIdUseCase.execute(id);
+
+		if (!developer) {
+			return NextResponse.json({ error: "Developer not found" }, { status: 404 });
+		}
+
+		return NextResponse.json(developer);
+	} catch (error) {
+		return NextResponse.json({ error: "Failed to fetch developer" }, { status: 500 });
 	}
-
-	return Response.json(developerInfo);
 }

@@ -2,12 +2,12 @@ import * as motion from "motion/react-client";
 import Link from "next/link";
 import { Box, Typography, Container, Grid, Button } from "@mui/joy";
 import { ChevronRight } from "lucide-react";
-import { Project } from "@/types/types";
 import GridProjectCard from "../ui/GridProjectCard";
-import { getLatestProjects } from "@/services/projects/getLatestProjects";
+import { AppwriteProjectRepository } from "@/src/infrastructure/data/AppwriteProjectRepository";
 
 export default async function LatestProjects() {
-	const projectList = await getLatestProjects();
+	const projectRepository = new AppwriteProjectRepository();
+	const projectList = await projectRepository.getLatestProjects();
 
     return (
         <Box

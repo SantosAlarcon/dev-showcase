@@ -1,4 +1,3 @@
-import { DeveloperInfo } from "@/types/types";
 import {
     Avatar,
     CardContent,
@@ -14,8 +13,10 @@ import {
 } from "@mui/joy";
 import * as motion from "motion/react-client";
 import Image from "next/image";
-import { getAllSkills } from "@/services/developers/getAllSkills";
 import { MapPin, Briefcase } from "lucide-react";
+import { DeveloperInfo } from "@/src/domain/entities/developer";
+import { GetAllSkillsUseCase } from "@/src/application/use-cases/developers/GetAllSkillsUseCase";
+import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 
 const GridFeaturedDeveloperCard = ({
     developer,
@@ -24,6 +25,11 @@ const GridFeaturedDeveloperCard = ({
     developer: DeveloperInfo;
     index: number;
 }) => {
+	const developerRepository = new AppwriteDeveloperRepository();
+	const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
+	// @ts-ignore
+	const skills = getAllSkillsUseCase.execute(developer.skills);
+
     return (
         <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
             <motion.div
@@ -186,7 +192,7 @@ const GridFeaturedDeveloperCard = ({
                             useFlexGap
                             sx={{ horizontalGap: 0.5, verticalGap: 1 }}
                         >
-                            {getAllSkills(developer.skills)
+                            {skills
                                 .slice(0, 4)
                                 .map((skill: string) => (
                                     <Chip key={skill} size="sm" variant="soft">
@@ -194,9 +200,9 @@ const GridFeaturedDeveloperCard = ({
                                     </Chip>
                                 ))}
 
-                            {getAllSkills(developer.skills).length > 4 && (
+                            {skills.length > 4 && (
                                 <Chip size="sm" variant="soft">
-                                    +{getAllSkills(developer.skills).length - 4}
+                                    +{skills.length - 4}
                                 </Chip>
                             )}
                         </Stack>

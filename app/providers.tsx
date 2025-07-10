@@ -4,7 +4,7 @@ import { CssVarsProvider } from "@mui/joy/styles";
 import CssBaseline from "@mui/joy/CssBaseline";
 import { useEffect, useState, createContext, useContext } from "react";
 import theme from "@/lib/theme";
-import { ColorMode } from "@/types/types";
+import { ColorMode } from "@/src/domain/entities/ui";
 
 interface ColorModeContextProps {
 	mode: ColorMode;

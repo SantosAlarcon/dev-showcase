@@ -1,5 +1,5 @@
-
-import { Experience, Period } from "@/types/types";
+import { Experience } from "@/src/domain/entities/developer";
+import { Period } from "@/src/domain/entities/ui";
 
 export const calculateDatePeriod = (dateStart: Date, dateEnd: Date) => {
 	const years = dateEnd.getFullYear() - dateStart.getFullYear();

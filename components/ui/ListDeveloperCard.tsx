@@ -1,5 +1,6 @@
-import { DeveloperInfo } from "@/types/types";
-import { getAllSkills } from "@/services/developers/getAllSkills";
+import { GetAllSkillsUseCase } from "@/src/application/use-cases/developers/GetAllSkillsUseCase";
+import { DeveloperInfo } from "@/src/domain/entities/developer";
+import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 import {
     Avatar,
     Box,
@@ -26,7 +27,13 @@ const ListDeveloperCard = ({
     toggleLike: (id: string) => void;
     isLiked: boolean;
 }) => {
-    return (
+	const developerRepository = new AppwriteDeveloperRepository();
+	const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
+
+	// @ts-ignore
+	const skills = getAllSkillsUseCase.execute(developer.skills);
+    
+	return (
         <motion.div
             key={developer.id}
             initial={{ opacity: 0, y: 20 }}
@@ -231,16 +238,16 @@ const ListDeveloperCard = ({
                         useFlexGap
                         sx={{ gap: 0.5 }}
                     >
-                        {getAllSkills(developer.skills)
+                        {skills
                             .slice(0, 5)
                             .map((skill) => (
                                 <Chip key={skill} size="sm" variant="soft">
                                     {skill}
                                 </Chip>
                             ))}
-                        {getAllSkills(developer.skills).length > 5 && (
+                        {skills.length > 5 && (
                             <Chip size="sm" variant="soft">
-                                +{getAllSkills(developer.skills).length - 5}
+                                +{skills.length - 5}
                             </Chip>
                         )}
                     </Stack>

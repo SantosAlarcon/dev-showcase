@@ -1,35 +1,64 @@
-import { getDevelopersByCity } from "@/services/developers/getDevelopersByCity";
-import { getDevelopersByCountry } from "@/services/developers/getDevelopersByCountry";
-import { getDevelopersByState } from "@/services/developers/getDevelopersByState";
 import { NextRequest, NextResponse } from "next/server";
-import rolesList from "@/constants/roles";
-import { getDevelopersByRole } from "@/services/developers/getDevelopersByRole";
-import { getDevelopers } from "@/lib/appwrite/api";
+import { GetAllDevelopersUseCase } from "@/src/application/use-cases/developers/GetAllDevelopersUseCase";
+import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
+import { GetDevelopersByCountryUseCase } from "@/src/application/use-cases/developers/GetDevelopersByCountryUseCase";
+import { GetDevelopersByRoleUseCase } from "@/src/application/use-cases/developers/GetDevelopersByRoleUseCase";
+import { GetDevelopersByCityUseCase } from "@/src/application/use-cases/developers/GetDevelopersByCityUseCase";
+import { GetDevelopersByStateUseCase } from "@/src/application/use-cases/developers/GetDevelopersByStateUseCase";
 
-export async function GET(_request: NextRequest) {
-	const developersList = await getDevelopers();
-	// const country = request.nextUrl.searchParams.get('country');
-	// const state = request.nextUrl.searchParams.get('state');
-	// const city = request.nextUrl.searchParams.get('city');
-	// const limit = request.nextUrl.searchParams.get('limit');
-	// const role = request.nextUrl.searchParams.get('role');
-	//
-	// if (country) {
-	// 	return NextResponse.json(getDevelopersByCountry(country));
-	// }
-	//
-	// if (state) {
-	// 	return NextResponse.json(getDevelopersByState(state));
-	// }
-	//
-	// if (city) {
-	// 	return NextResponse.json(getDevelopersByCity(city));
-	// }
-	//
-	// if (rolesList.includes(role)) {
-	// 	return NextResponse.json(getDevelopersByRole(role));
-	// }
-	//
-	//    return NextResponse.json({ error: 'country, city, state or role parameter is required' }, { status: 400 });
-	return NextResponse.json(developersList);
+export async function GET(request: NextRequest) {
+    const searchParams = request.nextUrl.searchParams;
+
+    const country = searchParams.get("country");
+    const role = searchParams.get("role");
+    const city = searchParams.get("city");
+    const state = searchParams.get("state");
+
+    const developerRepository = new AppwriteDeveloperRepository();
+    const getAllDevelopersUseCase = new GetAllDevelopersUseCase(
+        developerRepository,
+    );
+    const getDevelopersByCountryUseCase = new GetDevelopersByCountryUseCase(
+        developerRepository,
+    );
+    const getDevelopersByRoleUseCase = new GetDevelopersByRoleUseCase(
+        developerRepository,
+    );
+    const getDevelopersByCityUseCase = new GetDevelopersByCityUseCase(
+        developerRepository,
+    );
+    const getDevelopersByStateUseCase = new GetDevelopersByStateUseCase(
+        developerRepository,
+    );
+
+    try {
+        if (country) {
+            const developers =
+                await getDevelopersByCountryUseCase.execute(country);
+            return NextResponse.json(developers);
+        }
+
+        if (role) {
+            const developers = await getDevelopersByRoleUseCase.execute(role);
+            return NextResponse.json(developers);
+        }
+
+        if (city) {
+            const developers = await getDevelopersByCityUseCase.execute(city);
+            return NextResponse.json(developers);
+        }
+
+        if (state) {
+            const developers = await getDevelopersByStateUseCase.execute(state);
+            return NextResponse.json(developers);
+        }
+
+        const developers = await getAllDevelopersUseCase.execute();
+        return NextResponse.json(developers);
+    } catch (error) {
+        return NextResponse.json(
+            { error: "Failed to fetch developers" },
+            { status: 500 },
+        );
+    }
 }

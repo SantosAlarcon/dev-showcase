@@ -1,8 +1,8 @@
-import { Project } from "@/types/types";
+import { Project } from "@/src/domain/entities/project";
 
 export const projectsData: Project[] = [
 	{
-		id: "654321",
+		$id: "654321",
 		developerId: "1",
 		title: "E-commerce Platform",
 		description:
@@ -33,7 +33,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 `,
 	},
 	{
-		id: "123456",
+		$id: "123456",
 		developerId: "1",
 		title: "Content Management System",
 		description:
@@ -64,7 +64,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 `,
 	},
 	{
-		id: "789123",
+		$id: "789123",
 		developerId: "1",
 		title: "Fleet Management Dashboard",
 		description:
@@ -95,7 +95,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 `,
 	},
 	{
-		id: "5444545",
+		$id: "5444545",
 		developerId: "2",
 		title: "Finance Dashboard",
 		description:
@@ -128,7 +128,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 `,
 	},
 	{
-		id: "7454555",
+		$id: "7454555",
 		developerId: "3",
 		title: "Fitness Mobile App",
 		description:
@@ -159,7 +159,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl eget 
 `,
 	},
 	{
-		id: "4564573",
+		$id: "4564573",
 		developerId: "4",
 		title: "Project Management Tool",
 		description:

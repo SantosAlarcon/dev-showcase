@@ -1,12 +1,16 @@
-import { getDeveloperInfo } from "@/services/developers/getDeveloperInfo";
-import getFullNameById from "@/services/developers/getFullNameById";
-import { Project } from "@/types/types";
+import { GetDeveloperByIdUseCase } from "@/src/application/use-cases/developers/GetDeveloperByIdUseCase";
+import { Project } from "@/src/domain/entities/project";
+import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 import { Box, Card, CardContent, CardOverflow, Chip, Grid, Link, Stack, Typography } from "@mui/joy";
 import * as motion from "motion/react-client";
 import Image from "next/image";
 
 const GridProjectCard = async ({ project, index }: { project: Project, index: number }) => {
-	const developer = await getDeveloperInfo(project.developerId);
+	const developerRepository = new AppwriteDeveloperRepository();
+	const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(developerRepository);
+	const developer = await getDeveloperByIdUseCase.execute(project.developerId);
+	const fullName = developer.name + " " + developer.surname;
+
 	return (
 		<Grid key={project.$id} xs={12} md={6}>
 			<motion.div
@@ -106,7 +110,7 @@ const GridProjectCard = async ({ project, index }: { project: Project, index: nu
 							<Box
 								component="img"
 								src={developer.avatar}
-								alt={await getFullNameById(project.developerId)}
+								alt={fullName}
 								sx={{
 									width: 24,
 									height: 24,
@@ -121,10 +125,10 @@ const GridProjectCard = async ({ project, index }: { project: Project, index: nu
 								by{" "}
 								<Link
 									style={{ color: "inherit", textDecoration: "none", fontWeight: 600 }}
-									aria-label={`Go to ${getFullNameById(project.developerId)}'s profile'`}
+									aria-label={`Go to ${fullName}'s profile'`}
 									href={`/developer/${project.developerId}`}
 								>
-									{getFullNameById(project.developerId)}
+									{fullName}
 								</Link>
 							</Typography>
 						</Box>

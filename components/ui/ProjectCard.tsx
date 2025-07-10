@@ -1,4 +1,3 @@
-import { Project } from "@/types/types";
 import * as motion from "motion/react-client";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -13,6 +12,7 @@ import {
     Stack,
     Typography,
 } from "@mui/joy";
+import { Project } from "@/src/domain/entities/project";
 
 const ProjectCard = ({ project }: { project: Project }) => {
     return (

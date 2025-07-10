@@ -1,4 +1,3 @@
-import { DeveloperInfo } from "@/types/types";
 import {
     Avatar,
     CardContent,
@@ -16,8 +15,10 @@ import {
 } from "@mui/joy";
 import { motion } from "motion/react";
 import Image from "next/image";
-import { getAllSkills } from "@/services/developers/getAllSkills";
 import { Heart, MapPin, Briefcase, MessageCircle } from "lucide-react";
+import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
+import { GetAllSkillsUseCase } from "@/src/application/use-cases/developers/GetAllSkillsUseCase";
+import { DeveloperInfo } from "@/src/domain/entities/developer";
 
 const GridDeveloperCard = ({
     developer,
@@ -30,6 +31,12 @@ const GridDeveloperCard = ({
     toggleLike: (id: string) => void;
     isLiked: boolean;
 }) => {
+	const developerRepository = new AppwriteDeveloperRepository();
+	const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
+
+	// @ts-ignore
+	const skills = getAllSkillsUseCase.execute(developer.skills);
+
     return (
         <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
             <motion.div
@@ -211,7 +218,7 @@ const GridDeveloperCard = ({
                             useFlexGap
                             sx={{ horizontalGap: 0.5, verticalGap: 1 }}
                         >
-                            {getAllSkills(developer.skills)
+                            {skills
                                 .slice(0, 4)
                                 .map((skill: string) => (
                                     <Chip key={skill} size="sm" variant="soft">
@@ -219,9 +226,9 @@ const GridDeveloperCard = ({
                                     </Chip>
                                 ))}
 
-                            {getAllSkills(developer.skills).length > 4 && (
+                            {skills.length > 4 && (
                                 <Chip size="sm" variant="soft">
-                                    +{getAllSkills(developer.skills).length - 4}
+                                    +{skills.length - 4}
                                 </Chip>
                             )}
                         </Stack>

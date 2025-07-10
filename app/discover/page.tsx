@@ -25,14 +25,17 @@ import {
 import { Search, Filter, LayoutPanelLeft, LayoutGrid } from "lucide-react";
 
 import developersData from "@/data/mockDeveloperData";
-import { getAllSkills } from "@/services/developers/getAllSkills";
 import GridDeveloperCard from "@/components/ui/GridDeveloperCard";
-import { DeveloperInfo, Province, ViewModeTypes } from "@/types/types";
+
 import ListDeveloperCard from "@/components/ui/ListDeveloperCard";
 import countries from "world-countries";
 import { type Country } from "world-countries";
 import { getCountryByName } from "node-countries";
 import rolesList from "@/constants/roles";
+import { Province, ViewModeTypes } from "@/src/domain/entities/ui";
+import { DeveloperInfo } from "@/src/domain/entities/developer";
+import { GetAllSkillsUseCase } from "@/src/application/use-cases/developers/GetAllSkillsUseCase";
+import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 
 // Filters
 // const experienceLevels = ["Any", "1-2 years", "3-5 years", "5+ years"];
@@ -55,6 +58,9 @@ export default function DiscoverPage() {
     const [selectedProvince, setSelectedProvince] = useState<string>("Any");
     const [provinces, setProvinces] = useState<Province[]>([]);
     const [selectedRole, setSelectedRole] = useState<string>("Any");
+    const getAllSkillsUseCase = new GetAllSkillsUseCase(
+        new AppwriteDeveloperRepository(),
+    );
 
     const toggleLike = (id: string) => {
         if (likedDevelopers.includes(id)) {
@@ -103,9 +109,10 @@ export default function DiscoverPage() {
                     dev.name.toLowerCase().includes(query) ||
                     dev.title.toLowerCase().includes(query) ||
                     dev.bio.toLowerCase().includes(query) ||
-                    getAllSkills(dev.skills).some((skill) =>
-                        skill.toLowerCase().includes(query),
-                    ),
+                    getAllSkillsUseCase
+                        // @ts-ignore
+                        .execute(dev.skills)
+                        .some((skill) => skill.toLowerCase().includes(query)),
             );
         }
 
@@ -134,7 +141,8 @@ export default function DiscoverPage() {
         if (selectedSkills.length > 0) {
             results = results.filter((dev) =>
                 selectedSkills.some((skill) =>
-                    getAllSkills(dev.skills).includes(skill),
+					// @ts-ignore
+                    getAllSkillsUseCase.execute(dev.skills).includes(skill),
                 ),
             );
         }
@@ -146,12 +154,12 @@ export default function DiscoverPage() {
             );
         }
 
-		// Role filter
-		if (selectedRole !== "Any") {
-			results = results.filter(
-				(dev: DeveloperInfo) => dev.title === selectedRole,
-			);
-		}
+        // Role filter
+        if (selectedRole !== "Any") {
+            results = results.filter(
+                (dev: DeveloperInfo) => dev.title === selectedRole,
+            );
+        }
 
         setFilteredDevelopers(results);
         setMobileFilterOpen(false);

@@ -1,4 +1,4 @@
-import { Testimonial } from "@/types/types";
+import { Testimonial } from "@/src/domain/entities/testimonial";
 import { Avatar, Box, Card, Grid, Typography } from "@mui/joy";
 import * as motion from "motion/react-client";
 const TestimonialCard = ({

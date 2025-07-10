@@ -1,4 +1,4 @@
-import { type DeveloperInfo } from "@/types/types";
+import { DeveloperInfo } from "@/src/domain/entities/developer";
 
 const developersData: DeveloperInfo[] = [
 	{

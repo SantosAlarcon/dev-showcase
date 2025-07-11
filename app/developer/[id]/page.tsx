@@ -98,6 +98,7 @@ export default async function DeveloperProfile(props: {
                             style={{ objectFit: "cover" }}
                             width={512}
                             height={512}
+							fetchPriority="high"
                             priority
                             decoding="async"
                         />

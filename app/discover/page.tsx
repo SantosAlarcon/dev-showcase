@@ -154,7 +154,7 @@ export default function DiscoverPage() {
             results = results.filter((dev) =>
                 selectedSkills.some((skill) =>
                     getAllSkillsUseCase
-						// @ts-ignore
+                        // @ts-ignore
                         .execute(dev.skills)
                         .includes(skill),
                 ),
@@ -203,11 +203,8 @@ export default function DiscoverPage() {
                 maxWidth="lg"
                 sx={{ display: "flex", flexDirection: "column", gap: 4 }}
             >
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{
+                <Box
+                    sx={{
                         display: "flex",
                         flexDirection: "column",
                         gap: "1rem",
@@ -231,7 +228,7 @@ export default function DiscoverPage() {
                         Find the perfect developer for your project. Browse
                         profiles, filter by skills, and connect with top talent.
                     </Typography>
-                </motion.div>
+                </Box>
 
                 <Grid container spacing={4}>
                     {/* Filters - Desktop */}
@@ -734,8 +731,7 @@ export default function DiscoverPage() {
                             <Box
                                 sx={{
                                     textAlign: "center",
-                                    py: 3,
-                                    px: 2,
+                                    py: 1,
                                     display: "flex",
                                     flexDirection: "column",
                                     gap: 2,
@@ -752,7 +748,7 @@ export default function DiscoverPage() {
                                     <Box sx={{ display: "flex", gap: 1 }}>
                                         <Skeleton
                                             variant="rectangular"
-                                            height={25}
+                                            height={15}
                                             width={140}
                                         />
                                     </Box>
@@ -763,30 +759,41 @@ export default function DiscoverPage() {
                                             alignItems: "center",
                                         }}
                                     >
-										{Array.from({ length: 2 }).map((_, index) => (
-											<Skeleton
-												variant="rectangular"
-												sx={{ borderRadius: "lg" }}
-												key={index}
-												height={32}
-												width={32}		
-											/>
-										))}
+                                        {Array.from({ length: 2 }).map(
+                                            (_, index) => (
+                                                <Skeleton
+                                                    variant="rectangular"
+                                                    sx={{ borderRadius: "md" }}
+                                                    key={index}
+                                                    height={36}
+                                                    width={36}
+                                                />
+                                            ),
+                                        )}
                                     </Box>
                                 </Box>
-								<Box sx={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
-										{ Array.from({ length: 9 }).map((_, index) => (
-											<Skeleton
-												variant="rectangular"
-												sx={{ borderRadius: "lg" }}
-												key={index}
-												height={380}
-												width={250}		
-											/>
-										)) }
-								</Box>
+                                <Grid
+                                    xs={12}
+                                    md={12.6}
+                                    container
+                                    rowSpacing={2}
+                                    columnSpacing={4}
+                                >
+                                    {Array.from({ length: 9 }).map(
+                                        (_, index) => (
+                                            <Grid key={index} xs={12} md={4}>
+                                                <Skeleton
+                                                    variant="rectangular"
+                                                    sx={{ borderRadius: "lg" }}
+                                                    key={index}
+                                                    height={380}
+                                                />
+                                            </Grid>
+                                        ),
+                                    )}
+                                </Grid>
                             </Box>
-						</Grid>
+                        </Grid>
                     )}
                 </Grid>
             </Container>

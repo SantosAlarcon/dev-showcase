@@ -6,7 +6,6 @@ import { Query } from "appwrite";
 export class AppwriteDeveloperRepository implements IDeveloperRepository {
     getAllSkills(skills: string): string[] {
         try {
-			console.log(skills);
 			const skillsObject = JSON.parse(skills);
             return [...skillsObject.frontend, ...skillsObject.backend, ...skillsObject.other];
         } catch (error) {

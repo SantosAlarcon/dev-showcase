@@ -70,6 +70,7 @@ const GridFeaturedDeveloperCard = ({
                                     width={512}
                                     height={512}
                                     priority
+									fetchPriority="high"
                                     decoding="async"
                                 />
                             </object>

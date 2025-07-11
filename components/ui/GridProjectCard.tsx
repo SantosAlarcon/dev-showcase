@@ -57,6 +57,7 @@ const GridProjectCard = async ({ project, index }: { project: Project, index: nu
 							src={project.image}
 							alt={project.title}
 							style={{ objectFit: "cover", borderRadius: "1rem", width: "100%" }}
+							fetchPriority="high"
 						/>
 					</CardOverflow>
 

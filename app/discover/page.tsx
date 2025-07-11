@@ -153,8 +153,8 @@ export default function DiscoverPage() {
         if (selectedSkills.length > 0) {
             results = results.filter((dev) =>
                 selectedSkills.some((skill) =>
-                    // @ts-ignore
                     getAllSkillsUseCase
+						// @ts-ignore
                         .execute(dev.skills)
                         .includes(skill),
                 ),

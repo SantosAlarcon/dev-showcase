@@ -21,10 +21,10 @@ import {
     Divider,
     Sheet,
     Tooltip,
+    Skeleton,
 } from "@mui/joy";
 import { Search, Filter, LayoutPanelLeft, LayoutGrid } from "lucide-react";
 
-import developersData from "@/data/mockDeveloperData";
 import GridDeveloperCard from "@/components/ui/GridDeveloperCard";
 
 import ListDeveloperCard from "@/components/ui/ListDeveloperCard";
@@ -36,6 +36,7 @@ import { Province, ViewModeTypes } from "@/src/domain/entities/ui";
 import { DeveloperInfo } from "@/src/domain/entities/developer";
 import { GetAllSkillsUseCase } from "@/src/application/use-cases/developers/GetAllSkillsUseCase";
 import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
+import { GetAllDevelopersUseCase } from "@/src/application/use-cases/developers/GetAllDevelopersUseCase";
 
 // Filters
 // const experienceLevels = ["Any", "1-2 years", "3-5 years", "5+ years"];
@@ -45,22 +46,33 @@ export default function DiscoverPage() {
     const countryList = countries.sort((a, b) =>
         a.name.common.localeCompare(b.name.common),
     );
+    const getAllSkillsUseCase = new GetAllSkillsUseCase(
+        new AppwriteDeveloperRepository(),
+    );
+
+    const getAllDevelopersUseCase = new GetAllDevelopersUseCase(
+        new AppwriteDeveloperRepository(),
+    );
     const [searchQuery, setSearchQuery] = useState("");
     // const [selectedExperience, setSelectedExperience] = useState("Any");
     const [selectedAvailability, setSelectedAvailability] = useState("Any");
     const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
     const [viewMode, setViewMode] = useState<ViewModeTypes>("grid");
     const [likedDevelopers, setLikedDevelopers] = useState<string[]>([]);
-    const [filteredDevelopers, setFilteredDevelopers] =
-        useState(developersData);
+    const [filteredDevelopers, setFilteredDevelopers] = useState([]);
     const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
     const [selectedCountry, setSelectedCountry] = useState<string>("Any");
     const [selectedProvince, setSelectedProvince] = useState<string>("Any");
     const [provinces, setProvinces] = useState<Province[]>([]);
     const [selectedRole, setSelectedRole] = useState<string>("Any");
-    const getAllSkillsUseCase = new GetAllSkillsUseCase(
-        new AppwriteDeveloperRepository(),
-    );
+    const [developersData, setDevelopersData] = useState<DeveloperInfo[]>([]);
+
+    useEffect(() => {
+        getAllDevelopersUseCase.execute().then((developers) => {
+            setFilteredDevelopers(developers);
+            setDevelopersData(developers);
+        });
+    }, []);
 
     const toggleLike = (id: string) => {
         if (likedDevelopers.includes(id)) {
@@ -141,8 +153,10 @@ export default function DiscoverPage() {
         if (selectedSkills.length > 0) {
             results = results.filter((dev) =>
                 selectedSkills.some((skill) =>
-					// @ts-ignore
-                    getAllSkillsUseCase.execute(dev.skills).includes(skill),
+                    // @ts-ignore
+                    getAllSkillsUseCase
+                        .execute(dev.skills)
+                        .includes(skill),
                 ),
             );
         }
@@ -581,131 +595,199 @@ export default function DiscoverPage() {
                     )}
 
                     {/* Results */}
-                    <Grid xs={12} md={9}>
-                        {/* View Mode Toggle - Desktop */}
-                        <Box
-                            sx={{
-                                display: { xs: "none", md: "flex" },
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                mb: 3,
-                            }}
-                        >
-                            <Typography
-                                level="body-sm"
-                                textColor={"text.primary"}
+                    {developersData.length > 0 ? (
+                        <Grid xs={12} md={9}>
+                            {/* View Mode Toggle - Desktop */}
+                            <Box
+                                sx={{
+                                    display: { xs: "none", md: "flex" },
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    mb: 3,
+                                }}
                             >
-                                Showing {filteredDevelopers.length} developers
-                            </Typography>
-                            <Box sx={{ display: "flex", gap: 1 }}>
-                                <IconButton
-                                    aria-label="Grid view"
-                                    variant={
-                                        viewMode === "grid" ? "solid" : "plain"
-                                    }
-                                    color={
-                                        viewMode === "grid"
-                                            ? "primary"
-                                            : "neutral"
-                                    }
-                                    onClick={() => setViewMode("grid")}
+                                <Typography
+                                    level="body-sm"
+                                    textColor={"text.primary"}
                                 >
-                                    <Tooltip
-                                        title="Grid view"
-                                        variant="solid"
-                                        arrow
+                                    Showing {filteredDevelopers.length}{" "}
+                                    developers
+                                </Typography>
+                                <Box sx={{ display: "flex", gap: 1 }}>
+                                    <IconButton
+                                        aria-label="Grid view"
+                                        variant={
+                                            viewMode === "grid"
+                                                ? "solid"
+                                                : "plain"
+                                        }
+                                        color={
+                                            viewMode === "grid"
+                                                ? "primary"
+                                                : "neutral"
+                                        }
+                                        onClick={() => setViewMode("grid")}
                                     >
-                                        <LayoutGrid size={20} />
-                                    </Tooltip>
-                                </IconButton>
-                                <IconButton
-                                    aria-label="List view"
-                                    variant={
-                                        viewMode === "list" ? "solid" : "plain"
-                                    }
-                                    color={
-                                        viewMode === "list"
-                                            ? "primary"
-                                            : "neutral"
-                                    }
-                                    onClick={() => setViewMode("list")}
-                                >
-                                    <Tooltip
-                                        title="List view"
-                                        variant="solid"
-                                        arrow
+                                        <Tooltip
+                                            title="Grid view"
+                                            variant="solid"
+                                            arrow
+                                        >
+                                            <LayoutGrid size={20} />
+                                        </Tooltip>
+                                    </IconButton>
+                                    <IconButton
+                                        aria-label="List view"
+                                        variant={
+                                            viewMode === "list"
+                                                ? "solid"
+                                                : "plain"
+                                        }
+                                        color={
+                                            viewMode === "list"
+                                                ? "primary"
+                                                : "neutral"
+                                        }
+                                        onClick={() => setViewMode("list")}
                                     >
-                                        <LayoutPanelLeft size={20} />
-                                    </Tooltip>
-                                </IconButton>
+                                        <Tooltip
+                                            title="List view"
+                                            variant="solid"
+                                            arrow
+                                        >
+                                            <LayoutPanelLeft size={20} />
+                                        </Tooltip>
+                                    </IconButton>
+                                </Box>
                             </Box>
-                        </Box>
 
-                        {/* Grid View */}
-                        {viewMode === "grid" && (
-                            <Grid container spacing={3}>
-                                {filteredDevelopers.map(
-                                    (
-                                        developer: DeveloperInfo,
-                                        index: number,
-                                    ) => (
-                                        <GridDeveloperCard
-                                            key={developer.id}
-                                            developer={developer}
-                                            index={index}
-                                            toggleLike={toggleLike}
-                                            isLiked={likedDevelopers.includes(
-                                                developer.id,
-                                            )}
-                                        />
-                                    ),
-                                )}
-                            </Grid>
-                        )}
+                            {/* Grid View */}
+                            {viewMode === "grid" && (
+                                <Grid container spacing={3}>
+                                    {filteredDevelopers.map(
+                                        (
+                                            developer: DeveloperInfo,
+                                            index: number,
+                                        ) => (
+                                            <GridDeveloperCard
+                                                key={developer.id}
+                                                developer={developer}
+                                                index={index}
+                                                toggleLike={toggleLike}
+                                                isLiked={likedDevelopers.includes(
+                                                    developer.id,
+                                                )}
+                                            />
+                                        ),
+                                    )}
+                                </Grid>
+                            )}
 
-                        {/* List View */}
-                        {viewMode === "list" && (
-                            <Stack spacing={2}>
-                                {filteredDevelopers.map((developer, index) => (
-                                    <ListDeveloperCard
-                                        key={developer.id}
-                                        developer={developer}
-                                        index={index}
-                                        toggleLike={toggleLike}
-                                        isLiked={likedDevelopers.includes(
-                                            developer.id,
-                                        )}
-                                    />
-                                ))}
-                            </Stack>
-                        )}
+                            {/* List View */}
+                            {viewMode === "list" && (
+                                <Stack spacing={2}>
+                                    {filteredDevelopers.map(
+                                        (developer, index) => (
+                                            <ListDeveloperCard
+                                                key={developer.id}
+                                                developer={developer}
+                                                index={index}
+                                                toggleLike={toggleLike}
+                                                isLiked={likedDevelopers.includes(
+                                                    developer.id,
+                                                )}
+                                            />
+                                        ),
+                                    )}
+                                </Stack>
+                            )}
 
-                        {filteredDevelopers.length === 0 && (
+                            {filteredDevelopers.length === 0 && (
+                                <Box
+                                    sx={{
+                                        textAlign: "center",
+                                        py: 8,
+                                    }}
+                                >
+                                    <Typography level="h4" sx={{ mb: 2 }}>
+                                        No developers found
+                                    </Typography>
+                                    <Typography
+                                        level="body-md"
+                                        sx={{ mb: 4, color: "text.secondary" }}
+                                    >
+                                        Try adjusting your filters or search
+                                        query
+                                    </Typography>
+                                    <Button
+                                        variant="outlined"
+                                        color="neutral"
+                                        onClick={resetFilters}
+                                    >
+                                        Reset Filters
+                                    </Button>
+                                </Box>
+                            )}
+                        </Grid>
+                    ) : (
+                        <Grid xs={12} md={9}>
                             <Box
                                 sx={{
                                     textAlign: "center",
-                                    py: 8,
+                                    py: 3,
+                                    px: 2,
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: 2,
                                 }}
                             >
-                                <Typography level="h4" sx={{ mb: 2 }}>
-                                    No developers found
-                                </Typography>
-                                <Typography
-                                    level="body-md"
-                                    sx={{ mb: 4, color: "text.secondary" }}
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        gap: 1,
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                    }}
                                 >
-                                    Try adjusting your filters or search query
-                                </Typography>
-                                <Button
-                                    variant="outlined"
-                                    color="neutral"
-                                    onClick={resetFilters}
-                                >
-                                    Reset Filters
-                                </Button>
+                                    <Box sx={{ display: "flex", gap: 1 }}>
+                                        <Skeleton
+                                            variant="rectangular"
+                                            height={25}
+                                            width={140}
+                                        />
+                                    </Box>
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            gap: 1,
+                                            alignItems: "center",
+                                        }}
+                                    >
+										{Array.from({ length: 2 }).map((_, index) => (
+											<Skeleton
+												variant="rectangular"
+												sx={{ borderRadius: "lg" }}
+												key={index}
+												height={32}
+												width={32}		
+											/>
+										))}
+                                    </Box>
+                                </Box>
+								<Box sx={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+										{ Array.from({ length: 9 }).map((_, index) => (
+											<Skeleton
+												variant="rectangular"
+												sx={{ borderRadius: "lg" }}
+												key={index}
+												height={380}
+												width={250}		
+											/>
+										)) }
+								</Box>
                             </Box>
-                        )}
-                    </Grid>
+						</Grid>
+                    )}
                 </Grid>
             </Container>
         </Box>

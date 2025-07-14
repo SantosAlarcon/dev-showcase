@@ -23,6 +23,7 @@ const TestimonialCard = ({
                         height: "100%",
                         display: "flex",
                         flexDirection: "column",
+						alignItems: { xs: "center", md: "flex-start" },
                         position: "relative",
                         overflow: "visible",
                         transition: "all 0.3s ease",

@@ -28,6 +28,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     variant="outlined"
                     sx={{
                         height: "100%",
+						display: "flex",
+                        flexDirection: "column",
+						alignItems: { xs: "center", md: "flex-start" },
                         transition: "all 0.3s ease",
                         "&:hover": {
                             boxShadow: "md",
@@ -35,7 +38,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         },
                     }}
                 >
-                    <AspectRatio ratio="16/9" sx={{ mb: 2 }}>
+                    <AspectRatio ratio="16/9" sx={{ mb: 2, width: "100%" }}>
                         <Image
                             src={project.image}
                             alt={project.title}
@@ -65,6 +68,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         sx={{
                             mb: 2,
                             color: "text.secondary",
+							textAlign: { xs: "center", md: "left" },
                         }}
                     >
                         {project.description}
@@ -90,7 +94,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                             </Chip>
                         ))}
                     </Stack>
-                    <Stack spacing={2} sx={{ mt: "auto" }}>
+                    <Stack spacing={2} sx={{ mt: "auto", width: "100%" }}>
                         {project.githubRepo && (
                             <Button
                                 component="a"

@@ -33,7 +33,14 @@ export default async function ProjectProfile(props: {
             }}
         >
             <Typography level="h1">{project.title}</Typography>
-            <Typography level="title-sm">{project.description}</Typography>
+            <Typography
+                level="title-sm"
+                sx={{
+                    textAlign: "center",
+                }}
+            >
+                {project.description}
+            </Typography>
             <Box
                 sx={{
                     display: "flex",

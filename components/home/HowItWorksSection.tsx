@@ -106,6 +106,7 @@ export default function HowItWorksSection() {
                                         height: "100%",
                                         display: "flex",
                                         flexDirection: "column",
+										alignItems: "center",
                                         transition: "all 0.3s ease",
                                         "&:hover": {
                                             boxShadow: "md",
@@ -116,6 +117,7 @@ export default function HowItWorksSection() {
                                     <AspectRatio
                                         ratio="16/9"
                                         sx={{
+											width: "100%",
                                             mb: 2,
                                             borderRadius: "md",
                                             overflow: "hidden",
@@ -160,6 +162,7 @@ export default function HowItWorksSection() {
                                         sx={{
                                             color: "text.secondary",
                                             flexGrow: 1,
+											textAlign: "center",
                                         }}
                                     >
                                         {step.description}

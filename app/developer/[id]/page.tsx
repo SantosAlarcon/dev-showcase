@@ -59,12 +59,21 @@ export default async function DeveloperProfile(props: {
 }) {
     const { id } = await props.params;
 
-	const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(new AppwriteDeveloperRepository());
-	const getProjectsByDeveloperIdUseCase = new GetProjectsByDeveloperIdUseCase(new AppwriteProjectRepository());
+    const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(
+        new AppwriteDeveloperRepository(),
+    );
+    const getProjectsByDeveloperIdUseCase = new GetProjectsByDeveloperIdUseCase(
+        new AppwriteProjectRepository(),
+    );
     // @ts-ignore
-	const [developer, projects] = await Promise.all([getDeveloperByIdUseCase.execute(id), getProjectsByDeveloperIdUseCase.execute(id)]);
+    const [developer, projects] = await Promise.all([
+        getDeveloperByIdUseCase.execute(id),
+        getProjectsByDeveloperIdUseCase.execute(id),
+    ]);
 
-    const totalExperience: Period = calculateTotalExperience(developer.workExperience);
+    const totalExperience: Period = calculateTotalExperience(
+        developer.workExperience,
+    );
     if (!developer) return <UserNotFound />;
 
     return (
@@ -98,7 +107,7 @@ export default async function DeveloperProfile(props: {
                             style={{ objectFit: "cover" }}
                             width={512}
                             height={512}
-							fetchPriority="high"
+                            fetchPriority="high"
                             priority
                             decoding="async"
                         />
@@ -334,13 +343,16 @@ export default async function DeveloperProfile(props: {
                                             sx={{
                                                 display: "flex",
                                                 alignItems: "center",
+												justifyContent: { xs: "center", md: "flex-start" },
                                                 gap: 0.5,
                                             }}
                                         >
                                             {developer.social.github && (
                                                 <IconButton
                                                     component="a"
-                                                    href={developer.social.github}
+                                                    href={
+                                                        developer.social.github
+                                                    }
                                                     aria-label="GitHub"
                                                     target="_blank"
                                                     variant="plain"
@@ -357,7 +369,10 @@ export default async function DeveloperProfile(props: {
                                             {developer.social.linkedin && (
                                                 <IconButton
                                                     component="a"
-                                                    href={developer.social.linkedin}
+                                                    href={
+                                                        developer.social
+                                                            .linkedin
+                                                    }
                                                     aria-label="LinkedIn"
                                                     target="_blank"
                                                     variant="plain"
@@ -375,7 +390,10 @@ export default async function DeveloperProfile(props: {
                                                 <IconButton
                                                     component="a"
                                                     aria-label="Facebook"
-                                                    href={developer.social.facebook}
+                                                    href={
+                                                        developer.social
+                                                            .facebook
+                                                    }
                                                     target="_blank"
                                                     variant="plain"
                                                     size="md"
@@ -392,7 +410,9 @@ export default async function DeveloperProfile(props: {
                                                 <IconButton
                                                     component="a"
                                                     aria-label="Twitter"
-                                                    href={developer.social.twitter}
+                                                    href={
+                                                        developer.social.twitter
+                                                    }
                                                     target="_blank"
                                                     variant="plain"
                                                     size="md"
@@ -409,7 +429,10 @@ export default async function DeveloperProfile(props: {
                                                 <IconButton
                                                     component="a"
                                                     aria-label="Instagram"
-                                                    href={developer.social.instagram}
+                                                    href={
+                                                        developer.social
+                                                            .instagram
+                                                    }
                                                     target="_blank"
                                                     variant="plain"
                                                     size="md"
@@ -426,7 +449,9 @@ export default async function DeveloperProfile(props: {
                                                 <IconButton
                                                     component="a"
                                                     aria-label="Instagram"
-                                                    href={developer.social.devto}
+                                                    href={
+                                                        developer.social.devto
+                                                    }
                                                     target="_blank"
                                                     variant="plain"
                                                     size="md"
@@ -443,7 +468,9 @@ export default async function DeveloperProfile(props: {
                                                 <IconButton
                                                     component="a"
                                                     aria-label="YouTube"
-                                                    href={developer.social.devto}
+                                                    href={
+                                                        developer.social.devto
+                                                    }
                                                     target="_blank"
                                                     variant="plain"
                                                     size="md"
@@ -459,7 +486,9 @@ export default async function DeveloperProfile(props: {
 
                                             <IconButton
                                                 component="a"
-                                                href={developer.social.portfolio}
+                                                href={
+                                                    developer.social.portfolio
+                                                }
                                                 aria-label="Portfolio"
                                                 target="_blank"
                                                 variant="plain"
@@ -691,7 +720,7 @@ export default async function DeveloperProfile(props: {
                                         >
                                             <ProjectCard
                                                 key={project.title}
-												// @ts-ignore
+                                                // @ts-ignore
                                                 project={project}
                                             />
                                         </Suspense>
@@ -808,21 +837,23 @@ export default async function DeveloperProfile(props: {
                                         Backend
                                     </Typography>
                                     <Stack spacing={1}>
-                                        {developer.skills.backend.map((skill) => (
-                                            <Box
-                                                key={skill}
-                                                sx={{
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                    justifyContent:
-                                                        "space-between",
-                                                }}
-                                            >
-                                                <Typography level="body-md">
-                                                    - {skill}
-                                                </Typography>
-                                            </Box>
-                                        ))}
+                                        {developer.skills.backend.map(
+                                            (skill) => (
+                                                <Box
+                                                    key={skill}
+                                                    sx={{
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        justifyContent:
+                                                            "space-between",
+                                                    }}
+                                                >
+                                                    <Typography level="body-md">
+                                                        - {skill}
+                                                    </Typography>
+                                                </Box>
+                                            ),
+                                        )}
                                     </Stack>
                                 </Grid>
 
@@ -835,21 +866,23 @@ export default async function DeveloperProfile(props: {
                                         Other Technologies
                                     </Typography>
                                     <Stack spacing={1}>
-                                        {developer.skills.other.map((skill: string) => (
-                                            <Box
-                                                key={skill}
-                                                sx={{
-                                                    display: "flex",
-                                                    alignItems: "center",
-                                                    justifyContent:
-                                                        "space-between",
-                                                }}
-                                            >
-                                                <Typography level="body-md">
-                                                    - {skill}
-                                                </Typography>
-                                            </Box>
-                                        ))}
+                                        {developer.skills.other.map(
+                                            (skill: string) => (
+                                                <Box
+                                                    key={skill}
+                                                    sx={{
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        justifyContent:
+                                                            "space-between",
+                                                    }}
+                                                >
+                                                    <Typography level="body-md">
+                                                        - {skill}
+                                                    </Typography>
+                                                </Box>
+                                            ),
+                                        )}
                                     </Stack>
                                 </Grid>
                             </Grid>

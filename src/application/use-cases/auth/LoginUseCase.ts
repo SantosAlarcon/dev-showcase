@@ -7,6 +7,11 @@ export class LoginUseCase {
         if (!email || !password) {
             throw new Error("Missing required fields");
         }
-        return this.authRepository.login(email, password);
+
+        try {
+            return await this.authRepository.login(email, password);
+        } catch (AppwriteException) {
+            throw new Error("Invalid credentials");
+        }
     }
 }

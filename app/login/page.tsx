@@ -1,3 +1,4 @@
+import LoginComponent from "@/components/ui/LoginComponent";
 import { Box, Grid } from "@mui/joy";
 
 const LoginPage = () => {
@@ -6,10 +7,12 @@ const LoginPage = () => {
 			backgroundImage: "url(/DevBG.webp)",
 		}}>
 			<Grid sx={{ width: { xs: "100%", sm: "50%" }, display: "flex", justifyContent: "center", alignItems: "center" }}>
-				<Box>Login</Box>
+				<Box>DevShowcase</Box>
 			</Grid>
 			<Grid sx={{ width: { xs: "100%", sm: "50%" }, display: "flex", justifyContent: "center", alignItems: "center" }}>
-				<Box>Pepe</Box>
+				<Box>
+                    <LoginComponent />
+                </Box>
 			</Grid>
 		</Grid>
 	)

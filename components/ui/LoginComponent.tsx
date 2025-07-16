@@ -21,7 +21,7 @@ const LoginComponent = () => {
 	const [open, setOpen] = useState(false);
 	const authRepository = new AppwriteAuthRepository();
 	const loginUseCase = new LoginUseCase(authRepository);
-    const loginOauthUseCase = new LoginOAuthUseCase(authRepository);
+	const loginOauthUseCase = new LoginOAuthUseCase(authRepository);
 	const { loading, setLoading, setError, error } = useAuth();
 
 	const handleLogin = async (formData: FormData) => {
@@ -39,16 +39,16 @@ const LoginComponent = () => {
 		setLoading(false);
 	};
 
-    const handleLoginOAuth = async (provider: OAuthProvider) => {
-        await loginOauthUseCase.execute(provider).catch((errorMessage) => {
-            setOpen(true);
-            setError(
-                "The user with that email and password does not exist. Please check the email and password.",
-            );
-            console.error(errorMessage.message);
-        });
-        setLoading(false);
-    };
+	const handleLoginOAuth = async (provider: OAuthProvider) => {
+		await loginOauthUseCase.execute(provider).catch((errorMessage) => {
+			setOpen(true);
+			setError(
+				"The user with that email and password does not exist. Please check the email and password.",
+			);
+			console.error(errorMessage.message);
+		});
+		setLoading(false);
+	};
 
 	return (
 		<>
@@ -59,6 +59,8 @@ const LoginComponent = () => {
 				py={4}
 				px={8}
 				borderRadius={"lg"}
+				border={"1px solid"}
+				borderColor={"neutral.700"}
 			>
 				<h1>Login</h1>
 				<p>

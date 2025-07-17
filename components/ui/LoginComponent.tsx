@@ -1,7 +1,5 @@
 "use client";
 import useAuth from "@/hooks/useAuth";
-import { LoginUseCase } from "@/src/application/use-cases/auth/LoginUseCase";
-import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
 import {
 	Box,
 	Button,
@@ -14,42 +12,13 @@ import {
 import { useState } from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
-import { LoginOAuthUseCase } from "@/src/application/use-cases/auth/LoginOAuthUseCase";
 import { OAuthProvider } from "appwrite";
+import { handleLogin, handleLoginOAuth } from "@/app/actions/authActions";
 
 const LoginComponent = () => {
 	const [open, setOpen] = useState(false);
-	const authRepository = new AppwriteAuthRepository();
-	const loginUseCase = new LoginUseCase(authRepository);
-	const loginOauthUseCase = new LoginOAuthUseCase(authRepository);
 	const { loading, setLoading, setError, error } = useAuth();
-
-	const handleLogin = async (formData: FormData) => {
-		const email = formData.get("email").toString();
-		const password = formData.get("password").toString();
-
-		setLoading(true);
-		await loginUseCase.execute(email, password).catch((error) => {
-			setOpen(true);
-			setError(
-				"The user with that email and password does not exist. Please check the email and password.",
-			);
-			console.error(error);
-		});
-		setLoading(false);
-	};
-
-	const handleLoginOAuth = async (provider: OAuthProvider) => {
-		await loginOauthUseCase.execute(provider).catch((errorMessage) => {
-			setOpen(true);
-			setError(
-				"The user with that email and password does not exist. Please check the email and password.",
-			);
-			console.error(errorMessage.message);
-		});
-		setLoading(false);
-	};
-
+	
 	return (
 		<>
 			<Stack
@@ -70,7 +39,13 @@ const LoginComponent = () => {
 					</a>
 				</p>
 
-				<form action={handleLogin}>
+				<form action={async (formData) => {
+                    const result = await handleLogin(formData);
+                    if (result?.error) {
+                        setError(result.error);
+                        setOpen(true);
+                    }
+                }}>
 					<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 						<FormLabel>Email</FormLabel>
 						<Input
@@ -101,18 +76,32 @@ const LoginComponent = () => {
 				>
 					OR
 				</Divider>
-				<Button variant="solid" color="primary" startDecorator={<GoogleIcon />} aria-label="Login with Google" onClick={() => handleLoginOAuth(OAuthProvider.Google)}>
+				<Button variant="solid" color="primary" startDecorator={<GoogleIcon />} aria-label="Login with Google" onClick={async () => {
+                    const result = await handleLoginOAuth(OAuthProvider.Google);
+                    if (result?.error) {
+                        setError(result.error);
+                        setOpen(true);
+                    }
+                }}>
 					Login with Google
 				</Button>
-				<Button variant="solid" color="primary" startDecorator={<GitHubIcon />} aria-label="Login with GitHub" onClick={() => handleLoginOAuth(OAuthProvider.Github)}>
+				<Button variant="solid" color="primary" startDecorator={<GitHubIcon />} aria-label="Login with GitHub" onClick={async () => {
+                    const result = await handleLoginOAuth(OAuthProvider.Github);
+                    if (result?.error) {
+                        setError(result.error);
+                        setOpen(true);
+                    }
+                }}>
 					Login with GitHub
 				</Button>
 			</Stack>
 			<Snackbar
 				anchorOrigin={{ vertical: "top", horizontal: "center" }}
 				open={open}
+				color="danger"
 				onClose={() => setOpen(false)}
 				autoHideDuration={6000}
+				sx={{backgroundColor: "background.body"}}
 			>
 				{error}
 			</Snackbar>

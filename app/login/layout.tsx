@@ -1,6 +1,6 @@
 import MinimalLayout from "@/components/layout/MinimalLayout";
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<{ title: string; description: string; }> {
 	return {
 		title: "Login - Talent Showcase",
 		description: "Login page for Talent Showcase",

@@ -10,8 +10,9 @@ export class LoginUseCase {
 
         try {
             return await this.authRepository.login(email, password);
-        } catch (AppwriteException) {
-            throw new Error("Invalid credentials");
+        } catch (error) {
+			console.error(error);
+            // throw new Error("Invalid credentials");
         }
     }
 }

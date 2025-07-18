@@ -12,7 +12,7 @@ export class LoginUseCase {
             return await this.authRepository.login(email, password);
         } catch (error) {
 			console.error(error);
-            // throw new Error("Invalid credentials");
+            throw new Error(error.message);
         }
     }
 }

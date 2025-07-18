@@ -17,22 +17,62 @@ export const handleLogin = async (formData: FormData) => {
 
     const result = await loginUseCase.execute(email, password);
 
-    if (result) {
+    if (result.session) {
         redirect("/discover");
     }
 
     return {
-        error: "Invalid credentials",
+        error: result.error,
     };
 };
 
 export const handleLoginOAuth = async (provider: OAuthProvider) => {
     try {
-        await loginOAuthUseCase.execute(provider);
-        redirect("/discover");
+        const url = await loginOAuthUseCase.execute(provider);
+        return { url };
     } catch (error) {
         return {
             error: "Something went wrong",
         };
     }
+};
+
+export const handleRegister = async (formData: FormData) => {
+    const name = formData.get("name").toString();
+    const email = formData.get("email").toString();
+    const password = formData.get("password").toString();
+    const confirmPassword = formData.get("confirm-password").toString();
+
+	console.log(name, email, password, confirmPassword);
+
+	if (password !== confirmPassword) {
+		return {
+			error: "Passwords do not match",
+		};
+	}
+
+	return {
+		message: "Registered successfully",
+	};
+
+    // const result = await loginUseCase.execute(email, password);
+    //
+    // if (result.error) {
+    //     return {
+    //         error: result.error,
+    //     };
+    // }
+    //
+    // if (result.session) {
+    //     return {
+    //         error: "You are already logged in",
+    //     };
+    // }
+    //
+    //
+    // const user = await authRepository.createUser(name, email, password);
+    //
+    // return {
+    //     user,
+    // };
 };

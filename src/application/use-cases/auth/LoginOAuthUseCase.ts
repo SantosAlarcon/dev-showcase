@@ -4,7 +4,7 @@ import { OAuthProvider } from "appwrite";
 export class LoginOAuthUseCase {
 	constructor(private authRepository: IAuthRepository) {}
 
-	execute(provider: OAuthProvider) {
-		this.authRepository.loginOAuth(provider);
+	async execute(provider: OAuthProvider) {
+		return await this.authRepository.loginOAuth(provider);
 	}
 }

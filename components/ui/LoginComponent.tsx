@@ -76,13 +76,7 @@ const LoginComponent = () => {
 				>
 					OR
 				</Divider>
-				<Button variant="solid" color="primary" startDecorator={<GoogleIcon />} aria-label="Login with Google" onClick={async () => {
-                    const result = await handleLoginOAuth(OAuthProvider.Google);
-                    if (result?.error) {
-                        setError(result.error);
-                        setOpen(true);
-                    }
-                }}>
+				<Button variant="solid" color="primary" startDecorator={<GoogleIcon />} aria-label="Login with Google" onClick={() => handleLoginOAuth(OAuthProvider.Google)}>
 					Login with Google
 				</Button>
 				<Button variant="solid" color="primary" startDecorator={<GitHubIcon />} aria-label="Login with GitHub" onClick={async () => {

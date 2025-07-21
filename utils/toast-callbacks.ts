@@ -6,7 +6,7 @@ type CreateToastCallbacksOptions = { loadingMessage?: string };
 export const createToastCallbacks = (options: CreateToastCallbacksOptions) => {
     return {
         onStart: () => {
-            return toast.loading(options.loadingMessage || "Loading ...");
+            // return toast.loading(options.loadingMessage);
         },
         onEnd: (reference: string) => {
             toast.dismiss(reference);

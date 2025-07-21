@@ -39,13 +39,7 @@ const LoginComponent = () => {
 					</a>
 				</p>
 
-				<form action={async (formData) => {
-                    const result = await handleLogin(formData);
-                    if (result?.error) {
-                        setError(result.error);
-                        setOpen(true);
-                    }
-                }}>
+				<form action={handleLogin}>
 					<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 						<FormLabel>Email</FormLabel>
 						<Input

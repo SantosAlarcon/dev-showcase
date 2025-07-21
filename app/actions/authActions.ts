@@ -17,7 +17,7 @@ const registerUseCase = new RegisterUseCase(authRepository);
 export const handleLogin = async (
     _actionState: ActionState,
     formData: FormData,
-) => {
+): Promise<ActionState> => {
     const data = {
         email: formData.get("email").toString(),
         password: formData.get("password").toString(),
@@ -32,6 +32,7 @@ export const handleLogin = async (
     return {
         message: "Failed to login",
         status: "ERROR",
+		payload: formData,
     };
 };
 
@@ -43,6 +44,7 @@ export const handleLoginOAuth = async (_actionState: ActionState, provider: OAut
         return {
             message: "Something went wrong",
             status: "ERROR",
+			payload: error,
         };
     }
 };
@@ -50,7 +52,7 @@ export const handleLoginOAuth = async (_actionState: ActionState, provider: OAut
 export const handleRegister = async (
     _actionState: ActionState,
     formData: FormData,
-) => {
+): Promise<ActionState> => {
     const data = {
         name: formData.get("name").toString(),
         email: formData.get("email").toString(),
@@ -58,6 +60,7 @@ export const handleRegister = async (
         confirmPassword: formData.get("confirm-password").toString(),
     };
 
+	// Check if the passwords match
     if (data.password !== data.confirmPassword) {
         return {
             message: "Passwords do not match",
@@ -66,6 +69,7 @@ export const handleRegister = async (
         };
     }
 
+	// Check if the password is at least 8 characters
     if (data.password.length < 8) {
         return {
             message: "Password must be at least 8 characters",

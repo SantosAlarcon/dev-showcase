@@ -9,7 +9,8 @@ const RegisterComponent = () => {
     const [actionState, action, pending] = useActionState(
         withCallbacks(
             handleRegister,
-            createToastCallbacks({ loadingMessage: "Registering..." }),
+			// @ts-ignore
+            createToastCallbacks({}),
         ),
         { message: "", status: "NONE" },
     );

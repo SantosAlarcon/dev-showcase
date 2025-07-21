@@ -27,8 +27,6 @@ export const withCallbacks = <
 
         const result = await promise;
 
-		console.log(result);
-
         if (reference) {
             callbacks.onEnd?.(reference);
         }

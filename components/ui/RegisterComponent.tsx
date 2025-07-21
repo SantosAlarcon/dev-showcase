@@ -1,33 +1,18 @@
 "use client";
-import useAuth from "@/hooks/useAuth";
-import {
-    Box,
-    Button,
-    FormLabel,
-    Input,
-    Snackbar,
-    Stack,
-} from "@mui/joy";
-import { useState } from "react";
+import { handleRegister } from "@/app/actions/authActions";
+import { createToastCallbacks } from "@/utils/toast-callbacks";
+import { withCallbacks } from "@/utils/with-callbacks";
+import { Box, Button, FormLabel, Input, Stack } from "@mui/joy";
+import { useActionState } from "react";
 
 const RegisterComponent = () => {
-    const [open, setOpen] = useState(false);
-    const { loading, setLoading, setError, error } = useAuth();
-
-    const handleRegister = (formData: FormData) => {
-        const name = formData.get("name").toString();
-        const email = formData.get("email").toString();
-        const password = formData.get("password").toString();
-        const confirmPassword = formData.get("confirm-password").toString();
-
-        console.log(name, email, password, confirmPassword);
-
-        if (password !== confirmPassword) {
-            return {
-                error: "Passwords do not match",
-            };
-        }
-    };
+    const [actionState, action, pending] = useActionState(
+        withCallbacks(
+            handleRegister,
+            createToastCallbacks({ loadingMessage: "Registering..." }),
+        ),
+        { message: "", status: "NONE" },
+    );
 
     return (
         <>
@@ -49,7 +34,7 @@ const RegisterComponent = () => {
                     </a>
                 </p>
 
-                <form action={handleRegister}>
+                <form action={action}>
                     <Box
                         sx={{
                             display: "flex",
@@ -64,7 +49,11 @@ const RegisterComponent = () => {
                             aria-label="Introduce your name"
                             required
                             type="text"
-                            disabled={loading}
+                            disabled={pending}
+                            defaultValue={
+                                (actionState.payload?.get("name") ||
+                                    "") as string
+                            }
                         />
                         <FormLabel>Email</FormLabel>
                         <Input
@@ -73,7 +62,11 @@ const RegisterComponent = () => {
                             aria-label="Introduce a valid email address"
                             required
                             type="email"
-                            disabled={loading}
+                            disabled={pending}
+                            defaultValue={
+                                (actionState.payload?.get("email") ||
+                                    "") as string
+                            }
                         />
                         <FormLabel>Password</FormLabel>
                         <Input
@@ -82,7 +75,11 @@ const RegisterComponent = () => {
                             aria-label="Introduce your password"
                             required
                             type="password"
-                            disabled={loading}
+                            disabled={pending}
+                            defaultValue={
+                                (actionState.payload?.get("password") ||
+                                    "") as string
+                            }
                         />
                         <FormLabel>Confirm password</FormLabel>
                         <Input
@@ -91,24 +88,18 @@ const RegisterComponent = () => {
                             aria-label="Confirm your password"
                             required
                             type="password"
-                            disabled={loading}
+                            disabled={pending}
+                            defaultValue={
+                                (actionState.payload?.get("confirm-password") ||
+                                    "") as string
+                            }
                         />
-                        <Button type="submit" variant="solid" color="primary">
-                            {loading ? "Loading..." : "Register"}
+                        <Button type="submit" variant="solid" color="primary" disabled={pending}>
+							Register
                         </Button>
                     </Box>
                 </form>
             </Stack>
-            <Snackbar
-                anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                open={open}
-                color="danger"
-                onClose={() => setOpen(false)}
-                autoHideDuration={6000}
-                sx={{ backgroundColor: "background.body" }}
-            >
-                {error}
-            </Snackbar>
         </>
     );
 };

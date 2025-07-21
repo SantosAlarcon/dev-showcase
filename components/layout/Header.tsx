@@ -226,12 +226,12 @@ export default function Header() {
                                 </Button>
                                 <Button
                                     component={Link}
-                                    href="/signup"
+                                    href="/register"
                                     variant="solid"
                                     color="primary"
                                     size="sm"
                                 >
-                                    Sign Up
+                                    Register
                                 </Button>
                             </Stack>
                         </Box>

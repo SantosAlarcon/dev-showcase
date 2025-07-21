@@ -11,7 +11,7 @@ const font = Figtree({
 
 const BaseLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <html lang="en" className={font.className}>
+        <html lang="en" className={font.className} data-scroll-behavior="smooth">
             <body>
                 <Providers>
                     <div>

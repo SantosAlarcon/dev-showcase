@@ -6,73 +6,78 @@ import { LoginOAuthUseCase } from "@/src/application/use-cases/auth/LoginOAuthUs
 import { LoginUseCase } from "@/src/application/use-cases/auth/LoginUseCase";
 import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
 import { OAuthProvider } from "appwrite";
+import { RegisterUseCase } from "@/src/application/use-cases/auth/RegisterUseCase";
+import { ActionState } from "@/utils/with-callbacks";
 
 const authRepository = new AppwriteAuthRepository();
 const loginUseCase = new LoginUseCase(authRepository);
 const loginOAuthUseCase = new LoginOAuthUseCase(authRepository);
+const registerUseCase = new RegisterUseCase(authRepository);
 
-export const handleLogin = async (formData: FormData) => {
-    const email = formData.get("email").toString();
-    const password = formData.get("password").toString();
+export const handleLogin = async (
+    _actionState: ActionState,
+    formData: FormData,
+) => {
+    const data = {
+        email: formData.get("email").toString(),
+        password: formData.get("password").toString(),
+    };
 
-    const result = await loginUseCase.execute(email, password);
+    const result = await loginUseCase.execute(data.email, data.password);
 
     if (result.session) {
         redirect("/discover");
     }
 
     return {
-        error: result.error,
+        message: "Failed to login",
+        status: "ERROR",
     };
 };
 
-export const handleLoginOAuth = async (provider: OAuthProvider) => {
+export const handleLoginOAuth = async (_actionState: ActionState, provider: OAuthProvider) => {
     try {
         const url = await loginOAuthUseCase.execute(provider);
         return { url };
     } catch (error) {
         return {
-            error: "Something went wrong",
+            message: "Something went wrong",
+            status: "ERROR",
         };
     }
 };
 
-export const handleRegister = async (formData: FormData) => {
-    const name = formData.get("name").toString();
-    const email = formData.get("email").toString();
-    const password = formData.get("password").toString();
-    const confirmPassword = formData.get("confirm-password").toString();
+export const handleRegister = async (
+    _actionState: ActionState,
+    formData: FormData,
+) => {
+    const data = {
+        name: formData.get("name").toString(),
+        email: formData.get("email").toString(),
+        password: formData.get("password").toString(),
+        confirmPassword: formData.get("confirm-password").toString(),
+    };
 
-	console.log(name, email, password, confirmPassword);
+    if (data.password !== data.confirmPassword) {
+        return {
+            message: "Passwords do not match",
+            status: "ERROR",
+            payload: formData,
+        };
+    }
 
-	if (password !== confirmPassword) {
-		return {
-			error: "Passwords do not match",
-		};
-	}
+    if (data.password.length < 8) {
+        return {
+            message: "Password must be at least 8 characters",
+            status: "ERROR",
+            payload: formData,
+        };
+    }
 
-	return {
-		message: "Registered successfully",
-	};
+    await registerUseCase.execute(data.name, data.email, data.password);
 
-    // const result = await loginUseCase.execute(email, password);
-    //
-    // if (result.error) {
-    //     return {
-    //         error: result.error,
-    //     };
-    // }
-    //
-    // if (result.session) {
-    //     return {
-    //         error: "You are already logged in",
-    //     };
-    // }
-    //
-    //
-    // const user = await authRepository.createUser(name, email, password);
-    //
-    // return {
-    //     user,
-    // };
+    return {
+        message: "Registered successfully",
+        status: "SUCCESS",
+    };
 };

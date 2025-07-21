@@ -21,7 +21,6 @@ export class AppwriteAuthRepository implements IAuthRepository {
         }
     }
     loginOAuth(provider: OAuthProvider) {
-		console.log(provider);
         account.createOAuth2Session(
             provider,
             `${process.env.NEXT_PUBLIC_ADDRESS}`,
@@ -34,16 +33,16 @@ export class AppwriteAuthRepository implements IAuthRepository {
         email: string,
         password: string,
     ): Promise<AuthUser | null> {
-        await svAccount.create(ID.unique(), email, password, name);
+        await account.create(ID.unique(), email, password, name);
         await this.login(email, password);
         return this.getCurrentUser();
     }
     async logout(): Promise<void> {
-        await svAccount.deleteSession("current");
+        await account.deleteSession("current");
     }
     async getCurrentUser(): Promise<AuthUser | null> {
         try {
-            const user = await svAccount.get();
+            const user = await account.get();
             return {
                 id: user.$id,
                 name: user.name,

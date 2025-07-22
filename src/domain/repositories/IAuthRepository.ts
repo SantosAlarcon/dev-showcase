@@ -7,4 +7,5 @@ export interface IAuthRepository {
 	register(name: string, email: string, password: string): Promise<AuthUser | null>;
     logout(): Promise<any>;
     getCurrentUser(): Promise<AuthUser | any>;
+	checkUserExists(email: string): Promise<boolean>;
 }

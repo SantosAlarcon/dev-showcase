@@ -8,11 +8,13 @@ import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRe
 import { OAuthProvider } from "appwrite";
 import { RegisterUseCase } from "@/src/application/use-cases/auth/RegisterUseCase";
 import { ActionState } from "@/utils/with-callbacks";
+import { CheckExistingUserUseCase } from "@/src/application/use-cases/auth/CheckExistingUserUseCase";
 
 const authRepository = new AppwriteAuthRepository();
 const loginUseCase = new LoginUseCase(authRepository);
 const loginOAuthUseCase = new LoginOAuthUseCase(authRepository);
 const registerUseCase = new RegisterUseCase(authRepository);
+const checkExistingUserUseCase = new CheckExistingUserUseCase(authRepository);
 
 export const handleLogin = async (
     _actionState: ActionState,
@@ -73,6 +75,15 @@ export const handleRegister = async (
     if (data.password.length < 8) {
         return {
             message: "Password must be at least 8 characters",
+            status: "ERROR",
+            payload: formData,
+        };
+    }
+
+	// Check if the user already exists in the Appwrite Users list
+    if (await checkExistingUserUseCase.execute(data.email)) {
+        return {
+            message: "There is already an account with this email. Please user another email.",
             status: "ERROR",
             payload: formData,
         };

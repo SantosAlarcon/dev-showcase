@@ -1,8 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
-	// Get the language used in the browser
-	// @ts-ignore
 
 	if (request.nextUrl.pathname.startsWith("/api/") ||
 		request.nextUrl.pathname.startsWith("/login/") ||

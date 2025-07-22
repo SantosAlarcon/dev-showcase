@@ -5,9 +5,12 @@ export async function GET(req: NextRequest) {
 	const code = searchParams.get("code");
 	const state = searchParams.get("state");
 
+	console.log("code:", code);
+	console.log("state:", state);
+
 	if (code && state) {
 		try {
-			return NextResponse.redirect(new URL("/", req.url));
+			return NextResponse.redirect(new URL("/discover", req.url));
 		} catch (error) {
 			console.error("Error during OAuth callback:", error);
 			return NextResponse.redirect(new URL("/login?error=oauth_failed", req.url));

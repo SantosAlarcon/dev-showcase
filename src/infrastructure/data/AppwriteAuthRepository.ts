@@ -1,4 +1,4 @@
-import client, { account, svAccount, svClient } from "@/lib/appwrite/client";
+import { account } from "@/lib/appwrite/client";
 import { IAuthRepository } from "../../domain/repositories/IAuthRepository";
 import { AuthUser } from "@/src/domain/entities/user";
 import { ID, OAuthProvider } from "appwrite";
@@ -34,11 +34,12 @@ export class AppwriteAuthRepository implements IAuthRepository {
         }
     }
     loginOAuth(provider: OAuthProvider) {
-        account.createOAuth2Session(
+        account.createOAuth2Token(
             provider,
-            `${process.env.NEXT_PUBLIC_ADDRESS}`,
-            `${process.env.NEXT_PUBLIC_ADDRESS}/login`
+            `${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth`,
+            `${process.env.NEXT_PUBLIC_ADDRESS}/login`,
         );
+
     }
 
     async register(

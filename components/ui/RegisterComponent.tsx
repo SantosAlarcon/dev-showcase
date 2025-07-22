@@ -29,9 +29,9 @@ const RegisterComponent = () => {
             >
                 <h1>Register</h1>
                 <p>
-                    Don't have an account yet?{" "}
-                    <a href={"#"} aria-label="Create new account here">
-                        Create one here
+                    Already have an account?{" "}
+                    <a href={"/login"} aria-label="Go to the login page">
+                        Login here
                     </a>
                 </p>
 

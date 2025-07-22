@@ -11,13 +11,30 @@ import { useActionState } from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 import { OAuthProvider } from "appwrite";
-import { handleLogin, handleLoginOAuth } from "@/app/actions/authActions";
+import { handleLogin } from "@/app/actions/authActions";
 import { createToastCallbacks } from "@/utils/toast-callbacks";
 import { withCallbacks } from "@/utils/with-callbacks";
+import { LoginOAuthUseCase } from "@/src/application/use-cases/auth/LoginOAuthUseCase";
+import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
 
 const LoginComponent = () => {
 	// @ts-ignore
 	const [actionState, action, pending] = useActionState(withCallbacks(handleLogin, createToastCallbacks({})), {message: "", status: "NONE"});
+	const authRepository = new AppwriteAuthRepository();
+	const loginOAuthUseCase = new LoginOAuthUseCase(authRepository);
+
+	const handleLoginOAuth = async (provider: OAuthProvider) => {
+		try {
+			const url = await loginOAuthUseCase.execute(provider);
+			return { url };
+		} catch (error) {
+			console.error("Error during OAuth login:", error);
+			return {
+				message: "Something went wrong",
+				status: "ERROR",
+			};
+		}
+	};
 
 	return (
 			<Stack
@@ -33,7 +50,7 @@ const LoginComponent = () => {
 				<h1>Login</h1>
 				<p>
 					Don't have an account yet?{" "}
-					<a href={"#"} aria-label="Create new account here">
+					<a href={"/register"} aria-label="Go to the register page">
 						Create one here
 					</a>
 				</p>
@@ -71,11 +88,9 @@ const LoginComponent = () => {
 				>
 					OR
 				</Divider>
-				{/* @ts-ignore */}
 				<Button variant="solid" color="primary" startDecorator={<GoogleIcon />} aria-label="Login with Google" onClick={() => handleLoginOAuth(OAuthProvider.Google)}>
 					Login with Google
 				</Button>
-				{/* @ts-ignore */}
 				<Button variant="solid" color="primary" startDecorator={<GitHubIcon />} aria-label="Login with GitHub" onClick={() => handleLoginOAuth(OAuthProvider.Github)}>
 					Login with GitHub
 				</Button>

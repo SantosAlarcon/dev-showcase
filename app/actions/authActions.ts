@@ -39,7 +39,7 @@ export const handleLogin = async (
     };
 };
 
-export const handleLoginOAuth = async (_actionState: ActionState, provider: OAuthProvider) => {
+export const handleLoginOAuth = async (provider: OAuthProvider) => {
     try {
         const url = await loginOAuthUseCase.execute(provider);
         return { url };

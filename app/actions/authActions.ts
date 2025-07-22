@@ -31,8 +31,9 @@ export const handleLogin = async (
         redirect("/discover");
     }
 
+	// Return an error message if the login fails (invalid credentials or the user is not found)
     return {
-        message: "Failed to login",
+        message: "Invalid credentials. Please check your email and password.",
         status: "ERROR",
 		payload: formData,
     };

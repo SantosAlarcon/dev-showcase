@@ -1,26 +1,25 @@
 "use client";
-import useAuth from "@/hooks/useAuth";
 import {
 	Box,
 	Button,
 	Divider,
 	FormLabel,
 	Input,
-	Snackbar,
 	Stack,
 } from "@mui/joy";
-import { useState } from "react";
+import { useActionState } from "react";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import GoogleIcon from "@mui/icons-material/Google";
 import { OAuthProvider } from "appwrite";
 import { handleLogin, handleLoginOAuth } from "@/app/actions/authActions";
+import { createToastCallbacks } from "@/utils/toast-callbacks";
+import { withCallbacks } from "@/utils/with-callbacks";
 
 const LoginComponent = () => {
-	const [open, setOpen] = useState(false);
-	const { loading, setLoading, setError, error } = useAuth();
-	
+	// @ts-ignore
+	const [actionState, action, pending] = useActionState(withCallbacks(handleLogin, createToastCallbacks({})), {message: "", status: "NONE"});
+
 	return (
-		<>
 			<Stack
 				spacing={2}
 				direction={"column"}
@@ -39,7 +38,7 @@ const LoginComponent = () => {
 					</a>
 				</p>
 
-				<form action={handleLogin}>
+				<form action={action}>
 					<Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
 						<FormLabel>Email</FormLabel>
 						<Input
@@ -48,7 +47,8 @@ const LoginComponent = () => {
 							aria-label="Introduce a valid email address"
 							required
 							type="email"
-							disabled={loading}
+							disabled={pending}
+							defaultValue={(actionState.payload?.get("email") || "") as string}
 						/>
 						<FormLabel>Password</FormLabel>
 						<Input
@@ -57,10 +57,11 @@ const LoginComponent = () => {
 							aria-label="Introduce your password"
 							required
 							type="password"
-							disabled={loading}
+							disabled={pending}
+							defaultValue={(actionState.payload?.get("password") || "") as string}
 						/>
-						<Button type="submit" variant="solid" color="primary">
-							{loading ? "Loading..." : "Login"}
+						<Button type="submit" variant="solid" color="primary" disabled={pending}>
+							Login
 						</Button>
 					</Box>
 				</form>
@@ -70,30 +71,15 @@ const LoginComponent = () => {
 				>
 					OR
 				</Divider>
+				{/* @ts-ignore */}
 				<Button variant="solid" color="primary" startDecorator={<GoogleIcon />} aria-label="Login with Google" onClick={() => handleLoginOAuth(OAuthProvider.Google)}>
 					Login with Google
 				</Button>
-				<Button variant="solid" color="primary" startDecorator={<GitHubIcon />} aria-label="Login with GitHub" onClick={async () => {
-                    const result = await handleLoginOAuth(OAuthProvider.Github);
-                    if (result?.error) {
-                        setError(result.error);
-                        setOpen(true);
-                    }
-                }}>
+				{/* @ts-ignore */}
+				<Button variant="solid" color="primary" startDecorator={<GitHubIcon />} aria-label="Login with GitHub" onClick={() => handleLoginOAuth(OAuthProvider.Github)}>
 					Login with GitHub
 				</Button>
 			</Stack>
-			<Snackbar
-				anchorOrigin={{ vertical: "top", horizontal: "center" }}
-				open={open}
-				color="danger"
-				onClose={() => setOpen(false)}
-				autoHideDuration={6000}
-				sx={{backgroundColor: "background.body"}}
-			>
-				{error}
-			</Snackbar>
-		</>
 	);
 };
 

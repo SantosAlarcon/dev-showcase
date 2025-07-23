@@ -2,13 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
 	const { searchParams } = new URL(req.url);
-	const code = searchParams.get("code");
-	const state = searchParams.get("state");
+	const secret = searchParams.get("secret");
+	const userId = searchParams.get("userId");
 
-	console.log("code:", code);
-	console.log("state:", state);
-
-	if (code && state) {
+	if (secret && userId) {
 		try {
 			return NextResponse.redirect(new URL("/discover", req.url));
 		} catch (error) {

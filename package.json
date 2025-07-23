@@ -7,6 +7,7 @@
         "build": "next build --turbopack",
         "start": "next start",
         "lint": "next lint",
+        "test": "mocha --require ts-node/register --extensions ts,tsx 'test/**/*.test.ts'",
         "typeorm": "typeorm-ts-node-commonjs"
     },
     "dependencies": {

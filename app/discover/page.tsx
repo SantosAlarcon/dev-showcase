@@ -1,8 +1,7 @@
 "use client";
 
 import { skillsList } from "@/constants/skills";
-import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import {
     Box,
     Typography,
@@ -734,7 +733,7 @@ export default function DiscoverPage() {
                                     py: 1,
                                     display: "flex",
                                     flexDirection: "column",
-                                    gap: 2,
+                                    gap: { xs: 0, md: 2 },
                                 }}
                             >
                                 <Box
@@ -745,7 +744,12 @@ export default function DiscoverPage() {
                                         alignItems: "center",
                                     }}
                                 >
-                                    <Box sx={{ display: "flex", gap: 1 }}>
+                                    <Box
+                                        sx={{
+                                            display: { xs: "none", md: "flex" },
+                                            gap: 1,
+                                        }}
+                                    >
                                         <Skeleton
                                             variant="rectangular"
                                             height={15}
@@ -754,7 +758,7 @@ export default function DiscoverPage() {
                                     </Box>
                                     <Box
                                         sx={{
-                                            display: "flex",
+                                            display: { xs: "none", md: "flex" },
                                             gap: 1,
                                             alignItems: "center",
                                         }}
@@ -773,15 +777,16 @@ export default function DiscoverPage() {
                                     </Box>
                                 </Box>
                                 <Grid
-                                    xs={12}
                                     md={12.6}
                                     container
                                     rowSpacing={2}
                                     columnSpacing={4}
+                                    flexWrap={"wrap"}
+                                    display={"flex"}
                                 >
                                     {Array.from({ length: 9 }).map(
                                         (_, index) => (
-                                            <Grid key={index} xs={12} md={4}>
+                                            <Grid key={index} xs={6} md={4}>
                                                 <Skeleton
                                                     variant="rectangular"
                                                     sx={{ borderRadius: "lg" }}

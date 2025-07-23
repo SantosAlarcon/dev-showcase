@@ -1,0 +1,63 @@
+
+import { expect } from 'chai';
+import { GetAllSkillsUseCase } from '../../../../src/application/use-cases/developers/GetAllSkillsUseCase';
+import { IDeveloperRepository } from '../../../../src/domain/repositories/IDeveloperRepository';
+import { DeveloperInfo } from '../../../../src/domain/entities/developer';
+
+// Mock implementation of the IDeveloperRepository for testing purposes
+class MockDeveloperRepository implements IDeveloperRepository {
+  getAllSkills(skills: string): string[] {
+    if (skills === 'all') {
+      return ['React', 'Node.js', 'TypeScript', 'JavaScript'];
+    }
+    return [];
+  }
+  getAllDevelopers(): Promise<DeveloperInfo[]> {
+    throw new Error('Method not implemented.');
+  }
+  getDeveloperById(id: string): Promise<DeveloperInfo | null> {
+    throw new Error('Method not implemented.');
+  }
+  getFeaturedDevelopers(): Promise<DeveloperInfo[]> {
+    throw new Error('Method not implemented.');
+  }
+  getDevelopersByCity(city: string): Promise<DeveloperInfo[]> {
+    throw new Error('Method not implemented.');
+  }
+  getDevelopersByCountry(country: string): Promise<DeveloperInfo[]> {
+    throw new Error('Method not implemented.');
+  }
+  getDevelopersByRole(role: string): Promise<DeveloperInfo[]> {
+    throw new Error('Method not implemented.');
+  }
+  getDevelopersByState(state: string): Promise<DeveloperInfo[]> {
+    throw new Error('Method not implemented.');
+  }
+}
+
+describe('GetAllSkillsUseCase', () => {
+  it('should return a list of skills', () => {
+    // Arrange
+    const mockDeveloperRepository = new MockDeveloperRepository();
+    const getAllSkillsUseCase = new GetAllSkillsUseCase(mockDeveloperRepository);
+    const expectedSkills = ['React', 'Node.js', 'TypeScript', 'JavaScript'];
+
+    // Act
+    const result = getAllSkillsUseCase.execute('all');
+
+    // Assert
+    expect(result).to.deep.equal(expectedSkills);
+  });
+
+  it('should return an empty array if no skills are found', () => {
+    // Arrange
+    const mockDeveloperRepository = new MockDeveloperRepository();
+    const getAllSkillsUseCase = new GetAllSkillsUseCase(mockDeveloperRepository);
+
+    // Act
+    const result = getAllSkillsUseCase.execute('none');
+
+    // Assert
+    expect(result).to.be.an('array').that.is.empty;
+  });
+});

@@ -18,8 +18,15 @@ import TechnologyTags from "@/components/home/TechnologyTags";
 import Image from "next/image";
 import BaseLayout from "@/components/layout/BaseLayout";
 import LatestProjects from "@/components/home/LatestProjects";
+import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
+import { GetCurrentUserUseCase } from "@/src/application/use-cases/auth/GetCurrentUserUseCase";
 
-export default function Home() {
+export default async function Home() {
+	const authRepository = new AppwriteAuthRepository();
+	const getCurrentUserCase = new GetCurrentUserUseCase(authRepository);
+	const user = await getCurrentUserCase.execute();
+
+	console.log(`User: ${user}`);
 
     return (
         <BaseLayout>

@@ -1,4 +1,4 @@
-import { OAuthProvider } from "appwrite";
+import { Models, OAuthProvider } from "appwrite";
 import { AuthUser } from "../entities/user";
 
 export interface IAuthRepository {
@@ -6,6 +6,6 @@ export interface IAuthRepository {
     loginOAuth(provider: OAuthProvider): void;
 	register(name: string, email: string, password: string): Promise<AuthUser | null>;
     logout(): Promise<any>;
-    getCurrentUser(): Promise<AuthUser | any>;
+    getCurrentUser(): Promise<Models.User<Models.Preferences> | null>;
 	checkUserExists(email: string): Promise<boolean>;
 }

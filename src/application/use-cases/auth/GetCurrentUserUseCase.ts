@@ -1,6 +1,6 @@
 import { IAuthRepository } from "@/src/domain/repositories/IAuthRepository";
 
-export class GetCurrentUseCase {
+export class GetCurrentUserUseCase {
     constructor(private authRepository: IAuthRepository) {}
 
     async execute() {

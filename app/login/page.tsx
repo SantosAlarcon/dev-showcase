@@ -36,7 +36,7 @@ const LoginPage = () => {
                     </Box>
                 </Grid>
             </Grid>
-			<Toaster toastOptions={{ duration: 3000 }} />
+            <Toaster toastOptions={{ duration: 3000 }} />
         </>
     );
 };

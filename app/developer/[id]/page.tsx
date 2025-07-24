@@ -343,7 +343,10 @@ export default async function DeveloperProfile(props: {
                                             sx={{
                                                 display: "flex",
                                                 alignItems: "center",
-												justifyContent: { xs: "center", md: "flex-start" },
+                                                justifyContent: {
+                                                    xs: "center",
+                                                    md: "flex-start",
+                                                },
                                                 gap: 0.5,
                                             }}
                                         >

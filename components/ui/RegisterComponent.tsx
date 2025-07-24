@@ -9,7 +9,7 @@ const RegisterComponent = () => {
     const [actionState, action, pending] = useActionState(
         withCallbacks(
             handleRegister,
-			// @ts-ignore
+            // @ts-ignore
             createToastCallbacks({}),
         ),
         { message: "", status: "NONE" },
@@ -95,8 +95,13 @@ const RegisterComponent = () => {
                                     "") as string
                             }
                         />
-                        <Button type="submit" variant="solid" color="primary" disabled={pending}>
-							Register
+                        <Button
+                            type="submit"
+                            variant="solid"
+                            color="primary"
+                            disabled={pending}
+                        >
+                            Register
                         </Button>
                     </Box>
                 </form>

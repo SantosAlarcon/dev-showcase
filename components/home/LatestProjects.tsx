@@ -6,8 +6,8 @@ import GridProjectCard from "../ui/GridProjectCard";
 import { AppwriteProjectRepository } from "@/src/infrastructure/data/AppwriteProjectRepository";
 
 export default async function LatestProjects() {
-	const projectRepository = new AppwriteProjectRepository();
-	const projectList = await projectRepository.getLatestProjects();
+    const projectRepository = new AppwriteProjectRepository();
+    const projectList = await projectRepository.getLatestProjects();
 
     return (
         <Box
@@ -69,7 +69,11 @@ export default async function LatestProjects() {
 
                 <Grid container spacing={3}>
                     {projectList.map((project, index: number) => (
-                        <GridProjectCard key={project.$id} project={project} index={index} />
+                        <GridProjectCard
+                            key={project.$id}
+                            project={project}
+                            index={index}
+                        />
                     ))}
                 </Grid>
             </Container>

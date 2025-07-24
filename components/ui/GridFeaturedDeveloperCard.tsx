@@ -25,10 +25,10 @@ const GridFeaturedDeveloperCard = ({
     developer: DeveloperInfo;
     index: number;
 }) => {
-	const developerRepository = new AppwriteDeveloperRepository();
-	const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
-	// @ts-ignore
-	const skills = getAllSkillsUseCase.execute(developer.skills);
+    const developerRepository = new AppwriteDeveloperRepository();
+    const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
+    // @ts-ignore
+    const skills = getAllSkillsUseCase.execute(developer.skills);
 
     return (
         <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
@@ -70,7 +70,7 @@ const GridFeaturedDeveloperCard = ({
                                     width={512}
                                     height={512}
                                     priority
-									fetchPriority="high"
+                                    fetchPriority="high"
                                     decoding="async"
                                 />
                             </object>
@@ -193,13 +193,11 @@ const GridFeaturedDeveloperCard = ({
                             useFlexGap
                             sx={{ horizontalGap: 0.5, verticalGap: 1 }}
                         >
-                            {skills
-                                .slice(0, 4)
-                                .map((skill: string) => (
-                                    <Chip key={skill} size="sm" variant="soft">
-                                        {skill}
-                                    </Chip>
-                                ))}
+                            {skills.slice(0, 4).map((skill: string) => (
+                                <Chip key={skill} size="sm" variant="soft">
+                                    {skill}
+                                </Chip>
+                            ))}
 
                             {skills.length > 4 && (
                                 <Chip size="sm" variant="soft">

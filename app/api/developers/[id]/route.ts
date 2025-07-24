@@ -35,22 +35,30 @@ import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteD
  *                   type: string
  */
 export async function GET(
-	_request: NextRequest,
-	{ params }: { params: Promise<{ id: string }> },
+    _request: NextRequest,
+    { params }: { params: Promise<{ id: string }> },
 ) {
-	const { id } = await params;
-	const developerRepository = new AppwriteDeveloperRepository();
-	const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(developerRepository);
+    const { id } = await params;
+    const developerRepository = new AppwriteDeveloperRepository();
+    const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(
+        developerRepository,
+    );
 
-	try {
-		const developer = await getDeveloperByIdUseCase.execute(id);
+    try {
+        const developer = await getDeveloperByIdUseCase.execute(id);
 
-		if (!developer) {
-			return NextResponse.json({ error: "Developer not found" }, { status: 404 });
-		}
+        if (!developer) {
+            return NextResponse.json(
+                { error: "Developer not found" },
+                { status: 404 },
+            );
+        }
 
-		return NextResponse.json(developer);
-	} catch (error) {
-		return NextResponse.json({ error: "Failed to fetch developer" }, { status: 500 });
-	}
+        return NextResponse.json(developer);
+    } catch (error) {
+        return NextResponse.json(
+            { error: "Failed to fetch developer" },
+            { status: 500 },
+        );
+    }
 }

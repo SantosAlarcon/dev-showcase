@@ -1,10 +1,10 @@
-import { Project } from '../../../domain/entities/project';
-import { IProjectRepository } from '../../../domain/repositories/IProjectRepository';
+import { Project } from "../../../domain/entities/project";
+import { IProjectRepository } from "../../../domain/repositories/IProjectRepository";
 
 export class GetProjectsByDeveloperIdUseCase {
-  constructor(private projectRepository: IProjectRepository) {}
+    constructor(private projectRepository: IProjectRepository) {}
 
-  async execute(developerId: string): Promise<Project[]> {
-    return this.projectRepository.getProjectsByDeveloperId(developerId);
-  }
+    async execute(developerId: string): Promise<Project[]> {
+        return this.projectRepository.getProjectsByDeveloperId(developerId);
+    }
 }

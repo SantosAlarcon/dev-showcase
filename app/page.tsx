@@ -19,14 +19,12 @@ import Image from "next/image";
 import BaseLayout from "@/components/layout/BaseLayout";
 import LatestProjects from "@/components/home/LatestProjects";
 import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
-import { GetCurrentUserUseCase } from "@/src/application/use-cases/auth/GetCurrentUserUseCase";
+import { GetCurrentSessionUseCase } from "@/src/application/use-cases/auth/GetCurrentSessionUseCase";
 
 export default async function Home() {
-	const authRepository = new AppwriteAuthRepository();
-	const getCurrentUserCase = new GetCurrentUserUseCase(authRepository);
-	const user = await getCurrentUserCase.execute();
-
-	console.log(`User: ${user}`);
+    const authRepository = new AppwriteAuthRepository();
+    const getCurrentSessionCase = new GetCurrentSessionUseCase(authRepository);
+    const session = await getCurrentSessionCase.execute();
 
     return (
         <BaseLayout>
@@ -261,7 +259,7 @@ export default async function Home() {
                 <FeaturedDevelopers />
 
                 {/* Latest Projects Section */}
-				<LatestProjects />
+                <LatestProjects />
 
                 {/* Testimonials Section */}
                 <TestimonialSection />

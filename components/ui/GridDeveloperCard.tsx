@@ -31,11 +31,11 @@ const GridDeveloperCard = ({
     toggleLike: (id: string) => void;
     isLiked: boolean;
 }) => {
-	const developerRepository = new AppwriteDeveloperRepository();
-	const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
+    const developerRepository = new AppwriteDeveloperRepository();
+    const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
 
-	// @ts-ignore
-	const skills = getAllSkillsUseCase.execute(developer.skills);
+    // @ts-ignore
+    const skills = getAllSkillsUseCase.execute(developer.skills);
 
     return (
         <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
@@ -77,7 +77,7 @@ const GridDeveloperCard = ({
                                     width={512}
                                     height={512}
                                     priority
-									fetchPriority="high"
+                                    fetchPriority="high"
                                     decoding="async"
                                 />
                             </object>
@@ -135,8 +135,18 @@ const GridDeveloperCard = ({
                                     onClick={() => toggleLike(developer.id)}
                                     aria-label="Like"
                                 >
-                                    <Tooltip title={isLiked ? "Unlike" : "Like"} variant="solid" arrow>
-                                        <Heart size={20} fill={isLiked ? "red" : "none"} stroke={isLiked ? "red" : "currentColor"} />
+                                    <Tooltip
+                                        title={isLiked ? "Unlike" : "Like"}
+                                        variant="solid"
+                                        arrow
+                                    >
+                                        <Heart
+                                            size={20}
+                                            fill={isLiked ? "red" : "none"}
+                                            stroke={
+                                                isLiked ? "red" : "currentColor"
+                                            }
+                                        />
                                     </Tooltip>
                                 </IconButton>
                                 <IconButton
@@ -163,7 +173,7 @@ const GridDeveloperCard = ({
                                 aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}
                                 level="title-lg"
                                 fontWeight={700}
-								fontSize={"1.25rem"}
+                                fontSize={"1.25rem"}
                                 textColor={"text.primary"}
                             >
                                 {developer.name} {developer.surname}
@@ -195,7 +205,11 @@ const GridDeveloperCard = ({
                                     gap: 0.75,
                                 }}
                             >
-                                <MapPin stroke="currentColor" strokeWidth={1} size={19} />
+                                <MapPin
+                                    stroke="currentColor"
+                                    strokeWidth={1}
+                                    size={19}
+                                />
                                 {developer.city}
                             </Typography>
                             <Typography
@@ -207,7 +221,11 @@ const GridDeveloperCard = ({
                                     gap: 0.75,
                                 }}
                             >
-                                <Briefcase stroke="currentColor" strokeWidth={1} size={19} />
+                                <Briefcase
+                                    stroke="currentColor"
+                                    strokeWidth={1}
+                                    size={19}
+                                />
                                 {developer.availability}
                             </Typography>
                         </Box>
@@ -219,13 +237,11 @@ const GridDeveloperCard = ({
                             useFlexGap
                             sx={{ horizontalGap: 0.5, verticalGap: 1 }}
                         >
-                            {skills
-                                .slice(0, 4)
-                                .map((skill: string) => (
-                                    <Chip key={skill} size="sm" variant="soft">
-                                        {skill}
-                                    </Chip>
-                                ))}
+                            {skills.slice(0, 4).map((skill: string) => (
+                                <Chip key={skill} size="sm" variant="soft">
+                                    {skill}
+                                </Chip>
+                            ))}
 
                             {skills.length > 4 && (
                                 <Chip size="sm" variant="soft">

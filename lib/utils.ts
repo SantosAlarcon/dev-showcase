@@ -2,10 +2,10 @@ import { Experience } from "@/src/domain/entities/developer";
 import { Period } from "@/src/domain/entities/ui";
 
 export const calculateDatePeriod = (dateStart: Date, dateEnd: Date) => {
-	const years = dateEnd.getFullYear() - dateStart.getFullYear();
-	const months = dateEnd.getMonth() - dateStart.getMonth();
-	const days = dateEnd.getDay() - dateStart.getDay();
-	return { years, months, days };
+    const years = dateEnd.getFullYear() - dateStart.getFullYear();
+    const months = dateEnd.getMonth() - dateStart.getMonth();
+    const days = dateEnd.getDay() - dateStart.getDay();
+    return { years, months, days };
 };
 
 export const calculateTotalExperience = (workExperience: Experience[]) => {
@@ -39,53 +39,53 @@ export const calculateTotalExperience = (workExperience: Experience[]) => {
 };
 
 export const calculateTotalPeriods = (periods: Period[]) => {
-	return periods.reduce((total, period: Period) => {
-		return {
-			years: total.years + period.years,
-			months: total.months + period.months,
-			days: total.days + period.days,
-		};
-	});
+    return periods.reduce((total, period: Period) => {
+        return {
+            years: total.years + period.years,
+            months: total.months + period.months,
+            days: total.days + period.days,
+        };
+    });
 };
 
 export const getLocaleCurrency = (locale: string, value: string) => {
-	let currency: string = "";
+    let currency: string = "";
 
-	switch (locale) {
-		case "es-ES":
-			currency = "EUR";
-			break;
-		case "es-MX":
-			currency = "MXN";
-			break;
-		case "es-AR":
-			currency = "ARS";
-			break;
-		case "en-US":
-			currency = "USD";
-			break;
-		case "en-ID":
-			currency = "IDR";
-			break;
-		case "ja-JP":
-			currency = "JPY";
-			break;
-		case "ko-KR":
-			currency = "KRW";
-			break;
-		case "zh-CN":
-			currency = "CNY";
-			break;
-		default:
-			currency = "EUR";
-			break;
-	}
+    switch (locale) {
+        case "es-ES":
+            currency = "EUR";
+            break;
+        case "es-MX":
+            currency = "MXN";
+            break;
+        case "es-AR":
+            currency = "ARS";
+            break;
+        case "en-US":
+            currency = "USD";
+            break;
+        case "en-ID":
+            currency = "IDR";
+            break;
+        case "ja-JP":
+            currency = "JPY";
+            break;
+        case "ko-KR":
+            currency = "KRW";
+            break;
+        case "zh-CN":
+            currency = "CNY";
+            break;
+        default:
+            currency = "EUR";
+            break;
+    }
 
-	const localeCurrency = parseInt(value).toLocaleString(locale, {
-		style: 'currency',
-		currency: currency,
-		minimumFractionDigits: 0,
-		maximumFractionDigits: 0,
-	});
-	return localeCurrency;
+    const localeCurrency = parseInt(value).toLocaleString(locale, {
+        style: "currency",
+        currency: currency,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    });
+    return localeCurrency;
 };

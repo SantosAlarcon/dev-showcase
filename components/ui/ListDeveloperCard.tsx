@@ -27,13 +27,13 @@ const ListDeveloperCard = ({
     toggleLike: (id: string) => void;
     isLiked: boolean;
 }) => {
-	const developerRepository = new AppwriteDeveloperRepository();
-	const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
+    const developerRepository = new AppwriteDeveloperRepository();
+    const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
 
-	// @ts-ignore
-	const skills = getAllSkillsUseCase.execute(developer.skills);
-    
-	return (
+    // @ts-ignore
+    const skills = getAllSkillsUseCase.execute(developer.skills);
+
+    return (
         <motion.div
             key={developer.id}
             initial={{ opacity: 0, y: 20 }}
@@ -100,7 +100,11 @@ const ListDeveloperCard = ({
                                     gap: 1,
                                 }}
                             >
-                                <Typography level="title-lg" fontWeight={700} fontSize={"1.5rem"}>
+                                <Typography
+                                    level="title-lg"
+                                    fontWeight={700}
+                                    fontSize={"1.5rem"}
+                                >
                                     <Link
                                         aria-label={`Go to ${developer.name} ${developer.surname} profile`}
                                         href={`/developer/${developer.id}`}
@@ -153,7 +157,9 @@ const ListDeveloperCard = ({
                                 >
                                     <Heart
                                         size={16}
-										stroke={isLiked ? "red" : "currentColor"}
+                                        stroke={
+                                            isLiked ? "red" : "currentColor"
+                                        }
                                         fill={isLiked ? "red" : "none"}
                                     />
                                 </IconButton>
@@ -238,13 +244,11 @@ const ListDeveloperCard = ({
                         useFlexGap
                         sx={{ gap: 0.5 }}
                     >
-                        {skills
-                            .slice(0, 5)
-                            .map((skill) => (
-                                <Chip key={skill} size="sm" variant="soft">
-                                    {skill}
-                                </Chip>
-                            ))}
+                        {skills.slice(0, 5).map((skill) => (
+                            <Chip key={skill} size="sm" variant="soft">
+                                {skill}
+                            </Chip>
+                        ))}
                         {skills.length > 5 && (
                             <Chip size="sm" variant="soft">
                                 +{skills.length - 5}

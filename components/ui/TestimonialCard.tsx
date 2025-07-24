@@ -4,7 +4,10 @@ import * as motion from "motion/react-client";
 const TestimonialCard = ({
     testimonial,
     index,
-}: { testimonial: Testimonial; index: number }) => {
+}: {
+    testimonial: Testimonial;
+    index: number;
+}) => {
     return (
         <Grid key={testimonial.id} xs={12} sm={6} md={4}>
             <motion.div
@@ -23,7 +26,7 @@ const TestimonialCard = ({
                         height: "100%",
                         display: "flex",
                         flexDirection: "column",
-						alignItems: { xs: "center", md: "flex-start" },
+                        alignItems: { xs: "center", md: "flex-start" },
                         position: "relative",
                         overflow: "visible",
                         transition: "all 0.3s ease",

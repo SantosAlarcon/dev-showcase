@@ -8,14 +8,15 @@ import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteD
 import { DeveloperInfo } from "@/src/domain/entities/developer";
 
 export default async function FeaturedDevelopers() {
-	const developerRepository = new AppwriteDeveloperRepository();
-	const featuredDevelopers = await developerRepository.getFeaturedDevelopers();
+    const developerRepository = new AppwriteDeveloperRepository();
+    const featuredDevelopers =
+        await developerRepository.getFeaturedDevelopers();
 
     return (
         <Box
             sx={{
                 py: { xs: 8, md: 12 },
-				px: 2,
+                px: 2,
                 bgcolor: "background.body",
             }}
         >
@@ -70,13 +71,15 @@ export default async function FeaturedDevelopers() {
                 </Box>
 
                 <Grid container spacing={3}>
-                    {featuredDevelopers.map((developer: DeveloperInfo, index: number) => (
-                        <GridFeaturedDeveloperCard
-                            developer={developer}
-							key={developer.id}
-                            index={index}
-                        />
-                    ))}
+                    {featuredDevelopers.map(
+                        (developer: DeveloperInfo, index: number) => (
+                            <GridFeaturedDeveloperCard
+                                developer={developer}
+                                key={developer.id}
+                                index={index}
+                            />
+                        ),
+                    )}
                 </Grid>
             </Container>
         </Box>

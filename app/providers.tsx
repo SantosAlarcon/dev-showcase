@@ -7,49 +7,49 @@ import theme from "@/lib/theme";
 import { ColorMode } from "@/src/domain/entities/ui";
 
 interface ColorModeContextProps {
-	mode: ColorMode;
-	setMode: (mode: ColorMode) => void;
+    mode: ColorMode;
+    setMode: (mode: ColorMode) => void;
 }
 
 const ColorModeContext = createContext<ColorModeContextProps>({
-	mode: "system",
-	setMode: () => {},
+    mode: "system",
+    setMode: () => {},
 });
 
 export const useColorMode = () => useContext(ColorModeContext);
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-	const [mode, setMode] = useState<ColorMode>("system");
-	const [mounted, setMounted] = useState(false);
+    const [mode, setMode] = useState<ColorMode>("system");
+    const [mounted, setMounted] = useState(false);
 
-	useEffect(() => {
-		setMounted(true);
-		const savedMode = localStorage.getItem("colorMode") as ColorMode | null;
-		if (savedMode) {
-			setMode(savedMode);
-		}
-	}, []);
+    useEffect(() => {
+        setMounted(true);
+        const savedMode = localStorage.getItem("colorMode") as ColorMode | null;
+        if (savedMode) {
+            setMode(savedMode);
+        }
+    }, []);
 
-	useEffect(() => {
-		if (mounted) {
-			localStorage.setItem("colorMode", mode);
-		}
-	}, [mode, mounted]);
+    useEffect(() => {
+        if (mounted) {
+            localStorage.setItem("colorMode", mode);
+        }
+    }, [mode, mounted]);
 
-	// For SSR, we need to ensure this component doesn't render with mismatched modes
-	if (!mounted) {
-		return null;
-	}
+    // For SSR, we need to ensure this component doesn't render with mismatched modes
+    if (!mounted) {
+        return null;
+    }
 
-	return (
-		<ColorModeContext value={{ mode, setMode }}>
-			<CssVarsProvider
-				defaultMode={mode === "system" ? "system" : mode}
-				theme={theme}
-			>
-				<CssBaseline />
-				{children}
-			</CssVarsProvider>
-		</ColorModeContext>
-	);
+    return (
+        <ColorModeContext value={{ mode, setMode }}>
+            <CssVarsProvider
+                defaultMode={mode === "system" ? "system" : mode}
+                theme={theme}
+            >
+                <CssBaseline />
+                {children}
+            </CssVarsProvider>
+        </ColorModeContext>
+    );
 }

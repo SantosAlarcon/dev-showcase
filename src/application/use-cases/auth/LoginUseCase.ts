@@ -11,7 +11,7 @@ export class LoginUseCase {
         try {
             return await this.authRepository.login(email, password);
         } catch (error) {
-			console.error(error);
+            console.error(error);
             throw new Error(error.message);
         }
     }

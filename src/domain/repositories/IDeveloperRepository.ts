@@ -1,7 +1,7 @@
 import { DeveloperInfo } from "../entities/developer";
 
 export interface IDeveloperRepository {
-	getAllSkills(skills: string): string[];
+    getAllSkills(skills: string): string[];
     getAllDevelopers(): Promise<DeveloperInfo[]>;
     getDeveloperById(id: string): Promise<DeveloperInfo | null>;
     getFeaturedDevelopers(): Promise<DeveloperInfo[]>;

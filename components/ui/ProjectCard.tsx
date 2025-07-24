@@ -28,9 +28,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     variant="outlined"
                     sx={{
                         height: "100%",
-						display: "flex",
+                        display: "flex",
                         flexDirection: "column",
-						alignItems: { xs: "center", md: "flex-start" },
+                        alignItems: { xs: "center", md: "flex-start" },
                         transition: "all 0.3s ease",
                         "&:hover": {
                             boxShadow: "md",
@@ -68,7 +68,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                         sx={{
                             mb: 2,
                             color: "text.secondary",
-							textAlign: { xs: "center", md: "left" },
+                            textAlign: { xs: "center", md: "left" },
                         }}
                     >
                         {project.description}

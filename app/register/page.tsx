@@ -36,7 +36,7 @@ const RegisterPage = () => {
                     </Box>
                 </Grid>
             </Grid>
-			<Toaster toastOptions={{ duration: 3500 }} />
+            <Toaster toastOptions={{ duration: 3500 }} />
         </>
     );
 };

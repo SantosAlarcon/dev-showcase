@@ -1,7 +1,9 @@
+import { Models } from "appwrite";
+
 export type ActionState = {
     message: string;
-	status: "SUCCESS" | "ERROR" | "NONE";
-    payload?: FormData;
+    status: "SUCCESS" | "ERROR" | "NONE";
+    payload?: FormData | Models.User<Models.Preferences>
 };
 
 type Callbacks<T, R = unknown> = {
@@ -19,7 +21,6 @@ export const withCallbacks = <
     fn: (...args: Args) => Promise<T>,
     callbacks: Callbacks<T, R>,
 ): ((...args: Args) => Promise<T>) => {
-
     return async (...args: Args) => {
         const promise = fn(...args);
 

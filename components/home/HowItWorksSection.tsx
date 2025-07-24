@@ -106,7 +106,7 @@ export default function HowItWorksSection() {
                                         height: "100%",
                                         display: "flex",
                                         flexDirection: "column",
-										alignItems: "center",
+                                        alignItems: "center",
                                         transition: "all 0.3s ease",
                                         "&:hover": {
                                             boxShadow: "md",
@@ -117,7 +117,7 @@ export default function HowItWorksSection() {
                                     <AspectRatio
                                         ratio="16/9"
                                         sx={{
-											width: "100%",
+                                            width: "100%",
                                             mb: 2,
                                             borderRadius: "md",
                                             overflow: "hidden",
@@ -128,9 +128,9 @@ export default function HowItWorksSection() {
                                             src={step.image}
                                             alt={step.title}
                                             style={{ objectFit: "cover" }}
-											width={512}
-											height={512}
-											loading="lazy"
+                                            width={512}
+                                            height={512}
+                                            loading="lazy"
                                         />
                                     </AspectRatio>
 
@@ -162,7 +162,7 @@ export default function HowItWorksSection() {
                                         sx={{
                                             color: "text.secondary",
                                             flexGrow: 1,
-											textAlign: "center",
+                                            textAlign: "center",
                                         }}
                                     >
                                         {step.description}

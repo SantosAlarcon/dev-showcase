@@ -16,6 +16,25 @@ const loginOAuthUseCase = new LoginOAuthUseCase(authRepository);
 const registerUseCase = new RegisterUseCase(authRepository);
 const checkExistingUserUseCase = new CheckExistingUserUseCase(authRepository);
 
+export const getCurrentUser = async (): Promise<ActionState> => {
+    const user = await authRepository.getCurrentUser();
+
+    if (user) {
+		console.log(`User: ${user}`);
+        return {
+            message: "Logged in successfully",
+            status: "SUCCESS",
+            payload: user,
+        };
+    }
+
+    return {
+        message: "You are not logged in",
+        status: "ERROR",
+        payload: null,
+    };
+};
+
 export const handleLogin = async (
     _actionState: ActionState,
     formData: FormData,
@@ -31,11 +50,11 @@ export const handleLogin = async (
         redirect("/discover");
     }
 
-	// Return an error message if the login fails (invalid credentials or the user is not found)
+    // Return an error message if the login fails (invalid credentials or the user is not found)
     return {
         message: "Invalid credentials. Please check your email and password.",
         status: "ERROR",
-		payload: formData,
+        payload: formData,
     };
 };
 
@@ -47,7 +66,7 @@ export const handleLoginOAuth = async (provider: OAuthProvider) => {
         return {
             message: "Something went wrong",
             status: "ERROR",
-			payload: error,
+            payload: error,
         };
     }
 };
@@ -63,7 +82,7 @@ export const handleRegister = async (
         confirmPassword: formData.get("confirm-password").toString(),
     };
 
-	// Check if the passwords match
+    // Check if the passwords match
     if (data.password !== data.confirmPassword) {
         return {
             message: "Passwords do not match",
@@ -72,7 +91,7 @@ export const handleRegister = async (
         };
     }
 
-	// Check if the password is at least 8 characters
+    // Check if the password is at least 8 characters
     if (data.password.length < 8) {
         return {
             message: "Password must be at least 8 characters",
@@ -81,10 +100,11 @@ export const handleRegister = async (
         };
     }
 
-	// Check if the user already exists in the Appwrite Users list
+    // Check if the user already exists in the Appwrite Users list
     if (await checkExistingUserUseCase.execute(data.email)) {
         return {
-            message: "There is already an account with this email. Please user another email.",
+            message:
+                "There is already an account with this email. Please user another email.",
             status: "ERROR",
             payload: formData,
         };

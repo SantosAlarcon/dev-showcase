@@ -25,7 +25,9 @@ const UserNotFound = () => {
                 gap={2}
                 sx={{ textDecoration: "none" }}
             >
-                This project may have been deleted or the link may be broken. But don't worry, you can discover new projects by clicking this button below.
+                This project may have been deleted or the link may be broken.
+                But don't worry, you can discover new projects by clicking this
+                button below.
                 <Button
                     component={Link}
                     href="/projects"

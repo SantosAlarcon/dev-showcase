@@ -1,414 +1,408 @@
 {
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Talent Showcase API",
-    "version": "1.0.0"
-  },
-  "tags": [
-    {
-      "name": "Developers",
-      "description": "Operations about developers"
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Talent Showcase API",
+        "version": "1.0.0"
     },
-    {
-      "name": "Projects",
-      "description": "Operations about projects"
-    }
-  ],
-  "components": {
-    "schemas": {
-      "Developer": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "surname": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "bio": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "avatar": {
-            "type": "string"
-          },
-          "bannerImage": {
-            "type": "string"
-          },
-          "followers": {
-            "type": "number"
-          },
-          "memberSince": {
-            "type": "string"
-          },
-          "reviews": {
-            "type": "number"
-          },
-          "availability": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "freelancer": {
-            "type": "object",
-            "properties": {
-              "hourlyRate": {
-                "type": "string"
-              }
-            }
-          },
-          "languages": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "workExperience": {
-            "type": "object",
-            "properties": {
-              "title": {
-                "type": "string"
-              },
-              "company": {
-                "type": "string"
-              },
-              "location": {
-                "type": "string"
-              },
-              "startDate": {
-                "type": "string"
-              },
-              "endDate": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              }
-            }
-          },
-          "skills": {
-            "type": "object",
-            "properties": {
-              "frontend": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "backend": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "other": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "projects": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "image": {
-                  "type": "string"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "createdAt": {
-                  "type": "string"
-                },
-                "updatedAt": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "social": {
-            "type": "object",
-            "properties": {
-              "github": {
-                "type": "string"
-              },
-              "linkedin": {
-                "type": "string"
-              },
-              "facebook": {
-                "type": "string"
-              },
-              "twitter": {
-                "type": "string"
-              },
-              "portfolio": {
-                "type": "string"
-              },
-              "threads": {
-                "type": "string"
-              },
-              "bluesky": {
-                "type": "string"
-              },
-              "instagram": {
-                "type": "string"
-              },
-              "youtube": {
-                "type": "string"
-              },
-              "medium": {
-                "type": "string"
-              },
-              "devto": {
-                "type": "string"
-              }
-            }
-          }
+    "tags": [
+        {
+            "name": "Developers",
+            "description": "Operations about developers"
         },
-        "required": [
-          "id",
-          "name",
-          "surname",
-          "title",
-          "bio",
-          "country",
-          "state",
-          "city",
-          "avatar",
-          "bannerImage",
-          "followers",
-          "memberSince",
-          "reviews",
-          "availability",
-          "email",
-          "freelancer",
-          "workExperience",
-          "skills",
-          "projects",
-          "social"
-        ]
-      },
-      "Project": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "story": {
-            "type": "string"
-          },
-          "developerId": {
-            "type": "string"
-          },
-          "image": {
-            "type": "string"
-          },
-          "liveSite": {
-            "type": "string"
-          },
-          "githubRepo": {
-            "type": "string"
-          },
-          "publishedDate": {
-            "type": "string"
-          },
-          "technologies": {
-            "type": "array",
-            "items": {
-              "type": "string"
+        {
+            "name": "Projects",
+            "description": "Operations about projects"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "Developer": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "surname": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "bio": {
+                        "type": "string"
+                    },
+                    "country": {
+                        "type": "string"
+                    },
+                    "state": {
+                        "type": "string"
+                    },
+                    "city": {
+                        "type": "string"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "bannerImage": {
+                        "type": "string"
+                    },
+                    "followers": {
+                        "type": "number"
+                    },
+                    "memberSince": {
+                        "type": "string"
+                    },
+                    "reviews": {
+                        "type": "number"
+                    },
+                    "availability": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "freelancer": {
+                        "type": "object",
+                        "properties": {
+                            "hourlyRate": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "languages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "workExperience": {
+                        "type": "object",
+                        "properties": {
+                            "title": {
+                                "type": "string"
+                            },
+                            "company": {
+                                "type": "string"
+                            },
+                            "location": {
+                                "type": "string"
+                            },
+                            "startDate": {
+                                "type": "string"
+                            },
+                            "endDate": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "skills": {
+                        "type": "object",
+                        "properties": {
+                            "frontend": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "backend": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "other": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "projects": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "type": "string"
+                                },
+                                "image": {
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "type": "string"
+                                },
+                                "createdAt": {
+                                    "type": "string"
+                                },
+                                "updatedAt": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "social": {
+                        "type": "object",
+                        "properties": {
+                            "github": {
+                                "type": "string"
+                            },
+                            "linkedin": {
+                                "type": "string"
+                            },
+                            "facebook": {
+                                "type": "string"
+                            },
+                            "twitter": {
+                                "type": "string"
+                            },
+                            "portfolio": {
+                                "type": "string"
+                            },
+                            "threads": {
+                                "type": "string"
+                            },
+                            "bluesky": {
+                                "type": "string"
+                            },
+                            "instagram": {
+                                "type": "string"
+                            },
+                            "youtube": {
+                                "type": "string"
+                            },
+                            "medium": {
+                                "type": "string"
+                            },
+                            "devto": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "required": [
+                    "id",
+                    "name",
+                    "surname",
+                    "title",
+                    "bio",
+                    "country",
+                    "state",
+                    "city",
+                    "avatar",
+                    "bannerImage",
+                    "followers",
+                    "memberSince",
+                    "reviews",
+                    "availability",
+                    "email",
+                    "freelancer",
+                    "workExperience",
+                    "skills",
+                    "projects",
+                    "social"
+                ]
+            },
+            "Project": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "story": {
+                        "type": "string"
+                    },
+                    "developerId": {
+                        "type": "string"
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "liveSite": {
+                        "type": "string"
+                    },
+                    "githubRepo": {
+                        "type": "string"
+                    },
+                    "publishedDate": {
+                        "type": "string"
+                    },
+                    "technologies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "id",
+                    "title",
+                    "description",
+                    "liveSite",
+                    "githubRepo",
+                    "publishedDate",
+                    "technologies",
+                    "image",
+                    "developerId",
+                    "story",
+                    "publishedDate"
+                ]
             }
-          }
+        }
+    },
+    "paths": {
+        "/api/developers/{id}/projects": {
+            "get": {
+                "summary": "Get projects by developer id",
+                "description": "Returns all projects by the developer id provided",
+                "tags": ["Developers"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Developer id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Projects found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Developer not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
-        "required": [
-          "id",
-          "title",
-          "description",
-          "liveSite",
-          "githubRepo",
-          "publishedDate",
-          "technologies",
-          "image",
-          "developerId",
-          "story",
-          "publishedDate"
-        ]
-      }
+        "/api/developers/{id}": {
+            "get": {
+                "summary": "Get developer by id",
+                "description": "Get developer information with the id provided",
+                "tags": ["Developers"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Developer id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Developer found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Developer"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Developer not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/projects/{id}": {
+            "get": {
+                "summary": "Get project by id",
+                "description": "Get project information with the id provided",
+                "tags": ["Projects"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Project id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Project found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Project not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "error": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-  },
-  "paths": {
-    "/api/developers/{id}/projects": {
-      "get": {
-        "summary": "Get projects by developer id",
-        "description": "Returns all projects by the developer id provided",
-        "tags": [
-          "Developers"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Developer id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Projects found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Project"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Developer not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/developers/{id}": {
-      "get": {
-        "summary": "Get developer by id",
-        "description": "Get developer information with the id provided",
-        "tags": [
-          "Developers"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Developer id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Developer found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Developer"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Developer not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/projects/{id}": {
-      "get": {
-        "summary": "Get project by id",
-        "description": "Get project information with the id provided",
-        "tags": [
-          "Projects"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Project id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Project found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Project"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Project not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
 }

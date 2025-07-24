@@ -1,6 +1,6 @@
-import { account } from "@/lib/appwrite/client";
 import { cookies } from "next/headers";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
+import { account } from "@/lib/appwrite/client";
 
 export async function GET(req: NextRequest) {
     const { searchParams } = req.nextUrl;

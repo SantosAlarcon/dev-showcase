@@ -11,8 +11,9 @@ import { LoginOAuthUseCase } from "@/src/application/use-cases/auth/LoginOAuthUs
 import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
 
 const LoginComponent = () => {
-    // @ts-ignore
     const [actionState, action, pending] = useActionState(
+
+    // @ts-ignore
         withCallbacks(handleLogin, createToastCallbacks({})),
         { message: "", status: "NONE" },
     );
@@ -62,6 +63,7 @@ const LoginComponent = () => {
                         type="email"
                         disabled={pending}
                         defaultValue={
+							// @ts-ignore
                             (actionState.payload?.get("email") || "") as string
                         }
                     />
@@ -74,6 +76,7 @@ const LoginComponent = () => {
                         type="password"
                         disabled={pending}
                         defaultValue={
+							// @ts-ignore
                             (actionState.payload?.get("password") ||
                                 "") as string
                         }
@@ -83,8 +86,9 @@ const LoginComponent = () => {
                         variant="solid"
                         color="primary"
                         disabled={pending}
+						loading={pending}
                     >
-                        Login
+						{!pending && "Login"}
                     </Button>
                 </Box>
             </form>

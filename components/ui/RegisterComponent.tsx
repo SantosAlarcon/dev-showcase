@@ -1,9 +1,9 @@
 "use client";
+import { Box, Button, FormLabel, Input, Stack } from "@mui/joy";
+import { useActionState } from "react";
 import { handleRegister } from "@/app/actions/authActions";
 import { createToastCallbacks } from "@/utils/toast-callbacks";
 import { withCallbacks } from "@/utils/with-callbacks";
-import { Box, Button, FormLabel, Input, Stack } from "@mui/joy";
-import { useActionState } from "react";
 
 const RegisterComponent = () => {
     const [actionState, action, pending] = useActionState(
@@ -16,7 +16,6 @@ const RegisterComponent = () => {
     );
 
     return (
-        <>
             <Stack
                 spacing={2}
                 direction={"column"}
@@ -52,6 +51,7 @@ const RegisterComponent = () => {
                             type="text"
                             disabled={pending}
                             defaultValue={
+							// @ts-ignore
                                 (actionState.payload?.get("name") ||
                                     "") as string
                             }
@@ -65,6 +65,7 @@ const RegisterComponent = () => {
                             type="email"
                             disabled={pending}
                             defaultValue={
+							// @ts-ignore
                                 (actionState.payload?.get("email") ||
                                     "") as string
                             }
@@ -78,6 +79,7 @@ const RegisterComponent = () => {
                             type="password"
                             disabled={pending}
                             defaultValue={
+							// @ts-ignore
                                 (actionState.payload?.get("password") ||
                                     "") as string
                             }
@@ -91,6 +93,7 @@ const RegisterComponent = () => {
                             type="password"
                             disabled={pending}
                             defaultValue={
+							// @ts-ignore
                                 (actionState.payload?.get("confirm-password") ||
                                     "") as string
                             }
@@ -100,13 +103,13 @@ const RegisterComponent = () => {
                             variant="solid"
                             color="primary"
                             disabled={pending}
+							loading={pending}
                         >
-                            Register
+							{!pending && "Register"}
                         </Button>
                     </Box>
                 </form>
             </Stack>
-        </>
     );
 };
 

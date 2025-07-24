@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { GetAllDevelopersUseCase } from "@/src/application/use-cases/developers/GetAllDevelopersUseCase";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
+import { GetDevelopersByCityUseCase } from "@/src/application/use-cases/developers/GetDevelopersByCityUseCase";
 import { GetDevelopersByCountryUseCase } from "@/src/application/use-cases/developers/GetDevelopersByCountryUseCase";
 import { GetDevelopersByRoleUseCase } from "@/src/application/use-cases/developers/GetDevelopersByRoleUseCase";
-import { GetDevelopersByCityUseCase } from "@/src/application/use-cases/developers/GetDevelopersByCityUseCase";
 import { GetDevelopersByStateUseCase } from "@/src/application/use-cases/developers/GetDevelopersByStateUseCase";
+import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;

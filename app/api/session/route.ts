@@ -1,6 +1,6 @@
-import { account } from "@/lib/appwrite/client";
-import { Models } from "appwrite";
+import type { Models } from "appwrite";
 import { NextResponse } from "next/server";
+import { account } from "@/lib/appwrite/client";
 
 export async function GET() {
 	const session: Models.Session = await account.getSession("current");

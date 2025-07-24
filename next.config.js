@@ -3,6 +3,7 @@ const nextConfig = {
     eslint: {
         ignoreDuringBuilds: true,
     },
+	allowedDevOrigins: ["http://localhost", "http://192.168.72.128"],
     images: {
         remotePatterns: [
             {
@@ -13,4 +14,4 @@ const nextConfig = {
     },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

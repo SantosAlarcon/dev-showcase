@@ -52,6 +52,7 @@ export class AppwriteAuthRepository implements IAuthRepository {
     ): Promise<AuthUser | null> {
         await account.create(ID.unique(), email, password, name);
         await this.login(email, password);
+		// @ts-ignore
         return this.getCurrentUser();
     }
     async logout(): Promise<void> {

@@ -8,11 +8,6 @@ export class LoginUseCase {
             throw new Error("Missing required fields");
         }
 
-        try {
-            return await this.authRepository.login(email, password);
-        } catch (error) {
-            console.error(error);
-            throw new Error(error.message);
-        }
+        return await this.authRepository.login(email, password);
     }
 }

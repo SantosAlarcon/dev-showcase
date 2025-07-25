@@ -19,12 +19,13 @@ import Image from "next/image";
 import BaseLayout from "@/components/layout/BaseLayout";
 import LatestProjects from "@/components/home/LatestProjects";
 import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
-import { GetCurrentSessionUseCase } from "@/src/application/use-cases/auth/GetCurrentSessionUseCase";
+import { GetCurrentUserUseCase } from "@/src/application/use-cases/auth/GetCurrentUserUseCase";
 
 export default async function Home() {
     const authRepository = new AppwriteAuthRepository();
-    const getCurrentSessionCase = new GetCurrentSessionUseCase(authRepository);
-    const session = await getCurrentSessionCase.execute();
+    const getCurrentUserCase = new GetCurrentUserUseCase(authRepository);
+    const user = await getCurrentUserCase.execute();
+	console.log(user);
 
     return (
         <BaseLayout>

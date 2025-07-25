@@ -1,11 +1,17 @@
-import type { Models } from "appwrite";
 import { NextResponse } from "next/server";
-import { account } from "@/lib/appwrite/client";
+import { cookies } from "next/headers";
 
 export async function GET() {
-	const session: Models.Session = await account.getSession("current");
-	if (session) {
-		return NextResponse.json(session);
+	const cookieList = await cookies();
+	const session = cookieList?.get("dev-showcase-session");
+
+	try {
+		if (session) {
+			return NextResponse.json(JSON.parse(session.value));
+		}
+	} catch (error) {
+		return NextResponse.json({error: "Error fetching session"}, {status: 500});
 	}
+
 	return NextResponse.json({error: "No session found"}, {status: 404});
 }

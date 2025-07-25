@@ -28,14 +28,12 @@ export class AppwriteAuthRepository implements IAuthRepository {
     }
 
     async login(email: string, password: string): Promise<SessionProps | null> {
-        try {
-            await account.createEmailPasswordSession(email, password);
-            const session = this.getCurrentUser();
-            // @ts-ignore
+        await account.createEmailPasswordSession(email, password);
+        const session = await account.getSession("current");
+        if (session) {
             return { session, error: null };
-        } catch (error) {
-            return { session: null, error: error.message };
         }
+        return { session: null, error: "No session found" };
     }
     loginOAuth(provider: OAuthProvider) {
         account.createOAuth2Token(
@@ -52,31 +50,27 @@ export class AppwriteAuthRepository implements IAuthRepository {
     ): Promise<AuthUser | null> {
         await account.create(ID.unique(), email, password, name);
         await this.login(email, password);
-		// @ts-ignore
+        // @ts-ignore
         return this.getCurrentUser();
     }
     async logout(): Promise<void> {
         await account.deleteSession("current");
     }
     async getCurrentUser(): Promise<Models.User<Models.Preferences>> | null {
-        try {
-            const user: Models.User<Models.Preferences> = await account.get();
-			console.log(`User: ${user}`);
+        const user: Models.User<Models.Preferences> = await account.get();
+        if (user) {
+            console.log(`User: user`);
             return user;
-        } catch (error) {
-            console.error("Error fetching user:", error);
-            return null;
         }
+        return null;
     }
 
-	async getCurrentSession(): Promise<Models.Session | null> {
-		try {
-			const session: Models.Session = await account.getSession("current");
-			console.log(`Session: ${session}`);
-			return session;
-		} catch (error) {
-			console.error("Error fetching session:", error);
-			return null;
-		}
-	}
+    async getCurrentSession(): Promise<Models.Session | null> {
+        const session: Models.Session = await account.getSession("current");
+        if (session) {
+            console.log(`Session: session`);
+            return session;
+        }
+        return null;
+    }
 }

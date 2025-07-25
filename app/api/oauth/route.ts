@@ -11,10 +11,10 @@ export async function GET(req: NextRequest) {
     if (secret && userId) {
         try {
             const session = await account.createSession(userId, secret);
-            cookieList.set("dev_showcase_session", JSON.stringify(session), {
+            cookieList.set("dev-showcase-session", JSON.stringify(session), {
                 path: "/",
                 // httpOnly: true,
-                // secure: process.env.NODE_ENV === "production",
+                secure: process.env.NODE_ENV === "production",
                 // sameSite: "lax",
                 // maxAge: 60 * 60 * 24 * 30,
             });

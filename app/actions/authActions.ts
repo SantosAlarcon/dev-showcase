@@ -9,6 +9,7 @@ import { OAuthProvider } from "appwrite";
 import { RegisterUseCase } from "@/src/application/use-cases/auth/RegisterUseCase";
 import { ActionState } from "@/utils/with-callbacks";
 import { CheckExistingUserUseCase } from "@/src/application/use-cases/auth/CheckExistingUserUseCase";
+import { cookies } from "next/headers";
 
 const authRepository = new AppwriteAuthRepository();
 const loginUseCase = new LoginUseCase(authRepository);
@@ -47,6 +48,8 @@ export const handleLogin = async (
     const result = await loginUseCase.execute(data.email, data.password);
 
     if (result.session) {
+		const cookieList = await cookies();
+		cookieList.set("dev-showcase-session", JSON.stringify(result.session), { path: "/" });
         redirect("/discover");
     }
 

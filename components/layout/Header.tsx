@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
     Box,
@@ -18,6 +18,9 @@ import {
 } from "@mui/joy";
 import { Menu as MenuIcon, X, Sun, Moon, Computer, Search } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { getLoggedInUser } from "@/lib/appwrite/api";
+import { logout } from "@/app/actions/authActions";
+import { getCookie } from "@/app/actions/cookieActions";
 
 const navItems = [
     { name: "Discover", href: "/discover" },
@@ -26,13 +29,28 @@ const navItems = [
     { name: "About", href: "/about" },
 ];
 
+const handleLogout = async () => {
+    await logout();
+};
+
 export default function Header() {
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+    const [loggedIn, setLoggedIn] = useState<boolean>(false);
     const { mode, setMode } = useColorScheme();
 
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
     };
+
+    useEffect(() => {
+        const checkCookie = async () => {
+            const session = await getCookie("dev-showcase-session");
+            if (session) {
+                setLoggedIn(true);
+            }
+        };
+        checkCookie();
+    }, []);
 
     const container = {
         hidden: { opacity: 0 },
@@ -233,6 +251,17 @@ export default function Header() {
                                 >
                                     Register
                                 </Button>
+                                {loggedIn && (
+                                    // @ts-ignore
+                                    <Button
+                                        onClick={handleLogout}
+                                        variant="solid"
+                                        color="danger"
+                                        fullWidth
+                                    >
+                                        Logout
+                                    </Button>
+                                )}
                             </Stack>
                         </Box>
 
@@ -323,6 +352,19 @@ export default function Header() {
                                         >
                                             Sign Up
                                         </Button>
+
+                                        {loggedIn && (
+                                            // @ts-ignore
+                                            <Button
+                                                component={Link}
+                                                onClick={handleLogout}
+                                                variant="solid"
+                                                color="danger"
+                                                fullWidth
+                                            >
+                                                Logout
+                                            </Button>
+                                        )}
                                     </Stack>
                                 </motion.div>
                             </motion.div>

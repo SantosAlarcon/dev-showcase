@@ -1,5 +1,6 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { LoginOAuthUseCase } from "@/src/application/use-cases/auth/LoginOAuthUseCase";
@@ -9,7 +10,6 @@ import { OAuthProvider } from "appwrite";
 import { RegisterUseCase } from "@/src/application/use-cases/auth/RegisterUseCase";
 import { ActionState } from "@/utils/with-callbacks";
 import { CheckExistingUserUseCase } from "@/src/application/use-cases/auth/CheckExistingUserUseCase";
-import { cookies } from "next/headers";
 
 const authRepository = new AppwriteAuthRepository();
 const loginUseCase = new LoginUseCase(authRepository);
@@ -21,7 +21,7 @@ export const getCurrentUser = async (): Promise<ActionState> => {
     const user = await authRepository.getCurrentUser();
 
     if (user) {
-		console.log(`User: ${user}`);
+        console.log(`User: ${user}`);
         return {
             message: "Logged in successfully",
             status: "SUCCESS",
@@ -48,8 +48,14 @@ export const handleLogin = async (
     const result = await loginUseCase.execute(data.email, data.password);
 
     if (result.session) {
-		const cookieList = await cookies();
-		cookieList.set("dev-showcase-session", JSON.stringify(result.session), { path: "/" });
+        const cookieList = await cookies();
+        cookieList.set("dev-showcase-session", result.session.secret, {
+            path: "/",
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+        });
+
         redirect("/discover");
     }
 
@@ -72,6 +78,13 @@ export const handleLoginOAuth = async (provider: OAuthProvider) => {
             payload: error,
         };
     }
+};
+
+export const logout = async () => {
+    await authRepository.logout();
+    const cookieList = await cookies();
+    cookieList.delete("dev-showcase-session");
+    return redirect("/login");
 };
 
 export const handleRegister = async (

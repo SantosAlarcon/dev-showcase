@@ -20,12 +20,14 @@ import BaseLayout from "@/components/layout/BaseLayout";
 import LatestProjects from "@/components/home/LatestProjects";
 import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
 import { GetCurrentUserUseCase } from "@/src/application/use-cases/auth/GetCurrentUserUseCase";
+import { getLoggedInUser } from "@/lib/appwrite/api";
 
 export default async function Home() {
-    const authRepository = new AppwriteAuthRepository();
-    const getCurrentUserCase = new GetCurrentUserUseCase(authRepository);
-    const user = await getCurrentUserCase.execute();
-	console.log(user);
+    // const authRepository = new AppwriteAuthRepository();
+    // const getCurrentUserCase = new GetCurrentUserUseCase(authRepository);
+    // const user = await getCurrentUserCase.execute();
+	// const user = await getLoggedInUser();
+	// console.log(user);
 
     return (
         <BaseLayout>

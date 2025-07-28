@@ -1,8 +1,8 @@
-import { account } from "@/lib/appwrite/client";
 import { IAuthRepository } from "../../domain/repositories/IAuthRepository";
 import { AuthUser } from "@/src/domain/entities/user";
 import { ID, OAuthProvider } from "appwrite";
 import { Models } from "node-appwrite";
+import { createAdminClient, createSessionClient } from "@/lib/appwrite/server";
 
 type SessionProps = {
     session: Models.Session;
@@ -28,14 +28,20 @@ export class AppwriteAuthRepository implements IAuthRepository {
     }
 
     async login(email: string, password: string): Promise<SessionProps | null> {
-        await account.createEmailPasswordSession(email, password);
-        const session = await account.getSession("current");
+        const { account } = await createAdminClient();
+        const session = await account.createEmailPasswordSession(
+            email,
+            password,
+        );
+
         if (session) {
             return { session, error: null };
         }
         return { session: null, error: "No session found" };
     }
-    loginOAuth(provider: OAuthProvider) {
+
+    async loginOAuth(provider: OAuthProvider) {
+        const { account } = await createAdminClient();
         account.createOAuth2Token(
             provider,
             `${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth`,
@@ -48,27 +54,31 @@ export class AppwriteAuthRepository implements IAuthRepository {
         email: string,
         password: string,
     ): Promise<AuthUser | null> {
+        const { account } = await createAdminClient();
         await account.create(ID.unique(), email, password, name);
         await this.login(email, password);
         // @ts-ignore
         return this.getCurrentUser();
     }
+
     async logout(): Promise<void> {
+        const { account } = await createSessionClient();
         await account.deleteSession("current");
     }
+
     async getCurrentUser(): Promise<Models.User<Models.Preferences>> | null {
+        const { account } = await createAdminClient();
         const user: Models.User<Models.Preferences> = await account.get();
         if (user) {
-            console.log(`User: user`);
             return user;
         }
         return null;
     }
 
     async getCurrentSession(): Promise<Models.Session | null> {
+        const { account } = await createAdminClient();
         const session: Models.Session = await account.getSession("current");
         if (session) {
-            console.log(`Session: session`);
             return session;
         }
         return null;

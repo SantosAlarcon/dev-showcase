@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
-import { createSessionClient } from "@/lib/appwrite/server";
+import { createAdminClient, createSessionClient } from "@/lib/appwrite/server";
 
 export async function GET(req: NextRequest) {
     const { searchParams } = req.nextUrl;
@@ -10,9 +10,9 @@ export async function GET(req: NextRequest) {
 
     if (secret && userId) {
         try {
-			const {account} = await createSessionClient();
+			const {account} = await createAdminClient();
             const session = await account.createSession(userId, secret);
-            cookieList.set("dev-showcase-session", JSON.stringify(session), {
+            cookieList.set("dev-showcase-session", session.secret, {
                 path: "/",
                 httpOnly: true,
                 secure: process.env.NODE_ENV === "production",

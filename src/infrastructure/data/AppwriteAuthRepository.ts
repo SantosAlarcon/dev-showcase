@@ -41,6 +41,8 @@ export class AppwriteAuthRepository implements IAuthRepository {
     }
 
     async loginOAuth(provider: OAuthProvider) {
+		console.log("provider", provider);
+		
         const { account } = await createAdminClient();
         account.createOAuth2Token(
             provider,

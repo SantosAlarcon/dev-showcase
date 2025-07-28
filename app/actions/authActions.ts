@@ -10,6 +10,7 @@ import { OAuthProvider } from "appwrite";
 import { RegisterUseCase } from "@/src/application/use-cases/auth/RegisterUseCase";
 import { ActionState } from "@/utils/with-callbacks";
 import { CheckExistingUserUseCase } from "@/src/application/use-cases/auth/CheckExistingUserUseCase";
+import { createAdminClient } from "@/lib/appwrite/server";
 
 const authRepository = new AppwriteAuthRepository();
 const loginUseCase = new LoginUseCase(authRepository);
@@ -68,16 +69,24 @@ export const handleLogin = async (
 };
 
 export const handleLoginOAuth = async (provider: OAuthProvider) => {
-    try {
-        const url = await loginOAuthUseCase.execute(provider);
-        return { url };
-    } catch (error) {
-        return {
-            message: "Something went wrong",
-            status: "ERROR",
-            payload: error,
-        };
-    }
+    // try {
+    //     const url = await loginOAuthUseCase.execute(provider);
+    //     return { url };
+    // } catch (error) {
+    //     return {
+    //         message: "Something went wrong",
+    //         status: "ERROR",
+    //         payload: error,
+    //     };
+    // }
+	
+	const {account} = await createAdminClient();
+	const redirectUrl = await account.createOAuth2Token(
+		provider,
+		`${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth`,
+		`${process.env.NEXT_PUBLIC_ADDRESS}/login`,
+	);
+	return redirect(redirectUrl);
 };
 
 export const logout = async () => {

@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
-import { account } from "@/lib/appwrite/client";
+import { createSessionClient } from "@/lib/appwrite/server";
 
 export async function GET(req: NextRequest) {
     const { searchParams } = req.nextUrl;
@@ -10,13 +10,14 @@ export async function GET(req: NextRequest) {
 
     if (secret && userId) {
         try {
+			const {account} = await createSessionClient();
             const session = await account.createSession(userId, secret);
             cookieList.set("dev-showcase-session", JSON.stringify(session), {
                 path: "/",
-                // httpOnly: true,
+                httpOnly: true,
                 secure: process.env.NODE_ENV === "production",
-                // sameSite: "lax",
-                // maxAge: 60 * 60 * 24 * 30,
+                sameSite: "lax",
+                maxAge: 60 * 60 * 24 * 30,
             });
 
             return NextResponse.redirect(new URL("/discover", req.url));

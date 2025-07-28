@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
-import { createAdminClient, createSessionClient } from "@/lib/appwrite/server";
+import { createAdminClient } from "@/lib/appwrite/server";
 
 export async function GET(req: NextRequest) {
     const { searchParams } = req.nextUrl;

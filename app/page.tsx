@@ -1,33 +1,24 @@
-import * as motion from "motion/react-client";
 import {
+    AspectRatio,
     Box,
-    Typography,
     Button,
+    Chip,
     Container,
     Grid,
     Stack,
-    Chip,
-    AspectRatio,
+    Typography,
 } from "@mui/joy";
-import { Search, ChevronRight } from "lucide-react";
-import FeaturedDevelopers from "@/components/home/FeaturedDevelopers";
-import TestimonialSection from "@/components/home/TestimonialSection";
-import HowItWorksSection from "@/components/home/HowItWorksSection";
-import TechnologyTags from "@/components/home/TechnologyTags";
-
+import { ChevronRight, Search } from "lucide-react";
+import * as motion from "motion/react-client";
 import Image from "next/image";
-import BaseLayout from "@/components/layout/BaseLayout";
+import FeaturedDevelopers from "@/components/home/FeaturedDevelopers";
+import HowItWorksSection from "@/components/home/HowItWorksSection";
 import LatestProjects from "@/components/home/LatestProjects";
-import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
-import { GetCurrentUserUseCase } from "@/src/application/use-cases/auth/GetCurrentUserUseCase";
-import { getLoggedInUser } from "@/lib/appwrite/api";
+import TechnologyTags from "@/components/home/TechnologyTags";
+import TestimonialSection from "@/components/home/TestimonialSection";
+import BaseLayout from "@/components/layout/BaseLayout";
 
 export default async function Home() {
-    // const authRepository = new AppwriteAuthRepository();
-    // const getCurrentUserCase = new GetCurrentUserUseCase(authRepository);
-    // const user = await getCurrentUserCase.execute();
-	// const user = await getLoggedInUser();
-	// console.log(user);
 
     return (
         <BaseLayout>

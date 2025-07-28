@@ -1,20 +1,17 @@
 "use server";
 
+import type { OAuthProvider } from "appwrite";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-
-import { LoginOAuthUseCase } from "@/src/application/use-cases/auth/LoginOAuthUseCase";
-import { LoginUseCase } from "@/src/application/use-cases/auth/LoginUseCase";
-import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
-import { OAuthProvider } from "appwrite";
-import { RegisterUseCase } from "@/src/application/use-cases/auth/RegisterUseCase";
-import { ActionState } from "@/utils/with-callbacks";
-import { CheckExistingUserUseCase } from "@/src/application/use-cases/auth/CheckExistingUserUseCase";
 import { createAdminClient } from "@/lib/appwrite/server";
+import { CheckExistingUserUseCase } from "@/src/application/use-cases/auth/CheckExistingUserUseCase";
+import { LoginUseCase } from "@/src/application/use-cases/auth/LoginUseCase";
+import { RegisterUseCase } from "@/src/application/use-cases/auth/RegisterUseCase";
+import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
+import type { ActionState } from "@/utils/with-callbacks";
 
 const authRepository = new AppwriteAuthRepository();
 const loginUseCase = new LoginUseCase(authRepository);
-const loginOAuthUseCase = new LoginOAuthUseCase(authRepository);
 const registerUseCase = new RegisterUseCase(authRepository);
 const checkExistingUserUseCase = new CheckExistingUserUseCase(authRepository);
 
@@ -69,17 +66,6 @@ export const handleLogin = async (
 };
 
 export const handleLoginOAuth = async (provider: OAuthProvider) => {
-    // try {
-    //     const url = await loginOAuthUseCase.execute(provider);
-    //     return { url };
-    // } catch (error) {
-    //     return {
-    //         message: "Something went wrong",
-    //         status: "ERROR",
-    //         payload: error,
-    //     };
-    // }
-	
 	const {account} = await createAdminClient();
 	const redirectUrl = await account.createOAuth2Token(
 		provider,

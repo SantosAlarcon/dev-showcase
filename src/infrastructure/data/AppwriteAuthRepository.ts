@@ -40,15 +40,15 @@ export class AppwriteAuthRepository implements IAuthRepository {
         return { session: null, error: "No session found" };
     }
 
-    async loginOAuth(provider: OAuthProvider) {
-		console.log("provider", provider);
-		
+    async loginOAuth(provider: OAuthProvider): Promise<string | null> {
         const { account } = await createAdminClient();
-        account.createOAuth2Token(
+        const url = account.createOAuth2Token(
             provider,
             `${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth`,
             `${process.env.NEXT_PUBLIC_ADDRESS}/login`,
         );
+
+		return url;
     }
 
     async register(

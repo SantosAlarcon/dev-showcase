@@ -5,8 +5,6 @@ import { Box, Button, Divider, FormLabel, Input, Stack } from "@mui/joy";
 import { OAuthProvider } from "appwrite";
 import { useActionState } from "react";
 import { handleLogin, handleLoginOAuth } from "@/app/actions/authActions";
-import { LoginOAuthUseCase } from "@/src/application/use-cases/auth/LoginOAuthUseCase";
-import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
 import { createToastCallbacks } from "@/utils/toast-callbacks";
 import { withCallbacks } from "@/utils/with-callbacks";
 
@@ -16,21 +14,6 @@ const LoginComponent = () => {
 		withCallbacks(handleLogin, createToastCallbacks({})),
 		{ message: "", status: "NONE" },
 	);
-	const authRepository = new AppwriteAuthRepository();
-	const loginOAuthUseCase = new LoginOAuthUseCase(authRepository);
-
-	// const handleLoginOAuth = async (provider: OAuthProvider) => {
-	// 	try {
-	// 		const url = await loginOAuthUseCase.execute(provider);
-	// 		return { url };
-	// 	} catch (error) {
-	// 		console.error("Error during OAuth login:", error);
-	// 		return {
-	// 			message: "Something went wrong",
-	// 			status: "ERROR",
-	// 		};
-	// 	}
-	// };
 
 	return (
 		<Stack

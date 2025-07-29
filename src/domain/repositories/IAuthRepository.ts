@@ -3,7 +3,7 @@ import { AuthUser } from "../entities/user";
 
 export interface IAuthRepository {
     login(email: string, password: string): Promise<any>;
-    loginOAuth(provider: OAuthProvider): void;
+    loginOAuth(provider: OAuthProvider): Promise<string>;
     register(
         name: string,
         email: string,

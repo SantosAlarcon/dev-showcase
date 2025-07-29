@@ -33,9 +33,7 @@ import { getCountryByName } from "node-countries";
 import rolesList from "@/constants/roles";
 import { Province, ViewModeTypes } from "@/src/domain/entities/ui";
 import { DeveloperInfo } from "@/src/domain/entities/developer";
-import { GetAllSkillsUseCase } from "@/src/application/use-cases/developers/GetAllSkillsUseCase";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
-import { GetAllDevelopersUseCase } from "@/src/application/use-cases/developers/GetAllDevelopersUseCase";
+import { getAllDevelopersUseCase, getAllSkillsUseCase } from "@/src/config";
 
 // Filters
 // const experienceLevels = ["Any", "1-2 years", "3-5 years", "5+ years"];
@@ -44,13 +42,6 @@ const isAvailableTypes = ["Any", "Full-time", "Contract", "Freelance"];
 export default function DiscoverPage() {
     const countryList = countries.sort((a, b) =>
         a.name.common.localeCompare(b.name.common),
-    );
-    const getAllSkillsUseCase = new GetAllSkillsUseCase(
-        new AppwriteDeveloperRepository(),
-    );
-
-    const getAllDevelopersUseCase = new GetAllDevelopersUseCase(
-        new AppwriteDeveloperRepository(),
     );
     const [searchQuery, setSearchQuery] = useState("");
     // const [selectedExperience, setSelectedExperience] = useState("Any");

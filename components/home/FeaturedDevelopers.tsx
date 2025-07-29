@@ -4,13 +4,13 @@ import { Box, Typography, Container, Grid, Button } from "@mui/joy";
 import { ChevronRight } from "lucide-react";
 
 import GridFeaturedDeveloperCard from "../ui/GridFeaturedDeveloperCard";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 import { DeveloperInfo } from "@/src/domain/entities/developer";
+import { getFeaturedDevelopersUseCase } from "@/src/config";
 
 export default async function FeaturedDevelopers() {
-    const developerRepository = new AppwriteDeveloperRepository();
+
     const featuredDevelopers =
-        await developerRepository.getFeaturedDevelopers();
+        await getFeaturedDevelopersUseCase.execute();
 
     return (
         <Box

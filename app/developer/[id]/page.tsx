@@ -49,22 +49,13 @@ import Markdown from "react-markdown";
 import { getLocaleCurrency } from "@/lib/utils";
 import { calculateTotalExperience } from "@/lib/utils";
 import { Period } from "@/src/domain/entities/ui";
-import { GetDeveloperByIdUseCase } from "@/src/application/use-cases/developers/GetDeveloperByIdUseCase";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
-import { AppwriteProjectRepository } from "@/src/infrastructure/data/AppwriteProjectRepository";
-import { GetProjectsByDeveloperIdUseCase } from "@/src/application/use-cases/projects/GetProjectsByDeveloperIdUseCase";
+import { getDeveloperByIdUseCase, getProjectsByDeveloperIdUseCase } from "@/src/config";
 
 export default async function DeveloperProfile(props: {
     params: Promise<{ id: string }>;
 }) {
     const { id } = await props.params;
 
-    const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(
-        new AppwriteDeveloperRepository(),
-    );
-    const getProjectsByDeveloperIdUseCase = new GetProjectsByDeveloperIdUseCase(
-        new AppwriteProjectRepository(),
-    );
     // @ts-ignore
     const [developer, projects] = await Promise.all([
         getDeveloperByIdUseCase.execute(id),

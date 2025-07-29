@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GetDeveloperByIdUseCase } from "@/src/application/use-cases/developers/GetDeveloperByIdUseCase";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
+import { getDeveloperByIdUseCase } from "@/src/config";
 
 /**
  * @swagger
@@ -39,10 +38,6 @@ export async function GET(
     { params }: { params: Promise<{ id: string }> },
 ) {
     const { id } = await params;
-    const developerRepository = new AppwriteDeveloperRepository();
-    const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(
-        developerRepository,
-    );
 
     try {
         const developer = await getDeveloperByIdUseCase.execute(id);

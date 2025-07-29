@@ -1,12 +1,12 @@
 import BaseLayout from "@/components/layout/BaseLayout";
 import { address } from "@/constants/endpoints";
 
-export async function generateMetadata(props: {
+export async function generateMetadata({
+    params,
+}: {
     params: Promise<{ id: string }>;
-}) {
-    // @ts-ignore
-    const params = await props.params;
-    const { id } = params;
+}): Promise<{ title: string }> {
+    const { id } = await params;
     const developer = await fetch(`${address}/api/developers/${id}`).then(
         (res) => res.json(),
     );

@@ -16,9 +16,8 @@ import {
 import { motion } from "motion/react";
 import Image from "next/image";
 import { Heart, MapPin, Briefcase, MessageCircle } from "lucide-react";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
-import { GetAllSkillsUseCase } from "@/src/application/use-cases/developers/GetAllSkillsUseCase";
 import { DeveloperInfo } from "@/src/domain/entities/developer";
+import { getAllSkillsUseCase } from "@/src/config";
 
 const GridDeveloperCard = ({
     developer,
@@ -31,11 +30,7 @@ const GridDeveloperCard = ({
     toggleLike: (id: string) => void;
     isLiked: boolean;
 }) => {
-    const developerRepository = new AppwriteDeveloperRepository();
-    const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
-
-    // @ts-ignore
-    const skills = getAllSkillsUseCase.execute(developer.skills);
+    const skills: string[] = getAllSkillsUseCase.execute(developer.skills as unknown as string);
 
     return (
         <Grid xs={12} sm={6} md={4} lg={4} xl={4}>

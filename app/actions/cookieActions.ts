@@ -1,7 +1,8 @@
 "use server"
+import { CookieListItem } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 
-export const setCookie = async (name: string, value: string, options: any) => {
+export const setCookie = async (name: string, value: string, options: CookieListItem) => {
 	const cookieList = await cookies();
     cookieList.set(name, value, options);
 };

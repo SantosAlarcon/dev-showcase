@@ -1,6 +1,5 @@
-import { GetAllSkillsUseCase } from "@/src/application/use-cases/developers/GetAllSkillsUseCase";
+import { getAllSkillsUseCase } from "@/src/config";
 import { DeveloperInfo } from "@/src/domain/entities/developer";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 import {
     Avatar,
     Box,
@@ -27,11 +26,7 @@ const ListDeveloperCard = ({
     toggleLike: (id: string) => void;
     isLiked: boolean;
 }) => {
-    const developerRepository = new AppwriteDeveloperRepository();
-    const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
-
-    // @ts-ignore
-    const skills = getAllSkillsUseCase.execute(developer.skills);
+    const skills = getAllSkillsUseCase.execute(developer.skills as unknown as string);
 
     return (
         <motion.div

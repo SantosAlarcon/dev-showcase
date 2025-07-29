@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GetProjectsByDeveloperIdUseCase } from "@/src/application/use-cases/projects/GetProjectsByDeveloperIdUseCase";
-import { AppwriteProjectRepository } from "@/src/infrastructure/data/AppwriteProjectRepository";
+import { getProjectsByDeveloperIdUseCase } from "@/src/config";
 
 /**
  * @swagger
@@ -39,10 +38,6 @@ export async function GET(
     { params }: { params: Promise<{ id: string }> },
 ) {
     const { id } = await params;
-    const projectRepository = new AppwriteProjectRepository();
-    const getProjectsByDeveloperIdUseCase = new GetProjectsByDeveloperIdUseCase(
-        projectRepository,
-    );
 
     try {
         const projects = await getProjectsByDeveloperIdUseCase.execute(id);

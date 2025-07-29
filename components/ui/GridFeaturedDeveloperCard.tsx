@@ -15,8 +15,7 @@ import * as motion from "motion/react-client";
 import Image from "next/image";
 import { MapPin, Briefcase } from "lucide-react";
 import { DeveloperInfo } from "@/src/domain/entities/developer";
-import { GetAllSkillsUseCase } from "@/src/application/use-cases/developers/GetAllSkillsUseCase";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
+import { getAllSkillsUseCase } from "@/src/config";
 
 const GridFeaturedDeveloperCard = ({
     developer,
@@ -25,10 +24,7 @@ const GridFeaturedDeveloperCard = ({
     developer: DeveloperInfo;
     index: number;
 }) => {
-    const developerRepository = new AppwriteDeveloperRepository();
-    const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
-    // @ts-ignore
-    const skills = getAllSkillsUseCase.execute(developer.skills);
+    const skills: string[] = getAllSkillsUseCase.execute(developer.skills as unknown as string);
 
     return (
         <Grid xs={12} sm={6} md={4} lg={4} xl={4}>

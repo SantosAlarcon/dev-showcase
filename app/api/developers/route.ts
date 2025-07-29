@@ -1,10 +1,5 @@
+import { getAllDevelopersUseCase, getDevelopersByCityUseCase, getDevelopersByCountryUseCase, getDevelopersByRoleUseCase, getDevelopersByStateUseCase } from "@/src/config";
 import { type NextRequest, NextResponse } from "next/server";
-import { GetAllDevelopersUseCase } from "@/src/application/use-cases/developers/GetAllDevelopersUseCase";
-import { GetDevelopersByCityUseCase } from "@/src/application/use-cases/developers/GetDevelopersByCityUseCase";
-import { GetDevelopersByCountryUseCase } from "@/src/application/use-cases/developers/GetDevelopersByCountryUseCase";
-import { GetDevelopersByRoleUseCase } from "@/src/application/use-cases/developers/GetDevelopersByRoleUseCase";
-import { GetDevelopersByStateUseCase } from "@/src/application/use-cases/developers/GetDevelopersByStateUseCase";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 
 export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams;
@@ -13,23 +8,6 @@ export async function GET(request: NextRequest) {
     const role = searchParams.get("role");
     const city = searchParams.get("city");
     const state = searchParams.get("state");
-
-    const developerRepository = new AppwriteDeveloperRepository();
-    const getAllDevelopersUseCase = new GetAllDevelopersUseCase(
-        developerRepository,
-    );
-    const getDevelopersByCountryUseCase = new GetDevelopersByCountryUseCase(
-        developerRepository,
-    );
-    const getDevelopersByRoleUseCase = new GetDevelopersByRoleUseCase(
-        developerRepository,
-    );
-    const getDevelopersByCityUseCase = new GetDevelopersByCityUseCase(
-        developerRepository,
-    );
-    const getDevelopersByStateUseCase = new GetDevelopersByStateUseCase(
-        developerRepository,
-    );
 
     try {
         if (country) {

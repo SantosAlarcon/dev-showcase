@@ -4,19 +4,11 @@ import type { OAuthProvider } from "appwrite";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createAdminClient } from "@/lib/appwrite/server";
-import { CheckExistingUserUseCase } from "@/src/application/use-cases/auth/CheckExistingUserUseCase";
-import { LoginUseCase } from "@/src/application/use-cases/auth/LoginUseCase";
-import { RegisterUseCase } from "@/src/application/use-cases/auth/RegisterUseCase";
-import { AppwriteAuthRepository } from "@/src/infrastructure/data/AppwriteAuthRepository";
 import type { ActionState } from "@/utils/with-callbacks";
-
-const authRepository = new AppwriteAuthRepository();
-const loginUseCase = new LoginUseCase(authRepository);
-const registerUseCase = new RegisterUseCase(authRepository);
-const checkExistingUserUseCase = new CheckExistingUserUseCase(authRepository);
+import { checkExistingUserUseCase, getCurrentUserUseCase, loginUseCase, logoutUseCase, registerUseCase } from "@/src/config";
 
 export const getCurrentUser = async (): Promise<ActionState> => {
-    const user = await authRepository.getCurrentUser();
+    const user = await getCurrentUserUseCase.execute();
 
     if (user) {
         console.log(`User: ${user}`);
@@ -76,7 +68,7 @@ export const handleLoginOAuth = async (provider: OAuthProvider) => {
 };
 
 export const logout = async () => {
-    await authRepository.logout();
+    await logoutUseCase.execute();
     const cookieList = await cookies();
     cookieList.delete("dev-showcase-session");
     return redirect("/login");

@@ -1,6 +1,5 @@
-import { GetDeveloperByIdUseCase } from "@/src/application/use-cases/developers/GetDeveloperByIdUseCase";
+import { getDeveloperByIdUseCase } from "@/src/config";
 import { Project } from "@/src/domain/entities/project";
-import { AppwriteDeveloperRepository } from "@/src/infrastructure/data/AppwriteDeveloperRepository";
 import {
     Box,
     Card,
@@ -22,10 +21,6 @@ const GridProjectCard = async ({
     project: Project;
     index: number;
 }) => {
-    const developerRepository = new AppwriteDeveloperRepository();
-    const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(
-        developerRepository,
-    );
     const developer = await getDeveloperByIdUseCase.execute(
         project.developerId,
     );

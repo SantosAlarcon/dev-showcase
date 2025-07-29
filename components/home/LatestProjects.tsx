@@ -3,11 +3,10 @@ import Link from "next/link";
 import { Box, Typography, Container, Grid, Button } from "@mui/joy";
 import { ChevronRight } from "lucide-react";
 import GridProjectCard from "../ui/GridProjectCard";
-import { AppwriteProjectRepository } from "@/src/infrastructure/data/AppwriteProjectRepository";
+import { getLatestProjectsUseCase } from "@/src/config";
 
 export default async function LatestProjects() {
-    const projectRepository = new AppwriteProjectRepository();
-    const projectList = await projectRepository.getLatestProjects();
+    const projectList = await getLatestProjectsUseCase.execute();
 
     return (
         <Box

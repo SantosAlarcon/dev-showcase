@@ -5,13 +5,10 @@ import { Query } from "appwrite";
 
 export class AppwriteDeveloperRepository implements IDeveloperRepository {
     getAllSkills(skills: string): string[] {
+		const skillsObject = JSON.parse(skills);
+		const skillsArray = Object.values(skillsObject);
         try {
-            const skillsObject = JSON.parse(skills);
-            return [
-                ...skillsObject.frontend,
-                ...skillsObject.backend,
-                ...skillsObject.other,
-            ];
+			return skillsArray.flat() as string[];
         } catch (error) {
             console.error("Error fetching skills:", error);
             throw new Error("Failed to fetch skills");

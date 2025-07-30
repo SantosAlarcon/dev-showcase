@@ -1,7 +1,7 @@
-import { IDeveloperRepository } from "../../domain/repositories/IDeveloperRepository";
-import { DeveloperInfo } from "../../domain/entities/developer";
-import { databases } from "../../../lib/appwrite/client";
 import { Query } from "appwrite";
+import { databases } from "../../../lib/appwrite/client";
+import type { DeveloperInfo } from "../../domain/entities/developer";
+import type { IDeveloperRepository } from "../../domain/repositories/IDeveloperRepository";
 
 export class AppwriteDeveloperRepository implements IDeveloperRepository {
     async createNewDeveloper(userId: string, name: string, surname: string, email: string): Promise<void> {
@@ -38,7 +38,29 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 				process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
 				process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
 				userId,
-				[ JSON.stringify(newDeveloper) ],
+				{
+					id: userId,
+					name: newDeveloper.name,
+					surname: newDeveloper.surname,
+					title: newDeveloper.title,
+					country: newDeveloper.country,
+					state: newDeveloper.state,
+					city: newDeveloper.city,
+					memberSince: newDeveloper.memberSince,
+					avatar: newDeveloper.avatar,
+					bannerImage: newDeveloper.bannerImage,
+					skills: JSON.stringify(newDeveloper.skills),
+					reviews: newDeveloper.reviews,
+					followers: newDeveloper.followers,
+					availability: newDeveloper.availability,
+					bio: newDeveloper.bio,
+					email: newDeveloper.email,
+					freelance: false,
+					freelanceHourlyRate: 0,
+					workExperience: JSON.stringify(newDeveloper.workExperience),
+					languages: newDeveloper.languages,
+					social: JSON.stringify(newDeveloper.social)
+				},
 			);
 		} catch (error) {
 			console.error("Error creating new developer:", error);

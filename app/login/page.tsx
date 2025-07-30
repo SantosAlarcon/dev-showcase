@@ -7,15 +7,17 @@ const LoginPage = () => {
         <>
             <Grid
                 container
-                columns={{ xs: 1, md: 2 }}
                 height={"100vh"}
+				p={4}
                 sx={{
                     backgroundImage: "url(/DevBG.webp)",
+					gap: 4,
+					display: "grid",
+					gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
                 }}
             >
                 <Grid
                     sx={{
-                        width: { xs: "100%", sm: "50%" },
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
@@ -25,7 +27,6 @@ const LoginPage = () => {
                 </Grid>
                 <Grid
                     sx={{
-                        width: { xs: "100%", sm: "50%" },
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",

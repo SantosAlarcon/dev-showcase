@@ -113,6 +113,7 @@ export const handleRegister = async (
         };
     }
 
+	// Register the user in the Appwrite Users list and create a session
     await registerUseCase.execute(data.name, data.email, data.password);
 
     return {

@@ -4,6 +4,72 @@ import { databases } from "../../../lib/appwrite/client";
 import { Query } from "appwrite";
 
 export class AppwriteDeveloperRepository implements IDeveloperRepository {
+    async createNewDeveloper(userId: string, name: string, surname: string, email: string): Promise<void> {
+		try {
+			const newDeveloper: DeveloperInfo = {
+				id: userId,
+				name: name,
+				surname: surname,
+				title: "",
+				country: "",
+				state: "",
+				city: "",
+				memberSince: "",
+				avatar: "",
+				bannerImage: "",
+				skills: {frontend: [], backend: [], other: []},
+				reviews: 0,
+				followers: 0,
+				availability: "Freelance",
+				bio: "",
+				email: email,
+				freelancer: false,
+				workExperience: [],
+				languages: [],
+				social: {
+					github: "",
+					linkedin: "",
+					twitter: "",
+					facebook: "",
+					instagram: "",
+				},
+			};
+			databases.createDocument(
+				process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+				process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+				userId,
+				[ JSON.stringify(newDeveloper) ],
+			);
+		} catch (error) {
+			console.error("Error creating new developer:", error);
+			throw new Error("Failed to create new developer");
+		}
+    }
+    async updateDeveloper(id: string, developerInfo: DeveloperInfo): Promise<void> {
+		try {
+			await databases.updateDocument(
+				process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+				process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+				id,
+				developerInfo,
+			);
+		} catch (error) {
+			console.error("Error updating developer:", error);
+			throw new Error("Failed to update developer");
+		}
+    }
+    async deleteDeveloper(id: string): Promise<void> {
+		try {
+			await databases.deleteDocument(
+				process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+				process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+				id,
+			);
+		} catch (error) {
+			console.error("Error deleting developer:", error);
+			throw new Error("Failed to delete developer");
+		}
+    }
     getAllSkills(skills: string): string[] {
 		const skillsObject = JSON.parse(skills);
 		const skillsArray = Object.values(skillsObject);

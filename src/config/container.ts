@@ -21,6 +21,9 @@ import { GetAllProjectsUseCase } from '../application/use-cases/projects/GetAllP
 import { GetLatestProjectsUseCase } from '../application/use-cases/projects/GetLatestProjectsUseCase';
 import { GetProjectByIdUseCase } from '../application/use-cases/projects/GetProjectByIdUseCase';
 import { GetProjectsByDeveloperIdUseCase } from '../application/use-cases/projects/GetProjectsByDeveloperIdUseCase';
+import { CreateNewDeveloperUseCase } from '../application/use-cases/developers/CreateNewDeveloperUseCase';
+import { UpdateDeveloperUseCase } from '../application/use-cases/developers/UpdateDeveloperUseCase';
+import { DeleteDeveloperUseCase } from '../application/use-cases/developers/DeleteDeveloperUseCase';
 
 // Repositories
 const authRepository = new AppwriteAuthRepository();
@@ -45,6 +48,9 @@ export const getDevelopersByCountryUseCase = new GetDevelopersByCountryUseCase(d
 export const getDevelopersByRoleUseCase = new GetDevelopersByRoleUseCase(developerRepository);
 export const getDevelopersByStateUseCase = new GetDevelopersByStateUseCase(developerRepository);
 export const getFeaturedDevelopersUseCase = new GetFeaturedDevelopersUseCase(developerRepository);
+export const createNewDeveloperUseCase = new CreateNewDeveloperUseCase(developerRepository);
+export const updateDeveloperUseCase = new UpdateDeveloperUseCase(developerRepository);
+export const deleteDeveloperUseCase = new DeleteDeveloperUseCase(developerRepository);
 
 // Project Use Cases
 export const getAllProjectsUseCase = new GetAllProjectsUseCase(projectRepository);

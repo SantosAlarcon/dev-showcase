@@ -6,7 +6,7 @@ import { createToastCallbacks } from "@/utils/toast-callbacks";
 import { withCallbacks } from "@/utils/with-callbacks";
 
 const RegisterComponent = () => {
-    const [actionState, action, pending] = useActionState(
+    const [actionState, registerAction, pending] = useActionState(
         withCallbacks(
             handleRegister,
             // @ts-ignore
@@ -16,100 +16,113 @@ const RegisterComponent = () => {
     );
 
     return (
-            <Stack
-                spacing={2}
-                direction={"column"}
-                bgcolor={"background.body"}
-                py={4}
-                px={8}
-                borderRadius={"lg"}
-                border={"1px solid"}
-                borderColor={"neutral.700"}
-            >
-                <h1>Register</h1>
-                <p>
-                    Already have an account?{" "}
-                    <a href={"/login"} aria-label="Go to the login page">
-                        Login here
-                    </a>
-                </p>
-
-                <form action={action}>
-                    <Box
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: 2,
-                        }}
-                    >
-                        <FormLabel>Name</FormLabel>
-                        <Input
-                            name="name"
-                            placeholder="Introduce your name"
-                            aria-label="Introduce your name"
-                            required
-                            type="text"
-                            disabled={pending}
-                            defaultValue={
-							// @ts-ignore
-                                (actionState.payload?.get("name") ||
-                                    "") as string
-                            }
-                        />
-                        <FormLabel>Email</FormLabel>
-                        <Input
-                            name="email"
-                            placeholder="Introduce a valid email address"
-                            aria-label="Introduce a valid email address"
-                            required
-                            type="email"
-                            disabled={pending}
-                            defaultValue={
-							// @ts-ignore
-                                (actionState.payload?.get("email") ||
-                                    "") as string
-                            }
-                        />
-                        <FormLabel>Password</FormLabel>
-                        <Input
-                            name="password"
-                            placeholder="Introduce your password"
-                            aria-label="Introduce your password"
-                            required
-                            type="password"
-                            disabled={pending}
-                            defaultValue={
-							// @ts-ignore
-                                (actionState.payload?.get("password") ||
-                                    "") as string
-                            }
-                        />
-                        <FormLabel>Confirm password</FormLabel>
-                        <Input
-                            name="confirm-password"
-                            placeholder="Confirm your password"
-                            aria-label="Confirm your password"
-                            required
-                            type="password"
-                            disabled={pending}
-                            defaultValue={
-							// @ts-ignore
-                                (actionState.payload?.get("confirm-password") ||
-                                    "") as string
-                            }
-                        />
-                        <Button
-                            type="submit"
-                            variant="solid"
-                            color="primary"
-                            disabled={pending}
-							loading={pending}
-                        >
-							{!pending && "Register"}
-                        </Button>
-                    </Box>
-                </form>
+        <Stack
+            spacing={2}
+            direction={"column"}
+            bgcolor={"background.body"}
+            py={4}
+            px={6}
+            borderRadius={"lg"}
+            border={"1px solid"}
+            borderColor={"neutral.700"}
+        >
+            <h1>Register</h1>
+            <Stack columnGap={1} display={"flex"} flexDirection={"row"}>
+                <span>Already have an account?</span>
+                <a href={"/login"} aria-label="Go to the login page">
+                    Login here
+                </a>
             </Stack>
+
+            <form action={registerAction}>
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 2,
+                    }}
+                >
+                    <FormLabel>Name</FormLabel>
+                    <Input
+                        name="name"
+                        placeholder="Introduce your name"
+                        aria-label="Introduce your name"
+                        required
+                        type="text"
+                        disabled={pending}
+                        defaultValue={
+                            // @ts-ignore
+                            (actionState.payload?.get("name") || "") as string
+                        }
+                    />
+
+                    <FormLabel>Surname</FormLabel>
+                    <Input
+                        name="surname"
+                        placeholder="Introduce your surname"
+                        aria-label="Introduce your surname"
+                        required
+                        type="text"
+                        disabled={pending}
+                        defaultValue={
+                            // @ts-ignore
+                            (actionState.payload?.get("surname") ||
+                                "") as string
+                        }
+                    />
+                    <FormLabel>Email</FormLabel>
+                    <Input
+                        name="email"
+                        placeholder="Introduce a valid email address"
+                        aria-label="Introduce a valid email address"
+                        required
+                        type="email"
+                        disabled={pending}
+                        defaultValue={
+                            // @ts-ignore
+                            (actionState.payload?.get("email") || "") as string
+                        }
+                    />
+                    <FormLabel>Password</FormLabel>
+                    <Input
+                        name="password"
+                        placeholder="Introduce your password"
+                        aria-label="Introduce your password"
+                        required
+                        type="password"
+                        disabled={pending}
+                        defaultValue={
+                            // @ts-ignore
+                            (actionState.payload?.get("password") ||
+                                "") as string
+                        }
+                    />
+                    <FormLabel>Confirm password</FormLabel>
+                    <Input
+                        name="confirm-password"
+                        placeholder="Confirm your password"
+                        aria-label="Confirm your password"
+                        required
+                        type="password"
+                        disabled={pending}
+                        defaultValue={
+                            // @ts-ignore
+                            (actionState.payload?.get("confirm-password") ||
+                                "") as string
+                        }
+                    />
+                    <Button
+                        type="submit"
+                        variant="solid"
+                        color="primary"
+                        disabled={pending}
+                        loading={pending}
+                    >
+                        {!pending && "Register"}
+                    </Button>
+                </Box>
+            </form>
+        </Stack>
     );
 };
 

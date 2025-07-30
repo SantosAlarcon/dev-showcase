@@ -5,7 +5,13 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createAdminClient } from "@/lib/appwrite/server";
 import type { ActionState } from "@/utils/with-callbacks";
-import { checkExistingUserUseCase, getCurrentUserUseCase, loginUseCase, logoutUseCase, registerUseCase } from "@/src/config";
+import {
+    checkExistingUserUseCase,
+    getCurrentUserUseCase,
+    loginUseCase,
+    logoutUseCase,
+    registerUseCase,
+} from "@/src/config";
 
 export const getCurrentUser = async (): Promise<ActionState> => {
     const user = await getCurrentUserUseCase.execute();
@@ -58,13 +64,13 @@ export const handleLogin = async (
 };
 
 export const handleLoginOAuth = async (provider: OAuthProvider) => {
-	const {account} = await createAdminClient();
-	const redirectUrl = await account.createOAuth2Token(
-		provider,
-		`${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth`,
-		`${process.env.NEXT_PUBLIC_ADDRESS}/login`,
-	);
-	return redirect(redirectUrl);
+    const { account } = await createAdminClient();
+    const redirectUrl = await account.createOAuth2Token(
+        provider,
+        `${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth`,
+        `${process.env.NEXT_PUBLIC_ADDRESS}/login`,
+    );
+    return redirect(redirectUrl);
 };
 
 export const logout = async () => {
@@ -80,6 +86,7 @@ export const handleRegister = async (
 ): Promise<ActionState> => {
     const data = {
         name: formData.get("name").toString(),
+        surname: formData.get("surname").toString(),
         email: formData.get("email").toString(),
         password: formData.get("password").toString(),
         confirmPassword: formData.get("confirm-password").toString(),
@@ -113,8 +120,13 @@ export const handleRegister = async (
         };
     }
 
-	// Register the user in the Appwrite Users list and create a session
-    await registerUseCase.execute(data.name, data.email, data.password);
+    // Register the user in the Appwrite Users list and create a session
+    await registerUseCase.execute(
+        data.name,
+        data.surname,
+        data.email,
+        data.password,
+    );
 
     return {
         message: "Registered successfully",

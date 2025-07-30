@@ -1,8 +1,8 @@
 import { IAuthRepository } from "../../domain/repositories/IAuthRepository";
-import { AuthUser } from "@/src/domain/entities/user";
 import { ID, OAuthProvider } from "appwrite";
 import { Models } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "@/lib/appwrite/server";
+import { createNewDeveloperUseCase } from "@/src/config";
 
 type SessionProps = {
     session: Models.Session;
@@ -23,8 +23,11 @@ export class AppwriteAuthRepository implements IAuthRepository {
             },
         ).then((res) => res.json());
         const existingUser = userList.users[0];
-        // Return true if the user exists
-        return !!existingUser;
+
+        if (existingUser) {
+            return true;
+        }
+        return false;
     }
 
     async login(email: string, password: string): Promise<SessionProps | null> {
@@ -53,14 +56,21 @@ export class AppwriteAuthRepository implements IAuthRepository {
 
     async register(
         name: string,
+		surname: string,
         email: string,
         password: string,
-    ): Promise<AuthUser | null> {
+    ): Promise<SessionProps | null> {
         const { account } = await createAdminClient();
-        await account.create(ID.unique(), email, password, name);
-        await this.login(email, password);
-        // @ts-ignore
-        return this.getCurrentUser();
+		const newUserId = ID.unique();
+
+		// Create a new user if it doesn't exist
+		const userExists = await this.checkUserExists(email);
+		if (!userExists) {
+			await createNewDeveloperUseCase.execute(newUserId, name, surname, email);
+		}
+
+        await account.create(newUserId, email, password, `${name} ${surname}`);
+        return await this.login(email, password);
     }
 
     async logout(): Promise<void> {

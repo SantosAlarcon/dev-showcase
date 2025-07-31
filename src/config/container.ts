@@ -24,8 +24,8 @@ import { GetProjectsByDeveloperIdUseCase } from '../application/use-cases/projec
 import { CreateNewDeveloperUseCase } from '../application/use-cases/developers/CreateNewDeveloperUseCase';
 import { UpdateDeveloperUseCase } from '../application/use-cases/developers/UpdateDeveloperUseCase';
 import { DeleteDeveloperUseCase } from '../application/use-cases/developers/DeleteDeveloperUseCase';
-import { UnpublishDeveloperUseCase } from '../application/use-cases/developers/UnpublicDeveloperUseCase';
-import { PublishDeveloperUseCase } from '../application/use-cases/developers/PublicDeveloperUseCase';
+import { UnpublishDeveloperUseCase } from '../application/use-cases/developers/UnpublishDeveloperUseCase';
+import { PublishDeveloperUseCase } from '../application/use-cases/developers/PublishDeveloperUseCase';
 
 // Repositories
 const authRepository = new AppwriteAuthRepository();

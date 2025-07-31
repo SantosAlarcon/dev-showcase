@@ -4,9 +4,34 @@ import type { DeveloperInfo } from "../../domain/entities/developer";
 import type { IDeveloperRepository } from "../../domain/repositories/IDeveloperRepository";
 
 export class AppwriteDeveloperRepository implements IDeveloperRepository {
-    async createNewDeveloper(userId: string, name: string, surname: string, email: string): Promise<void> {
-		try {
-			const newDeveloper: DeveloperInfo = {
+    async unpublishDeveloper(id: string): Promise<void> {
+        await databases.updateDocument(
+            process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+            id,
+            {
+                isPublic: false,
+            },
+        );
+    }
+    async publishDeveloper(id: string): Promise<void> {
+        await databases.updateDocument(
+            process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+            id,
+            {
+                isPublic: true,
+            },
+        );
+    }
+    async createNewDeveloper(
+        userId: string,
+        name: string,
+        surname: string,
+        email: string,
+    ): Promise<void> {
+        try {
+            const newDeveloper: DeveloperInfo = {
                 id: userId,
                 name: name,
                 surname: surname,
@@ -33,71 +58,74 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                     facebook: "",
                     instagram: "",
                 },
-                isPublic: false
+                isPublic: false,
             };
-			databases.createDocument(
-				process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
-				process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-				userId,
-				{
-					id: userId,
-					name: newDeveloper.name,
-					surname: newDeveloper.surname,
-					title: newDeveloper.title,
-					country: newDeveloper.country,
-					state: newDeveloper.state,
-					city: newDeveloper.city,
-					memberSince: newDeveloper.memberSince,
-					avatar: newDeveloper.avatar,
-					bannerImage: newDeveloper.bannerImage,
-					skills: JSON.stringify(newDeveloper.skills),
-					reviews: newDeveloper.reviews,
-					followers: newDeveloper.followers,
-					availability: newDeveloper.availability,
-					bio: newDeveloper.bio,
-					email: newDeveloper.email,
-					freelance: false,
-					freelanceHourlyRate: 0,
-					workExperience: JSON.stringify(newDeveloper.workExperience),
-					languages: newDeveloper.languages,
-					social: JSON.stringify(newDeveloper.social)
-				},
-			);
-		} catch (error) {
-			console.error("Error creating new developer:", error);
-			throw new Error("Failed to create new developer");
-		}
+            databases.createDocument(
+                process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+                process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+                userId,
+                {
+                    id: userId,
+                    name: newDeveloper.name,
+                    surname: newDeveloper.surname,
+                    title: newDeveloper.title,
+                    country: newDeveloper.country,
+                    state: newDeveloper.state,
+                    city: newDeveloper.city,
+                    memberSince: newDeveloper.memberSince,
+                    avatar: newDeveloper.avatar,
+                    bannerImage: newDeveloper.bannerImage,
+                    skills: JSON.stringify(newDeveloper.skills),
+                    reviews: newDeveloper.reviews,
+                    followers: newDeveloper.followers,
+                    availability: newDeveloper.availability,
+                    bio: newDeveloper.bio,
+                    email: newDeveloper.email,
+                    freelance: false,
+                    freelanceHourlyRate: 0,
+                    workExperience: JSON.stringify(newDeveloper.workExperience),
+                    languages: newDeveloper.languages,
+                    social: JSON.stringify(newDeveloper.social),
+                },
+            );
+        } catch (error) {
+            console.error("Error creating new developer:", error);
+            throw new Error("Failed to create new developer");
+        }
     }
-    async updateDeveloper(id: string, developerInfo: DeveloperInfo): Promise<void> {
-		try {
-			await databases.updateDocument(
-				process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
-				process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-				id,
-				developerInfo,
-			);
-		} catch (error) {
-			console.error("Error updating developer:", error);
-			throw new Error("Failed to update developer");
-		}
+    async updateDeveloper(
+        id: string,
+        developerInfo: DeveloperInfo,
+    ): Promise<void> {
+        try {
+            await databases.updateDocument(
+                process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+                process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+                id,
+                developerInfo,
+            );
+        } catch (error) {
+            console.error("Error updating developer:", error);
+            throw new Error("Failed to update developer");
+        }
     }
     async deleteDeveloper(id: string): Promise<void> {
-		try {
-			await databases.deleteDocument(
-				process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
-				process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-				id,
-			);
-		} catch (error) {
-			console.error("Error deleting developer:", error);
-			throw new Error("Failed to delete developer");
-		}
+        try {
+            await databases.deleteDocument(
+                process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+                process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+                id,
+            );
+        } catch (error) {
+            console.error("Error deleting developer:", error);
+            throw new Error("Failed to delete developer");
+        }
     }
     getAllSkills(skills: string): string[] {
-		const skillsObject = JSON.parse(skills);
-		const skillsArray = Object.values(skillsObject);
+        const skillsObject = JSON.parse(skills);
+        const skillsArray = Object.values(skillsObject);
         try {
-			return skillsArray.flat() as string[];
+            return skillsArray.flat() as string[];
         } catch (error) {
             console.error("Error fetching skills:", error);
             throw new Error("Failed to fetch skills");
@@ -109,7 +137,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
             const response = await databases.listDocuments(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-				[Query.equal("isPublic", true)],
+                [Query.equal("isPublic", true)],
             );
             return response.documents as unknown as DeveloperInfo[];
         } catch (error) {
@@ -146,7 +174,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                 workExperience: JSON.parse(result.workExperience),
                 languages: result.languages,
                 social: JSON.parse(result.social),
-				isPublic: result.isPublic
+                isPublic: result.isPublic,
             };
             return developerFound;
         } catch (error) {
@@ -160,7 +188,11 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
             const result = await databases.listDocuments(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-                [Query.orderDesc("followers"), Query.limit(9), Query.equal("isPublic", true)],
+                [
+                    Query.orderDesc("followers"),
+                    Query.limit(9),
+                    Query.equal("isPublic", true),
+                ],
             );
             return result.documents as unknown as DeveloperInfo[];
         } catch (error) {
@@ -174,7 +206,11 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
             const result = await databases.listDocuments(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-                [Query.equal("city", city), Query.limit(9), Query.equal("isPublic", true)],
+                [
+                    Query.equal("city", city),
+                    Query.limit(9),
+                    Query.equal("isPublic", true),
+                ],
             );
             return result.documents as unknown as DeveloperInfo[];
         } catch (error) {
@@ -188,7 +224,11 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
             const result = await databases.listDocuments(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-                [Query.equal("country", country), Query.limit(9), Query.equal("isPublic", true)],
+                [
+                    Query.equal("country", country),
+                    Query.limit(9),
+                    Query.equal("isPublic", true),
+                ],
             );
             return result.documents as unknown as DeveloperInfo[];
         } catch (error) {
@@ -202,7 +242,11 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
             const result = await databases.listDocuments(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-                [Query.equal("role", role), Query.limit(9), Query.equal("isPublic", true)],
+                [
+                    Query.equal("role", role),
+                    Query.limit(9),
+                    Query.equal("isPublic", true),
+                ],
             );
             return result.documents as unknown as DeveloperInfo[];
         } catch (error) {
@@ -216,7 +260,11 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
             const result = await databases.listDocuments(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-                [Query.equal("state", state), Query.limit(9), Query.equal("isPublic", true)],
+                [
+                    Query.equal("state", state),
+                    Query.limit(9),
+                    Query.equal("isPublic", true),
+                ],
             );
             return result.documents as unknown as DeveloperInfo[];
         } catch (error) {

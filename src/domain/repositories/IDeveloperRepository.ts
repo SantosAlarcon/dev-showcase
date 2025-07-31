@@ -12,4 +12,6 @@ export interface IDeveloperRepository {
     getDevelopersByCountry(country: string): Promise<DeveloperInfo[]>;
     getDevelopersByRole(role: string): Promise<DeveloperInfo[]>;
     getDevelopersByState(state: string): Promise<DeveloperInfo[]>;
+	unpublishDeveloper(id: string): Promise<void>;
+	publishDeveloper(id: string): Promise<void>;
 }

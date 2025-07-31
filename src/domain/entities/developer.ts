@@ -19,6 +19,7 @@ export type DeveloperInfo = {
     workExperience: Experience[];
     languages: string[];
     social: Social;
+	isPublic: boolean;
 };
 
 export type FreelanceInfo = {

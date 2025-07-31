@@ -8,8 +8,8 @@ import { withCallbacks } from "@/utils/with-callbacks";
 const RegisterComponent = () => {
     const [actionState, registerAction, pending] = useActionState(
         withCallbacks(
+			// @ts-ignore
             handleRegister,
-            // @ts-ignore
             createToastCallbacks({}),
         ),
         { message: "", status: "NONE" },

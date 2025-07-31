@@ -32,15 +32,19 @@ export class AppwriteAuthRepository implements IAuthRepository {
 
     async login(email: string, password: string): Promise<SessionProps | null> {
         const { account } = await createAdminClient();
-        const session = await account.createEmailPasswordSession(
-            email,
-            password,
-        );
 
-        if (session) {
-            return { session, error: null };
-        }
-        return { session: null, error: "No session found" };
+		try {
+			const session = await account.createEmailPasswordSession(
+				email,
+				password,
+			);
+			if (session) {
+				return { session, error: null };
+			}
+		} catch (error) {
+			return { session: null, error: "No session found" };
+		}
+
     }
 
     async loginOAuth(provider: OAuthProvider): Promise<string | null> {

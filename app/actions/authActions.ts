@@ -35,7 +35,7 @@ export const getCurrentUser = async (): Promise<ActionState> => {
 export const handleLogin = async (
 	_actionState: ActionState,
 	formData: FormData,
-): Promise<ActionState> => {
+): Promise<ActionState | void> => {
 	const data = {
 		email: formData.get("email").toString(),
 		password: formData.get("password").toString(),
@@ -43,6 +43,7 @@ export const handleLogin = async (
 
 	const result = await loginUseCase.execute(data.email, data.password);
 
+	// If the login is successful, set the session cookie and redirect to the discover page
 	if (result.session) {
 		const cookieList = await cookies();
 		cookieList.set("dev-showcase-session", result.session.secret, {
@@ -51,6 +52,8 @@ export const handleLogin = async (
 			secure: process.env.NODE_ENV === "production",
 			sameSite: "lax",
 		});
+
+		return redirect("/discover");
 	}
 
 	// Return an error message if the login fails (invalid credentials or the user is not found)

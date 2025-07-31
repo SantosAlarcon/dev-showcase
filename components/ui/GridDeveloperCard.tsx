@@ -65,7 +65,6 @@ const GridDeveloperCard = ({
                                 aria-label="Background image"
                             >
                                 <Image
-                                    // @ts-ignore
                                     src={"/empty.webp"}
                                     alt={`${developer.name} ${developer.surname}'s background image`}
                                     style={{ objectFit: "cover" }}

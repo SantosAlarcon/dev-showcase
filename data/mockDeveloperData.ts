@@ -25,6 +25,7 @@ const developersData: DeveloperInfo[] = [
         email: "alexjohnson@gmail.com",
         freelancer: { hourlyRate: "85" },
         languages: ["English (Native)", "Spanish (Conversational)"],
+		isPublic: true,
         workExperience: [
             {
                 title: "Senior Software Engineer",
@@ -96,6 +97,7 @@ const developersData: DeveloperInfo[] = [
         availability: "Full-time",
         email: "samanthachen@gmail.com",
         languages: ["English (Native)"],
+		isPublic: true,
         social: {
             github: "https://github.com",
             linkedin: "https://linkedin.com",
@@ -148,6 +150,7 @@ const developersData: DeveloperInfo[] = [
         ],
         freelancer: false,
         email: "davidmartinez@gmail.com",
+		isPublic: true,
         social: {
             github: "https://github.com",
             linkedin: "https://linkedin.com",
@@ -199,6 +202,7 @@ const developersData: DeveloperInfo[] = [
         followers: 250,
         reviews: 31,
         availability: "Full-time",
+		isPublic: true,
         social: {
             github: "https://github.com",
             linkedin: "https://linkedin.com",
@@ -278,6 +282,7 @@ const developersData: DeveloperInfo[] = [
             },
         ],
         languages: ["English", "Spanish"],
+		isPublic: true,
         social: {
             github: "https://github.com/jameswilson-devops",
             linkedin: "https://www.linkedin.com/in/jameswilsondevops",
@@ -357,6 +362,7 @@ const developersData: DeveloperInfo[] = [
             },
         ],
         languages: ["English (Native)", "Spanish (Fluent)"],
+		isPublic: true,
         social: {
             github: "https://github.com/ElenaRodriguezDesign",
             linkedin: "https://www.linkedin.com/in/elenarodriguezuxui",
@@ -443,6 +449,7 @@ const developersData: DeveloperInfo[] = [
             },
         ],
         languages: ["English (Native)", "Korean (Fluent)"],
+		isPublic: true,
         social: {
             github: "https://github.com/terrykimdata",
             linkedin: "https://www.linkedin.com/in/terrykimdataengineer",
@@ -520,6 +527,7 @@ const developersData: DeveloperInfo[] = [
             },
         ],
         languages: ["English (Native)", "Spanish (Conversational)"],
+		isPublic: true,
         social: {
             github: "https://github.com/oliviathomas-sec",
             linkedin: "https://www.linkedin.com/in/oliviathomas-security",

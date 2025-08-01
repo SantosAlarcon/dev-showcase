@@ -5,6 +5,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "@/styles/project.css";
 import { address } from "@/constants/endpoints";
+import { getDeveloperByIdUseCase } from "@/src/config";
 
 export default async function ProjectProfile(props: {
     params: Promise<{ id: string }>;
@@ -13,9 +14,7 @@ export default async function ProjectProfile(props: {
     const project = await fetch(`${address}/api/projects/${id}`).then((res) =>
         res.json(),
     );
-    const developer = await fetch(
-        `${address}/api/developers/${project.developerId}`,
-    ).then((res) => res.json());
+    const developer = await getDeveloperByIdUseCase.execute(project.developerId);
 
     if (!project) return <ProjectNotFound />;
     return (

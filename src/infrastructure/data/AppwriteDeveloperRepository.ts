@@ -4,6 +4,18 @@ import type { DeveloperInfo } from "../../domain/entities/developer";
 import type { IDeveloperRepository } from "../../domain/repositories/IDeveloperRepository";
 
 export class AppwriteDeveloperRepository implements IDeveloperRepository {
+    async checkUserDBExists(email: string): Promise<boolean> {
+		const results = await databases.listDocuments(
+			process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+			process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+			[Query.equal("email", email)],
+		);
+
+		if (results.total > 0) {
+			return true;
+		}
+		return false;
+    }
     async unpublishDeveloper(id: string): Promise<void> {
         await databases.updateDocument(
             process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
@@ -35,6 +47,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                 id: userId,
                 name: name,
                 surname: surname,
+				slug: "",
                 title: "",
                 country: "",
                 state: "",
@@ -69,6 +82,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                     name: newDeveloper.name,
                     surname: newDeveloper.surname,
                     title: newDeveloper.title,
+					slug: newDeveloper.slug,
                     country: newDeveloper.country,
                     state: newDeveloper.state,
                     city: newDeveloper.city,
@@ -156,6 +170,48 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
             const developerFound: DeveloperInfo = {
                 id: result.$id,
                 name: result.name,
+				slug: result.slug,
+                surname: result.surname,
+                title: result.title,
+                country: result.country,
+                state: result.state,
+                city: result.city,
+                memberSince: result.memberSince,
+                avatar: result.avatar,
+                bannerImage: result.bannerImage,
+                skills: JSON.parse(result.skills),
+                reviews: result.reviews,
+                followers: result.followers,
+                availability: result.availability,
+                bio: result.bio,
+                email: result.email,
+                freelancer: result.freelancer,
+                workExperience: JSON.parse(result.workExperience),
+                languages: result.languages,
+                social: JSON.parse(result.social),
+                isPublic: result.isPublic,
+            };
+            return developerFound;
+        } catch (error) {
+            console.error("Error fetching developer:", error);
+            return null;
+        }
+    }
+
+async getDeveloperBySlug(slug: string): Promise<DeveloperInfo | null> {
+        try {
+            const resultList = await databases.listDocuments(
+                process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+                process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+				[Query.equal("slug", slug)],
+            );
+
+			const result = resultList.documents[0];
+
+            const developerFound: DeveloperInfo = {
+                id: result.id,
+                name: result.name,
+				slug: result.slug,
                 surname: result.surname,
                 title: result.title,
                 country: result.country,

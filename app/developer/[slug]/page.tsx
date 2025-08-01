@@ -49,18 +49,20 @@ import Markdown from "react-markdown";
 import { getLocaleCurrency } from "@/lib/utils";
 import { calculateTotalExperience } from "@/lib/utils";
 import { Period } from "@/src/domain/entities/ui";
-import { getDeveloperByIdUseCase, getProjectsByDeveloperIdUseCase } from "@/src/config";
+import {
+    getDeveloperBySlugUseCase,
+    getProjectsByDeveloperIdUseCase,
+} from "@/src/config";
 
 export default async function DeveloperProfile(props: {
-    params: Promise<{ id: string }>;
+    params: Promise<{ slug: string }>;
 }) {
-    const { id } = await props.params;
+    const { slug } = await props.params;
 
-    // @ts-ignore
-    const [developer, projects] = await Promise.all([
-        getDeveloperByIdUseCase.execute(id),
-        getProjectsByDeveloperIdUseCase.execute(id),
-    ]);
+    const developer = await getDeveloperBySlugUseCase.execute(slug);
+    const projects = await getProjectsByDeveloperIdUseCase.execute(
+        developer.id,
+    );
 
     const totalExperience: Period = calculateTotalExperience(
         developer.workExperience,

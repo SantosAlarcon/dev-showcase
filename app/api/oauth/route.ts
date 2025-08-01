@@ -1,7 +1,8 @@
 import { cookies } from "next/headers";
 import { type NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/appwrite/server";
-import { checkExistingUserUseCase, createNewDeveloperUseCase } from "@/src/config";
+import { getLoggedInUser } from "@/lib/appwrite/api";
+import { checkExistingDBUserUseCase, createNewDeveloperUseCase } from "@/src/config";
 
 export async function GET(req: NextRequest) {
     const { searchParams } = req.nextUrl;
@@ -25,13 +26,13 @@ export async function GET(req: NextRequest) {
                 maxAge: 60 * 60 * 24 * 30,
             });
 
-			// Create a new user if it doesn't exist
-			const user = await account.get();
+			// Create a new user if it doesn't exist in the developer database
+			const user = await getLoggedInUser();
 			const name = user.name.split(" ")[0];
-			const surname = user.name.split(" ")[1];
-			const userExists = await checkExistingUserUseCase.execute(user.email);
-			if (!userExists) {
-				await createNewDeveloperUseCase.execute(user.$id, name, surname, user.email);
+			const surname = (user.name.split(" ")[2] !== "") ? `${user.name.split(" ")[1]} ${user.name.split(" ")[2]}` : user.name.split(" ")[1];
+			const userExistsInDB = await checkExistingDBUserUseCase.execute(user.email);
+			if (!userExistsInDB) {
+				await createNewDeveloperUseCase.execute(userId, name, surname, user.email);
 			}
 
             return NextResponse.redirect(new URL("/discover", req.url));

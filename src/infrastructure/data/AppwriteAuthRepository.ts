@@ -10,7 +10,7 @@ type SessionProps = {
 };
 
 export class AppwriteAuthRepository implements IAuthRepository {
-    async checkUserExists(email: string): Promise<boolean> {
+    async checkUserAuthExists(email: string): Promise<boolean> {
         const userList = await fetch(
             `${process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!}/users?queries[]={"method":"equal","attribute":"email","values": ["${email}"]}`,
             {
@@ -68,7 +68,7 @@ export class AppwriteAuthRepository implements IAuthRepository {
 		const newUserId = ID.unique();
 
 		// Create a new user if it doesn't exist
-		const userExists = await this.checkUserExists(email);
+		const userExists = await this.checkUserAuthExists(email);
 		if (!userExists) {
 			await createNewDeveloperUseCase.execute(newUserId, name, surname, email);
 		}

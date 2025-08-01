@@ -4,10 +4,10 @@ import { address } from "@/constants/endpoints";
 export async function generateMetadata({
     params,
 }: {
-    params: Promise<{ id: string }>;
+    params: Promise<{ slug: string }>;
 }): Promise<{ title: string }> {
-    const { id } = await params;
-    const developer = await fetch(`${address}/api/developers/${id}`).then(
+    const { slug } = await params;
+    const developer = await fetch(`${address}/api/developers/${slug}`).then(
         (res) => res.json(),
     );
 

@@ -108,7 +108,7 @@ const GridFeaturedDeveloperCard = ({
                             <Avatar
                                 src={developer.avatar}
                                 alt={`${developer.name} ${developer.surname}'s photo`}
-                                href={`/developer/${developer.id}`}
+                                href={`/developer/${developer.slug}`}
                                 component={Link}
                                 aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}
                                 size="sm"
@@ -121,7 +121,7 @@ const GridFeaturedDeveloperCard = ({
 
                         <Box>
                             <Link
-                                href={`/developer/${developer.id}`}
+                                href={`/developer/${developer.slug}`}
                                 aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}
                                 level="title-lg"
                                 fontWeight={700}

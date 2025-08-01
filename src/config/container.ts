@@ -2,7 +2,6 @@
 import { AppwriteAuthRepository } from '../infrastructure/data/AppwriteAuthRepository';
 import { AppwriteDeveloperRepository } from '../infrastructure/data/AppwriteDeveloperRepository';
 import { AppwriteProjectRepository } from '../infrastructure/data/AppwriteProjectRepository';
-import { CheckExistingUserUseCase } from '../application/use-cases/auth/CheckExistingUserUseCase';
 import { GetCurrentSessionUseCase } from '../application/use-cases/auth/GetCurrentSessionUseCase';
 import { GetCurrentUserUseCase } from '../application/use-cases/auth/GetCurrentUserUseCase';
 import { LoginOAuthUseCase } from '../application/use-cases/auth/LoginOAuthUseCase';
@@ -26,6 +25,9 @@ import { UpdateDeveloperUseCase } from '../application/use-cases/developers/Upda
 import { DeleteDeveloperUseCase } from '../application/use-cases/developers/DeleteDeveloperUseCase';
 import { UnpublishDeveloperUseCase } from '../application/use-cases/developers/UnpublishDeveloperUseCase';
 import { PublishDeveloperUseCase } from '../application/use-cases/developers/PublishDeveloperUseCase';
+import { CheckExistingAuthUserUseCase } from '../application/use-cases/auth/CheckExistingAuthUserUseCase';
+import { CheckExistingDBUserUseCase } from '../application/use-cases/developers/CheckExistingDBUserUseCase';
+import { GetDeveloperBySlugUseCase } from '../application/use-cases/developers/GetDeveloperBySlugUseCase';
 
 // Repositories
 const authRepository = new AppwriteAuthRepository();
@@ -33,7 +35,7 @@ const developerRepository = new AppwriteDeveloperRepository();
 const projectRepository = new AppwriteProjectRepository();
 
 // Auth Use Cases
-export const checkExistingUserUseCase = new CheckExistingUserUseCase(authRepository);
+export const checkExistingAuthUserUseCase = new CheckExistingAuthUserUseCase(authRepository);
 export const getCurrentSessionUseCase = new GetCurrentSessionUseCase(authRepository);
 export const getCurrentUserUseCase = new GetCurrentUserUseCase(authRepository);
 export const loginOAuthUseCase = new LoginOAuthUseCase(authRepository);
@@ -42,8 +44,10 @@ export const logoutUseCase = new LogoutUseCase(authRepository);
 export const registerUseCase = new RegisterUseCase(authRepository);
 
 // Developer Use Cases
+export const checkExistingDBUserUseCase = new CheckExistingDBUserUseCase(developerRepository);
 export const getAllDevelopersUseCase = new GetAllDevelopersUseCase(developerRepository);
 export const getAllSkillsUseCase = new GetAllSkillsUseCase(developerRepository);
+export const getDeveloperBySlugUseCase = new GetDeveloperBySlugUseCase(developerRepository);
 export const getDeveloperByIdUseCase = new GetDeveloperByIdUseCase(developerRepository);
 export const getDevelopersByCityUseCase = new GetDevelopersByCityUseCase(developerRepository);
 export const getDevelopersByCountryUseCase = new GetDevelopersByCountryUseCase(developerRepository);

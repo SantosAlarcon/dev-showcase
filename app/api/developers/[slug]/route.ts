@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDeveloperByIdUseCase } from "@/src/config";
+import { getDeveloperByIdUseCase, getDeveloperBySlugUseCase } from "@/src/config";
 
 /**
  * @swagger
- * /api/developers/{id}:
+ * /api/developers/{slug}:
  *   get:
- *     summary: Get developer by id
- *     description: Get developer information with the id provided
+ *     summary: Get developer by slug
+ *     description: Get developer information with the slug provided
  *     tags:
  *       - Developers
  *     parameters:
- *       - name: id
+ *       - name: slug
  *         in: path
- *         description: Developer id
+ *         description: Developer slug
  *         required: true
  *         schema:
  *           type: string
@@ -35,12 +35,12 @@ import { getDeveloperByIdUseCase } from "@/src/config";
  */
 export async function GET(
     _request: NextRequest,
-    { params }: { params: Promise<{ id: string }> },
+    { params }: { params: Promise<{ slug: string }> },
 ) {
-    const { id } = await params;
+    const { slug } = await params;
 
     try {
-        const developer = await getDeveloperByIdUseCase.execute(id);
+        const developer = await getDeveloperBySlugUseCase.execute(slug);
 
         if (!developer) {
             return NextResponse.json(

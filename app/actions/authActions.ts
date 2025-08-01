@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createAdminClient } from "@/lib/appwrite/server";
 import {
-	checkExistingUserUseCase,
+	checkExistingAuthUserUseCase,
 	getCurrentUserUseCase,
 	loginUseCase,
 	logoutUseCase,
@@ -112,7 +112,7 @@ export const handleRegister = async (
 	}
 
 	// Check if the user already exists in the Appwrite Users list
-	if (await checkExistingUserUseCase.execute(data.email)) {
+	if (await checkExistingAuthUserUseCase.execute(data.email)) {
 		return {
 			message:
 				"There is already an account with this email. Please user another email.",

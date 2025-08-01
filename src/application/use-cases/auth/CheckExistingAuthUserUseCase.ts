@@ -1,9 +1,9 @@
 import { IAuthRepository } from "@/src/domain/repositories/IAuthRepository";
 
-export class CheckExistingUserUseCase {
+export class CheckExistingAuthUserUseCase {
     constructor(private authRepository: IAuthRepository) {}
 
     async execute(email: string) {
-        return await this.authRepository.checkUserExists(email);
+        return await this.authRepository.checkUserAuthExists(email);
     }
 }

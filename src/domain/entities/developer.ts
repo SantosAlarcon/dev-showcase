@@ -2,6 +2,7 @@ export type DeveloperInfo = {
     id: string;
     name: string;
     surname: string;
+	slug: string;
     title: string;
     country: string;
     state: string;

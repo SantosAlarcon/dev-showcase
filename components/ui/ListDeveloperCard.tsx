@@ -57,7 +57,7 @@ const ListDeveloperCard = ({
                 <Avatar
                     src={developer.avatar}
                     alt={developer.name}
-                    href={`/developer/${developer.id}`}
+                    href={`/developer/${developer.slug}`}
                     component={Link}
                     aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}
                     sx={{
@@ -102,7 +102,7 @@ const ListDeveloperCard = ({
                                 >
                                     <Link
                                         aria-label={`Go to ${developer.name} ${developer.surname} profile`}
-                                        href={`/developer/${developer.id}`}
+                                        href={`/developer/${developer.slug}`}
                                         sx={{ color: "inherit" }}
                                     >
                                         {`${developer.name} ${developer.surname}`}

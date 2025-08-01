@@ -17,5 +17,5 @@ export interface IAuthRepository {
     logout(): Promise<any>;
     getCurrentUser(): Promise<Models.User<Models.Preferences>> | null;
 	getCurrentSession(): Promise<Models.Session | null>;
-    checkUserExists(email: string): Promise<boolean>;
+    checkUserAuthExists(email: string): Promise<boolean>;
 }

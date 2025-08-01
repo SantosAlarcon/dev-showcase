@@ -54,7 +54,7 @@ export default async function ProjectProfile(props: {
                     alt={developer.name + developer.surname}
                 />{" "}
                 <Link
-                    href={`/developer/${project.developerId}`}
+                    href={`/developer/${developer.slug}`}
                     aria-label={`Go to ${developer.name} ${developer.surname}'s profile`}
                 >
                     {developer.name} {developer.surname}

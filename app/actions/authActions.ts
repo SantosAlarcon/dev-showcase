@@ -53,7 +53,7 @@ export const handleLogin = async (
 			sameSite: "lax",
 		});
 
-		return redirect("/discover");
+		return redirect("/profile");
 	}
 
 	// Return an error message if the login fails (invalid credentials or the user is not found)
@@ -129,7 +129,7 @@ export const handleRegister = async (
 		data.password,
 	);
 
-	return redirect("/discover");
+	return redirect("/profile");
 
 	/**
 		return {

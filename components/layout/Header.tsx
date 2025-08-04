@@ -18,7 +18,6 @@ import {
 } from "@mui/joy";
 import { Menu as MenuIcon, X, Sun, Moon, Computer, Search } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { getLoggedInUser } from "@/lib/appwrite/api";
 import { logout } from "@/app/actions/authActions";
 import { getCookie } from "@/app/actions/cookieActions";
 

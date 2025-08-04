@@ -35,7 +35,7 @@ export async function GET(req: NextRequest) {
 				await createNewDeveloperUseCase.execute(userId, name, surname, user.email);
 			}
 
-            return NextResponse.redirect(new URL("/discover", req.url));
+            return NextResponse.redirect(new URL("/profile", req.url));
         } catch (error) {
             console.error("Error during OAuth callback:", error);
             return NextResponse.redirect(

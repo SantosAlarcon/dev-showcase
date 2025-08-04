@@ -83,11 +83,15 @@ export class AppwriteAuthRepository implements IAuthRepository {
     }
 
     async getCurrentUser(): Promise<Models.User<Models.Preferences>> | null {
-        const { account } = await createAdminClient();
-        const user: Models.User<Models.Preferences> = await account.get();
-        if (user) {
-            return user;
-        }
+		try {
+			const { account } = await createSessionClient();
+			const user: Models.User<Models.Preferences> = await account.get();
+			if (user) {
+				return user;
+			}
+		} catch (error) {
+			console.log(error);
+		}
         return null;
     }
 

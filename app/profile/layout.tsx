@@ -1,5 +1,6 @@
 import BaseLayout from "@/components/layout/BaseLayout";
-import { getCurrentUserUseCase, getDeveloperByIdUseCase } from "@/src/config";
+import { getCurrentUserUseCase } from "@/src/config";
+import { QueryClient } from "@tanstack/react-query";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { ReactNode } from "react";
@@ -9,15 +10,19 @@ export const metadata: Metadata = {
 };
 
 const ProfileLayout = async ({ children }: { children: ReactNode }) => {
-    const user = await getCurrentUserUseCase.execute();
+	const queryClient: QueryClient = new QueryClient();
+    const user = await queryClient.fetchQuery({
+		queryKey: ["user"],
+        queryFn: () => getCurrentUserUseCase.execute()
+    });
 
-	if (!user) {
-		return redirect("/login");
-	}
+    if (!user) {
+        return redirect("/login");
+    }
 
-    const userInfo = await getDeveloperByIdUseCase.execute(user.$id);
-
-    return <BaseLayout>{children}</BaseLayout>;
+    return (
+            <BaseLayout>{children}</BaseLayout>
+    );
 };
 
 export default ProfileLayout;

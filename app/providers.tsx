@@ -5,6 +5,7 @@ import CssBaseline from "@mui/joy/CssBaseline";
 import { useEffect, useState, createContext, useContext } from "react";
 import theme from "@/lib/theme";
 import { ColorMode } from "@/src/domain/entities/ui";
+import { isServer, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 interface ColorModeContextProps {
     mode: ColorMode;
@@ -18,9 +19,34 @@ const ColorModeContext = createContext<ColorModeContextProps>({
 
 export const useColorMode = () => useContext(ColorModeContext);
 
+const makeQueryClient = () => {
+    return new QueryClient({
+        defaultOptions: {
+            queries: {
+                refetchOnWindowFocus: false,
+				staleTime: 60 * 1000,
+            },
+        },
+    });
+}
+
+let browserQueryClient: QueryClient | undefined = undefined;
+
+export const getQueryClient = () => {
+	if (isServer) {
+		return makeQueryClient();
+	} else {
+		if (!browserQueryClient) {
+			browserQueryClient = makeQueryClient();
+		}
+		return browserQueryClient;
+	}
+}
+
 export default function Providers({ children }: { children: React.ReactNode }) {
     const [mode, setMode] = useState<ColorMode>("system");
     const [mounted, setMounted] = useState(false);
+    const queryClient = getQueryClient();
 
     useEffect(() => {
         setMounted(true);
@@ -42,14 +68,16 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <ColorModeContext value={{ mode, setMode }}>
-            <CssVarsProvider
-                defaultMode={mode === "system" ? "system" : mode}
-                theme={theme}
-            >
-                <CssBaseline />
-                {children}
-            </CssVarsProvider>
-        </ColorModeContext>
+        <QueryClientProvider client={queryClient}>
+            <ColorModeContext value={{ mode, setMode }}>
+                <CssVarsProvider
+                    defaultMode={mode === "system" ? "system" : mode}
+                    theme={theme}
+                >
+                    <CssBaseline />
+                    {children}
+                </CssVarsProvider>
+            </ColorModeContext>
+        </QueryClientProvider>
     );
 }

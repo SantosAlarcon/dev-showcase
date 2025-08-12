@@ -6,15 +6,27 @@ import remarkGfm from "remark-gfm";
 import "@/styles/project.css";
 import { address } from "@/constants/endpoints";
 import { getDeveloperByIdUseCase } from "@/src/config";
+import { QueryClient } from "@tanstack/react-query";
+
+export const revalidate = 3600;
 
 export default async function ProjectProfile(props: {
     params: Promise<{ id: string }>;
 }) {
+	const queryClient = new QueryClient();
     const { id } = await props.params;
-    const project = await fetch(`${address}/api/projects/${id}`).then((res) =>
-        res.json(),
-    );
-    const developer = await getDeveloperByIdUseCase.execute(project.developerId);
+
+	const project = await queryClient.fetchQuery({
+		queryKey: ["projects", id],
+		queryFn: () =>
+			fetch(`${address}/api/projects/${id}`).then((res) => res.json()),
+	});
+
+    const developer = await queryClient.fetchQuery({
+        queryKey: ["developer", project.developerId],
+        queryFn: () =>
+            getDeveloperByIdUseCase.execute(project.developerId),
+    });
 
     if (!project) return <ProjectNotFound />;
     return (

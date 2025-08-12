@@ -6,11 +6,16 @@ import { ChevronRight } from "lucide-react";
 import GridFeaturedDeveloperCard from "../ui/GridFeaturedDeveloperCard";
 import { DeveloperInfo } from "@/src/domain/entities/developer";
 import { getFeaturedDevelopersUseCase } from "@/src/config";
+import { QueryClient } from "@tanstack/react-query";
 
 export default async function FeaturedDevelopers() {
 
-    const featuredDevelopers =
-        await getFeaturedDevelopersUseCase.execute();
+	const queryClient = new QueryClient();
+
+	const featuredDevelopers = await queryClient.fetchQuery({
+		queryKey: ["featuredDevelopers"],
+		queryFn: () => getFeaturedDevelopersUseCase.execute(),
+	});
 
     return (
         <Box

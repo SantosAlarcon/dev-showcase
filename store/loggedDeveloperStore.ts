@@ -7,6 +7,7 @@ type LoggedDeveloperStore = {
     setDeveloper: (developer: DeveloperInfo) => void;
 };
 
+// @ts-ignore
 const loggedDeveloperStore = create<LoggedDeveloperStore>(devtools((set) => ({
     developer: null,
     setDeveloper: (developer: DeveloperInfo) => {

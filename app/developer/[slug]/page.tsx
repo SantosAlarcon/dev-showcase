@@ -53,16 +53,26 @@ import {
     getDeveloperBySlugUseCase,
     getProjectsByDeveloperIdUseCase,
 } from "@/src/config";
+import { QueryClient } from "@tanstack/react-query";
+
+export const revalidate = 3600;
 
 export default async function DeveloperProfile(props: {
     params: Promise<{ slug: string }>;
 }) {
-    const { slug } = await props.params;
+	const queryClient = new QueryClient();
+	const { slug } = await props.params;
+	const developer = await queryClient.fetchQuery({
+		queryKey: ["developer", slug],
+		queryFn: () =>
+			getDeveloperBySlugUseCase.execute(slug),
+	});
 
-    const developer = await getDeveloperBySlugUseCase.execute(slug);
-    const projects = await getProjectsByDeveloperIdUseCase.execute(
-        developer.id,
-    );
+	const projects = await queryClient.fetchQuery({
+		queryKey: ["projects", developer.id],
+		queryFn: () =>
+			getProjectsByDeveloperIdUseCase.execute(developer.id),
+	});
 
     const totalExperience: Period = calculateTotalExperience(
         developer.workExperience,

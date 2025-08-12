@@ -4,9 +4,15 @@ import { Box, Typography, Container, Grid, Button } from "@mui/joy";
 import { ChevronRight } from "lucide-react";
 import GridProjectCard from "../ui/GridProjectCard";
 import { getLatestProjectsUseCase } from "@/src/config";
+import { QueryClient } from "@tanstack/react-query";
 
 export default async function LatestProjects() {
-    const projectList = await getLatestProjectsUseCase.execute();
+	const queryClient = new QueryClient();
+
+	const projectList = await queryClient.fetchQuery({
+		queryKey: ["projects"],
+		queryFn: () => getLatestProjectsUseCase.execute(),
+	});
 
     return (
         <Box

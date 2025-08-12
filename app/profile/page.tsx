@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-query";
 
 export const revalidate = 3600;
+export const dynamic = "force-dynamic";
 
 const ProfilePage = async () => {
     const queryClient: QueryClient = new QueryClient();

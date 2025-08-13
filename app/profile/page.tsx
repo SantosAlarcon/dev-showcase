@@ -1,5 +1,5 @@
+import ProfilePageComponent from "@/components/ui/ProfilePageComponent";
 import { getCurrentUserUseCase, getDeveloperByIdUseCase } from "@/src/config";
-import { Container } from "@mui/joy";
 import {
     dehydrate,
     HydrationBoundary,
@@ -28,13 +28,7 @@ const ProfilePage = async () => {
 
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <Container maxWidth="lg">
-                <h1>Profile Page</h1>
-                <span>
-                    <b>Developer name:</b>{" "}
-                    {`${developer.name} ${developer.surname}`}
-                </span>
-            </Container>
+            <ProfilePageComponent developer={developer} />
         </HydrationBoundary>
     );
 };

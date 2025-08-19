@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { handleRegister } from "@/app/actions/authActions";
 import { createToastCallbacks } from "@/utils/toast-callbacks";
 import { withCallbacks } from "@/utils/with-callbacks";
+import Link from "next/link";
 
 const RegisterComponent = () => {
     const [actionState, registerAction, pending] = useActionState(
@@ -29,9 +30,9 @@ const RegisterComponent = () => {
             <h1>Register</h1>
             <Stack columnGap={1} display={"flex"} flexDirection={"row"}>
                 <span>Already have an account?</span>
-                <a href={"/login"} aria-label="Go to the login page">
+                <Link href={"/login"} aria-label="Go to the login page">
                     Login here
-                </a>
+                </Link>
             </Stack>
 
             <form action={registerAction}>

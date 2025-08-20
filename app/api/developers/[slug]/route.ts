@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDeveloperByIdUseCase, getDeveloperBySlugUseCase } from "@/src/config";
+import { getDeveloperBySlugUseCase } from "@/src/config";
 
 /**
  * @swagger

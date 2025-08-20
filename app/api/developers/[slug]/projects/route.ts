@@ -3,16 +3,16 @@ import { getProjectsByDeveloperIdUseCase } from "@/src/config";
 
 /**
  * @swagger
- * /api/developers/{id}/projects:
+ * /api/developers/{slug}/projects:
  *   get:
- *     summary: Get projects by developer id
- *     description: Returns all projects by the developer id provided
+ *     summary: Get projects by developer slug
+ *     description: Returns all projects by the developer slug provided
  *     tags:
  *       - Developers
  *     parameters:
- *       - name: id
+ *       - name: slug
  *         in: path
- *         description: Developer id
+ *         description: Developer slug
  *         required: true
  *         schema:
  *           type: string
@@ -35,12 +35,12 @@ import { getProjectsByDeveloperIdUseCase } from "@/src/config";
  */
 export async function GET(
     _request: NextRequest,
-    { params }: { params: Promise<{ id: string }> },
+    { params }: { params: Promise<{ slug: string }> },
 ) {
-    const { id } = await params;
+    const { slug } = await params;
 
     try {
-        const projects = await getProjectsByDeveloperIdUseCase.execute(id);
+        const projects = await getProjectsByDeveloperIdUseCase.execute(slug);
         return NextResponse.json(projects);
     } catch (error) {
         return NextResponse.json(

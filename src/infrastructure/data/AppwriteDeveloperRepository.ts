@@ -5,16 +5,16 @@ import type { IDeveloperRepository } from "../../domain/repositories/IDeveloperR
 
 export class AppwriteDeveloperRepository implements IDeveloperRepository {
     async checkUserDBExists(email: string): Promise<boolean> {
-		const results = await databases.listDocuments(
-			process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
-			process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-			[Query.equal("email", email)],
-		);
+        const results = await databases.listDocuments(
+            process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+            process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+            [Query.equal("email", email)],
+        );
 
-		if (results.total > 0) {
-			return true;
-		}
-		return false;
+        if (results.total > 0) {
+            return true;
+        }
+        return false;
     }
     async unpublishDeveloper(id: string): Promise<void> {
         await databases.updateDocument(
@@ -47,7 +47,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                 id: userId,
                 name: name,
                 surname: surname,
-				slug: "",
+                slug: "",
                 title: "",
                 country: "",
                 state: "",
@@ -82,7 +82,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                     name: newDeveloper.name,
                     surname: newDeveloper.surname,
                     title: newDeveloper.title,
-					slug: newDeveloper.slug,
+                    slug: newDeveloper.slug,
                     country: newDeveloper.country,
                     state: newDeveloper.state,
                     city: newDeveloper.city,
@@ -135,6 +135,23 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
             throw new Error("Failed to delete developer");
         }
     }
+
+    async updateBackgroundImage(id: string, image: string): Promise<void> {
+        try {
+            await databases.updateDocument(
+                process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
+                process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
+                id,
+                {
+                    bannerImage: image,
+                },
+            );
+        } catch (error) {
+            console.error("Error updating developer:", error);
+            throw new Error("Failed to update developer");
+        }
+    }
+
     getAllSkills(skills: string): string[] {
         const skillsObject = JSON.parse(skills);
         const skillsArray = Object.values(skillsObject);
@@ -170,7 +187,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
             const developerFound: DeveloperInfo = {
                 id: result.$id,
                 name: result.name,
-				slug: result.slug,
+                slug: result.slug,
                 surname: result.surname,
                 title: result.title,
                 country: result.country,
@@ -198,20 +215,20 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
         }
     }
 
-async getDeveloperBySlug(slug: string): Promise<DeveloperInfo | null> {
+    async getDeveloperBySlug(slug: string): Promise<DeveloperInfo | null> {
         try {
             const resultList = await databases.listDocuments(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
-				[Query.equal("slug", slug)],
+                [Query.equal("slug", slug)],
             );
 
-			const result = resultList.documents[0];
+            const result = resultList.documents[0];
 
             const developerFound: DeveloperInfo = {
                 id: result.id,
                 name: result.name,
-				slug: result.slug,
+                slug: result.slug,
                 surname: result.surname,
                 title: result.title,
                 country: result.country,

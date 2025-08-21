@@ -4,6 +4,7 @@ export interface IDeveloperRepository {
 	checkUserDBExists(email: string): Promise<boolean>;
 	createNewDeveloper(id: string, name: string, surname: string, email: string): Promise<void>;
 	updateDeveloper(id: string, developerInfo: DeveloperInfo): Promise<void>;
+	updateBackgroundImage(id: string, image: string): Promise<void>;
 	deleteDeveloper(id: string): Promise<void>;
     getAllSkills(skills: string): string[];
     getAllDevelopers(): Promise<DeveloperInfo[]>;

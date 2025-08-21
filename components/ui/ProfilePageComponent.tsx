@@ -1,16 +1,19 @@
+"use client"
+
 import { DeveloperInfo } from "@/src/domain/entities/developer";
 import { Avatar, Box, Container, Typography } from "@mui/joy";
 
 const ProfilePageComponent = ({developer}: {developer: DeveloperInfo}) => {
+	const background = developer.bannerImage ? `url(${developer.bannerImage})` : `url(/empty.webp)`;
 	return (
-		<Container maxWidth="lg">
+		<Container maxWidth="xl">
             <Box sx={{
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
                 padding: "3rem",
-                backgroundColor: "primary.main",
+				background: background,
                 gap: "1rem",
             }}>
                 <Avatar sx={{

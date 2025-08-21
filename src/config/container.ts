@@ -28,6 +28,7 @@ import { PublishDeveloperUseCase } from '../application/use-cases/developers/Pub
 import { CheckExistingAuthUserUseCase } from '../application/use-cases/auth/CheckExistingAuthUserUseCase';
 import { CheckExistingDBUserUseCase } from '../application/use-cases/developers/CheckExistingDBUserUseCase';
 import { GetDeveloperBySlugUseCase } from '../application/use-cases/developers/GetDeveloperBySlugUseCase';
+import { UpdateBGImageUseCase } from '../application/use-cases/developers/UpdateBGImageUseCase';
 
 // Repositories
 const authRepository = new AppwriteAuthRepository();
@@ -56,6 +57,7 @@ export const getDevelopersByStateUseCase = new GetDevelopersByStateUseCase(devel
 export const getFeaturedDevelopersUseCase = new GetFeaturedDevelopersUseCase(developerRepository);
 export const createNewDeveloperUseCase = new CreateNewDeveloperUseCase(developerRepository);
 export const updateDeveloperUseCase = new UpdateDeveloperUseCase(developerRepository);
+export const updateBGImageUseCase = new UpdateBGImageUseCase(developerRepository);
 export const deleteDeveloperUseCase = new DeleteDeveloperUseCase(developerRepository);
 export const unpublishDeveloperUseCase = new UnpublishDeveloperUseCase(developerRepository);
 export const publishDeveloperUseCase = new PublishDeveloperUseCase(developerRepository);

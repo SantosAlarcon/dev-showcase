@@ -6,12 +6,12 @@ import { Query } from "appwrite";
 export class AppwriteProjectRepository implements IProjectRepository {
     async getAllProjects(): Promise<Project[]> {
         try {
-            const response = await databases.listDocuments(
+            const response = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_PROJECTS_COLLECTION_ID!,
                 [Query.orderAsc("publishedDate")],
             );
-            return response.documents as unknown as Project[];
+            return response.rows as unknown as Project[];
         } catch (error) {
             console.error("Error fetching projects:", error);
             throw new Error("Failed to fetch projects");
@@ -20,7 +20,7 @@ export class AppwriteProjectRepository implements IProjectRepository {
 
     async getProjectById(id: string): Promise<Project | null> {
         try {
-            const result = await databases.getDocument(
+            const result = await databases.getRow(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_PROJECTS_COLLECTION_ID!,
                 id,
@@ -34,12 +34,12 @@ export class AppwriteProjectRepository implements IProjectRepository {
 
     async getLatestProjects(): Promise<Project[]> {
         try {
-            const result = await databases.listDocuments(
+            const result = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_PROJECTS_COLLECTION_ID!,
                 [Query.orderDesc("publishedDate"), Query.limit(9)],
             );
-            return result.documents as unknown as Project[];
+            return result.rows as unknown as Project[];
         } catch (error) {
             console.error("Error in getLatestProjects service:", error);
             return [];
@@ -48,7 +48,7 @@ export class AppwriteProjectRepository implements IProjectRepository {
 
     async getProjectsByDeveloperId(developerId: string): Promise<Project[]> {
         try {
-            const projects = await databases.listDocuments(
+            const projects = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_PROJECTS_COLLECTION_ID!,
                 [
@@ -56,7 +56,7 @@ export class AppwriteProjectRepository implements IProjectRepository {
                     Query.orderAsc("publishedDate"),
                 ],
             );
-            return projects.documents as unknown as Project[];
+            return projects.rows as unknown as Project[];
         } catch (error) {
             console.error("Error fetching projects by developer:", error);
             return [];

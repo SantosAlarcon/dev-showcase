@@ -22,7 +22,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
         return background;
     }
     async checkUserDBExists(email: string): Promise<boolean> {
-        const results = await databases.listDocuments(
+        const results = await databases.listRows(
             process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
             process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
             [Query.equal("email", email)],
@@ -34,7 +34,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
         return false;
     }
     async unpublishDeveloper(id: string): Promise<void> {
-        await databases.updateDocument(
+        await databases.updateRow(
             process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
             process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
             id,
@@ -44,7 +44,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
         );
     }
     async publishDeveloper(id: string): Promise<void> {
-        await databases.updateDocument(
+        await databases.updateRow(
             process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
             process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
             id,
@@ -90,7 +90,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                 },
                 isPublic: false,
             };
-            databases.createDocument(
+            databases.createRow(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 userId,
@@ -129,7 +129,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
         developerInfo: DeveloperInfo,
     ): Promise<void> {
         try {
-            await databases.updateDocument(
+            await databases.updateRow(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 id,
@@ -142,7 +142,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
     }
     async deleteDeveloper(id: string): Promise<void> {
         try {
-            await databases.deleteDocument(
+            await databases.deleteRow(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 id,
@@ -155,7 +155,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 
     async updateBackgroundImage(id: string, image: string): Promise<void> {
         try {
-            await databases.updateDocument(
+            await databases.updateRow(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 id,
@@ -182,12 +182,12 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 
     async getAllDevelopers(): Promise<DeveloperInfo[]> {
         try {
-            const response = await databases.listDocuments(
+            const response = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 [Query.equal("isPublic", true)],
             );
-            return response.documents as unknown as DeveloperInfo[];
+            return response.rows as unknown as DeveloperInfo[];
         } catch (error) {
             console.error("Error fetching developers:", error);
             throw new Error("Failed to fetch developers");
@@ -196,7 +196,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 
     async getDeveloperById(id: string): Promise<DeveloperInfo | null> {
         try {
-            const result = await databases.getDocument(
+            const result = await databases.getRow(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 id,
@@ -234,13 +234,13 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 
     async getDeveloperBySlug(slug: string): Promise<DeveloperInfo | null> {
         try {
-            const resultList = await databases.listDocuments(
+            const resultList = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 [Query.equal("slug", slug)],
             );
 
-            const result = resultList.documents[0];
+            const result = resultList.rows[0];
 
             const developerFound: DeveloperInfo = {
                 id: result.id,
@@ -275,7 +275,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 
     async getFeaturedDevelopers(): Promise<DeveloperInfo[]> {
         try {
-            const result = await databases.listDocuments(
+            const result = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 [
@@ -284,7 +284,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                     Query.equal("isPublic", true),
                 ],
             );
-            return result.documents as unknown as DeveloperInfo[];
+            return result.rows as unknown as DeveloperInfo[];
         } catch (error) {
             console.error("Error in getFeaturedDevelopers service:", error);
             return [];
@@ -293,7 +293,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 
     async getDevelopersByCity(city: string): Promise<DeveloperInfo[]> {
         try {
-            const result = await databases.listDocuments(
+            const result = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 [
@@ -302,7 +302,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                     Query.equal("isPublic", true),
                 ],
             );
-            return result.documents as unknown as DeveloperInfo[];
+            return result.rows as unknown as DeveloperInfo[];
         } catch (error) {
             console.error("Error in getDevelopersByCity service:", error);
             return [];
@@ -311,7 +311,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 
     async getDevelopersByCountry(country: string): Promise<DeveloperInfo[]> {
         try {
-            const result = await databases.listDocuments(
+            const result = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 [
@@ -320,7 +320,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                     Query.equal("isPublic", true),
                 ],
             );
-            return result.documents as unknown as DeveloperInfo[];
+            return result.rows as unknown as DeveloperInfo[];
         } catch (error) {
             console.error("Error in getDevelopersByCountry service:", error);
             return [];
@@ -329,7 +329,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 
     async getDevelopersByRole(role: string): Promise<DeveloperInfo[]> {
         try {
-            const result = await databases.listDocuments(
+            const result = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 [
@@ -338,7 +338,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                     Query.equal("isPublic", true),
                 ],
             );
-            return result.documents as unknown as DeveloperInfo[];
+            return result.rows as unknown as DeveloperInfo[];
         } catch (error) {
             console.error("Error in getDevelopersByRole service:", error);
             return [];
@@ -347,7 +347,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
 
     async getDevelopersByState(state: string): Promise<DeveloperInfo[]> {
         try {
-            const result = await databases.listDocuments(
+            const result = await databases.listRows(
                 process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
                 process.env.NEXT_PUBLIC_APPWRITE_DEVELOPERS_COLLECTION_ID!,
                 [
@@ -356,7 +356,7 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                     Query.equal("isPublic", true),
                 ],
             );
-            return result.documents as unknown as DeveloperInfo[];
+            return result.rows as unknown as DeveloperInfo[];
         } catch (error) {
             console.error("Error in getDevelopersByState service:", error);
             return [];

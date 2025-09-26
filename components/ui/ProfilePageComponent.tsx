@@ -2,58 +2,62 @@
 
 import { DeveloperInfo } from "@/src/domain/entities/developer";
 import { Avatar, Box, Container, Typography } from "@mui/joy";
-import Uppy, { debugLogger } from "@uppy/core";
 import { ChangeEvent, useState } from "react";
 import { ButtonBase } from "@mui/material";
-import ImageEditor from "@uppy/image-editor";
-import Dashboard from "@uppy/dashboard";
 
 import "@uppy/core/css/style.min.css";
 import "@uppy/dashboard/css/style.min.css";
 import "@uppy/image-editor/css/style.min.css";
+import { storage } from "@/lib/appwrite/storage";
+import { ID } from "appwrite";
+import { getDeveloperAvatarUseCase } from "@/src/config";
 
 const ProfilePageComponent = ({ developer }: { developer: DeveloperInfo }) => {
-    const background = developer.bannerImage
-        ? `url(${developer.bannerImage})`
-        : `url(/empty.webp)`;
-    const [bannerImage, setBannerImage] = useState<string | undefined>(
-        developer.bannerImage,
-    );
-    const [avatarImage, setAvatarImage] = useState<string | undefined>(
-        developer.avatar,
-    );
+	const [newAvatarImage, setNewAvatarImage] = useState(() => getDeveloperAvatarUseCase.execute(developer.avatarFileId));
+	const [newBackgroundImage, setNewBackgroundImage] = useState(() => getDeveloperAvatarUseCase.execute(developer.bannerFileId));
+	const avatarImage = getDeveloperAvatarUseCase.execute(developer.avatarFileId);
+	const backgroundImage = getDeveloperAvatarUseCase.execute(developer.bannerFileId);
 
-    const uppy = new Uppy({
+    /*const uppy = new Uppy({
         autoProceed: true,
-		logger: debugLogger,
+        logger: debugLogger,
         restrictions: {
             maxFileSize: 10000000,
             maxNumberOfFiles: 1,
             minNumberOfFiles: 1,
             allowedFileTypes: ["image/*"],
         },
-    }).use(ImageEditor);
+    }).use(ImageEditor);*/
 
-    const handleAvatarImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
-		const avatarFile = event.target.files[0];
+    const handleAvatarImageUpload = async (
+        event: ChangeEvent<HTMLInputElement>,
+    ) => {
+        const avatarFile = event.target.files[0];
 
-		if (avatarFile) {
-			uppy.addFile({
-				name: "avatar.jpg",
-				type: "image/*",
-				data: avatarFile
-			})
+        if (avatarFile) {
+            // uppy.addFile({
+            // 	name: "avatar.jpg",
+            // 	type: "image/*",
+            // 	data: avatarFile
+            // })
+            //
+            // uppy.upload().then((e) => {
+            // 	console.log(e);
+            // });
 
-			uppy.upload().then((e) => console.log(e));
-
-			const reader = new FileReader();
-			reader.readAsDataURL(avatarFile);
-			reader.onloadend = () => {
-				setAvatarImage(reader.result as string);
-			};
-		}
-
-	};
+            const reader = new FileReader();
+            reader.readAsDataURL(avatarFile);
+            storage.createFile({
+                bucketId: process.env.NEXT_PUBLIC_APPWRITE_STORAGE_BUCKET_ID,
+                fileId: ID.unique(),
+                file: avatarFile,
+            });
+            reader.onloadend = () => {
+				// @ts-ignore
+                setNewAvatarImage(reader.result as string);
+            };
+        }
+    };
 
     return (
         <Container maxWidth="xl">
@@ -64,35 +68,50 @@ const ProfilePageComponent = ({ developer }: { developer: DeveloperInfo }) => {
                     justifyContent: "center",
                     alignItems: "center",
                     padding: "3rem",
-                    background: background,
+					// @ts-ignore
+                    background: backgroundImage,
                     gap: "1rem",
                 }}
             >
-                <ButtonBase component="label" role={undefined} tabIndex={-1} disableRipple sx={{bgColor: "secondary.main", color: "primary.contrastText", fontSize: 64}}>
+                <ButtonBase
+                    component="label"
+                    role={undefined}
+                    tabIndex={-1}
+                    disableRipple
+                    sx={{
+                        bgColor: "secondary.main",
+                        color: "primary.contrastText",
+                        fontSize: 64,
+                    }}
+                >
                     <Avatar
-						sx={{
-							width: 128,
-							height: 128,
-							borderRadius: "50%",
-							backgroundColor: "primary.contrastText",
-							color: "primary.main",
-							fontSize: 64,
-							"&:hover": {
-								opacity: 0.8,
-							},
-						}}
-						src={avatarImage}
+                        sx={{
+                            width: 128,
+                            height: 128,
+                            borderRadius: "50%",
+                            backgroundColor: "primary.contrastText",
+                            color: "primary.main",
+                            fontSize: 64,
+                            "&:hover": {
+                                opacity: 0.8,
+                            },
+                        }}
+						// @ts-ignore
+                        src={avatarImage}
                     >
-                        {developer.avatar === "" ? `${developer.name.charAt(0)}${developer.surname.charAt(0)}` : null}
+						{/* @ts-ignore */}
+                        {avatarImage === ""
+                            ? `${developer.name.charAt(0)}${developer.surname.charAt(0)}`
+                            : null}
                     </Avatar>
                     <input
                         type="file"
                         accept="image/*"
-						style={{
-							overflow: "hidden",
-							clip: "rect(0 0 0 0)",
-							position: "absolute",
-						}}
+                        style={{
+                            overflow: "hidden",
+                            clip: "rect(0 0 0 0)",
+                            position: "absolute",
+                        }}
                         onChange={handleAvatarImageUpload}
                     />
                 </ButtonBase>

@@ -187,7 +187,7 @@ export default async function Home() {
                                         }}
                                     >
                                         <Image
-                                            src="https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                                            src="/images/Hero.webp"
                                             alt="Developers collaborating on code"
                                             style={{ objectFit: "cover" }}
                                             width={1024}

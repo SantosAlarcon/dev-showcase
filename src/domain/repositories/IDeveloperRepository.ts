@@ -9,6 +9,8 @@ export interface IDeveloperRepository {
     getAllSkills(skills: string): string[];
     getAllDevelopers(): Promise<DeveloperInfo[]>;
     getDeveloperById(id: string): Promise<DeveloperInfo | null>;
+	getDeveloperAvatar(fileId: string): typeof Image;
+	getDeveloperBackground(fileId: string): typeof Image;
 	getDeveloperBySlug(slug: string): Promise<DeveloperInfo | null>;
     getFeaturedDevelopers(): Promise<DeveloperInfo[]>;
     getDevelopersByCity(city: string): Promise<DeveloperInfo[]>;

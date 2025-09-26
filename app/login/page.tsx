@@ -10,7 +10,7 @@ const LoginPage = () => {
                 height={"100vh"}
 				p={4}
                 sx={{
-                    backgroundImage: "url(/DevBG.webp)",
+                    backgroundImage: "url(/images/DevBG.webp)",
 					gap: 4,
 					display: "grid",
 					gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",

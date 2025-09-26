@@ -10,7 +10,7 @@ const testimonials = [
         author: {
             name: "Emma Wilson",
             role: "CTO, RetailTech Inc.",
-            avatar: "https://images.pexels.com/photos/762020/pexels-photo-762020.jpeg?auto=compress&cs=tinysrgb&w=600",
+            avatar: "/images/Testimonial1.webp",
         },
     },
     {
@@ -20,7 +20,7 @@ const testimonials = [
         author: {
             name: "Michael Reeves",
             role: "Full Stack Developer",
-            avatar: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=600",
+            avatar: "/images/Testimonial2.webp",
         },
     },
     {
@@ -30,7 +30,7 @@ const testimonials = [
         author: {
             name: "Sarah Chang",
             role: "Founder, InnovateSoft",
-            avatar: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=600",
+            avatar: "/images/Testimonial3.jpeg",
         },
     },
 ];

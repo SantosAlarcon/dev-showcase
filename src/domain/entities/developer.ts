@@ -8,8 +8,8 @@ export type DeveloperInfo = {
     state: string;
     city: string;
     memberSince: string;
-    avatar: string;
-    bannerImage?: string;
+    avatarFileId?: string;
+    bannerFileId?: string;
     skills: SkillsInfo;
     reviews: number;
     followers: number;

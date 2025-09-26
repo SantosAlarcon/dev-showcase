@@ -50,6 +50,8 @@ import { getLocaleCurrency } from "@/lib/utils";
 import { calculateTotalExperience } from "@/lib/utils";
 import { Period } from "@/src/domain/entities/ui";
 import {
+	getDeveloperAvatarUseCase,
+    getDeveloperBackgroundUseCase,
     getDeveloperBySlugUseCase,
     getProjectsByDeveloperIdUseCase,
 } from "@/src/config";
@@ -60,19 +62,20 @@ export const revalidate = 3600;
 export default async function DeveloperProfile(props: {
     params: Promise<{ slug: string }>;
 }) {
-	const queryClient = new QueryClient();
-	const { slug } = await props.params;
-	const developer = await queryClient.fetchQuery({
-		queryKey: ["developer", slug],
-		queryFn: () =>
-			getDeveloperBySlugUseCase.execute(slug),
-	});
+    const queryClient = new QueryClient();
+    const { slug } = await props.params;
+    const developer = await queryClient.fetchQuery({
+        queryKey: ["developer", slug],
+        queryFn: () => getDeveloperBySlugUseCase.execute(slug),
+    });
 
-	const projects = await queryClient.fetchQuery({
-		queryKey: ["projects", developer.id],
-		queryFn: () =>
-			getProjectsByDeveloperIdUseCase.execute(developer.id),
-	});
+    const projects = await queryClient.fetchQuery({
+        queryKey: ["projects", developer.id],
+        queryFn: () => getProjectsByDeveloperIdUseCase.execute(developer.id),
+    });
+
+    const avatarImage = getDeveloperAvatarUseCase.execute(developer.avatarFileId);
+	const bannerImage = getDeveloperBackgroundUseCase.execute(developer.bannerFileId);
 
     const totalExperience: Period = calculateTotalExperience(
         developer.workExperience,
@@ -98,14 +101,15 @@ export default async function DeveloperProfile(props: {
                 <AspectRatio ratio="21/9" sx={{ minHeight: "100%" }}>
                     <object
                         type="image/webp"
-                        data={developer.bannerImage}
+						// @ts-ignore
+                        data={bannerImage}
                         width="1920"
                         height="1080"
                         aria-label="Background image"
                     >
                         <Image
                             // @ts-ignore
-                            src={"/empty.webp"}
+                            src={"/images/empty.webp"}
                             alt={`${developer.name} ${developer.surname}'s background image`}
                             style={{ objectFit: "cover" }}
                             width={512}
@@ -167,7 +171,8 @@ export default async function DeveloperProfile(props: {
                                     }}
                                 >
                                     <Avatar
-                                        src={developer.avatar}
+										// @ts-ignore
+                                        src={avatarImage}
                                         alt={developer.name}
                                         sx={{
                                             width: { xs: 96, md: 120 },

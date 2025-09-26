@@ -1,4 +1,4 @@
-import { getDeveloperByIdUseCase } from "@/src/config";
+import { getDeveloperAvatarUseCase, getDeveloperByIdUseCase } from "@/src/config";
 import { Project } from "@/src/domain/entities/project";
 import {
     Box,
@@ -25,6 +25,7 @@ const GridProjectCard = async ({
         project.developerId,
     );
     const fullName = developer.name + " " + developer.surname;
+	const avatarImage = getDeveloperAvatarUseCase.execute(developer.avatarFileId);
 
     return (
         <Grid key={project.$id} xs={12} md={6}>
@@ -129,7 +130,8 @@ const GridProjectCard = async ({
                         >
                             <Box
                                 component="img"
-                                src={developer.avatar}
+								// @ts-ignore
+                                src={avatarImage}
                                 alt={fullName}
                                 sx={{
                                     width: 24,

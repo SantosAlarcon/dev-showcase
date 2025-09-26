@@ -11,28 +11,28 @@ const steps = [
         title: "Discover Talent",
         description:
             "Browse profiles of skilled developers filtered by technology, experience, and availability.",
-        image: "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        image: "/images/Feature1.webp",
     },
     {
         icon: <UserCheck size={24} />,
         title: "Review Projects",
         description:
             "Examine their portfolio of work and evaluate their expertise through real projects.",
-        image: "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        image: "/images/Feature2.webp",
     },
     {
         icon: <MessagesSquare size={24} />,
         title: "Connect Directly",
         description:
             "Reach out to developers directly to discuss your project requirements and expectations.",
-        image: "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        image: "/images/Feature3.webp",
     },
     {
         icon: <CheckCircle2 size={24} />,
         title: "Hire with Confidence",
         description:
             "Make informed hiring decisions based on verified skills and portfolio evidence.",
-        image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        image: "/images/Feature4.webp",
     },
 ];
 

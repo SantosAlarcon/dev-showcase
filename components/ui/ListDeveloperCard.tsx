@@ -1,4 +1,4 @@
-import { getAllSkillsUseCase } from "@/src/config";
+import { getAllSkillsUseCase, getDeveloperAvatarUseCase } from "@/src/config";
 import { DeveloperInfo } from "@/src/domain/entities/developer";
 import {
     Avatar,
@@ -27,6 +27,7 @@ const ListDeveloperCard = ({
     isLiked: boolean;
 }) => {
     const skills = getAllSkillsUseCase.execute(developer.skills as unknown as string);
+	const avatarImage = getDeveloperAvatarUseCase.execute(developer.avatarFileId);
 
     return (
         <motion.div
@@ -55,7 +56,8 @@ const ListDeveloperCard = ({
                 }}
             >
                 <Avatar
-                    src={developer.avatar}
+					// @ts-ignore
+                    src={avatarImage}
                     alt={developer.name}
                     href={`/developer/${developer.slug}`}
                     component={Link}

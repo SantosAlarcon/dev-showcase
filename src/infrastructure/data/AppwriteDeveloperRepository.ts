@@ -2,8 +2,25 @@ import { Query } from "appwrite";
 import { databases } from "../../../lib/appwrite/client";
 import type { DeveloperInfo } from "../../domain/entities/developer";
 import type { IDeveloperRepository } from "../../domain/repositories/IDeveloperRepository";
+import { storage } from "@/lib/appwrite/storage";
 
 export class AppwriteDeveloperRepository implements IDeveloperRepository {
+    getDeveloperAvatar(fileId: string): typeof Image {
+        const avatar = storage.getFileView({
+            bucketId: process.env.NEXT_PUBLIC_APPWRITE_STORAGE_BUCKET_ID!,
+            fileId: fileId,
+        });
+        // @ts-ignore
+        return avatar;
+    }
+    getDeveloperBackground(fileId: string): typeof Image {
+        const background = storage.getFileView({
+            bucketId: process.env.NEXT_PUBLIC_APPWRITE_STORAGE_BUCKET_ID!,
+            fileId: fileId,
+        });
+        // @ts-ignore
+        return background;
+    }
     async checkUserDBExists(email: string): Promise<boolean> {
         const results = await databases.listDocuments(
             process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!,
@@ -53,8 +70,8 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                 state: "",
                 city: "",
                 memberSince: "",
-                avatar: "",
-                bannerImage: "",
+                avatarFileId: "",
+                bannerFileId: "",
                 skills: { frontend: [], backend: [], other: [] },
                 reviews: 0,
                 followers: 0,
@@ -87,8 +104,8 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                     state: newDeveloper.state,
                     city: newDeveloper.city,
                     memberSince: newDeveloper.memberSince,
-                    avatar: newDeveloper.avatar,
-                    bannerImage: newDeveloper.bannerImage,
+                    avatarFileId: newDeveloper.avatarFileId,
+                    bannerFileId: newDeveloper.bannerFileId,
                     skills: JSON.stringify(newDeveloper.skills),
                     reviews: newDeveloper.reviews,
                     followers: newDeveloper.followers,
@@ -194,8 +211,8 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                 state: result.state,
                 city: result.city,
                 memberSince: result.memberSince,
-                avatar: result.avatar,
-                bannerImage: result.bannerImage,
+                avatarFileId: result.avatarFileId,
+                bannerFileId: result.bannerFileId,
                 skills: JSON.parse(result.skills),
                 reviews: result.reviews,
                 followers: result.followers,
@@ -235,8 +252,8 @@ export class AppwriteDeveloperRepository implements IDeveloperRepository {
                 state: result.state,
                 city: result.city,
                 memberSince: result.memberSince,
-                avatar: result.avatar,
-                bannerImage: result.bannerImage,
+                avatarFileId: result.avatarFileId,
+                bannerFileId: result.bannerFileId,
                 skills: JSON.parse(result.skills),
                 reviews: result.reviews,
                 followers: result.followers,

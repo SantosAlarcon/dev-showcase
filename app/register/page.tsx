@@ -14,7 +14,7 @@ const RegisterPage = () => {
 						display: "grid",
 						gap: { xs: 4, sm: 4, md: 4, lg: 4, xl: 32 },
 						gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-                        backgroundImage: "url(/DevBG.webp)",
+                        backgroundImage: "url(/images/DevBG.webp)",
                     }}
                 >
                     <Grid

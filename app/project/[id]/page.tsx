@@ -5,7 +5,7 @@ import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "@/styles/project.css";
 import { address } from "@/constants/endpoints";
-import { getDeveloperByIdUseCase } from "@/src/config";
+import { getDeveloperAvatarUseCase, getDeveloperByIdUseCase } from "@/src/config";
 import { QueryClient } from "@tanstack/react-query";
 
 export const revalidate = 3600;
@@ -27,6 +27,8 @@ export default async function ProjectProfile(props: {
         queryFn: () =>
             getDeveloperByIdUseCase.execute(project.developerId),
     });
+
+	const avatarImage = getDeveloperAvatarUseCase.execute(developer.avatarFileId);
 
     if (!project) return <ProjectNotFound />;
     return (
@@ -62,7 +64,8 @@ export default async function ProjectProfile(props: {
                 }}
             >
                 <Avatar
-                    src={developer.avatar}
+					// @ts-ignore
+                    src={avatarImage}
                     alt={developer.name + developer.surname}
                 />{" "}
                 <Link

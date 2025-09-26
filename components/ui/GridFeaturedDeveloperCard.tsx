@@ -15,7 +15,7 @@ import * as motion from "motion/react-client";
 import Image from "next/image";
 import { MapPin, Briefcase } from "lucide-react";
 import { DeveloperInfo } from "@/src/domain/entities/developer";
-import { getAllSkillsUseCase } from "@/src/config";
+import { getAllSkillsUseCase, getDeveloperAvatarUseCase, getDeveloperBackgroundUseCase } from "@/src/config";
 
 const GridFeaturedDeveloperCard = ({
     developer,
@@ -25,6 +25,8 @@ const GridFeaturedDeveloperCard = ({
     index: number;
 }) => {
     const skills: string[] = getAllSkillsUseCase.execute(developer.skills as unknown as string);
+	const avatarImage = getDeveloperAvatarUseCase.execute(developer.avatarFileId);
+	const bannerImage = getDeveloperBackgroundUseCase.execute(developer.bannerFileId);
 
     return (
         <Grid xs={12} sm={6} md={4} lg={4} xl={4}>
@@ -53,14 +55,14 @@ const GridFeaturedDeveloperCard = ({
                         <AspectRatio ratio="21/9">
                             <object
                                 type="image/webp"
-                                data={developer.bannerImage}
+								// @ts-ignore
+                                data={bannerImage}
                                 width="1920"
                                 height="1080"
                                 aria-label="Background image"
                             >
                                 <Image
-                                    // @ts-ignore
-                                    src={"/empty.webp"}
+                                    src={"/images/empty.webp"}
                                     alt={`${developer.name} ${developer.surname}'s background image`}
                                     style={{ objectFit: "cover" }}
                                     width={512}
@@ -106,7 +108,8 @@ const GridFeaturedDeveloperCard = ({
                             }}
                         >
                             <Avatar
-                                src={developer.avatar}
+								// @ts-ignore
+                                src={avatarImage}
                                 alt={`${developer.name} ${developer.surname}'s photo`}
                                 href={`/developer/${developer.slug}`}
                                 component={Link}

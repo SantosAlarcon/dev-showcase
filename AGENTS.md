@@ -5,3 +5,5 @@
 ## Development overview
 + SOLID principles
 + Clean Architecture
++ React Query for fetching data and caching
++ Zustand for global state management

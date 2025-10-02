@@ -657,12 +657,12 @@ export default function DiscoverPage() {
                                             index: number,
                                         ) => (
                                             <GridDeveloperCard
-                                                key={developer.id}
+                                                key={developer.$id}
                                                 developer={developer}
                                                 index={index}
                                                 toggleLike={toggleLike}
                                                 isLiked={likedDevelopers.includes(
-                                                    developer.id,
+                                                    developer.$id,
                                                 )}
                                             />
                                         ),
@@ -674,14 +674,14 @@ export default function DiscoverPage() {
                             {viewMode === "list" && (
                                 <Stack spacing={2}>
                                     {filteredDevelopers.map(
-                                        (developer, index) => (
+                                        (developer: DeveloperInfo, index: number) => (
                                             <ListDeveloperCard
-                                                key={developer.id}
+                                                key={developer.$id}
                                                 developer={developer}
                                                 index={index}
                                                 toggleLike={toggleLike}
                                                 isLiked={likedDevelopers.includes(
-                                                    developer.id,
+                                                    developer.$id,
                                                 )}
                                             />
                                         ),

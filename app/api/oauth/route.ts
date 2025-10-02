@@ -13,10 +13,13 @@ export async function GET(req: NextRequest) {
     if (secret && userId) {
         try {
 			const {account} = await createAdminClient();
-            
+
 			// Create a new session
-			const session = await account.createSession(userId, secret);
-            
+			const session = await account.createSession({
+				userId: userId,
+				secret: secret,
+			});
+
 			// Set the session cookie
 			cookieList.set("dev-showcase-session", session.secret, {
                 path: "/",

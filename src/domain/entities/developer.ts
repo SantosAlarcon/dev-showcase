@@ -1,5 +1,5 @@
 export type DeveloperInfo = {
-    id: string;
+    $id: string;
     name: string;
     surname: string;
 	slug: string;

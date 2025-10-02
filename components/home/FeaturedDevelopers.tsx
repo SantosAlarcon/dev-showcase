@@ -80,7 +80,7 @@ export default async function FeaturedDevelopers() {
                         (developer: DeveloperInfo, index: number) => (
                             <GridFeaturedDeveloperCard
                                 developer={developer}
-                                key={developer.id}
+                                key={developer.$id}
                                 index={index}
                             />
                         ),

@@ -130,7 +130,7 @@ const GridDeveloperCard = ({
                                 <IconButton
                                     variant="soft"
                                     size="sm"
-                                    onClick={() => toggleLike(developer.id)}
+                                    onClick={() => toggleLike(developer.$id)}
                                     aria-label="Like"
                                 >
                                     <Tooltip
@@ -149,7 +149,7 @@ const GridDeveloperCard = ({
                                 </IconButton>
                                 <IconButton
                                     component={Link}
-                                    href={`/message/${developer.id}`}
+                                    href={`/message/${developer.$id}`}
                                     variant="soft"
                                     aria-label="Send message"
                                     size="sm"

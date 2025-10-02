@@ -65,8 +65,8 @@ export class AppwriteAuthRepository implements IAuthRepository {
         const { account } = await createAdminClient();
         const url = account.createOAuth2Token({
             provider,
-            success: `${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth/success`,
-            failure: `${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth/failure`,
+            success: `${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth`,
+            failure: `${process.env.NEXT_PUBLIC_ADDRESS}/login`,
         });
 
         return url;

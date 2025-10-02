@@ -70,8 +70,8 @@ export default async function DeveloperProfile(props: {
     });
 
     const projects = await queryClient.fetchQuery({
-        queryKey: ["projects", developer.id],
-        queryFn: () => getProjectsByDeveloperIdUseCase.execute(developer.id),
+        queryKey: ["projects", developer.$id],
+        queryFn: () => getProjectsByDeveloperIdUseCase.execute(developer.$id),
     });
 
     const avatarImage = getDeveloperAvatarUseCase.execute(developer.avatarFileId);
@@ -543,7 +543,7 @@ export default async function DeveloperProfile(props: {
                                     >
                                         <Button
                                             component={Link}
-                                            href={`/message/${developer.id}`}
+                                            href={`/message/${developer.$id}`}
                                             variant="solid"
                                             color="primary"
                                             startDecorator={<ChatIcon />}

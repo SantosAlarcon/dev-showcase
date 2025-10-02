@@ -31,7 +31,7 @@ const ListDeveloperCard = ({
 
     return (
         <motion.div
-            key={developer.id}
+            key={developer.$id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -150,7 +150,7 @@ const ListDeveloperCard = ({
                                     variant="soft"
                                     size="sm"
                                     aria-label={isLiked ? "Unlike" : "Like"}
-                                    onClick={() => toggleLike(developer.id)}
+                                    onClick={() => toggleLike(developer.$id)}
                                 >
                                     <Heart
                                         size={16}
@@ -164,7 +164,7 @@ const ListDeveloperCard = ({
                             <Tooltip title="Send message" variant="solid" arrow>
                                 <IconButton
                                     component="a"
-                                    href={`/message/${developer.id}`}
+                                    href={`/message/${developer.$id}`}
                                     variant="soft"
                                     aria-label="Send message"
                                     size="sm"

@@ -3,16 +3,21 @@
 import type { OAuthProvider } from "appwrite";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { createAdminClient } from "@/lib/appwrite/server";
 import {
 	checkExistingAuthUserUseCase,
 	getCurrentUserUseCase,
+	loginOAuthUseCase,
 	loginUseCase,
 	logoutUseCase,
 	registerUseCase,
 } from "@/src/config";
 import type { ActionState } from "@/utils/with-callbacks";
 
+
+/**
+ * Get the current user from the Appwrite Users list
+ * @returns {Promise<ActionState>}
+ */
 export const getCurrentUser = async (): Promise<ActionState> => {
 	const user = await getCurrentUserUseCase.execute();
 
@@ -32,6 +37,12 @@ export const getCurrentUser = async (): Promise<ActionState> => {
 	};
 };
 
+/**
+ * Handle the login form submission
+ * @param {ActionState} _actionState
+ * @param {FormData} formData
+ * @returns {Promise<ActionState | void>}
+ */
 export const handleLogin = async (
 	_actionState: ActionState,
 	formData: FormData,
@@ -64,16 +75,18 @@ export const handleLogin = async (
 	};
 };
 
+/** Handle the OAuth login form submission 
+ * @param {OAuthProvider} provider
+ * @returns void
+ */
 export const handleLoginOAuth = async (provider: OAuthProvider) => {
-	const { account } = await createAdminClient();
-	const redirectUrl = await account.createOAuth2Token(
-		provider,
-		`${process.env.NEXT_PUBLIC_ADDRESS}/api/oauth`,
-		`${process.env.NEXT_PUBLIC_ADDRESS}/login`,
-	);
+	const redirectUrl = await loginOAuthUseCase.execute(provider);
 	return redirect(redirectUrl);
 };
 
+/** Handle the logout form submission
+ * @returns void
+ */
 export const logout = async () => {
 	await logoutUseCase.execute();
 	const cookieList = await cookies();
@@ -81,6 +94,12 @@ export const logout = async () => {
 	return redirect("/login");
 };
 
+/**
+ * Handle the register form submission
+ * @param {ActionState} _actionState
+ * @param {FormData} formData
+ * @returns {Promise<ActionState | void>}
+ */
 export const handleRegister = async (
 	_actionState: ActionState,
 	formData: FormData,

@@ -6,14 +6,14 @@ type SessionProps = {
 };
 
 export interface IAuthRepository {
-    login(email: string, password: string): Promise<any>;
+    login(email: string, password: string): Promise<SessionProps>;
     loginOAuth(provider: OAuthProvider): Promise<string>;
-    register(
+    createAuthUser(
         name: string,
 		surname: string,
         email: string,
         password: string,
-    ): Promise<SessionProps | null>;
+    ): Promise<Models.User<Models.Preferences> | null>;
     logout(): Promise<any>;
     getCurrentUser(): Promise<Models.User<Models.Preferences>> | null;
 	getCurrentSession(): Promise<Models.Session | null>;

@@ -1,10 +1,10 @@
-import { IAuthRepository } from "@/src/domain/repositories/IAuthRepository";
-import { OAuthProvider } from "appwrite";
+import type { OAuthProvider } from "appwrite";
+import type { IAuthRepository } from "@/src/domain/repositories/IAuthRepository";
 
 export class LoginOAuthUseCase {
-    constructor(private authRepository: IAuthRepository) {}
+    public constructor(private readonly authRepository: IAuthRepository) {}
 
-    async execute(provider: OAuthProvider) {
-        return await this.authRepository.loginOAuth(provider);
+    public async execute(provider: OAuthProvider): Promise<string> {
+        return this.authRepository.loginOAuth(provider);
     }
 }

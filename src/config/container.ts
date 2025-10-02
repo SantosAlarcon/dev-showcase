@@ -44,7 +44,7 @@ export const getCurrentUserUseCase = new GetCurrentUserUseCase(authRepository);
 export const loginOAuthUseCase = new LoginOAuthUseCase(authRepository);
 export const loginUseCase = new LoginUseCase(authRepository);
 export const logoutUseCase = new LogoutUseCase(authRepository);
-export const registerUseCase = new RegisterUseCase(authRepository);
+export const registerUseCase = new RegisterUseCase(authRepository, developerRepository);
 
 // Developer Use Cases
 export const checkExistingDBUserUseCase = new CheckExistingDBUserUseCase(developerRepository);

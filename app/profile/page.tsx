@@ -19,7 +19,7 @@ const ProfilePage = async () => {
 	}
 
 	await queryClient.prefetchQuery({
-		queryKey: ["developer", developer.$id],
+		queryKey: ["developer", developer.id],
 		queryFn: () => Promise.resolve(developer),
 	});
 

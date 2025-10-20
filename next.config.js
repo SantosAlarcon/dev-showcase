@@ -4,6 +4,9 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
 	allowedDevOrigins: ["http://localhost", "http://192.168.72.128"],
+	experimental: {
+		reactCompiler: true,
+	},
     images: {
         remotePatterns: [
             {

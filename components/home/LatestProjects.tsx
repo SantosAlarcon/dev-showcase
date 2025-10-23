@@ -62,7 +62,7 @@ export default async function LatestProjects() {
                     </motion.div>
 
                     <Button
-                        component={Link}
+                        component="a"
                         href="/projects"
                         variant="outlined"
                         color="neutral"

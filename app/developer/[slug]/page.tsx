@@ -7,7 +7,6 @@ import {
     Card,
     Avatar,
     Chip,
-    Stack,
     IconButton,
     Button,
     AspectRatio,
@@ -18,6 +17,7 @@ import {
     Divider,
     Tooltip,
     Skeleton,
+    Stack,
 } from "@mui/joy";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -50,7 +50,7 @@ import { getLocaleCurrency } from "@/lib/utils";
 import { calculateTotalExperience } from "@/lib/utils";
 import { Period } from "@/src/domain/entities/ui";
 import {
-	getDeveloperAvatarUseCase,
+    getDeveloperAvatarUseCase,
     getDeveloperBackgroundUseCase,
     getDeveloperBySlugUseCase,
     getProjectsByDeveloperIdUseCase,
@@ -75,7 +75,7 @@ export default async function DeveloperProfile(props: {
     });
 
     const avatarImage = getDeveloperAvatarUseCase.execute(developer.avatarFileId);
-	const bannerImage = getDeveloperBackgroundUseCase.execute(developer.bannerFileId);
+    const bannerImage = getDeveloperBackgroundUseCase.execute(developer.bannerFileId);
 
     const totalExperience: Period = calculateTotalExperience(
         developer.workExperience,
@@ -101,14 +101,13 @@ export default async function DeveloperProfile(props: {
                 <AspectRatio ratio="21/9" sx={{ minHeight: "100%" }}>
                     <object
                         type="image/webp"
-						// @ts-ignore
+                        // @ts-ignore
                         data={bannerImage}
                         width="1920"
                         height="1080"
                         aria-label="Background image"
                     >
                         <Image
-                            // @ts-ignore
                             src={"/images/empty.webp"}
                             alt={`${developer.name} ${developer.surname}'s background image`}
                             style={{ objectFit: "cover" }}
@@ -171,7 +170,7 @@ export default async function DeveloperProfile(props: {
                                     }}
                                 >
                                     <Avatar
-										// @ts-ignore
+                                        // @ts-ignore
                                         src={avatarImage}
                                         alt={developer.name}
                                         sx={{
@@ -223,23 +222,23 @@ export default async function DeveloperProfile(props: {
                                         {(developer.availability ===
                                             "Freelance" ||
                                             developer.availability ===
-                                                "Full-time") && (
-                                            <Chip
-                                                variant="soft"
-                                                size="md"
-                                                color="success"
-                                                sx={{
-                                                    alignSelf: "center",
-                                                    borderRadius: "10rem",
-                                                    py: 1,
-                                                    px: 2,
-                                                    mb: 1,
-                                                }}
-                                                startDecorator={"●"}
-                                            >
-                                                Available for hire
-                                            </Chip>
-                                        )}
+                                            "Full-time") && (
+                                                <Chip
+                                                    variant="soft"
+                                                    size="md"
+                                                    color="success"
+                                                    sx={{
+                                                        alignSelf: "center",
+                                                        borderRadius: "10rem",
+                                                        py: 1,
+                                                        px: 2,
+                                                        mb: 1,
+                                                    }}
+                                                    startDecorator={"●"}
+                                                >
+                                                    Available for hire
+                                                </Chip>
+                                            )}
 
                                         <Box
                                             color={"neutral"}
@@ -542,7 +541,7 @@ export default async function DeveloperProfile(props: {
                                         width="100%"
                                     >
                                         <Button
-                                            component={Link}
+                                            component="a"
                                             href={`/message/${developer.$id}`}
                                             variant="solid"
                                             color="primary"
@@ -731,7 +730,6 @@ export default async function DeveloperProfile(props: {
                                         >
                                             <ProjectCard
                                                 key={project.title}
-                                                // @ts-ignore
                                                 project={project}
                                             />
                                         </Suspense>

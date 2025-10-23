@@ -1,5 +1,4 @@
 import * as motion from "motion/react-client";
-import Link from "next/link";
 import { Box, Typography, Container, Grid, Button } from "@mui/joy";
 import { ChevronRight } from "lucide-react";
 
@@ -65,7 +64,7 @@ export default async function FeaturedDevelopers() {
                     </motion.div>
 
                     <Button
-                        component={Link}
+                        component="a"
                         href="/discover"
                         variant="outlined"
                         color="neutral"

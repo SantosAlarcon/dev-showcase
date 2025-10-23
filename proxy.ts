@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     if (
         request.nextUrl.pathname.startsWith("/api/") ||
         request.nextUrl.pathname.startsWith("/login/") ||
@@ -14,7 +14,7 @@ export async function middleware(request: NextRequest) {
     }
 }
 
-// Apply this middleware only to files in the app directory and these directories
+// Apply this proxy only to files in the app directory and these directories
 export const config = {
     //matcher: ["/((?!api|static|.*\\..*|_next).*)", "/login", "/register", "/reset-password", "/new-password"],
     matcher: [

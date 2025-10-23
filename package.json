@@ -62,8 +62,10 @@
 	"packageManager": "pnpm@10.19.0",
 	"devDependencies": {
 		"@tanstack/eslint-plugin-query": "^5.91.2",
+		"babel-plugin-react-compiler": "^1.0.0",
 		"chai": "^6.2.0",
 		"dotenv": "^17.2.3",
+		"eslint-plugin-react-hooks": "^7.0.0",
 		"request": "^2.88.2",
 		"ts-node": "^10.9.2",
 		"z-schema": "^6.0.2"

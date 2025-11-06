@@ -5,6 +5,7 @@
       "dom.iterable",
       "esnext"
     ],
+	"checkJs": false,
     "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
